@@ -170,8 +170,6 @@ INSTALLED_APPS = (
     'jingo_minify',
     'tower',  # for ./manage.py extract (L10n)
 
-    'examples',  # Example code. Can (and should) be removed for actual projects.
-
     # We need this so the jsi18n view will pick up our locale directory.
     ROOT_PACKAGE,
 
