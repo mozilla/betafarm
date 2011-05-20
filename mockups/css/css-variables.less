@@ -1,0 +1,57 @@
+/* color variables */
+@brandColor: #4E7892;
+@adminColor: #ECF4F4;
+
+@topicColor: #cb4b16;
+@peopleColor: #859900;
+@eventColor: #2aa198;
+
+@color1: rgba(255, 160, 0, 1);
+@color2: rgba(228, 63, 63, 1);
+@color3: rgba(0, 146, 222, 1);
+@color4: rgba(90, 179, 90, 1);
+
+@light: #74726A;
+@medium: rgba(0,0,0,0.75);
+
+/* CSS3 variables */
+.rounded (@radius: 5px) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+         -o-border-radius: @radius;
+            border-radius: @radius;
+}
+
+.gradient (@start:#fff, @end:#f2f2f2) {
+    background-image: -moz-linear-gradient(top, @start 0%, @end 100%);
+    background-image: -o-linear-gradient(top, @start 0%, @end 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start), color-stop(100%, @end));
+}
+
+.shadow (@shadow: 1px 1px 1px #ccc) {
+    -webkit-box-shadow: @shadow;
+       -moz-box-shadow: @shadow;
+         -o-box-shadow: @shadow;
+            box-shadow: @shadow;
+}
+
+.shadow2 (@shadow: 1px 1px 1px #ccc, @shadow2: 1px 1px 1px #ccc) {
+    -webkit-box-shadow: @shadow, @shadow2;
+       -moz-box-shadow: @shadow, @shadow2;
+         -o-box-shadow: @shadow, @shadow2;
+            box-shadow: @shadow, @shadow2;
+}
+
+.transition (@transition: all 1s ease-in) {
+    -webkit-transition: @transition;
+       -moz-transition: @transition;
+         -o-transition: @transition;
+            transition: @transition;
+}
+
+.boxSizing (@box: border-box) {
+    -webkit-box-sizing: @box;
+       -moz-box-sizing: @box;
+         -o-box-sizing: @box;
+            box-sizing: @box;
+}

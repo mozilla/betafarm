@@ -1,0 +1,47 @@
+/* 
+    topic list page styles
+*/
+
+section#topics {
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    li {
+        width: 480px;
+        display: inline-block;
+        float: left;
+        margin: 0 0 40px 0;
+        
+        li {
+            width: auto;
+            margin: 0;
+            color: @light;
+        
+            a {
+                color: @light;
+            }
+        }
+        
+    }
+    
+    h2 {
+        margin: 0;
+    }
+    
+    p {
+        color: @medium;
+        margin: 7px 0;
+        text-indent: -5px;
+        font-size: 14px;
+    }
+    
+    p:before {
+        content: '\201c';
+    }
+    
+    p:after {
+        content: '\201d';
+    }
+}
