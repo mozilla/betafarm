@@ -1,18 +1,15 @@
-playdoh
-=======
+Betafarm
+========
 
-Mozilla's Playdoh is a web application template based on [Django][django].
+Betafarm is the codename for the new labs / drumbeat / research site. It will be the home to innovation projects at Mozilla. 
+
+Contributing
+------------
 
 Patches are welcome! Feel free to fork and contribute to this project on
-[github][gh-playdoh].
+[github][gh-betafarm].
 
-Full [documentation][docs] is available as well.
-
-
-[django]: http://www.djangoproject.com/
-[gh-playdoh]: https://github.com/mozilla/playdoh
-[docs]: http://mozilla.github.com/playdoh/
-
+[gh-betafarm]: https://github.com/mozilla/betafarm
 
 License
 -------
