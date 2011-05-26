@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="promoted" class="clearfix">
+  <div class="c6">
+    <img class="block" src="http://placehold.it/940x350/eee/ccc">
+  </div>
+</section>
+
+<hr>
+
+<section id="headlines" class="clearfix">
+  <div class="c6">
+    <strong><img src="{{ MEDIA_URL }}img/rss.png"> latest news:</strong>
+    <p><a href="#">rotating headlines here</a></p>
+  </div>
+</section>
+
+<hr>
+
+<section id="details" class="clearfix">
+  
+  <div class="c2">
+    <h3 class="normal"><a href="topics.html" class="topicColor">Topics</a></h3>
+    <p>Check out the areas of focus on the open web that we're thinking about; projects, research, and contests!</p>
+  </div>
+  <div class="c2">
+    <h3 class="normal"><a href="events.html" class="eventColor">Events</a></h3>
+    <p>Find and participate in events happening in your area or engage in one of our online contests.</p>
+    
+  </div>
+  <div class="c2">
+    <h3 class="normal"><a href="people.html" class="peopleColor">People</a></h3>
+    <p>The open web is made up of awesome people, connect and communicate with some of them here.</p>
+  </div>
+
+</section>
+
+<section id="featured" class="clearfix">
+  <div class="c2 paper">
+    
+    <div class="arrow"></div>
+    <h5>Featured Project</h5>
+    <img class="block" src="http://placehold.it/260x125/eee/ccc">
+    <h3 class="normal"><a class="brandColor" href="project.html">Contacts</a></h3>
+    <p>Putting your social graph to use</p>
+  </div>
+
+  <div class="c2 paper">
+    <div class="arrow"></div>
+    <h5>Featured Event</h5>
+    <img class="block" src="http://placehold.it/260x125/eee/ccc">
+    <h3 class="normal"><a class="brandColor" href="#">Design Jam Milan</a></h3>
+    <p>We're hosting a design jam in Italy!</p>
+  </div>
+  
+  <div class="c2 paper">
+    <div class="arrow"></div>
+    <h5>Featured Mozillian</h5>
+    <img class="block" src="http://placehold.it/260x125/eee/ccc">
+    <h3 class="normal"><a class="brandColor" href="#">Paul Osman</a></h3>
+    <p>Meet Mozilla Foudation member Paul Osman</p>
+  </div>
+</section>
+
+{% endblock %}

@@ -2,17 +2,128 @@
 <html LANG="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <title>{% block page_title %}playdoh examples{% endblock %}</title>
+    <title>{% block page_title %}Mozilla Innovation{% endblock %}</title>
 
     {% block site_css %}
-      {{ css('example_css') }}
+      {{ css('innovate_css') }}
     {% endblock %}
   </head>
   <body>
-    {% block content %}{% endblock %}
+
+    <div id="grid"></div>
+
+    <div id="wrapper">
+
+      <header id="universalHeader" class="clearfix">
+        <div id="icon" class="c2">
+          <a href=""><img class="block" src="{{ MEDIA_URL }}img/logo.png" alt="mozilla innovation"></a>
+        </div>
+        <nav id="topNav" class="c4">
+          <ul class="clearfix">
+            <li class="mainItem">
+              <a class="topic dropdown" href="">Topics</a>
+              <ul class="dropdown">
+                <li><a class="topic" href="">all topics</a></li>
+                <li><a class="topic" href="">&mdash; identity</a></li>
+                <li><a class="topic" href="">&mdash; social</a></li>
+                <li><a class="topic" href="">&mdash; user mediated data</a></li>
+                <li><a class="topic" href="">&mdash; personalization</a></li>
+                <li><a class="topic" href="">&mdash; contextual integrity</a></li>
+                <li><a class="topic" href="">&mdash; read-write ability</a></li>
+              </ul>
+            </li>
+            <li class="mainItem">
+              <a class="event dropdown" href="">Events</a>
+              <ul class="dropdown">
+                <li><a class="event" href="">events home</a></li>
+                <li><a class="event" href="">&mdash; education</a></li>
+                <li><a class="event" href="">&mdash; calendar</a></li>
+              </ul>
+            </li>
+            <li class="mainItem">
+              <a class="people dropdown" href="">People</a>
+              <ul class="dropdown">
+                <li><a class="people" href="">all members</a></li>
+                <li><a class="people" href="">staff</a></li>
+              </ul>
+            </li>
+            <li class="mainItem"><a class="join" href="">Sign Up</a></li>
+            <li class="mainItem"><a class="login" href="">Sign In</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <hr>
+
+      {% block content %}{% endblock %}
+
+    </div>
+
+    <section id="about" class="clearfix">
+      <div id="wrapper">
+        <div class="c1">
+          <img class="block" src="http://placehold.it/140x63/fff/ccc">
+        </div>
+        <div class="c2">
+          <p><strong>Mozilla Innovation</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="#">more about us &rarr;</a></p>
+        </div>
+        <div class="c1"></div>
+        <div class="c2 actions">
+          <p>follow us or <a class="brandColor" href="#">sign up</a> for an account</p>
+          <ul>
+            <li class="icon twitter"><a href="#">twitter</a></li>
+            <li class="icon facebook"><a href="#">facebook</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <footer class="clearfix">
+      <div id="wrapper">
+        <div class="c2">
+          <strong>Mozilla Innovation 2011</strong>
+        </div>
+        <div class="c1">
+          <strong>Info</strong>
+          <ul>
+            <li><a href="#">contact us</a></li>
+            <li><a href="#">sign up</a></li>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="c1">
+          <strong>Topics</strong>
+          <ul>
+            <li><a href="#">all topics</a></li>
+            <li><a href="#">identity</a></li>
+            <li><a href="#">social</a></li>
+            <li><a href="#">user mediated data</a></li>
+            <li><a href="#">personalization</a></li>
+            <li><a href="#">contextual integrity</a></li>
+            <li><a href="#">read-write ability</a></li>
+          </ul>
+        </div>
+        <div class="c1">
+          <strong>Events</strong>
+          <ul>
+            <li><a href="#">events home</a></li>
+            <li><a href="#">education</a></li>
+            <li><a href="#">calendar</a></li>
+          </ul>
+        </div>
+        <div class="c1">
+          <strong>People</strong>
+          <ul>
+            <li><a href="#">all members</a></li>
+            <li><a href="#">staff</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
     {% block site_js %}
-      {{ js('example_js') }}
+      {{ js('innovate_js') }}
     {% endblock %}
   </body>
 </html>

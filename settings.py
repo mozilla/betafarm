@@ -137,17 +137,17 @@ def JINJA_CONFIG():
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        'example_css': (
-            'css/examples/main.css',
+        'innovate_css': (
+            'css/innovate/main.css',
         ),
     },
     'js': {
-        'example_js': (
-            'js/libs/jquery-1.4.4.min.js',
+        'innovate_js': (
+            'js/libs/jquery-1.6.1.min.js',
+            'js/functions.js',
         ),
     }
 }
-
 
 ## Middlewares, apps, URL configs.
 
@@ -194,6 +194,8 @@ INSTALLED_APPS = (
     # L10n
     'product_details',
 
+    # Betafarm specific
+    'innovate',
 )
 
 # Tells the extract script what files to look for L10n in and what function
