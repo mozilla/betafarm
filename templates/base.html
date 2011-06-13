@@ -16,7 +16,7 @@
 
       <header id="universalHeader" class="clearfix">
         <div id="icon" class="c2">
-          <a href=""><img class="block" src="{{ MEDIA_URL }}img/logo.png" alt="mozilla innovation"></a>
+          <a href="{{ url('innovate.views.splash') }}"><img class="block" src="{{ MEDIA_URL }}img/logo.png" alt="mozilla innovation"></a>
         </div>
         <nav id="topNav" class="c4">
           <ul class="clearfix">
@@ -47,8 +47,12 @@
                 <li><a class="people" href="">staff</a></li>
               </ul>
             </li>
-            <li class="mainItem"><a class="join" href="">Sign Up</a></li>
-            <li class="mainItem"><a class="login" href="">Sign In</a></li>
+            {% if user.is_authenticated() %}
+              <li class="mainItem"><a class="join" href="">Hmm</a></li>
+            {% else %}
+              <li class="mainItem"><a class="join" href="{{ url('users.views.signup') }}">Sign Up</a></li>
+              <li class="mainItem"><a class="login" href="{{ url('users.views.signin') }}">Sign In</a></li>
+            {% endif %}
           </ul>
         </nav>
       </header>
@@ -69,7 +73,11 @@
         </div>
         <div class="c1"></div>
         <div class="c2 actions">
-          <p>follow us or <a class="brandColor" href="#">sign up</a> for an account</p>
+          {% if user.is_authenticated() %}
+            <p>follow us</p>
+          {% else %}
+            <p>follow us or <a class="brandColor" href="{{ url('users.views.signup') }}">sign up</a> for an account</p>
+          {% endif %}
           <ul>
             <li class="icon twitter"><a href="#">twitter</a></li>
             <li class="icon facebook"><a href="#">facebook</a></li>

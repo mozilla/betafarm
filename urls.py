@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
     (r'', include('innovate.urls')),
+    (r'', include('users.urls')),
 )
 
 ## In DEBUG mode, serve media files through Django.

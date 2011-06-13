@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "layout/errorlist.html" import errorlist %}
+
+{% block content %}
+<h2>{{ _('Sign Up') }}</h2>
+{{ errorlist(form) }}
+<form method="post" action="{{ url('users.views.signup') }}">
+  {{ csrf()|safe }}
+  <ul>
+    {% for field in form %}
+      <li>{{ field.label }} {{ field|safe }}</li>
+    {% endfor %}
+  </ul>
+  <div class="submit">
+    <input type="submit" name="signup" class="btn" value="{{ _('Sign Up') }}" />
+  </div>
+</form>
+{% endblock %}

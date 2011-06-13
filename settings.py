@@ -196,6 +196,7 @@ INSTALLED_APPS = (
 
     # Betafarm specific
     'innovate',
+    'users',
 )
 
 # Tells the extract script what files to look for L10n in and what function
@@ -243,3 +244,6 @@ BROKER_VHOST = 'playdoh'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
+
+MAX_FILEPATH_LENGTH = 250
+USER_AVATAR_PATH = 'uploads/avatars/'
