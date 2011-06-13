@@ -183,8 +183,8 @@ INSTALLED_APPS = (
     'django_sha2',  # Load after auth to monkey-patch it.
 
     'django.contrib.contenttypes',
-    # 'django.contrib.sessions',
-    # 'django.contrib.sites',
+    'django.contrib.sessions',
+    'django.contrib.sites',
     # 'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
