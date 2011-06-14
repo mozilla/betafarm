@@ -47,12 +47,12 @@
                 <li><a class="people" href="">staff</a></li>
               </ul>
             </li>
-            {% if user.is_authenticated() %}
-              <li class="mainItem"><a class="join" href="">Hmm</a></li>
-            {% else %}
+            {% if user.is_authenticated() -%}
+              <li class="mainItem"><a class="join" href="{{ url('users.views.signout') }}">Sign Out</a></li>
+            {% else -%}
               <li class="mainItem"><a class="join" href="{{ url('users.views.signup') }}">Sign Up</a></li>
               <li class="mainItem"><a class="login" href="{{ url('users.views.signin') }}">Sign In</a></li>
-            {% endif %}
+            {% endif -%}
           </ul>
         </nav>
       </header>
@@ -73,11 +73,11 @@
         </div>
         <div class="c1"></div>
         <div class="c2 actions">
-          {% if user.is_authenticated() %}
+          {% if user.is_authenticated() -%}
             <p>follow us</p>
-          {% else %}
+          {% else -%}
             <p>follow us or <a class="brandColor" href="{{ url('users.views.signup') }}">sign up</a> for an account</p>
-          {% endif %}
+          {% endif -%}
           <ul>
             <li class="icon twitter"><a href="#">twitter</a></li>
             <li class="icon facebook"><a href="#">facebook</a></li>
