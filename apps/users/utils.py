@@ -23,10 +23,10 @@ def handle_signup(request):
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
         if form.is_valid():
-            profile = Profile.objects.create_inactive_user(
-                form.cleaned_data['username'],
-                form.cleaned_data['password'],
-                form.cleaned_data['email'],
+            profile = Profile.objects.create_profile(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'],
+                email=form.cleaned_data['email'],
             )
             profile.send_confirmation_email()
         return form

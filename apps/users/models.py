@@ -1,3 +1,4 @@
+import datetime
 import hashlib
 import random
 
@@ -19,16 +20,26 @@ def create_confirmation_token(username):
 
 class ProfileManager(models.Manager):
 
-    def create_inactive_user(self, username, password, email):
-        user = User.objects.create_user(username, email, password)
-        user.is_active = False
+    def create_profile(self, username, email, password, **kwargs):
+        """Create a new user profile."""
+        now = datetime.datetime.now()
+        user = User(username=username, email=email, is_staff=False,
+                    is_active=False, is_superuser=False, last_login=now,
+                    date_joined=now)
+        user.set_password(password)
         user.save()
-        return self.create_profile(user)
-
-    def create_profile(self, user, *args, **kwargs):
-        confirmation_token = create_confirmation_token(user.username)
-        return self.create(user=user, confirmation_token=confirmation_token,
-                           **kwargs)
+        try:
+            confirmation_token = create_confirmation_token(username)
+            profile = self.create(user=user,
+                                  confirmation_token=confirmation_token,
+                                  **kwargs)
+            return profile
+        except:
+            # delete the user account if anything went wrong, so that we're
+            # not left with stale records in auth_user. TODO - watch out for
+            # race conditions here.
+            user.delete()
+            raise
 
 
 class Profile(models.Model):
