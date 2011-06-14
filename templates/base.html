@@ -62,6 +62,14 @@
 
       <hr>
 
+      {% if messages %}
+        <ul class="user-messages">
+          {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
       {% block content %}{% endblock %}
 
     </div>
