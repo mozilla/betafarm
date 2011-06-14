@@ -1,5 +1,12 @@
 {% extends "base.html" %}
+{% from "layout/errorlist.html" import errorlist %}
 
 {% block content %}
-sign in
+<h2>{{ _('Sign In') }}</h2>
+{{ errorlist(form) }}
+<form action="{{ url('users.views.signin') }}" method="post">
+  {{ csrf()|safe }}
+  {{ form.as_p()|safe }}
+  <input type="submit" value="{{ _('Sign In') }}" />
+</form>
 {% endblock %}

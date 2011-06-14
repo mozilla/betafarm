@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import forms as auth_forms
 
 from tower import ugettext_lazy as _lazy
 
@@ -21,3 +22,9 @@ class RegistrationForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'autocomplete': 'off'}),
         }
+
+
+class AuthenticationForm(auth_forms.AuthenticationForm):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput(render_value=False))
+    remember_me = forms.BooleanField(required=False)

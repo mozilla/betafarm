@@ -1,15 +1,32 @@
+from django.contrib import auth
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
-from users.forms import RegistrationForm
+from users.forms import RegistrationForm, AuthenticationForm
 from users.models import Profile
 
 import jingo
 
 
 def signin(request):
-    return jingo.render(request, 'users/signin.html')
+    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            auth.login(request, form.get_user())
+            if request.session.test_cookie_worked():
+                request.session.delete_test_cookie()
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('innovate_splash'))
+    return jingo.render(request, 'users/signin.html', {
+        'form': form,
+    })
+
+
+def signout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('innovate_splash'))
 
 
 def signup(request):
