@@ -243,3 +243,14 @@ CELERY_IGNORE_RESULT = True
 
 MAX_FILEPATH_LENGTH = 250
 USER_AVATAR_PATH = 'uploads/avatars/'
+
+# a list of passwords that meet policy requirements, but are considered
+# too common and therefore easily guessed.
+PASSWORD_BLACKLIST = (
+    'trustno1',
+    'access14',
+    'rush2112',
+    'p@$$w0rd',
+    'abcd1234',
+    'qwerty123',
+)
