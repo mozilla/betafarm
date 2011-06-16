@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set title = _('Page Not Found') %}
+
+{% block content %}
+<article id="error-page">
+  <h1>{{ title }}</h1>
+  
+  <p>
+    {% trans %}Sorry, we couldn't find the page you were looking for.{% endtrans %}
+  </p>
+
+  {# TODO: Suggest an action for the user to take (e.g. search, etc). #}
+
+</article>
+{% endblock %}

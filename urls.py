@@ -15,6 +15,10 @@ urlpatterns = patterns('',
     (r'', include('users.urls')),
 )
 
+# Handle 404 and 500 errors
+handler404 = 'innovate.views.handle404'
+handler500 = 'innovate.views.handle500'
+
 ## In DEBUG mode, serve media files through Django.
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
