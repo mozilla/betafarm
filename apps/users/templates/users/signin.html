@@ -9,4 +9,7 @@
   {{ form.as_p()|safe }}
   <input type="submit" value="{{ _('Sign In') }}" />
 </form>
+<p>
+  <a href="{{ url('users_forgot_password') }}">{{ _('Forgot your Password?') }}</a>
+</p>
 {% endblock %}

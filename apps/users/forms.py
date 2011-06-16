@@ -52,3 +52,15 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput(render_value=False))
     remember_me = forms.BooleanField(required=False)
+
+
+class SetPasswordForm(auth_forms.SetPasswordForm):
+    """
+    Subclass ``auth_forms.SetPasswordForm`` so that we can check that the
+    new password conforms to our complexity requirements.
+    """
+
+    def clean(self):
+        super(self.__class__, self).clean()
+        check_password_complexity(self.cleaned_data['new_password1'])
+        return self.cleaned_data

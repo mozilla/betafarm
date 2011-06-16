@@ -1,7 +1,10 @@
+from django.conf import settings
 from django.contrib import auth
+from django.http import Http404
+from django.utils.http import base36_to_int
 
-from users.forms import AuthenticationForm, RegistrationForm
-from users.models import Profile
+from users.forms import AuthenticationForm, RegistrationForm, SetPasswordForm
+from users.models import Profile, User
 
 
 def handle_signin(request):
@@ -31,6 +34,38 @@ def handle_signup(request):
             profile.send_confirmation_email()
         return form
     return RegistrationForm()
+
+
+def handle_password_reset(request):
+    """Helper function for password resets."""
+    if request.method == 'POST':
+        form = auth.forms.PasswordResetForm(data=request.POST)
+        if form.is_valid():
+            form.save(use_https=request.is_secure(),
+                      token_generator=auth.tokens.default_token_generator,
+                      from_email=settings.DEFAULT_FROM_EMAIL,
+                      email_template_name='users/email/password_reset.txt')
+        return form
+    return auth.forms.PasswordResetForm()
+
+
+def handle_password_reset_confirm(request, uidb36, token):
+    """Present set password form or perform actual password reset."""
+    try:
+        uid_int = base36_to_int(uidb36)
+        user = User.objects.get(id=uid_int)
+    except (ValueError, User.DoesNotExist):
+        raise Http404
+
+    if not auth.tokens.default_token_generator.check_token(user, token):
+        raise Http404
+
+    if request.method == 'POST':
+        form = SetPasswordForm(user, request.POST)
+        if form.is_valid():
+            form.save()
+        return form
+    return SetPasswordForm(None)
 
 
 def get_next_url(request):
