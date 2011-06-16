@@ -1,9 +1,20 @@
 import os
 
 from fabric.api import cd, env, run
+from fabric.operations import sudo
 
 env.proj_root = '/var/webapps/betafarm/'
 git_repo = 'https://github.com/mozilla/betafarm.git'
+
+
+def run_manage_cmd(cmd):
+    """Run a manage.py command."""
+    with cd(env.proj_root):
+        run('python manage.py %s' % (cmd,))
+
+
+def restart_apache():
+    sudo('/etc/init.d/apache2 restart')
 
 
 def clone():
@@ -20,9 +31,15 @@ def update():
 
 def migrate():
     """Run database migrations."""
-    with cd(env.proj_root):
-        run('python manage.py migrate')
+    run_manage_cmd('migrate')
+
+
+def compress():
+    """Compress CSS / Javascript."""
+    run_manage_cmd('compress_assets')
 
 
 def deploy():
     update()
+    compress()
+    restart_apache()
