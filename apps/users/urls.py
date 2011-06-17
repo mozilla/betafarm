@@ -1,7 +1,5 @@
 from django.conf.urls.defaults import patterns, url
 
-from users import forms
-
 
 urlpatterns = patterns('',
 
