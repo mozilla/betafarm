@@ -19,3 +19,10 @@ if settings.DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
+
+urlpatterns += patterns('',
+    (r'^mockups/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': 'mockups',
+        'show_indexes': True,
+    })
+)
