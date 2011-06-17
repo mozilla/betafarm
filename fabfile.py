@@ -29,9 +29,15 @@ def update():
         run('git pull origin master')
 
 
+def syncdb():
+    """Run syncdb."""
+    run_manage_cmd('syncdb')
+
+
 def migrate():
     """Run database migrations."""
-    run_manage_cmd('migrate')
+    # not implemented yet
+    pass
 
 
 def compress():
@@ -39,7 +45,20 @@ def compress():
     run_manage_cmd('compress_assets')
 
 
+def switch(branchname):
+    """Switch branches"""
+    with cd(env.proj_root):
+        run('git checkout %s' % (branchname,))
+        run('git pull origin %s' % (branchname,))
+    syncdb()
+    migrate()
+    compress()
+    restart_apache()
+
+
 def deploy():
     update()
+    syncdb()
+    migrate()
     compress()
     restart_apache()
