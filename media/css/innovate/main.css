@@ -354,7 +354,7 @@ button img {
   left: 50%;
   margin-left: -480px;
   display: none;
-  background-image: url("../i/grid.png");
+  background-image: url("../../img/grid.png");
   z-index: 100;
 }
 .topicColor {
@@ -435,10 +435,10 @@ button#follow {
   display: block;
   top: -11px;
   left: 20px;
-  background-image: url('../i/arrow.png');
+  background-image: url('../../img/arrow.png');
 }
 .arrowRight {
-  background-image: url("../i/arrowRight.png");
+  background-image: url("../../img/arrowRight.png");
   display: block;
   height: 22px;
   margin-top: -11px;
@@ -459,23 +459,23 @@ button#follow {
   padding-left: 20px !important;
 }
 .pdf {
-  background-image: url('../i/document.png');
+  background-image: url('../../img/document.png');
   background-position: left 5px;
 }
 .github {
-  background-image: url('../i/social-gh.png');
+  background-image: url('../../img/social-gh.png');
   background-position: left 3px;
 }
 .flickr {
-  background-image: url('../i/social-flickr.png');
+  background-image: url('../../img/social-flickr.png');
   background-position: left 3px;
 }
 .facebook {
-  background-image: url('../i/social-fb.png');
+  background-image: url('../../img/social-fb.png');
   background-position: left 3px;
 }
 .twitter {
-  background-image: url('../i/social-twitter.png');
+  background-image: url('../../img/social-twitter.png');
   background-position: left 3px;
 }
 /* Universal */
@@ -650,7 +650,7 @@ button#follow {
 #secondaryMenu #breadcrumbs li {
   margin: 0 8px 0 -14px;
   padding: 0 12px 0 12px;
-  background-image: url('../i/breadcrumb.png'), url('../i/breadcrumb2.png');
+  background-image: url('../../img/breadcrumb.png'), url('../../img/breadcrumb2.png');
   background-repeat: no-repeat, no-repeat;
   background-position: center right, -5px center;
   position: relative;
@@ -658,7 +658,7 @@ button#follow {
 #secondaryMenu #breadcrumbs li:first-child {
   margin: 0 8px 0 0;
   padding: 0 12px 0 0;
-  background-image: url('../i/breadcrumb.png');
+  background-image: url('../../img/breadcrumb.png');
   background-repeat: no-repeat;
   background-position: center right;
   z-index: 8;
@@ -831,7 +831,7 @@ li.post .comments {
 li.post .comments:after {
   content: '';
   position: absolute;
-  background-image: url('../i/comment.png');
+  background-image: url('../../img/comment.png');
   bottom: -5px;
   left: 5px;
   height: 5px;
@@ -868,6 +868,6 @@ html[xmlns] .clearfix {
 }
 /* css image preload */
 body:after {
-  content: url('../i/breadcrumb.png') url('../i/breadcrumb2.png');
+  content: url('../../img/breadcrumb.png') url('../../img/breadcrumb2.png');
   display: none;
 }
