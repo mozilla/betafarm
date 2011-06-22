@@ -179,6 +179,7 @@ INSTALLED_APPS = (
     'django_nose',
 
     # Django contrib apps
+    'django.contrib.admin',
     'django.contrib.auth',
     'django_sha2',  # Load after auth to monkey-patch it.
 

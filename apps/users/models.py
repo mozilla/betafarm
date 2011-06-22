@@ -3,6 +3,7 @@ import hashlib
 import random
 
 from django.conf import settings
+from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core import mail
@@ -51,7 +52,7 @@ class Profile(models.Model):
                                blank=True, verbose_name=_(u'Avatar'),
                                max_length=settings.MAX_FILEPATH_LENGTH)
     confirmation_token = models.CharField(
-        verbose_name=_('Confirmation Token'), max_length=40)
+        verbose_name=_(u'Confirmation Token'), max_length=40)
 
     objects = ProfileManager()
 
@@ -71,3 +72,6 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return unicode(self.user)
+
+
+admin.site.register(Profile)
