@@ -8,10 +8,8 @@ from topics.models import Topic
 
 def all(request):
     """Show a list of topics."""
-    topics = Topic.objects.all()
-    return jingo.render(request, 'topics/all.html', {
-        'topics': topics
-    })
+    # note that we get the list of topics from the bundled context processor
+    return jingo.render(request, 'topics/all.html')
 
 
 def show(request, slug):
