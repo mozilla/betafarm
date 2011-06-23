@@ -197,6 +197,7 @@ INSTALLED_APPS = (
     'innovate',
     'users',
     'topics',
+    'projects',
 )
 
 # Tells the extract script what files to look for L10n in and what function
@@ -248,6 +249,7 @@ CELERY_IGNORE_RESULT = True
 MAX_FILEPATH_LENGTH = 250
 USER_AVATAR_PATH = 'uploads/avatars/'
 TOPIC_IMAGE_PATH = 'uploads/topics/'
+PROJECT_IMAGE_PATH = 'uploads/projects/'
 
 # a list of passwords that meet policy requirements, but are considered
 # too common and therefore easily guessed.
