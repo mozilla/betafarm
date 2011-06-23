@@ -11,7 +11,7 @@ class Topic(models.Model):
                             max_length=100)
     description = models.CharField(verbose_name=_(u'Description'),
                                    max_length=100)
-    image = models.ImageField(verbose_name=_(u'Image'),
+    image = models.ImageField(verbose_name=_(u'Image'), blank=True,
                               upload_to=settings.TOPIC_IMAGE_PATH, null=True,
                               max_length=settings.MAX_FILEPATH_LENGTH)
 
