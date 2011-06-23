@@ -109,6 +109,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'commons.context_processors.i18n',
     #'jingo_minify.helpers.build_ids',
+
+    'topics.context_processors.topics',
 )
 
 TEMPLATE_DIRS = (

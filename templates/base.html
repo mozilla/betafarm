@@ -26,13 +26,10 @@
             <li class="mainItem">
               <a class="topic dropdown" href="{{ url('topics_all') }}">Topics</a>
               <ul class="dropdown">
-                <li><a class="topic" href="">all topics</a></li>
-                <li><a class="topic" href="">&mdash; identity</a></li>
-                <li><a class="topic" href="">&mdash; social</a></li>
-                <li><a class="topic" href="">&mdash; user mediated data</a></li>
-                <li><a class="topic" href="">&mdash; personalization</a></li>
-                <li><a class="topic" href="">&mdash; contextual integrity</a></li>
-                <li><a class="topic" href="">&mdash; read-write ability</a></li>
+                <li><a class="topic" href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
+                {% for topic in topics -%}
+                  <li><a class="topic" href="{{ url('topics_show', slug=topic.slug) }}">&mdash; {{ topic.name }}</a></li>
+                {% endfor -%}
               </ul>
             </li>
             <li class="mainItem">
