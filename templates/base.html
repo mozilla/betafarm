@@ -111,15 +111,12 @@
           </ul>
         </div>
         <div class="c1">
-          <strong>Topics</strong>
+          <strong>{{ _('Topics') }}</strong>
           <ul>
-            <li><a href="#">all topics</a></li>
-            <li><a href="#">identity</a></li>
-            <li><a href="#">social</a></li>
-            <li><a href="#">user mediated data</a></li>
-            <li><a href="#">personalization</a></li>
-            <li><a href="#">contextual integrity</a></li>
-            <li><a href="#">read-write ability</a></li>
+            <li><a href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
+            {% for topic in topics -%}
+              <li><a href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name|lower }}</a></li>
+            {% endfor -%}
           </ul>
         </div>
         <div class="c1">
