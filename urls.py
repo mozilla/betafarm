@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     (r'', include('innovate.urls')),
     (r'', include('users.urls')),
     (r'^topics', include('topics.urls')),
+    (r'^projects', include('projects.urls')),
 )
 
 # Handle 404 and 500 errors

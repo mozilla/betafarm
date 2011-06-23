@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block page_title -%}
+{% if topic -%}
+  {{ _('{project} : {topic} : Mozilla Innovation')|f(project=project.name, topic=topic) }}
+{% else -%}
+ {{ _('{project} : Mozilla Innovation')|f(project=project.name) }}
+{% endif -%}
+{% endblock -%}
+
+{% block breadcrumbs -%}
+<nav id="secondaryMenu" class="clearfix">
+  <ul id="breadcrumbs" class="c6 clearfix">
+    <li class="crumb"><a href="{{ url('innovate_splash') }}">{{ _('Innovation Home') }}</a></li>
+    <li class="crumb"><a href="{{ url('topics_all') }}">{{ _('Topics') }}</a></li>
+    <li class="crumb"><a href="{{ url('topics_show', slug=topic) }}">{{ topic }}</a></li>
+    <li>{{ project.name }}</li>
+  </ul>
+</nav>
+
+<hr>
+{% endblock -%}
+
+{% block content -%}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ project.name }}</h1>
+  </div>
+</section>
+
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    {% if project.image -%}
+      <img class="block" src="{{ MEDIA_URL }}{{ project.image }}">
+    {% else -%}
+      <img class="block" src="http://placehold.it/140x140/eee/ccc">
+    {% endif -%}
+    <li class="selected"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
+  </ul>
+</section>
+
+<section id="projectContent" class="w5 clearfix">
+  <div class="row clearfix">
+    <div class="c5 header">
+      
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row people clearfix">
+    <div class="c1">
+      <h2 class="light">{{ _('Contacts Team') }}</h2>
+    </div>
+    <ul class="peopleList clearfix">
+      {% for person in project.team_members.all() -%}
+        <li class="c2"><img src="http://placehold.it/32x32/eee/ccc"><a class="username" href="#">{{ person.name }}</a></li>
+      {% endfor -%}
+    </ul>
+  </div>
+</section>
+{% endblock -%}
