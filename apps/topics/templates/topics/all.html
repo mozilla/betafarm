@@ -1,5 +1,52 @@
 {% extends "base.html" %}
 
+{% block page_title %}{{ _('Topics :: Mozilla Innovation') }}{% endblock %}
+
+{% block breadcrumbs %}
+<nav id="secondaryMenu" class="clearfix">
+  <ul id="breadcrumbs" class="c6 clearfix">
+    <li class="crumb"><a href="{{ url('innovate_splash') }}">{{ _('Innovation Home') }}</a></li>
+    <li>{{ _('Topics') }}</li>
+  </ul>
+</nav>
+
+<hr>
+{% endblock %}
+
 {% block content %}
-<p>topics_all</p>
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ _('Topics') }}</h1>
+  </div>
+</section>
+
+<section id="topics" class="w6">
+  <ul id="topicList" class="clearfix">
+    {% for topic in topics -%}
+      <li class="topic">
+        <div class="c1 vMaster">
+          {% if topic.image -%}
+            <img class="block" src="{{ MEDIA_URL }}{{ topic.image }}">
+          {% else %}
+            <img class="block" src="http://placehold.it/140x140/eee/ccc">
+          {% endif %}
+        </div>
+        <div class="c2">
+          <div class="vAlign">
+            <h3 class="normal"><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></h3>
+            <p class="serif">{{ topic.description }}</p>
+            {# note: once we have models for projects, research, etc then this
+                     section can be added.
+            <ul class="clearfix">
+                  <li><a href="#">3 projects</a>,&nbsp;</li>
+                  <li><a href="#">1 research</a>,&nbsp;</li>
+                  <li><a href="#">2 contests</a></li>
+            </ul>
+            #}
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
 {% endblock %}

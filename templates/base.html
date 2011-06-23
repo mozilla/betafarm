@@ -15,7 +15,7 @@
 
     <div id="grid"></div>
 
-    <div id="wrapper">
+    <div id="wrapper" class="clearfix">
 
       <header id="universalHeader" class="clearfix">
         <div id="icon" class="c2">
@@ -58,6 +58,8 @@
       </header>
 
       <hr>
+
+      {% block breadcrumbs %}{% endblock %}
 
       {% if messages %}
         <ul class="user-messages">
