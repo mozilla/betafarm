@@ -12,8 +12,8 @@
 
 <section id="headlines" class="clearfix">
   <div class="c6">
-    <strong><img src="{{ MEDIA_URL }}img/rss.png"> latest news:</strong>
-    <p><a href="#">rotating headlines here</a></p>
+    <strong><img src="{{ MEDIA_URL }}img/rss.png"> {{ _('latest news:') }}</strong>
+    <p><a href="#">{{ _('rotating headlines here') }}</a></p>
   </div>
 </section>
 
@@ -22,17 +22,17 @@
 <section id="details" class="clearfix">
   
   <div class="c2">
-    <h3 class="normal"><a href="{{ url('topics_all') }}" class="topicColor">Topics</a></h3>
-    <p>Check out the areas of focus on the open web that we're thinking about; projects, research, and contests!</p>
+    <h3 class="normal"><a href="{{ url('topics_all') }}" class="topicColor">{{ _('Topics') }}</a></h3>
+    <p>{% trans %}Check out the areas of focus on the open web that we're thinking about; projects, research, and contests!{% endtrans %}</p>
   </div>
   <div class="c2">
-    <h3 class="normal"><a href="#" class="eventColor">Events</a></h3>
-    <p>Find and participate in events happening in your area or engage in one of our online contests.</p>
+    <h3 class="normal"><a href="#" class="eventColor">{{ _('Events') }}</a></h3>
+    <p>{% trans %}Find and participate in events happening in your area or engage in one of our online contests.{% endtrans %}</p>
     
   </div>
   <div class="c2">
-    <h3 class="normal"><a href="#" class="peopleColor">People</a></h3>
-    <p>The open web is made up of awesome people, connect and communicate with some of them here.</p>
+    <h3 class="normal"><a href="#" class="peopleColor">{{ _('People') }}</a></h3>
+    <p>{% trans %}The open web is made up of awesome people, connect and communicate with some of them here.{% endtrans %}</p>
   </div>
 
 </section>
@@ -49,18 +49,18 @@
 
   <div class="c2 paper">
     <div class="arrow"></div>
-    <h5>Featured Event</h5>
+    <h5>{{ _('Featured Event') }}</h5>
     <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    <h3 class="normal"><a class="brandColor" href="#">Design Jam Milan</a></h3>
-    <p>We're hosting a design jam in Italy!</p>
+    <h3 class="normal"><a class="brandColor" href="#">{{ _('Design Jam Milan') }}</a></h3>
+    <p>{% trans %}We're hosting a design jam in Italy!{% endtrans %}</p>
   </div>
   
   <div class="c2 paper">
     <div class="arrow"></div>
-    <h5>Featured Mozillian</h5>
+    <h5>{{ _('Featured Mozillian') }}</h5>
     <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    <h3 class="normal"><a class="brandColor" href="#">Paul Osman</a></h3>
-    <p>Meet Mozilla Foudation member Paul Osman</p>
+    <h3 class="normal"><a class="brandColor" href="#">{{ _('Paul Osman') }}</a></h3>
+    <p>{% trans %}Meet Mozilla Foudation member Paul Osman{% endtrans %}</p>
   </div>
 </section>
 
