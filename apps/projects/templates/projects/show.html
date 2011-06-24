@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
 {% block page_title -%}
 {% if topic -%}
   {{ _('{project} : {topic} : Mozilla Innovation')|f(project=project.name, topic=topic) }}
@@ -8,16 +10,11 @@
 {% endblock -%}
 
 {% block breadcrumbs -%}
-<nav id="secondaryMenu" class="clearfix">
-  <ul id="breadcrumbs" class="c6 clearfix">
-    <li class="crumb"><a href="{{ url('innovate_splash') }}">{{ _('Innovation Home') }}</a></li>
-    <li class="crumb"><a href="{{ url('topics_all') }}">{{ _('Topics') }}</a></li>
-    <li class="crumb"><a href="{{ url('topics_show', slug=topic) }}">{{ topic }}</a></li>
-    <li>{{ project.name }}</li>
-  </ul>
-</nav>
-
-<hr>
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Innovation Home')),
+     (url('topics_all'), _('Topics')),
+     (url('topics_show', slug=topic), topic),
+     last=project.name) }}
 {% endblock -%}
 
 {% block content -%}

@@ -1,16 +1,10 @@
 {% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
 
-{% block page_title %}{{ _('Topics :: Mozilla Innovation') }}{% endblock %}
+{% block page_title %}{{ _('Topics : Mozilla Innovation') }}{% endblock %}
 
 {% block breadcrumbs %}
-<nav id="secondaryMenu" class="clearfix">
-  <ul id="breadcrumbs" class="c6 clearfix">
-    <li class="crumb"><a href="{{ url('innovate_splash') }}">{{ _('Innovation Home') }}</a></li>
-    <li>{{ _('Topics') }}</li>
-  </ul>
-</nav>
-
-<hr>
+{{ breadcrumbs((url('innovate_splash'), _('Innovation Home')), last=_('Topics')) }}
 {% endblock %}
 
 {% block content %}
