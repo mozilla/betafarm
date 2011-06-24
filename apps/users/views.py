@@ -75,3 +75,11 @@ def password_reset_confirm(request, uidb36, token):
         'token': token,
         'uidb36': uidb36,
     })
+
+
+def profile(request, username):
+    user = get_object_or_404(auth.models.User, username=username)
+    profile = get_object_or_404(Profile, user=user)
+    return jingo.render(request, 'users/profile.html', {
+        'profile': profile
+    })

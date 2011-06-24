@@ -18,4 +18,8 @@ urlpatterns = patterns('',
     url(r'^forgot/(?P<uidb36>\w{1,13})/(?P<token>\w{1,13}-\w{1,20})/$',
         'users.views.password_reset_confirm',
         name='users_forgot_password_confirm'),
+
+    # Profile urls
+    url(r'^profile/(?P<username>[\w-]+)/$', 'users.views.profile',
+        name='users_profile'),
 )
