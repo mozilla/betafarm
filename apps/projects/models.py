@@ -20,6 +20,7 @@ class Project(models.Model):
     team_members = models.ManyToManyField(Profile,
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
+    featured = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name

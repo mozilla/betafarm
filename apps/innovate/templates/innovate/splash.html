@@ -22,7 +22,7 @@
 <section id="details" class="clearfix">
   
   <div class="c2">
-    <h3 class="normal"><a href="#" class="topicColor">Topics</a></h3>
+    <h3 class="normal"><a href="{{ url('topics_all') }}" class="topicColor">Topics</a></h3>
     <p>Check out the areas of focus on the open web that we're thinking about; projects, research, and contests!</p>
   </div>
   <div class="c2">
@@ -41,10 +41,10 @@
   <div class="c2 paper">
     
     <div class="arrow"></div>
-    <h5>Featured Project</h5>
+    <h5>{{ _('Featured Project') }}</h5>
     <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    <h3 class="normal"><a class="brandColor" href="#">Contacts</a></h3>
-    <p>Putting your social graph to use</p>
+    <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=featured_project.slug) }}">{{ featured_project.name }}</a></h3>
+    <p>{{ featured_project.description }}</p>
   </div>
 
   <div class="c2 paper">
