@@ -1,0 +1,61 @@
+/*
+    signup css
+*/
+
+form {
+
+    ul {
+        list-style-type: none;
+    }
+    
+    li {
+        margin: 10px 0;
+    }
+    
+    label {
+        display: block;
+        color: @light;
+    }
+    
+    input[type=text] {
+        font-size: 14px;
+        width: 100%;
+        border: 1px solid #aaa;
+        padding: 3px;
+        color: #222;
+        background-color: #fafafa;
+    }
+    
+    input[type=text]:focus {
+        border: 1px solid #37A6FF;
+        .rounded(0px);
+        .shadow(0 0 0 1px #37A6FF inset); 
+    }
+
+}
+
+button.submit {
+    float: right;
+    border: 1px solid #37A6FF;
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #37A6FF;
+    color: #fff;
+    cursor: pointer;
+    background-color: #37A6FF;
+    .rounded(5px);
+    .gradient(#76C2FF, #37A6FF);
+    .shadow(0 0 0 1px #76C2FF inset);
+}
+
+button.submit:active {
+    border: 1px solid #003E70;
+    text-shadow: -1px -1px 0 #006EC6;
+    color: #eee;
+    background-color: #006EC6;
+    .gradient(#3AA7FF, #006EC6);
+    .shadow(0 0 5px #003763 inset);
+}
+
