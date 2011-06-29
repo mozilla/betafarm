@@ -36,8 +36,7 @@ def syncdb():
 
 def migrate():
     """Run database migrations."""
-    # not implemented yet
-    pass
+    run_manage_cmd('migrate')
 
 
 def compress():
