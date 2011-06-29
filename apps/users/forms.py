@@ -40,8 +40,8 @@ class RegistrationForm(forms.ModelForm):
 
     def clean(self):
         super(self.__class__, self).clean()
-        password = self.cleaned_data['password']
-        password_confirm = self.cleaned_data['password_confirm']
+        password = self.cleaned_data.get('password', '')
+        password_confirm = self.cleaned_data.get('password_confirm', '')
         if not password == password_confirm:
             raise forms.ValidationError(_('Passwords do not match.'))
         check_password_complexity(password)
