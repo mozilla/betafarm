@@ -271,7 +271,7 @@ form label {
   display: block;
   color: #74726a;
 }
-form input[type=text] {
+form input[type=text], form input[type=password] {
   font-size: 14px;
   width: 100%;
   border: 1px solid #aaa;
@@ -279,7 +279,7 @@ form input[type=text] {
   color: #222;
   background-color: #fafafa;
 }
-form input[type=text]:focus {
+form input[type=text]:focus, form input[type=password]:focus {
   border: 1px solid #37A6FF;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;

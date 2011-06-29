@@ -1,18 +1,28 @@
 {% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/errorlist.html" import errorlist %}
 
-{% block content %}
-<h2>{{ _('Sign Up') }}</h2>
-{{ errorlist(form) }}
-<form method="post" action="{{ url('users.views.signup') }}">
-  {{ csrf()|safe }}
-  <ul>
-    {% for field in form %}
-      <li>{{ field.label }} {{ field|safe }}</li>
-    {% endfor %}
-  </ul>
-  <div class="submit">
-    <input type="submit" name="signup" class="btn" value="{{ _('Sign Up') }}" />
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    last=_('Sign Up')) }}
+{% endblock -%}
+
+{% block content -%}
+<section id="signup" class="clearfix">
+  <div class="c2"></div>
+  <div class="c2 paper">
+    <h2 class="light">{{ _('Sign Up') }}</h2>
+    {{ errorlist(form) }}
+    <form method="post" action="{{ url('users.views.signup') }}">
+      {{ csrf()|safe }}
+      <ul>
+        {% for field in form %}
+          <li>{{ field.label }} {{ field|safe }}</li>
+        {% endfor %}
+      </ul>
+      <button class="submit sans">{{ _('sign me up!') }}</button>
+    </form>
   </div>
-</form>
-{% endblock %}
+</section>
+{% endblock -%}
