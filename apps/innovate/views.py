@@ -6,7 +6,8 @@ from projects.models import Project
 
 
 def splash(request):
-    project = random.choice(Project.objects.filter(featured=True))
+    projects = Project.objects.filter(featured=True)
+    project = projects and random.choice(projects) or None
     return jingo.render(request, 'innovate/splash.html', {
         'featured_project': project,
         'featured_event': None,
