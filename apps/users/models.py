@@ -50,6 +50,8 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to=settings.USER_AVATAR_PATH, null=True,
                                blank=True, verbose_name=_(u'Avatar'),
                                max_length=settings.MAX_FILEPATH_LENGTH)
+    website = models.URLField(verbose_name=_(u'Website'), max_length=255,
+                              blank=True)
     confirmation_token = models.CharField(
         verbose_name=_(u'Confirmation Token'), max_length=40)
 
