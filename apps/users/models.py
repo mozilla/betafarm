@@ -3,7 +3,6 @@ import hashlib
 import random
 
 from django.conf import settings
-from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core import mail
@@ -72,6 +71,3 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return unicode(self.user)
-
-
-admin.site.register(Profile)
