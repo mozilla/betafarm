@@ -7,6 +7,8 @@
 @import "css-topics";
 @import "css-topic";
 @import "css-project";
+@import "css-people";
+@import "css-signup";
 
 * {
     margin: 0;
@@ -637,6 +639,10 @@ aside {
     img {
         vertical-align: middle;
     }
+    
+    p {
+        color: @light;
+    }
 }
 
 /* Content area */
@@ -724,6 +730,42 @@ li.post {
         left: 5px;
         height: 5px;
         width: 5px;
+    }
+}
+
+/* 404 */
+#ohnoes {
+    padding: 0;
+    display: table-cell;
+    vertical-align: middle;
+    width: 960px;
+    position: relative;
+    
+    pre {  
+        padding: 160px 0;
+        margin-top: -24px;
+        text-align: center;
+        line-height: 12px;
+        
+        -webkit-transform: rotate(30deg);
+           -moz-transform: rotate(30deg);
+             -o-transform: rotate(30deg);
+                transform: rotate(30deg);
+    
+        -moz-animation-duration: 3s;
+        -moz-animation-name: blink;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-direction: alternate;
+        
+        @-moz-keyframes blink {
+            from {
+                color: #EF4A66;
+            }
+            
+            to {
+                color: #00ADF1;
+            }
+        }
     }
 }
 

@@ -1,0 +1,46 @@
+#people {
+    padding: 0;
+    margin: 0 0 80px 0;
+    
+    ul {
+        width: 640px;
+        float: right;
+        list-style-type: none;
+    }
+    
+    li:first-child {
+        margin: 0 0 20px 0;
+        background-color: none;
+    }
+    
+    li.person {
+        margin: 20px 0;
+        line-height: 44px;
+        
+        .username,
+        a {
+            font-weight: bold;
+        }
+        
+        img {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px 0 0;
+            padding: 5px;
+            background-color: #FFFFFF;
+            border: 1px solid #D1CDC2;
+        }
+    }
+}
+
+input.search { 
+    font-size: 12px;
+    border: 1px solid rgba(0,0,0,0.25);
+    padding: 5px;
+    .rounded(3px);
+    .shadow(0 1px 3px rgba(0,0,0,0.1));
+}
+
+input.search:focus {
+    background-color: #ffff99;
+}

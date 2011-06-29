@@ -10,6 +10,7 @@ $(document).ready(function($) {
         var h = $(window).height();
         var a = $('#about').outerHeight();
         $('#wrapper').css({ 'min-height' : (h-a) });
+        $('#ohnoes').css({'height' : (h-a-71) });
     });
 
     // vertical align class
