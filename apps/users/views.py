@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -82,4 +83,39 @@ def profile(request, username):
     profile = get_object_or_404(Profile, user=user)
     return jingo.render(request, 'users/profile.html', {
         'profile': profile
+    })
+
+
+def all(request):
+    """Display a paginated, searchable list of users."""
+    # TODO - Implement page argument
+    profiles = Profile.objects.all()
+    paginator = Paginator(profiles, 15)
+    return jingo.render(request, 'users/all.html', {
+        'paginator': paginator,
+        'profiles': paginator.page(1).object_list,
+        'page': 'all'
+    })
+
+
+def active(request):
+    """Display a list of the most active users."""
+    # TODO - We don't have anything with which to measure activity yet.
+    profiles = Profile.objects.all().order_by('-user__last_login')
+    paginator = Paginator(profiles, 15)
+    return jingo.render(request, 'users/all.html', {
+        'paginator': paginator,
+        'profiles': paginator.page(1).object_list,
+        'page': 'active'
+    })
+
+
+def recent(request):
+    """Display a list of the most recent users."""
+    profiles = Profile.objects.all().order_by('-user__date_joined')
+    paginator = Paginator(profiles, 15)
+    return jingo.render(request, 'users/all.html', {
+        'paginator': paginator,
+        'profiles': paginator.page(1).object_list,
+        'page': 'recent'
     })

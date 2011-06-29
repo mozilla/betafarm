@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block page_title %}{{ _('People : Mozilla Innovation') }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    last=_('People')) }}
+{% endblock %}
+
+{% block content %}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ _('People') }}</h1>
+  </div>
+</section>
+
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    {% if page == 'all' -%}
+    <li class="selected"><a class="brandColor" href="{{ url('users_all') }}">{{ _('All (A-Z)') }}</a></li>
+    {% else -%}
+      <li><a href="{{ url('users_all') }}">{{ _('All (A-Z)') }}</a></li>
+    {% endif -%}
+    {% if page == 'active' -%}
+      <li class="selected"><a class="brandColor" href="{{ url('users_active') }}">{{ _('Most Active') }}</a></li>
+    {% else -%}
+      <li><a href="{{ url('users_active') }}">{{ _('Most Active') }}</a></li>
+    {% endif -%}
+    {% if page == 'recent' -%}
+      <li class="selected"><a class="brandColor" href="{{ url('users_recent') }}">{{ _('Most Recent') }}</a></li>
+    {% else -%}
+      <li><a href="{{ url('users_recent') }}">{{ _('Most Recent') }}</a></li>
+    {% endif -%}
+  </ul>
+</section>
+
+<section id="people" class="w5">
+  <ul id="peopleList" class="clearfix">
+    <li class="search clearfix">
+      <div class="c2"><strong>{{ _('{count} total users')|f(count=paginator.count) }}</strong></div>
+      {# todo - implement search #}
+      <input class="search c2 sans" type="text" placeholder="search people">
+    </li>
+    <hr>
+    {% for profile in profiles -%}
+    <li class="person clearfix">
+      <div class="c2">
+        {% if profile.avatar -%}
+          <img src="{{ MEDIA_URL }}{{ profile.avatar }}">
+        {% else -%}
+          <img src="http://placehold.it/32x32/eee/ccc"> 
+        {% endif -%}
+        <span class="username"><a href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.name }}</a></span>
+      </div>
+      <div class="c2 right">
+        {% if profile.website -%}
+          <a class="brandColor" href="{{ profile.website }}">{{ profile.website }}</a>
+        {% endif -%}
+      </div>
+    </li>
+    <hr>
+    {% endfor -%}
+  </ul>
+</section>
+{% endblock %}
