@@ -50,7 +50,7 @@
     </div>
     <ul class="peopleList clearfix">
       {% for person in project.team_members.all() -%}
-        <li class="c2"><img src="http://placehold.it/32x32/eee/ccc"><a class="username" href="{{ url('users_profile', username=person.user.username) }}">{{ person.name }}</a></li>
+        <li class="c2"><img src="http://placehold.it/32x32/eee/ccc"><span class="username"><a href="{{ url('users_profile', username=person.user.username) }}">{{ person.name }}</a></span></li>
       {% endfor -%}
     </ul>
   </div>
