@@ -733,13 +733,28 @@ li.post {
     }
 }
 
-/* 404 */
+/* 404 and errors */
 #ohnoes {
     padding: 0;
     display: table-cell;
     vertical-align: middle;
     width: 960px;
     position: relative;
+    overflow: hidden;
+    
+    .paper {
+        margin: 20px 10px;
+    }
+    
+    p {
+        font-size: 16px;
+        margin: 0 0 21px 0;
+        color: @medium;
+    }
+    
+    p:last-child {
+        margin: 0;
+    }
     
     pre {  
         padding: 160px 0;
