@@ -38,14 +38,17 @@
 </section>
 
 <section id="featured" class="clearfix">
+
+  {% if featured_project -%}
   <div class="c2 paper">
     
     <div class="arrow"></div>
     <h5>{{ _('Featured Project') }}</h5>
     <img class="block" src="http://placehold.it/260x125/eee/ccc">
     <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=featured_project.slug) }}">{{ featured_project.name }}</a></h3>
-    <p>{{ featured_project.description }}</p>
+    <p>{{ featured_project.description|truncate(43) }}</p>
   </div>
+  {% endif -%}
 
   <div class="c2 paper">
     <div class="arrow"></div>
@@ -54,14 +57,17 @@
     <h3 class="normal"><a class="brandColor" href="#">{{ _('Design Jam Milan') }}</a></h3>
     <p>{% trans %}We're hosting a design jam in Italy!{% endtrans %}</p>
   </div>
-  
+
+  {% if featured_user -%}
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Mozillian') }}</h5>
     <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    <h3 class="normal"><a class="brandColor" href="#">{{ _('Paul Osman') }}</a></h3>
-    <p>{% trans %}Meet Mozilla Foudation member Paul Osman{% endtrans %}</p>
+    <h3 class="normal"><a class="brandColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.name }}</a></h3>
+    <p>{{ featured_user.bio|truncate(45) }}</p>
   </div>
+  {% endif -%}
+
 </section>
 
 {% endblock %}
