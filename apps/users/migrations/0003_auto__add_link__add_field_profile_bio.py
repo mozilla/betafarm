@@ -81,6 +81,7 @@ class Migration(SchemaMigration):
         'users.link': {
             'Meta': {'object_name': 'Link'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'service': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '255'})
         },
