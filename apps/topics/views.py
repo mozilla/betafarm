@@ -9,7 +9,12 @@ from topics.models import Topic
 def all(request):
     """Show a list of topics."""
     # note that we get the list of topics from the bundled context processor
-    return jingo.render(request, 'topics/all.html')
+    projects = Project.objects.all()
+    projects_count = projects.count()
+    return jingo.render(request, 'topics/all.html', {
+        'projects': projects,
+        'projects_count': projects_count,
+    })
 
 
 def show(request, slug):

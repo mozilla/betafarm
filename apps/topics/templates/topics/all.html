@@ -43,4 +43,33 @@
     {% endfor %}
   </ul>
 </section>
+
+<section id="quickNav" class="clearfix w6">
+  <div class="c6">
+    <h3 class="light">{{ _('Quick Nav') }}</h3>
+  </div>
+  <div class="c1">
+    <select>
+      <option>{{ _('Projects ({count})')|f(count=projects_count) }}</option>
+      <optgroup label="---------">
+      {% for project in projects -%}
+        <option>{{ project.name }}</option>
+      {% endfor -%}
+      </optgroup>
+    </select>
+  </div>
+  <div class="c1">
+    <select>
+      {# TODO: implement. #}
+      <option>{{ _('Research ({count})')|f(count=3) }}</option>
+    </select>
+  </div>
+  <div class="c1">
+    <select>
+      {# TODO: implement. #}
+      <option>{{ _('Contests ({count})')|f(count=2) }}</option>
+    </select>
+  </div>
+</section>
+
 {% endblock %}
