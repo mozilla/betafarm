@@ -119,3 +119,14 @@ def recent(request):
         'profiles': paginator.page(1).object_list,
         'page': 'recent'
     })
+
+
+def staff(request):
+    """Display a list of staff users."""
+    profiles = Profile.objects.filter(staff=True)
+    paginator = Paginator(profiles, 15)
+    return jingo.render(request, 'users/all.html', {
+        'paginator': paginator,
+        'profiles': paginator.page(1).object_list,
+        'page': 'all'
+    })

@@ -24,7 +24,7 @@
         <nav id="topNav" class="c4">
           <ul class="clearfix">
             <li class="mainItem">
-              <a class="topic dropdown" href="{{ url('topics_all') }}">Topics</a>
+              <a class="topic dropdown" href="{{ url('topics_all') }}">{{ _('Topics') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
                 {% for topic in topics -%}
@@ -33,18 +33,18 @@
               </ul>
             </li>
             <li class="mainItem">
-              <a class="event dropdown" href="">Events</a>
+              <a class="event dropdown" href="">{{ _('Events') }}</a>
               <ul class="dropdown">
-                <li><a class="event" href="">events home</a></li>
-                <li><a class="event" href="">&mdash; education</a></li>
-                <li><a class="event" href="">&mdash; calendar</a></li>
+                <li><a class="event" href="">{{ _('events home') }}</a></li>
+                <li><a class="event" href="">{{ _('&mdash; education') }}</a></li>
+                <li><a class="event" href="">{{ _('&mdash; calendar') }}</a></li>
               </ul>
             </li>
             <li class="mainItem">
-              <a class="people dropdown" href="{{ url('users_all') }}">People</a>
+              <a class="people dropdown" href="{{ url('users_all') }}">{{ _('People') }}</a>
               <ul class="dropdown">
-                <li><a class="people" href="{{ url('users_all') }}">all members</a></li>
-                <li><a class="people" href="">staff</a></li>
+                <li><a class="people" href="{{ url('users_all') }}">{{ _('all members') }}</a></li>
+                <li><a class="people" href="{{ url('users_staff') }}">{{ _('staff') }}</a></li>
               </ul>
             </li>
             {% if user.is_authenticated() -%}
@@ -105,7 +105,9 @@
           <strong>Info</strong>
           <ul>
             <li><a href="#">contact us</a></li>
-            <li><a href="#">sign up</a></li>
+{% if not user.is_authenticated() -%}
+            <li><a href="{{ url('users_signup') }}">{{ _('sign up') }}</a></li>
+{% endif -%}
             <li><a href="#">about us</a></li>
             <li><a href="#">privacy policy</a></li>
           </ul>
@@ -128,10 +130,10 @@
           </ul>
         </div>
         <div class="c1">
-          <strong>People</strong>
+          <strong>{{ _('People') }}</strong>
           <ul>
-            <li><a href="#">all members</a></li>
-            <li><a href="#">staff</a></li>
+            <li><a href="{{ url('users_all') }}">{{ _('all members') }}</a></li>
+            <li><a href="{{ url('users_staff') }}">staff</a></li>
           </ul>
         </div>
       </div>
