@@ -10,10 +10,8 @@ def all(request):
     """Show a list of topics."""
     # note that we get the list of topics from the bundled context processor
     projects = Project.objects.all()
-    projects_count = projects.count()
     return jingo.render(request, 'topics/all.html', {
         'projects': projects,
-        'projects_count': projects_count,
     })
 
 

@@ -50,7 +50,7 @@
   </div>
   <div class="c1">
     <select>
-      <option>{{ _('Projects ({count})')|f(count=projects_count) }}</option>
+      <option>{{ _('Projects ({count})')|f(count=projects|length) }}</option>
       <optgroup label="---------">
       {% for project in projects -%}
         <option>{{ project.name }}</option>
