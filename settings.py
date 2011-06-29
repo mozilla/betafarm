@@ -193,6 +193,9 @@ INSTALLED_APPS = (
     # L10n
     'product_details',
 
+    # Database migrations
+    'south',
+
     # Betafarm specific
     'innovate',
     'users',
