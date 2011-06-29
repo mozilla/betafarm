@@ -961,13 +961,25 @@ li.post .comments:after {
   height: 5px;
   width: 5px;
 }
-/* 404 */
+/* 404 and errors */
 #ohnoes {
   padding: 0;
   display: table-cell;
   vertical-align: middle;
   width: 960px;
   position: relative;
+  overflow: hidden;
+}
+#ohnoes .paper {
+  margin: 20px 10px;
+}
+#ohnoes p {
+  font-size: 16px;
+  margin: 0 0 21px 0;
+  color: rgba(0, 0, 0, 0.75);
+}
+#ohnoes p:last-child {
+  margin: 0;
 }
 #ohnoes pre {
   padding: 160px 0;
