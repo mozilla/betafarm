@@ -4,7 +4,9 @@
 {% block page_title -%}{{ profile.name }} : {{ _('Mozilla Innovation') }}{% endblock -%}
 
 {% block breadcrumbs -%}
-{{ breadcrumbs((url('innovate_splash'), _('Innovation Home')), last=profile.name) }}
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Innovation Home')),
+     last=profile.name) }}
 {% endblock -%}
 
 {% block content -%}
@@ -24,4 +26,34 @@
     <li class="selected"><a class="brandColor" href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.name }}</a></li>
   </ul>
 </section>
+
+<section id="userProfile" class="w5 clearfix">
+
+  <div class="row clearfix">
+    <div class="c3 researchDescription">
+      {# TODO - Implement #}
+      Recent Activity ...
+    </div>
+
+    <aside class="c2 paper researchSidebar">
+      <h3 class="light">{{ _('Social') }}</h3>
+      <ul>
+        {% for link in profile.links.all() -%}
+        <li class="{{ link.service }} icon"><a class="brandColor" href="{{ link.url }}">{{ link.name }}</a></li>
+        {% endfor -%}
+      </ul>
+      <h3 class="light">{{ _('Projects') }}</h3>
+      <ul>
+        {% for project in profile.project_set.all() -%}
+          <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></li>
+        {% endfor -%}
+      </ul>
+      {% if profile.bio -%}
+      <h3 class="light">{{ _('About') }}</h3>
+      <p>{{ profile.bio }}</p>
+      {% endif -%}
+    </aside>
+  </div>
+</section>
+
 {% endblock -%}

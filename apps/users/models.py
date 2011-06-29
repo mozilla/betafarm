@@ -42,6 +42,21 @@ class ProfileManager(models.Manager):
             raise
 
 
+class Link(models.Model):
+    SUPPORTED_SERVICES = (
+        ('github', 'Github'),
+        ('flickr', 'Flickr'),
+        ('twitter', 'Twitter')
+    )
+    service = models.CharField(max_length=50, verbose_name=_(u'Service Name'),
+                               choices=SUPPORTED_SERVICES)
+    name = models.CharField(max_length=50, verbose_name=_(u'Link Name'))
+    url = models.URLField(verbose_name=_(u'URL'), max_length=255)
+
+    def __unicode__(self):
+        return u'%s -> %s' % (self.name, self.url)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True,
                                 verbose_name=_(u'User'))
@@ -52,8 +67,10 @@ class Profile(models.Model):
                                max_length=settings.MAX_FILEPATH_LENGTH)
     website = models.URLField(verbose_name=_(u'Website'), max_length=255,
                               blank=True)
+    bio = models.TextField(verbose_name=_(u'Bio'), blank=True)
     confirmation_token = models.CharField(
         verbose_name=_(u'Confirmation Token'), max_length=40)
+    links = models.ManyToManyField(Link, verbose_name=_(u'Links'))
 
     objects = ProfileManager()
 
