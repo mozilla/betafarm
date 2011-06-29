@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from tower import ugettext_lazy as _
 
-from users.models import Profile
+from users.models import Profile, Link
 
 
 username = lambda u: u.user.username
@@ -14,4 +14,9 @@ class ProfileAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+class LinkAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url', 'service')
+    search_fields = ('name', 'service')
+
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Link, LinkAdmin)
