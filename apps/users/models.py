@@ -44,12 +44,13 @@ class ProfileManager(models.Manager):
 
 class Link(models.Model):
     SUPPORTED_SERVICES = (
-        ('github', 'Github'),
-        ('flickr', 'Flickr'),
-        ('twitter', 'Twitter')
+        (u'github', u'Github'),
+        (u'flickr', u'Flickr'),
+        (u'twitter', u'Twitter'),
+        (u'other', u'Other')
     )
     service = models.CharField(max_length=50, verbose_name=_(u'Service Name'),
-                               choices=SUPPORTED_SERVICES)
+                               choices=SUPPORTED_SERVICES, default=u'other')
     name = models.CharField(max_length=50, verbose_name=_(u'Link Name'))
     url = models.URLField(verbose_name=_(u'URL'), max_length=255)
 
@@ -71,6 +72,8 @@ class Profile(models.Model):
     confirmation_token = models.CharField(
         verbose_name=_(u'Confirmation Token'), max_length=40)
     links = models.ManyToManyField(Link, verbose_name=_(u'Links'))
+    staff = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False)
 
     objects = ProfileManager()
 
