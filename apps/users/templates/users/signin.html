@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 {% from "layout/errorlist.html" import errorlist %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    last=_('Sign In')) }}
+{% endblock -%}
 
 {% block content %}
-<h2>{{ _('Sign In') }}</h2>
-{{ errorlist(form) }}
-<form action="{{ url('users.views.signin') }}" method="post">
-  {{ csrf()|safe }}
-  {{ form.as_p()|safe }}
-  <input type="submit" value="{{ _('Sign In') }}" />
-</form>
-<p>
-  <a href="{{ url('users_forgot_password') }}">{{ _('Forgot your Password?') }}</a>
-</p>
+<section id="signin" class="clearfix">
+  <div class="c2"></div>
+  <div class="c2 paper">
+    <h2 class="light">{{ _('Sign In') }}</h2>
+    {{ errorlist(form) }}
+    <form action="{{ url('users.views.signin') }}" method="post">
+      {{ csrf()|safe }}
+      {{ form.as_p()|safe }}
+      <button class="submit sans">{{ _('sign me in!') }}</button>
+    </form>
+    <p>
+      <a href="{{ url('users_forgot_password') }}">{{ _('Forgot your Password?') }}</a>
+    </p>
+  </div>
+</section>
 {% endblock %}
