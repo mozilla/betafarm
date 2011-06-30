@@ -16,6 +16,9 @@ class Project(models.Model):
     image = models.ImageField(verbose_name=_(u'Image'), blank=True,
                               upload_to=settings.PROJECT_IMAGE_PATH,
                               null=True)
+    featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
+                                       blank=True, null=True,
+                                       upload_to=settings.PROJECT_IMAGE_PATH)
     team_members = models.ManyToManyField(Profile,
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
