@@ -22,12 +22,4 @@ $(document).ready(function($) {
             $(this).css({ width : w });
         });
     });
-
-    // keyboard shortcuts
-    $(document.documentElement).keyup(function (event) {
-        if (event.keyCode == 71) {
-            $('#grid').fadeToggle(100); // G toggles grid
-        }
-    });
-    
 });
