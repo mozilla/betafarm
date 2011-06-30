@@ -63,7 +63,7 @@
     <div class="arrow"></div>
     <h5>{{ _('Featured Mozillian') }}</h5>
     <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    <h3 class="normal"><a class="brandColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.name }}</a></h3>
+    <h3 class="normal"><a class="brandColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.display_name }}</a></h3>
     <p>{{ featured_user.bio|truncate(45) }}</p>
   </div>
   {% endif -%}

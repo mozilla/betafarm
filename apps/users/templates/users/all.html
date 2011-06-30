@@ -52,7 +52,7 @@
         {% else -%}
           <img src="http://placehold.it/32x32/eee/ccc"> 
         {% endif -%}
-        <span class="username"><a href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.name }}</a></span>
+        <span class="username"><a href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></span>
       </div>
       <div class="c2 right">
         {% if profile.website -%}

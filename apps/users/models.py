@@ -93,3 +93,7 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return unicode(self.user)
+
+    @property
+    def display_name(self):
+        return self.name or self.user.username

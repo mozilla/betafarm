@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 
-{% block page_title -%}{{ profile.name }} : {{ _('Mozilla Innovation') }}{% endblock -%}
+{% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Innovation') }}{% endblock -%}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Innovation Home')),
-     last=profile.name) }}
+     last=profile.display_name) }}
 {% endblock -%}
 
 {% block content -%}
 <section id="title" class="clearfix">
   <div class="c6">
-    <h1 class="light noMargin">{{ profile.name }}</h1>
+    <h1 class="light noMargin">{{ profile.display_name }}</h1>
   </div>
 </section>
 
@@ -23,7 +23,7 @@
     {% else -%}
       <img class="block" src="http://placehold.it/140x140/eee/ccc">
     {% endif -%}
-    <li class="selected"><a class="brandColor" href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.name }}</a></li>
+    <li class="selected"><a class="brandColor" href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></li>
   </ul>
 </section>
 
