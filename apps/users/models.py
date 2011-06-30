@@ -66,9 +66,6 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to=settings.USER_AVATAR_PATH, null=True,
                                blank=True, verbose_name=_(u'Avatar'),
                                max_length=settings.MAX_FILEPATH_LENGTH)
-    featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
-                                       blank=True, null=True,
-                                       upload_to=settings.USER_AVATAR_PATH)
     website = models.URLField(verbose_name=_(u'Website'), max_length=255,
                               blank=True)
     bio = models.TextField(verbose_name=_(u'Bio'), blank=True)
@@ -77,6 +74,9 @@ class Profile(models.Model):
     links = models.ManyToManyField(Link, verbose_name=_(u'Links'), blank=True)
     staff = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
+    featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
+                                       blank=True, null=True,
+                                       upload_to=settings.USER_AVATAR_PATH)
 
     objects = ProfileManager()
 
