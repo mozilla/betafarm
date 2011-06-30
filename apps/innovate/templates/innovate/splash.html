@@ -50,13 +50,19 @@
   </div>
   {% endif -%}
 
+  {% if featured_event %}
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Event') }}</h5>
-    <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    <h3 class="normal"><a class="brandColor" href="#">{{ _('Design Jam Milan') }}</a></h3>
-    <p>{% trans %}We're hosting a design jam in Italy!{% endtrans %}</p>
+    {% if featured_event.featured_image -%}
+      <img class="block" src="{{ MEDIA_URL }}{{ featured_event.featured_image }}">
+    {% else -%}
+      <img class="block" src="http://placehold.it/260x125/eee/ccc">
+    {% endif -%}
+    <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=featured_event.slug) }}">{{ featured_event.name }}</a></h3>
+    <p>{{ featured_event.description|truncate(43) }}</p>
   </div>
+  {% endif %}
 
   {% if featured_user -%}
   <div class="c2 paper">

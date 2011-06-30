@@ -4,17 +4,17 @@ import jingo
 
 from users.models import Profile
 from projects.models import Project
+from events.models import Event
 
 
 def splash(request):
-    projects = Project.objects.filter(featured=True)
-    project = projects and random.choice(projects) or None
-    users = Profile.objects.filter(featured=True)
-    user = users and random.choice(users) or None
+    def get_random(cls):
+        choices = cls.objects.filter(featured=True)
+        return choices and random.choice(choices) or None
     return jingo.render(request, 'innovate/splash.html', {
-        'featured_project': project,
-        'featured_event': None,
-        'featured_user': user,
+        'featured_project': get_random(Project),
+        'featured_event': get_random(Event),
+        'featured_user': get_random(Profile),
     })
 
 
