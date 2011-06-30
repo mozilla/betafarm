@@ -49,10 +49,10 @@
             </li>
             {% if user.is_authenticated() -%}
               <li class="mainItem"><a class="people{{ active(request, url('users_edit')) }}" href="{{ url('users_edit') }}">{{ _('Profile') }}</a></li>
-              <li class="mainItem"><a class="join" href="{{ url('users.views.signout') }}">Sign Out</a></li>
+              <li class="mainItem"><a class="join" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
             {% else -%}
-              <li class="mainItem"><a class="join" href="{{ url('users.views.signup') }}">Sign Up</a></li>
-              <li class="mainItem"><a class="login" href="{{ url('users.views.signin') }}">Sign In</a></li>
+              <li class="mainItem"><a class="join" href="{{ url('users.views.signup') }}">{{ _('Sign Up') }}</a></li>
+              <li class="mainItem"><a class="login" href="{{ url('users.views.signin') }}">{{ _('Sign In') }}</a></li>
             {% endif -%}
           </ul>
         </nav>
@@ -100,16 +100,16 @@
     <footer class="clearfix">
       <div id="wrapper">
         <div class="c2">
-          <strong>Mozilla Innovation 2011</strong>
+          <strong>{{ _('Mozilla Innovation 2011') }}</strong>
         </div>
         <div class="c1">
-          <strong>Info</strong>
+          <strong>{{ _('Info') }}</strong>
           <ul>
-            <li><a href="#">contact us</a></li>
+            <li><a href="http://www.mozilla.org/contact/">{{ _('contact us') }}</a></li>
 {% if not user.is_authenticated() -%}
             <li><a href="{{ url('users_signup') }}">{{ _('sign up') }}</a></li>
 {% endif -%}
-            <li><a href="{{ url('innovate_about') }}">about us</a></li>
+            <li><a href="{{ url('innovate_about') }}">{{ _('about us') }}</a></li>
             <li><a href="http://www.mozilla.org/about/policies/privacy-policy.html">{{ _('privacy policy') }}</a></li>
           </ul>
         </div>
@@ -135,7 +135,7 @@
           <strong>{{ _('People') }}</strong>
           <ul>
             <li><a href="{{ url('users_all') }}">{{ _('all members') }}</a></li>
-            <li><a href="{{ url('users_staff') }}">staff</a></li>
+            <li><a href="{{ url('users_staff') }}">{{ _('staff') }}</a></li>
           </ul>
         </div>
       </div>

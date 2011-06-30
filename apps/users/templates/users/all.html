@@ -48,7 +48,7 @@
     <li class="person clearfix">
       <div class="c2">
         {% if profile.avatar -%}
-          <img src="{{ MEDIA_URL }}{{ profile.avatar }}">
+          <img src="{{ MEDIA_URL }}{{ profile.avatar }}" width="32" height="32">
         {% else -%}
           <img src="http://placehold.it/32x32/eee/ccc"> 
         {% endif -%}
