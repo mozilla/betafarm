@@ -74,7 +74,7 @@ class Profile(models.Model):
     bio = models.TextField(verbose_name=_(u'Bio'), blank=True)
     confirmation_token = models.CharField(
         verbose_name=_(u'Confirmation Token'), max_length=40)
-    links = models.ManyToManyField(Link, verbose_name=_(u'Links'))
+    links = models.ManyToManyField(Link, verbose_name=_(u'Links'), blank=True)
     staff = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
 
