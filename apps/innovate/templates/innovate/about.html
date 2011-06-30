@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block page_title %}{{ _('About : Mozilla Innovation') }}{% endblock %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    last=_('About')) }}
+{% endblock -%}
+
+{% block content -%}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ _('About Mozilla Innovation') }}</h1>
+  </div>
+</section>
+<section id="pagebody">
+  <div class="c6">
+    <p>
+      {% trans %}
+      Mozilla's mission is to move the Web forward with the user always front, center and fully in control. 
+      This requires a wide variety of innovation, exploration and experimentation, both within the browser 
+      and beyond. These pages are a showcase of our currently active explorations as they happen. Not all 
+      of the ideas you see here will make it to fruition &mdash; some of them will quite possibly fail. If 
+      you're interested in not just watching the Web evolve but taking an active part in shaping its future, 
+      we invite you to join in our open innovation process. Find a project that resonates with you and get 
+      involved. Or <a href="http://join.mozilla.com/">Join Mozilla</a> and become a supporter of our ongoing 
+      efforts.
+      {% endtrans %}
+    </p>
+  </div>
+</section>
+{% endblock -%}

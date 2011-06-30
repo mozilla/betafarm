@@ -18,6 +18,10 @@ def splash(request):
     })
 
 
+def about(request):
+    return jingo.render(request, 'innovate/about.html')
+
+
 def handle404(request):
     return jingo.render(request, 'handlers/404.html')
 

@@ -80,7 +80,7 @@
           <img class="block" src="http://placehold.it/140x63/fff/ccc">
         </div>
         <div class="c2">
-          <p><strong>Mozilla Innovation</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="#">more about us &rarr;</a></p>
+          <p><strong>Mozilla Innovation</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
         </div>
         <div class="c1"></div>
         <div class="c2 actions">
@@ -109,8 +109,8 @@
 {% if not user.is_authenticated() -%}
             <li><a href="{{ url('users_signup') }}">{{ _('sign up') }}</a></li>
 {% endif -%}
-            <li><a href="#">about us</a></li>
-            <li><a href="#">privacy policy</a></li>
+            <li><a href="{{ url('innovate_about') }}">about us</a></li>
+            <li><a href="http://www.mozilla.org/about/policies/privacy-policy.html">{{ _('privacy policy') }}</a></li>
           </ul>
         </div>
         <div class="c1">
