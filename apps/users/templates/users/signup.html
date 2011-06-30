@@ -17,9 +17,22 @@
     <form method="post" action="{{ url('users.views.signup') }}">
       {{ csrf()|safe }}
       <ul>
-        {% for field in form %}
-          <li>{{ field.label }} {{ field|safe }}</li>
-        {% endfor %}
+        <li>
+          <label for="id_username">{{ _('Username - <em>eg: johnsmmith, john.smith</em>') }}</label>
+          {{ form.username }}
+        </li>
+        <li>
+          <label for="id_password">{{ _('Password') }}</label>
+          {{ form.password }}
+        </li>
+        <li>
+          <label for="id_password_confirm">{{ _('Confirm Password') }}</label>
+          {{ form.password_confirm }}
+        </li>
+        <li>
+          <label for="id_email">{{ _('Email Address') }}</label>
+          {{ form.email }}
+        </li>
       </ul>
       <button class="submit sans">{{ _('sign me up!') }}</button>
     </form>

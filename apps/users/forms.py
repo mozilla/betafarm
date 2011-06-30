@@ -24,21 +24,28 @@ def check_password_complexity(password):
 
 
 class RegistrationForm(forms.ModelForm):
-    username = forms.CharField(max_length=255)
-    email = forms.EmailField(label=_lazy(u'Email address:'))
+    username = forms.CharField(max_length=255, widget=forms.TextInput(attrs={
+        'class': 'sans',
+        'autocomplete': 'off'
+    }))
+    email = forms.EmailField(label=_lazy(u'Email address:'),
+                             widget=forms.TextInput(attrs={
+                                 'class': 'sans',
+                             }))
     password = forms.CharField(
         max_length=255,
-        widget=forms.PasswordInput(render_value=False))
+        widget=forms.PasswordInput(render_value=False, attrs={
+            'class': 'sans'
+        }))
     password_confirm = forms.CharField(
         max_length=255,
-        widget=forms.PasswordInput(render_value=False))
+        widget=forms.PasswordInput(render_value=False, attrs={
+            'class': 'sans'
+        }))
 
     class Meta:
         model = User
         fields = ('username', 'password', 'password_confirm', 'email')
-        widgets = {
-            'username': forms.TextInput(attrs={'autocomplete': 'off'}),
-        }
 
     def clean(self):
         super(self.__class__, self).clean()

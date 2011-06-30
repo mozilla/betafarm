@@ -261,6 +261,12 @@ input.search:focus {
 /*
     signup css
 */
+.errorlist {
+  list-style-type: none;
+}
+.errorlist li, .errorlist li a {
+  color: #ff5959;
+}
 form ul {
   list-style-type: none;
 }
