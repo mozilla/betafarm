@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -8,7 +9,8 @@ from django.shortcuts import get_object_or_404
 from users.decorators import anonymous_only
 from users.models import Profile
 from users.utils import (handle_signin, handle_signup, get_next_url,
-                         handle_password_reset, handle_password_reset_confirm)
+                         handle_password_reset, handle_password_reset_confirm,
+                         handle_profile_save)
 
 from tower import ugettext as _
 import jingo
@@ -83,6 +85,16 @@ def profile(request, username):
     profile = get_object_or_404(Profile, user=user)
     return jingo.render(request, 'users/profile.html', {
         'profile': profile
+    })
+
+
+@login_required
+def edit(request):
+    form = handle_profile_save(request)
+    if form.is_valid():
+        return HttpResponseRedirect(reverse('innovate_splash'))
+    return jingo.render(request, 'users/edit.html', {
+        'form': form
     })
 
 

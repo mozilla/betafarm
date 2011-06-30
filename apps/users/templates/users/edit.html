@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/errorlist.html" import errorlist %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    last=_('Edit Profile')) }}
+{% endblock -%}
+
+{% block content -%}
+<section id="profile_edit" class="clearfix">
+  <div class="c2"></div>
+  <div class="c2 paper">
+    <h2 class="light">{{ _('Your Profile') }}</h2>
+    {{ errorlist(form) }}
+    <form action="{{ url('users_edit') }}" method="post">
+      {{ csrf()|safe }}
+      {{ form.as_p()|safe }}
+      <button class="submit sans">{{ _('save!') }}</button>
+    </form>
+  </div>
+</section>
+{% endblock -%}

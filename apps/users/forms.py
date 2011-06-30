@@ -4,6 +4,8 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth import forms as auth_forms
 
+from users.models import Profile
+
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from django.contrib.auth.models import User
@@ -64,3 +66,10 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
         super(self.__class__, self).clean()
         check_password_complexity(self.cleaned_data['new_password1'])
         return self.cleaned_data
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ('name', 'website', 'bio')

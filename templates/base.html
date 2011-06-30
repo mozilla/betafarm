@@ -47,6 +47,7 @@
               </ul>
             </li>
             {% if user.is_authenticated() -%}
+              <li class="mainItem"><a class="people" href="{{ url('users_edit') }}">{{ _('Profile') }}</a></li>
               <li class="mainItem"><a class="join" href="{{ url('users.views.signout') }}">Sign Out</a></li>
             {% else -%}
               <li class="mainItem"><a class="join" href="{{ url('users.views.signup') }}">Sign Up</a></li>

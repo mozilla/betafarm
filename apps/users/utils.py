@@ -3,7 +3,8 @@ from django.contrib import auth
 from django.http import Http404
 from django.utils.http import base36_to_int
 
-from users.forms import AuthenticationForm, RegistrationForm, SetPasswordForm
+from users.forms import (AuthenticationForm, RegistrationForm, SetPasswordForm,
+                         ProfileForm)
 from users.models import Profile, User
 
 
@@ -66,6 +67,19 @@ def handle_password_reset_confirm(request, uidb36, token):
             form.save()
         return form
     return SetPasswordForm(None)
+
+
+def handle_profile_save(request):
+    """Edit or create a user profile."""
+    profile = request.user.get_profile()
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+        return form
+    return ProfileForm(instance=profile)
 
 
 def get_next_url(request):

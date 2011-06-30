@@ -264,3 +264,9 @@ PASSWORD_BLACKLIST = (
     'abcd1234',
     'qwerty123',
 )
+
+AUTH_PROFILE_MODULE = 'users.Profile'
+
+# Email goes to the console by default.  s/console/smtp/ for regular delivery
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'Innovate Mozilla <innovate@mozilla.org>'

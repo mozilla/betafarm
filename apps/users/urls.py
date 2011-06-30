@@ -20,6 +20,7 @@ urlpatterns = patterns('',
         name='users_forgot_password_confirm'),
 
     # Profile urls
+    url(r'^profile/edit/$', 'users.views.edit', name='users_edit'),
     url(r'^profile/(?P<username>[\w-]+)/$', 'users.views.profile',
         name='users_profile'),
 
