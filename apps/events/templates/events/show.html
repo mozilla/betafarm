@@ -21,6 +21,8 @@
 
 <section id="eventContent" class="w5 clearfix">
   <div class="row clearfix">
+    <div class="c1">
+{% if request.user.is_authenticated() -%}
     {% if request.user.get_profile() in event.attendees.all() -%}
       <form method="post" action="{{ url('events_unattend', slug=event.slug) }}">
         {{ csrf()|safe }}
@@ -32,6 +34,8 @@
         <button class="submit sans">{{ _('attend this event!') }}</button>
       </form>
     {% endif -%}
+{% endif -%}
+    </div>
   </div>
 
   <div class="row people clearfix">
