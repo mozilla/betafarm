@@ -1,7 +1,51 @@
 {% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
 
 {% block page_title %}{{ _('Events : Mozilla Innovation') }}{% endblock %}
 
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    last=_('Events')) }}
+{% endblock -%}
+
 {% block content -%}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ _('Events') }}</h1>
+  </div>
+</section>
+
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    <li class="selected"><a class="brandColor" href="{{ url('events_all') }}">{{ _('Events') }}</li>
+  </ul>
+</section>
+
+<section id="eventsContent" class="w3">
+  <ul id="posts" class="clearfix">
+    {% for event in events -%}
+    <li class="post c3">
+      <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></h3>
+      <time>{{ event.start.strftime('%B %d, %Y') }}</time>
+      <div class="content">
+        <p class="serif">{{ event.description }}</p>
+      </div>
+    </li>
+    {% endfor -%}
+  </ul>
+</section>
+
+<aside id="eventsSidebar" class="w2 clearfix">
+  <div class="c2 paper">
+    <h3 class="light">{{ _('Current Events') }}</h3>
+    <ul>
+
+    </ul>
+    <h3 class="light">{{ _('Upcoming Events') }}</h3>
+    <ul>
+
+    </ul>
+</aside>
 
 {% endblock -%}

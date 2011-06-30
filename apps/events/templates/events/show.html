@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block page_title -%}
+{{ _('{event_name} : Events : Mozilla Innovation')|f(event_name=event.name) }}
+{% endblock -%}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Innovation Home')),
+    (url('events_all'), _('Events')),
+    last=event.name) }}
+{% endblock -%}
+
+{% block content -%}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ event.name }}</h1>
+  </div>
+</section>
+
+<section id="eventContent" class="w5 clearfix">
+  <div class="row clearfix">
+    {% if request.user.get_profile() in event.attendees.all() -%}
+      <form method="post" action="{{ url('events_unattend', slug=event.slug) }}">
+        {{ csrf()|safe }}
+        <button class="submit sans">{{ _('stop attending') }}</button>
+      </form>
+    {% else -%}
+      <form method="post" action="{{ url('events_attend', slug=event.slug) }}">
+        {{ csrf()|safe }}
+        <button class="submit sans">{{ _('attend this event!') }}</button>
+      </form>
+    {% endif -%}
+  </div>
+
+  <div class="row people clearfix">
+    <div class="c1">
+      <h2 class="light">{{ _('Attending') }}</h2>
+    </div>
+    <ul class="peopleList clearfix">
+      {% for person in event.attendees.all() -%}
+        <li class="c2">
+          {% if person.avatar -%}
+            <img src="{{ MEDIA_URL }}{{ person.avatar }}" height="32" width="32">
+          {% else -%}
+            <img src="http://placehold.it/32x32/eee/ccc">
+          {% endif -%}
+          <span class="username"><a href="{{ url('users_profile', username=person.user.username) }}">{{ person.display_name }}</a></span>
+        </li>
+      {% endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% endblock -%}
