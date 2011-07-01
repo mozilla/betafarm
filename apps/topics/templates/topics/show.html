@@ -25,7 +25,7 @@
       <img class="block" src="http://placehold.it/140x140/eee/ccc">
     {% endif -%}
     <li class="selected"><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
-    <li><a href="#">{{ _('About {topic}')|f(topic=topic.name) }}</a></li>
+    <li><a href="{{ url('topics_about', slug=topic.slug) }}">{{ _('About {topic}')|f(topic=topic.name) }}</a></li>
   </ul>
 </section>
 
