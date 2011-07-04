@@ -659,15 +659,27 @@ section#title {
     padding: 40px 0 21px;
 }
 
-/* Universal blog styles */
+/* Universal author styles */
 
 .content {
-    margin: 14px 0;
-
+    font-size: 14px;
+    color: @medium;
+    margin-bottom: 42px;
+    
+    h3, h4 {
+        margin: 0 0 14px 0;
+    }
+    
     p, .paper {
         font-size: 14px;
-        margin: 0 0 21px 0;
+        margin: 0 0 21px;
         color: @medium;
+    }
+    
+    p.large {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 0 24px;
     }
     
     .paper:after {
@@ -676,6 +688,48 @@ section#title {
         color: @light;
         margin: 10px 0 0 0;
     }
+    
+    a {
+        color: @brandColor;
+    }
+    
+    hr {
+        margin: 0 0 21px;  
+    }
+    
+    blockquote {
+        margin: 7px 0 28px;
+        padding: 0 20px;
+        border-left: 5px solid rgba(0,0,0,0.1);
+        color: @light;
+        font-style: italic;
+    }
+    
+    ul {
+        margin: 0 0 21px;
+        list-style-type: square;
+    }
+    
+    ol {
+        margin: 0 0 21px;
+    }
+    
+    li {
+        padding: 0 0 7px;
+        color: rgba(0,0,0,0.25);
+        
+        span {
+            color: @medium;
+        }
+    }
+    
+    li:last-child {
+        padding: 0;
+    }
+}
+
+.blogHeader {
+    margin: 7px 0 14px;
 }
 
 .tags li {
