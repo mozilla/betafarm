@@ -92,7 +92,9 @@ def profile(request, username):
 def edit(request):
     form = handle_profile_save(request)
     if form.is_valid():
-        return HttpResponseRedirect(reverse('innovate_splash'))
+        return HttpResponseRedirect(reverse('users_profile', kwargs={
+            'username': request.user.username
+        }))
     return jingo.render(request, 'users/edit.html', {
         'form': form
     })
