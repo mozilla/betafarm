@@ -18,8 +18,8 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    {% if profile.image -%}
-      <img class="block" src="{{ MEDIA_URL }}{{ profile.image }}" height="140" width="140">
+    {% if profile.avatar -%}
+      <img class="block" src="{{ MEDIA_URL }}{{ profile.avatar }}" height="140" width="140">
     {% else -%}
       <img class="block" src="http://placehold.it/140x140/eee/ccc">
     {% endif -%}
