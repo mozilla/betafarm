@@ -10,13 +10,17 @@
 
 {% block content -%}
 <section id="profile_edit" class="clearfix">
-  <div class="c2"></div>
-  <div class="c2 paper">
+  <div class="c4"></div>
+  <div class="c4 paper">
     <h2 class="light">{{ _('Your Profile') }}</h2>
     {{ errorlist(form) }}
     <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
       {{ csrf()|safe }}
       <ul>
+        <li>
+          <label for="id_avatar">{{ _('Picture') }}</label>
+          {{ form.avatar }}
+        </li>
         <li>
           <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
           {{ form.name }}
@@ -24,10 +28,6 @@
         <li>
           <label for="id_website">{{ _('Website') }}</label>
           {{ form.website }}
-        </li>
-        <li>
-          <label for="id_avatar">{{ _('Picture') }}</label>
-          {{ form.avatar }}
         </li>
         <li>
           <label for="id_bio">{{ _('Bio') }}</label>

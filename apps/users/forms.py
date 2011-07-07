@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth import forms as auth_forms
 
 from users.models import Profile
-
+from users.widgets import ImageFileInput
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from django.contrib.auth.models import User
@@ -76,6 +76,9 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
 
 
 class ProfileForm(forms.ModelForm):
+
+    avatar = forms.ImageField(
+        widget=ImageFileInput())
 
     class Meta:
         model = Profile
