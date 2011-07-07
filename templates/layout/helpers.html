@@ -1,0 +1,34 @@
+{% macro address(name, address1, address2, city, state, country, zip) -%}
+<p class="address">
+  {% if name -%}
+    {{ name }}<br />
+  {% endif -%}
+  {% if address1 -%}
+    {{ address1 }}<br />
+  {% endif -%}
+  {% if address2 -%}
+    {{ address2 }}<br />
+  {% endif -%}
+  {% if city and state -%}
+    {{ city }}, {{ state }}<br />
+  {% elif city -%}
+    {{ city }}<br />
+  {% endif -%}
+  {% if country and zip -%}
+    {{ country }}&nbsp;&nbsp;{{ zip }}
+  {% elif country -%}
+    {{ country }}
+  {% endif -%}
+</p>
+{% endmacro -%}
+
+{% macro gmap(address, city, state, country, zip, width, height, is_secure=False) -%}
+
+{% if is_secure -%}
+  {% set url = "https://maps.google.com/maps/api/staticmap?" %}
+{% else -%}
+  {% set url = "http://maps.google.com/maps/api/staticmap?" %}
+{% endif -%}
+
+<img src="{{ url }}markers={{ address|urlquote }},{{ city|urlquote }},{{ country|urlquote }},{{ zip|urlquote }}&zoom=15&size={{ width }}x{{ height }}&sensor=false">
+{% endmacro -%}
