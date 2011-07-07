@@ -24,7 +24,7 @@
       <img class="block" src="http://placehold.it/140x140/eee/ccc">
     {% endif -%}
     <li class="selected"><a class="brandColor" href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></li>
-    {% if user.is_authenticated() and user.get_profile == profile -%}
+    {% if user.is_authenticated() and user.get_profile() == profile -%}
     <li><a class="brandColor" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
     {% endif -%}
   </ul>
