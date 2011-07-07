@@ -10,7 +10,20 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.loader import render_to_string
 
+from innovate.utils import get_partition_id, safe_filename, ImageStorage
+
 from tower import ugettext_lazy as _
+
+
+def determine_upload_path(instance, filename):
+    chunk_size = 1000  # max files per directory
+    path = getattr(settings, 'USER_AVATAR_PATH', 'images/profiles/')
+    path = path.lstrip('/').rstrip('/')
+    return "%(path)s/%(partition)d/%(filename)s" % {
+        'path': path,
+        'partition': get_partition_id(instance.pk, chunk_size),
+        'filename': safe_filename(filename)
+    }
 
 
 def create_confirmation_token(username):
@@ -63,9 +76,10 @@ class Profile(models.Model):
                                 verbose_name=_(u'User'))
     name = models.CharField(max_length=255, blank=True,
                             verbose_name=_(u'Display name'))
-    avatar = models.ImageField(upload_to=settings.USER_AVATAR_PATH, null=True,
+    avatar = models.ImageField(upload_to=determine_upload_path, null=True,
                                blank=True, verbose_name=_(u'Avatar'),
-                               max_length=settings.MAX_FILEPATH_LENGTH)
+                               max_length=settings.MAX_FILEPATH_LENGTH,
+                               storage=ImageStorage())
     website = models.URLField(verbose_name=_(u'Website'), max_length=255,
                               blank=True)
     bio = models.TextField(verbose_name=_(u'Bio'), blank=True)

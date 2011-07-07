@@ -14,7 +14,7 @@
   <div class="c2 paper">
     <h2 class="light">{{ _('Your Profile') }}</h2>
     {{ errorlist(form) }}
-    <form action="{{ url('users_edit') }}" method="post">
+    <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
       {{ csrf()|safe }}
       {{ form.as_p()|safe }}
       <button class="submit sans">{{ _('save!') }}</button>
