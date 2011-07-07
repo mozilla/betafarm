@@ -16,7 +16,24 @@
     {{ errorlist(form) }}
     <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
       {{ csrf()|safe }}
-      {{ form.as_p()|safe }}
+      <ul>
+        <li>
+          <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
+          {{ form.name }}
+        </li>
+        <li>
+          <label for="id_website">{{ _('Website') }}</label>
+          {{ form.website }}
+        </li>
+        <li>
+          <label for="id_avatar">{{ _('Picture') }}</label>
+          {{ form.avatar }}
+        </li>
+        <li>
+          <label for="id_bio">{{ _('Bio') }}</label>
+          {{ form.bio }}
+        </li>
+      </ul>
       <button class="submit sans">{{ _('save!') }}</button>
     </form>
   </div>

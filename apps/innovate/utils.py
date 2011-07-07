@@ -34,9 +34,9 @@ class ImageStorage(FileSystemStorage):
     def _save(self, name, content):
         name, ext = os.path.splitext(name)
         image = Image.open(content)
-        if image.format in self.format_extensions:
-            name = "%s.%s" % (name, self.format_extensions[image.format])
+        if image.format not in self.format_extensions:
             raise Exception("Unknown image format: %s" % (image.format,))
+        name = "%s.%s" % (name, self.format_extensions[image.format])
         name = super(ImageStorage, self)._save(name, content)
         image.save(self.path(name), image.format)
         return name
