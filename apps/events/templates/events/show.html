@@ -13,6 +13,16 @@
     last=event.name) }}
 {% endblock -%}
 
+{% if request.user.is_authenticated() -%}
+  {% if request.user.get_profile() in event.attendees.all() -%}
+     {% set form_action = url('events_unattend', slug=event.slug) %}
+     {% set button_label = _('stop attending') %}
+  {% else -%}
+     {% set form_action = url('events_attend', slug=event.slug) %}
+     {% set button_label = _('attend this event!') %}
+  {% endif -%}
+{% endif -%}
+
 {% block content -%}
 <section id="title" class="clearfix">
   <div class="c6">
@@ -20,43 +30,32 @@
   </div>
 </section>
 
-<section id="eventContent" class="w5 clearfix">
+<section id="eventContent">
+  <div class="c6">
+    <p>{{ event.description }}
+  </div>
   <div class="row clearfix">
     <div class="c1">
-
-{% if request.user.is_authenticated() -%}
-    {% if request.user.get_profile() in event.attendees.all() -%}
-      <form method="post" action="{{ url('events_unattend', slug=event.slug) }}">
+      <form method="post" action="{{ form_action }}">
         {{ csrf()|safe }}
-        <button class="submit sans">{{ _('stop attending') }}</button>
+        <button class="submit sans">{{ button_label }}</button>
       </form>
-    {% else -%}
-      <form method="post" action="{{ url('events_attend', slug=event.slug) }}">
-        {{ csrf()|safe }}
-        <button class="submit sans">{{ _('attend this event!') }}</button>
-      </form>
+    </div>
+    {% if event.venue -%}
+      <div class="c6">
+        {{ address(event.venue.name, event.venue.address,
+                   event.venue.address_two, event.venue.city,
+                   event.venue.state, event.venue.country,
+                   event.venue.zip_code) }}
+        <div id="venue_map">
+          {{ gmap(event.venue.address, event.venue.city,
+                  event.venue.state, event.venue.country,
+                  event.venue.zip_code, 300, 300,
+                  is_secure=request.is_secure()) }}
+        </div>
+      </div>
     {% endif -%}
-{% endif -%}
-    </div>
-
-    <div class="w5">
-  {% if event.venue -%}
-    {{ address(event.venue.name, event.venue.address,
-               event.venue.address_two, event.venue.city,
-               event.venue.state, event.venue.country,
-               event.venue.zip_code) }}
-    <div id="venue_map">
-      {{ gmap(event.venue.address, event.venue.city,
-              event.venue.state, event.venue.country,
-              event.venue.zip_code, 300, 300,
-              is_secure=request.is_secure()) }}
-    </div>
-  {% endif -%}
-    </div>
-
   </div>
-
-
   <div class="row people clearfix">
     <div class="c1">
       <h2 class="light">{{ _('Attending') }}</h2>
