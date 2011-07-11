@@ -26,22 +26,17 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    {% if project.image -%}
-      <img class="block" src="{{ MEDIA_URL }}{{ project.image }}" height="140" width="140">
-    {% else -%}
-      <img class="block" src="http://placehold.it/140x140/eee/ccc">
-    {% endif -%}
+    <img class="block" src="{{ project.image_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
   </ul>
 </section>
 
 <section id="projectContent" class="w5 clearfix">
   <div class="row clearfix">
-    <div class="c3">
-      <div class="vAlign">
-        {# only admins can edit project descriptions, so it's okay to use safe here. #}
-        <p class="serif">{{ project.long_description|safe }}</p>
-      </div>
+    <div class="c1"></div>
+    <div class="c3 content serif">
+      {# only admins can edit project descriptions, so it's okay to use safe here. #}
+      {{ project.long_description|safe }}
     </div>
   </div>
 
