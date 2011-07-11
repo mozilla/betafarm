@@ -49,11 +49,7 @@
     <ul class="peopleList clearfix">
       {% for person in project.team_members.all() -%}
         <li class="c2">
-          {% if person.avatar -%}
-            <img src="{{ MEDIA_URL }}{{ person.avatar }}" width="32" height="32">
-          {% else -%}
-            <img src="http://placehold.it/32x32/eee/ccc">
-          {% endif -%}
+          <img src="{{ MEDIA_URL }}img/{{ person.avatar_or_default }}" width="32" height="32">
           <span class="username"><a href="{{ url('users_profile', username=person.user.username) }}">{{ person.display_name }}</a></span></li>
       {% endfor -%}
     </ul>

@@ -19,11 +19,7 @@
     {% for topic in topics -%}
       <li class="topic">
         <div class="c1 vMaster">
-          {% if topic.image -%}
-            <img class="block" src="{{ MEDIA_URL }}{{ topic.image }}" width="140" height="140">
-          {% else %}
-            <img class="block" src="http://placehold.it/140x140/eee/ccc">
-          {% endif %}
+          <img class="block" src="{{ MEDIA_URL }}img/{{ topic.image_or_default }}" width="140" height="140">
         </div>
         <div class="c2">
           <div class="vAlign">

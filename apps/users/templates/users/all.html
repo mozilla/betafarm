@@ -47,11 +47,7 @@
     {% for profile in profiles -%}
     <li class="person clearfix">
       <div class="c2">
-        {% if profile.avatar -%}
-          <img src="{{ MEDIA_URL }}{{ profile.avatar }}" width="32" height="32">
-        {% else -%}
-          <img src="http://placehold.it/32x32/eee/ccc"> 
-        {% endif -%}
+        <img src="{{ MEDIA_URL }}img/{{ profile.avatar_or_default }}" width="32" height="32">
         <span class="username"><a href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></span>
       </div>
       <div class="c2 right">

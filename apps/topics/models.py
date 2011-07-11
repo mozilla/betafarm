@@ -16,5 +16,9 @@ class Topic(models.Model):
                               upload_to=settings.TOPIC_IMAGE_PATH, null=True,
                               max_length=settings.MAX_FILEPATH_LENGTH)
 
+    @property
+    def image_or_default(self):
+        return self.image or 'topic-default.gif'
+
     def __unicode__(self):
         return self.name

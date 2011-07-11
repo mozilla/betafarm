@@ -94,6 +94,10 @@ class Profile(models.Model):
 
     objects = ProfileManager()
 
+    @property
+    def avatar_or_default(self):
+        return self.avatar or 'person-default.gif'
+
     def send_confirmation_email(self):
         current_site = Site.objects.get_current()
         url = reverse('users.views.confirm',
