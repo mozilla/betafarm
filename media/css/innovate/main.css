@@ -161,6 +161,10 @@ section#projectBlog {
   width: 480px;
   margin: 0 160px;
 }
+.social {
+  display: block;
+  margin: 14px 0 0;
+}
 #blogNav {
   margin: 0 10px 40px 10px;
 }
@@ -211,33 +215,44 @@ section#projectBlog {
   margin: 0 0 40px 0;
   color: #74726a;
 }
-#people {
+#people, #projects {
   padding: 0;
   margin: 0 0 80px 0;
 }
-#people ul {
+#people ul, #projects ul {
   width: 640px;
   float: right;
   list-style-type: none;
 }
-#people li:first-child {
+#people li:first-child, #projects li:first-child {
   margin: 0 0 20px 0;
   background-color: none;
 }
-#people li.person {
+#people li.person, #projects li.person {
   margin: 20px 0;
   line-height: 44px;
 }
-#people li.person .username, #people li.person a {
+#people li.person .username,
+#projects li.person .username,
+#people li.person a,
+#projects li.person a {
   font-weight: bold;
 }
-#people li.person img {
+#people li.person img, #projects li.person img {
   display: inline-block;
   vertical-align: middle;
   margin: 0 10px 0 0;
   padding: 5px;
   background-color: #FFFFFF;
   border: 1px solid #D1CDC2;
+}
+#people li.project, #projects li.project {
+  padding: 0 0 40px;
+}
+#people li.project p, #projects li.project p {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+  margin: 7px 0 0;
 }
 input.search {
   font-size: 12px;
@@ -338,6 +353,8 @@ button.submit:active {
   box-sizing: border-box;
 }
 body {
+  background-image: url('/media/img/stripes.png');
+  background-repeat: repeat-x;
   font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
   background-color: #fffbed;
   font-size: 12px;
@@ -714,6 +731,9 @@ button#follow {
 }
 #universalHeader li ul.dropdown li:hover a {
   background-image: none;
+}
+#universalHeader li ul.dropdown li.divide a {
+  border-top: 3px double rgba(0, 0, 0, 0.05);
 }
 #universalHeader li.hover a, #universalHeader li.hover a.selected {
   z-index: 101;
