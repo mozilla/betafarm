@@ -26,9 +26,7 @@ class Project(models.Model):
 
     @property
     def image_or_default(self):
-        media_url = getattr(settings, 'MEDIA_URL', 'media')
-        media_url = media_url.rstrip('/').lstrip('/')
-        return self.image or '/%s/img/project-default.gif' % (media_url,)
+        return self.image or 'project-default.gif'
 
     def __unicode__(self):
         return self.name

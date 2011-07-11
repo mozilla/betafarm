@@ -26,7 +26,7 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <img class="block" src="{{ project.image_or_default }}" height="140" width="140">
+    <img class="block" src="{{ MEDIA_URL }}img/{{ project.image_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
   </ul>
 </section>
