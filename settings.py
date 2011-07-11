@@ -251,10 +251,10 @@ CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 
 MAX_FILEPATH_LENGTH = 250
-USER_AVATAR_PATH = 'uploads/avatars/'
-TOPIC_IMAGE_PATH = 'uploads/topics/'
-PROJECT_IMAGE_PATH = 'uploads/projects/'
-EVENT_IMAGE_PATH = 'uploads/events/'
+USER_AVATAR_PATH = 'img/uploads/avatars/'
+TOPIC_IMAGE_PATH = 'img/uploads/topics/'
+PROJECT_IMAGE_PATH = 'img/uploads/projects/'
+EVENT_IMAGE_PATH = 'img/uploads/events/'
 
 # a list of passwords that meet policy requirements, but are considered
 # too common and therefore easily guessed.
