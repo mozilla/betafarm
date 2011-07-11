@@ -24,5 +24,11 @@ class Project(models.Model):
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
 
+    @property
+    def image_or_default(self):
+        media_url = getattr(settings, 'MEDIA_URL', 'media')
+        media_url = media_url.rstrip('/').lstrip('/')
+        return self.image or '/%s/img/project-default.gif' % (media_url,)
+
     def __unicode__(self):
         return self.name
