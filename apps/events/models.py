@@ -51,7 +51,7 @@ class Event(models.Model):
 
     @property
     def featured_image_or_default(self):
-        return self.featured_image or 'featured-default.gif'
+        return self.featured_image or 'img/featured-default.gif'
 
     def __unicode__(self):
         return self.name

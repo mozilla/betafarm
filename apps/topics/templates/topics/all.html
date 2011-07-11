@@ -19,7 +19,7 @@
     {% for topic in topics -%}
       <li class="topic">
         <div class="c1 vMaster">
-          <img class="block" src="{{ MEDIA_URL }}img/{{ topic.image_or_default }}" width="140" height="140">
+          <img class="block" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" width="140" height="140">
         </div>
         <div class="c2">
           <div class="vAlign">

@@ -44,7 +44,7 @@
     
     <div class="arrow"></div>
     <h5>{{ _('Featured Project') }}</h5>
-    <img class="block" src="{{ MEDIA_URL }}img/{{ featured_project.featured_image_or_default }}" width="260" height="125">
+    <img class="block" src="{{ MEDIA_URL }}{{ featured_project.featured_image_or_default }}" width="260" height="125">
     <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=featured_project.slug) }}">{{ featured_project.name }}</a></h3>
     <p>{{ featured_project.description|truncate(43) }}</p>
   </div>
@@ -54,7 +54,7 @@
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Event') }}</h5>
-    <img class="block" src="{{ MEDIA_URL }}img/{{ featured_event.featured_image_or_default }}" width="260" height="125">
+    <img class="block" src="{{ MEDIA_URL }}{{ featured_event.featured_image_or_default }}" width="260" height="125">
     <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=featured_event.slug) }}">{{ featured_event.name }}</a></h3>
     <p>{{ featured_event.description|truncate(43) }}</p>
   </div>
@@ -64,7 +64,7 @@
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Mozillian') }}</h5>
-    <img class="block" src="{{ MEDIA_URL }}img/{{ featured_user.featured_image_or_default }}" width="260" height="125">
+    <img class="block" src="{{ MEDIA_URL }}{{ featured_user.featured_image_or_default }}" width="260" height="125">
     <h3 class="normal"><a class="brandColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.display_name }}</a></h3>
     <p>{{ featured_user.bio|truncate(45) }}</p>
   </div>

@@ -26,11 +26,11 @@ class Project(models.Model):
 
     @property
     def image_or_default(self):
-        return self.image or 'project-default.gif'
+        return self.image or 'img/project-default.gif'
 
     @property
     def featured_image_or_default(self):
-        return self.featured_image or 'featured-default.gif'
+        return self.featured_image or 'img/featured-default.gif'
 
     def __unicode__(self):
         return self.name

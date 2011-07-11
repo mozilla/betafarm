@@ -18,7 +18,7 @@ class Topic(models.Model):
 
     @property
     def image_or_default(self):
-        return self.image or 'topic-default.gif'
+        return self.image or 'img/topic-default.gif'
 
     def __unicode__(self):
         return self.name

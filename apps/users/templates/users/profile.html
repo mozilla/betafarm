@@ -18,7 +18,7 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <img class="block" src="{{ MEDIA_URL }}img/{{ profile.avatar_or_default }}" height="140" width="140">
+    <img class="block" src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></li>
     {% if user.is_authenticated() and user.get_profile() == profile -%}
     <li><a class="brandColor" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>

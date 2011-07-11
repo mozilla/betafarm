@@ -96,11 +96,11 @@ class Profile(models.Model):
 
     @property
     def avatar_or_default(self):
-        return self.avatar or 'person-default.gif'
+        return self.avatar or 'img/person-default.gif'
 
     @property
     def featured_image_or_default(self):
-        return self.featured_image or 'featured-default.gif'
+        return self.featured_image or 'img/featured-default.gif'
 
     def send_confirmation_email(self):
         current_site = Site.objects.get_current()
