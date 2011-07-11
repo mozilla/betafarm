@@ -49,5 +49,9 @@ class Event(models.Model):
     created_by = models.ForeignKey('users.Profile', related_name='events',
                                    null=True, default=None)
 
+    @property
+    def featured_image_or_default(self):
+        return self.featured_image or 'featured-default.gif'
+
     def __unicode__(self):
         return self.name

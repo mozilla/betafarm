@@ -4,7 +4,7 @@
 
 <section id="promoted" class="clearfix">
   <div class="c6">
-    <img class="block" src="http://placehold.it/940x350/eee/ccc">
+    <a href="{{ url('innovate_about') }}"><img class="block" src="{{ MEDIA_URL }}img/banner.png"></a>
   </div>
 </section>
 
@@ -44,11 +44,7 @@
     
     <div class="arrow"></div>
     <h5>{{ _('Featured Project') }}</h5>
-    {% if featured_project.featured_image -%}
-      <img class="block" src="{{ MEDIA_URL }}{{ featured_project.featured_image }}" width="260" height="125">
-    {% else -%}
-      <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    {% endif -%}
+    <img class="block" src="{{ MEDIA_URL }}img/{{ featured_project.featured_image_or_default }}" width="260" height="125">
     <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=featured_project.slug) }}">{{ featured_project.name }}</a></h3>
     <p>{{ featured_project.description|truncate(43) }}</p>
   </div>
@@ -58,11 +54,7 @@
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Event') }}</h5>
-    {% if featured_event.featured_image -%}
-      <img class="block" src="{{ MEDIA_URL }}{{ featured_event.featured_image }}" width="260" height="125">
-    {% else -%}
-      <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    {% endif -%}
+    <img class="block" src="{{ MEDIA_URL }}img/{{ featured_event.featured_image_or_default }}" width="260" height="125">
     <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=featured_event.slug) }}">{{ featured_event.name }}</a></h3>
     <p>{{ featured_event.description|truncate(43) }}</p>
   </div>
@@ -72,11 +64,7 @@
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Mozillian') }}</h5>
-    {% if featured_user.featured_image -%}
-      <img class="block" src="{{ MEDIA_URL }}{{ featured_user.featured_image }}" width="260" height="125">
-    {% else -%}
-      <img class="block" src="http://placehold.it/260x125/eee/ccc">
-    {% endif -%}
+    <img class="block" src="{{ MEDIA_URL }}img/{{ featured_user.featured_image_or_default }}" width="260" height="125">
     <h3 class="normal"><a class="brandColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.display_name }}</a></h3>
     <p>{{ featured_user.bio|truncate(45) }}</p>
   </div>

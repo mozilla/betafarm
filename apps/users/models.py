@@ -98,6 +98,10 @@ class Profile(models.Model):
     def avatar_or_default(self):
         return self.avatar or 'person-default.gif'
 
+    @property
+    def featured_image_or_default(self):
+        return self.featured_image or 'featured-default.gif'
+
     def send_confirmation_email(self):
         current_site = Site.objects.get_current()
         url = reverse('users.views.confirm',
