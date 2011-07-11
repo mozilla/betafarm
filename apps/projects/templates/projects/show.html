@@ -39,7 +39,8 @@
   <div class="row clearfix">
     <div class="c3">
       <div class="vAlign">
-        <p class="serif">{{ project.long_description }}</p>
+        {# only admins can edit project descriptions, so it's okay to use safe here. #}
+        <p class="serif">{{ project.long_description|safe }}</p>
       </div>
     </div>
   </div>
