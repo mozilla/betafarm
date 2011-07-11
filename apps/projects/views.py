@@ -14,11 +14,7 @@ def all(request):
 
 def show(request, slug):
     project = get_object_or_404(Project, slug=slug)
-    if 'topic' in request.session:
-        topic = request.session.get('topic')
-    else:
-        topics = project.topics.all()
-        topic = topics[0].name
+    topic = request.session.get('topic', None) or project.topics.all()[0].name
     return jingo.render(request, 'projects/show.html', {
         'project': project,
         'topic': topic
