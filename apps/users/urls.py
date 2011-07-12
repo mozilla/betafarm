@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 
     # Profile urls
     url(r'^profile/edit/$', 'users.views.edit', name='users_edit'),
-    url(r'^profile/(?P<username>[\w-]+)/$', 'users.views.profile',
+    url(r'^profile/(?P<username>[\.@\w-]+)/$', 'users.views.profile',
         name='users_profile'),
 
     # List profiles
