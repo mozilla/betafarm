@@ -23,6 +23,9 @@
         <nav id="topNav" class="c4">
           <ul class="clearfix">
             <li class="mainItem">
+              <a class="about" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
+            </li>
+            <li class="mainItem">
               <a class="topic dropdown{{ active(request, url('topics_all')) }}" href="{{ url('topics_all') }}">{{ _('Topics') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
@@ -48,10 +51,15 @@
               </ul>
             </li>
             {% if user.is_authenticated() -%}
-              <li class="mainItem"><a class="people{{ active(request, url('users_profile', username=user.username)) }}" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
-              <li class="mainItem"><a class="join" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
+              <li class="mainItem">
+                <a class="topic dropdown{{ active(request, url('users_profile', username=user.username)) }}" href="{{ url('users_profile', username=user.username) }}">{{ user.username }}</a>
+                <ul class="dropdown">
+                  <li><a class="people" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
+                  <li><a class="people" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
+                  <li><a class="people" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
+                </ul>
+              </li>
             {% else -%}
-              <li class="mainItem"><a class="join" href="{{ url('users.views.signup') }}">{{ _('Sign Up') }}</a></li>
               <li class="mainItem"><a class="login" href="{{ url('users.views.signin') }}">{{ _('Sign In') }}</a></li>
             {% endif -%}
           </ul>
