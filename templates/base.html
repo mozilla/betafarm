@@ -23,9 +23,6 @@
         <nav id="topNav" class="c4">
           <ul class="clearfix">
             <li class="mainItem">
-              <a class="about" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
-            </li>
-            <li class="mainItem">
               <a class="topic dropdown{{ active(request, url('topics_all')) }}" href="{{ url('topics_all') }}">{{ _('Topics') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
@@ -50,9 +47,12 @@
                 <li><a class="people" href="{{ url('users_staff') }}">{{ _('staff') }}</a></li>
               </ul>
             </li>
+            <li class="mainItem">
+              <a class="about" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
+            </li>
             {% if user.is_authenticated() -%}
-              <li class="mainItem">
-                <a class="topic dropdown{{ active(request, url('users_profile', username=user.username)) }}" href="{{ url('users_profile', username=user.username) }}">{{ user.username }}</a>
+              <li class="mainItem username">
+                <a class="dropdown">{{ user.get_profile().display_name }}</a>
                 <ul class="dropdown">
                   <li><a class="people" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
                   <li><a class="people" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>

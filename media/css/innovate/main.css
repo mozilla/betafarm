@@ -249,6 +249,10 @@ section#projectBlog {
   padding: 5px;
   background-color: #FFFFFF;
   border: 1px solid #D1CDC2;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -o-box-sizing: content-box;
+  box-sizing: content-box;
 }
 #people li.project, #projects li.project {
   padding: 0 0 40px;
@@ -658,6 +662,7 @@ button#follow {
   color: #444;
   cursor: pointer;
   position: relative;
+  text-align: left;
 }
 #universalHeader li a:active {
   background-color: rgba(0, 0, 0, 0.25);
@@ -667,10 +672,7 @@ button#follow {
   font-weight: bold;
   z-index: 0;
 }
-#universalHeader li a.login:hover,
-#universalHeader li a.join:hover,
-#universalHeader li a.username,
-#universalHeader li a.username:hover {
+#universalHeader li a.login:hover, #universalHeader li a.join:hover {
   color: #fff;
   background-color: #222;
   border-color: #222;
@@ -771,6 +773,36 @@ button#follow {
   transition: opacity 0.2s linear;
   opacity: 1;
   left: 0;
+}
+#universalHeader li.username {
+  min-width: 120px;
+}
+#universalHeader li.username a, #universalHeader li.username a:hover {
+  color: #fff;
+  background-color: #222;
+  border-color: #222;
+  z-index: 101;
+}
+#universalHeader li.username ul.dropdown {
+  background-color: #222;
+  border: 1px solid #000;
+  width: 100%;
+}
+#universalHeader li.username ul.dropdown li {
+  width: 100%;
+}
+#universalHeader li.username ul.dropdown li a {
+  width: 100%;
+  border-top: 1px solid #444;
+}
+#universalHeader li.username ul.dropdown li:first-child a {
+  border-top: none;
+}
+#universalHeader li.username ul.dropdown li a.account {
+  color: #ccc;
+}
+#universalHeader li.username ul.dropdown li a.account:hover {
+  color: #fff;
 }
 /* secondary menu */
 #secondaryMenu ul {
