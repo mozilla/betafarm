@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models import Q
 
+from users.models import Profile
+
 
 class CustomUserBackend(object):
     supports_anonymous_user = False
@@ -46,12 +48,15 @@ class BrowserIdBackend(object):
         result = json.loads(content)
         if result['status'] == 'okay':
             email = result['email']
-            try:
-                users = User.objects.filter(Q(username=email) | Q(email=email))
-                if users:
-                    return users[0]
-            except User.DoesNotExist:
-                pass
+            users = User.objects.filter(Q(username=email) | Q(email=email))
+            if users:
+                user = users[0]
+            else:
+                profile = Profile.objects.create_profile(
+                    username=email,
+                    email=email, is_active=True)
+                return profile.user
+            return user
         return None
 
     def get_user(self, user_id):

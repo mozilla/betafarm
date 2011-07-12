@@ -33,13 +33,15 @@ def create_confirmation_token(username):
 
 class ProfileManager(models.Manager):
 
-    def create_profile(self, username, email, password, **kwargs):
+    def create_profile(self, username, email, password=None, is_active=False,
+                       **kwargs):
         """Create a new user profile."""
         now = datetime.datetime.now()
         user = User(username=username, email=email, is_staff=False,
-                    is_active=False, is_superuser=False, last_login=now,
+                    is_active=is_active, is_superuser=False, last_login=now,
                     date_joined=now)
-        user.set_password(password)
+        if password:
+            user.set_password(password)
         user.save()
         try:
             confirmation_token = create_confirmation_token(username)
