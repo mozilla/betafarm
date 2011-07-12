@@ -4,6 +4,7 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('',
 
     # Sign in / Sign up
+    url(r'^browserid/$', 'users.views.browserid', name='users_browserid'),
     url(r'^signin/$', 'users.views.signin', name='users_signin'),
     url(r'^signup/$', 'users.views.signup', name='users_signup'),
     url(r'^signout/$', 'users.views.signout', name='users_signout'),
