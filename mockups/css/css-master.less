@@ -351,6 +351,7 @@ button#follow {
             color: #444;
             cursor: pointer;
             position: relative;
+            text-align: left;
         }
         
         a:active {
@@ -365,9 +366,7 @@ button#follow {
         }
         
         a.login:hover,
-        a.join:hover,
-        a.username,
-        a.username:hover {
+        a.join:hover {
             color: #fff;
             background-color: #222;
             border-color: #222;
@@ -471,6 +470,45 @@ button#follow {
             .transition(opacity 0.2s linear);
             opacity: 1;
             left: 0;
+        }
+    }
+    
+    li.username {
+        min-width: 120px;
+        
+        a,
+        a:hover {
+            color: #fff;
+            background-color: #222;
+            border-color: #222;
+            z-index: 101;
+        }
+        
+        ul.dropdown {
+            background-color: #222;
+            border: 1px solid #000;
+            width: 100%;
+            
+            li {
+                width: 100%;
+            }
+            
+            li a {
+                width: 100%;
+                border-top: 1px solid #444;
+            }
+            
+            li:first-child a {
+                border-top: none;
+            }
+            
+            li a.account {
+                color: #ccc;
+            }
+            
+            li a.account:hover {
+                color: #fff;
+            }
         }
     }
 }
