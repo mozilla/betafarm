@@ -272,3 +272,8 @@ AUTH_PROFILE_MODULE = 'users.Profile'
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Innovate Mozilla <innovate@mozilla.org>'
+
+AUTHENTICATION_BACKENDS = (
+    'users.backends.CustomUserBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
