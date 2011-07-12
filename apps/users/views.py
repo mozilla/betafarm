@@ -154,7 +154,11 @@ def browserid(request):
     form = BrowserIdForm(data=request.POST)
     if form.is_valid():
         assertion = form.cleaned_data['assertion']
-        host, port = request.get_host().split(':')
+        if ':' in request.get_host():
+            host, port = request.get_host().split(':')
+        else:
+            host = request.get_host()
+            port = '80'
         user = auth.authenticate(assertion=assertion, host=host, port=port)
         if user is not None:
             auth.login(request, user)

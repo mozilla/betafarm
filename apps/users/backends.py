@@ -39,8 +39,10 @@ class BrowserIdBackend(object):
     def authenticate(self, assertion=None, host=None, port=None):
         qs = urllib.urlencode({
             'assertion': assertion,
-            'audience': '%s:%s' % (host, port)
+            'audience': '%s' % (host,)
         })
+        if port and port != '80':
+            qs['audience'] += ':%s' % (port,)
         client = httplib2.Http()
         url = getattr(settings, 'BROWSERID_VERIFY_URL',
                       'https://browserid.org/verify')
