@@ -44,7 +44,7 @@
 
   <div class="row people clearfix">
     <div class="c1">
-      <h2 class="light">{{ _('Contacts Team') }}</h2>
+      <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
     </div>
     <ul class="peopleList clearfix">
       {% for person in project.team_members.all() -%}
