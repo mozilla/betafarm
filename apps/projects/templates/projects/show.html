@@ -31,7 +31,7 @@
   </ul>
   {% if project.github -%}
     <div class="c1 related">
-      <li class="icon github"><a class="brandColor" href="{{ project.github }}">{{ _('Contacts on Github') }}</a></li>
+      <li class="icon github"><a class="brandColor" href="{{ project.github }}">{{ _('{project} on Github')|f(project=project.name) }}</a></li>
     </div>
   {% endif -%}
 </section>
