@@ -2,7 +2,9 @@
 <html>
 <head>
     
-    <title>Mozilla Innovation</title>
+    <title>Projects : Mozilla Innovation</title>
+    
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
     
     <link rel="stylesheet/less" href="css/css-master.less" type="text/css" media="screen">
     <!-- <link rel="icon" type="image/x-icon" href="favicon.png"> -->
@@ -16,7 +18,7 @@
 
     <div id="grid"></div>
 
-    <div id="wrapper">
+    <div id="wrapper" class="clearfix">
         
         <header id="universalHeader" class="clearfix">
             <div id="icon" class="c2">
@@ -45,62 +47,68 @@
         
         <hr>
         
-        <section id="promoted" class="clearfix">
-            <div class="c6">
-                <img class="block" src="http://placehold.it/940x350/eee/ccc">
-                <!-- it would be nice to be able to do different/cool stuff in this area for each promoted item, stuff unique to what is being promoted -->
-            </div>
-        </section>
+        <nav id="secondaryMenu" class="clearfix">
+            <ul id="breadcrumbs" class="c6 clearfix">
+                <li class="crumb"><a href="index.html">Innovation Home</a></li>
+                <li>Programs</li>
+            </ul>
+        </nav>
         
         <hr>
         
-        <section id="headlines" class="clearfix">
+        <section id="title" class="clearfix">
             <div class="c6">
-                <strong><img src="i/rss.png"> latest news:</strong> <p><a href="#">rotating headlines here</a></p>
+                <h1 class="light noMargin">Programs</h1>
             </div>
         </section>
         
-        <hr>
-        
-        <section id="details" class="clearfix">
-            <div class="c2">
-                <h3 class="normal"><a href="topics.html" class="topicColor">What we do</a></h3>
-                <p>Check out the areas of focus on the open web that we're thinking about; projects, research, and programs!</p>
-            </div>
-            <div class="c2">
-                <h3 class="normal"><a href="events.html" class="eventColor">Events</a></h3>
-                <p>Find and participate in events happening in your area or engage in one of our online contests.</p>
-            </div>
-            <div class="c2">
-                <h3 class="normal"><a href="people.html" class="peopleColor">People</a></h3>
-                <p>The open web is made up of awesome people, connect and communicate with some of them here.</p>
+        <section id="aboutPrograms" class="clearfix w2">
+            <div class="content c2">
+                <p class="serif large topicColor"><em>Programs</em> are initiatives started by Mozilla with the aim of engaging the greater community.</p>
+                <p class="serif">Some of these programs may include design challenges open to entries, or startup funding for big ideas we feel help the web. Get involved by clicking through the programs.</p>
             </div>
         </section>
         
-        <section id="featured" class="clearfix">
-            <div class="c2 paper">
-                <div class="arrow"></div>
-                <h5>Featured Project</h5>
-                <img class="block" src="http://placehold.it/260x125/eee/ccc">
-                <h3 class="normal"><a class="brandColor" href="project.html">Contacts</a></h3>
-                <p>Putting your social graph to use</p>
-            </div>
-            <div class="c2 paper">
-                <div class="arrow"></div>
-                <h5>Featured Event</h5>
-                <img class="block" src="http://placehold.it/260x125/eee/ccc">
-                <h3 class="normal"><a class="brandColor" href="#">Design Jam Milan</a></h3>
-                <p>We're hosting a design jam in Italy!</p>
-            </div>
-            <div class="c2 paper">
-                <div class="arrow"></div>
-                <h5>Featured Mozillian</h5>
-                <img class="block" src="http://placehold.it/260x125/eee/ccc">
-                <h3 class="normal"><a class="brandColor" href="#">Paul Osman</a></h3>
-                <p>Meet Mozilla Foudation member Paul Osman</p>
-            </div>
+        <section id="programs" class="clearfix w4">
+            <ul id="programList" class="clearfix">
+                <li class="c2">
+                    <div class="paper">
+                        <img src="http://placehold.it/260x125/eee/ccc">
+                        <h3 class="normal topicColor">Web FWD</h3>
+                        <p>A startup incubator for the open web</p>
+                    </div>
+                </li>
+                <li class="c2">
+                    <div class="paper">
+                        <img src="http://placehold.it/260x125/eee/ccc">
+                        <h3 class="normal topicColor">Concept Series</h3>
+                        <p>Encouraging engagement and innovation</p>
+                    </div>
+                </li>
+                <li class="c2">
+                    <div class="paper">
+                        <img src="http://placehold.it/260x125/eee/ccc">
+                        <h3 class="normal topicColor">Game On</h3>
+                        <p>Gaming on the open web</p>
+                    </div>
+                </li>
+                <li class="c2">
+                    <div class="paper">
+                        <img src="http://placehold.it/260x125/eee/ccc">
+                        <h3 class="normal topicColor">Web FWD</h3>
+                        <p>A startup incubator for the open web</p>
+                    </div>
+                </li>
+                <li class="c2">
+                    <div class="paper">
+                        <img src="http://placehold.it/260x125/eee/ccc">
+                        <h3 class="normal topicColor">Concept Series</h3>
+                        <p>Encouraging engagement and innovation</p>
+                    </div>
+                </li>
+            </ul>
         </section>
-        
+                
     </div>
     
     <section id="about" class="clearfix">

@@ -9,6 +9,7 @@
 @import "css-project";
 @import "css-people";
 @import "css-signup";
+@import "css-events";
 
 * {
     margin: 0;
@@ -70,23 +71,37 @@ strong {
     font-weight: bold;
 }
 
-button {
+button,
+a.button,
+section#subNav .related a.button {
     background-color: #fff;
     border: 1px solid #D1CDC2;
     padding: 7px 14px;
     font-size: 12px;
     cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+    display:block;
     .gradient;
     .rounded;
     .shadow(0 0 0 1px #fff inset);
 }
 
-button:active {
+a.button:hover,
+section#subNav .related a.button:hover {
+    text-decoration: none;
+}
+
+button:active,
+a.button:active,
+section#subNav .related a.button:active {
     border: 1px solid #666;
     .shadow2(0 0 3px rgba(0,0,0,0.5) inset, 0 0 20px rgba(0,0,0,0.25) inset);
 }
 
-button img {
+button img,
+a.button img,
+section#subNav .related a.button img {
     vertical-align: text-top;
 }
 
@@ -167,19 +182,19 @@ button img {
 }
 
 .topicColor {
-    color: @topicColor;
+    color: @topicColor !important;
 }
 
 .peopleColor {
-    color: @peopleColor;
+    color: @peopleColor !important;
 }
 
 .eventColor {
-    color: @eventColor;
+    color: @eventColor !important;
 }
 
 .brandColor {
-    color: @brandColor;    
+    color: @brandColor !important;    
 }
 
 .small {
@@ -329,10 +344,9 @@ button#follow {
         height: 51px;
     }
     
-    ul {
-        list-style-type: none;
-        text-align: right;
+    ul {    
         float: right;
+        list-style-type: none;
     }
     
     li {
@@ -511,6 +525,14 @@ button#follow {
             }
         }
     }
+    
+    #tab {
+        a img {
+            float: right;
+            outline: none;
+            border: none;
+        }
+    }
 }
     
 /* secondary menu */
@@ -629,8 +651,12 @@ section#subNav {
         font-weight: bold;
     }
     
-    .c1 {
+    ul.c1 {
         margin: 0 10px 21px 10px;
+    }
+    
+    h3.c1 {
+        margin: 21px 10px 7px 10px;
     }
     
     button {
@@ -709,6 +735,7 @@ section#title {
     font-size: 14px;
     color: @medium;
     margin-bottom: 42px;
+    float: none;
     
     h3, h4 {
         margin: 0 0 14px 0;
@@ -718,6 +745,10 @@ section#title {
         font-size: 14px;
         margin: 0 0 21px;
         color: @medium;
+    }
+
+    p:last-child {
+        margin: 0;
     }
     
     p.large {
@@ -774,6 +805,10 @@ section#title {
 
 .blogHeader {
     margin: 7px 0 14px;
+    
+    button.submit {
+        float: none;
+    }
 }
 
 .tags li {
@@ -790,6 +825,10 @@ section#title {
         font-weight: bold;
         padding: 0 7px;
         text-decoration: none;
+    }
+    
+    a:before {
+        content: '#';
     }
     
     a:hover {
