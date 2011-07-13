@@ -79,12 +79,6 @@ section#topics p {
   text-indent: -5px;
   font-size: 14px;
 }
-section#topics p:before {
-  content: '\201c';
-}
-section#topics p:after {
-  content: '\201d';
-}
 section#quickNav {
   margin: 0 0 40px 0;
 }
