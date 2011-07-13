@@ -60,11 +60,11 @@
             </li>
             {% if user.is_authenticated() -%}
               <li class="mainItem username">
-                <a class="dropdown">{{ user.get_profile().display_name }}</a>
+                <a class="account dropdown">{{ user.get_profile().display_name }}</a>
                 <ul class="dropdown">
-                  <li><a class="people" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
-                  <li><a class="people" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
-                  <li><a class="people" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
+                  <li><a class="account" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
+                  <li><a class="account" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
+                  <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
                 </ul>
               </li>
             {% else -%}
