@@ -15,6 +15,8 @@ class Project(models.Model):
     long_description = models.TextField(verbose_name=_(u'Long Description'))
     github = models.URLField(verbose_name=_(u'Github Repository'),
                              blank=True, null=True)
+    blog = models.URLField(verbose_name=_(u'Project Blog'),
+                           blank=True, null=True)
     image = models.ImageField(verbose_name=_(u'Image'), blank=True,
                               upload_to=settings.PROJECT_IMAGE_PATH,
                               null=True)

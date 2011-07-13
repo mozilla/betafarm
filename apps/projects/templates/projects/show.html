@@ -28,6 +28,9 @@
   <ul class="c1">
     <img class="block" src="{{ MEDIA_URL }}{{ project.image_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
+    {% if project.blog -%}
+      <li><a href="{{ project.blog }}">{{ _('Blog') }}</a></li>
+    {% endif -%}
   </ul>
   {% if project.github -%}
     <div class="c1 related">
