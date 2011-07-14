@@ -31,10 +31,12 @@
 
 <section class="w3">
   <div id="eventInfo" class="c3 paper">
+    {% if request.user.is_authenticated() -%}
     <form method="post" action="{{ form_action }}">
       {{ csrf()|safe }}
       <button class="submit sans">{{ button_label }}</button>
     </form>
+    {% endif -%}
     <img src="http://placehold.it/420x300/eee/ccc">
 
     <div class="row clearfix">
