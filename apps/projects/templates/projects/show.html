@@ -12,7 +12,7 @@
 {% block breadcrumbs -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),
-     (url('topics_all'), _('Topics')),
+     (url('projects_all'), _('Projects')),
      (url('topics_show', slug=topic), topic),
      last=project.name) }}
 {% endblock -%}
