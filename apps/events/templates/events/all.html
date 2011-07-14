@@ -36,16 +36,16 @@
   </ul>
 </section>
 
+{% if upcoming -%}
 <aside id="eventsSidebar" class="w2 clearfix">
   <div class="c2 paper">
-    <h3 class="light">{{ _('Current Events') }}</h3>
-    <ul>
-
-    </ul>
     <h3 class="light">{{ _('Upcoming Events') }}</h3>
     <ul>
-
+      {% for event in upcoming -%}
+        <li><a href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></li>
+      {% endfor -%}
     </ul>
 </aside>
+{% endif -%}
 
 {% endblock -%}

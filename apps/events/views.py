@@ -1,4 +1,5 @@
 import jingo
+import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -10,9 +11,11 @@ from events.models import Event
 
 
 def all(request):
-    events = Event.objects.all()
+    events = Event.objects.all().order_by('start')
+    upcoming = Event.objects.filter(start__gte=datetime.datetime.now())
     return jingo.render(request, 'events/all.html', {
-        'events': events
+        'events': events,
+        'upcoming': upcoming,
     })
 
 
