@@ -121,26 +121,23 @@ section#projectList li p {
   color: rgba(0, 0, 0, 0.75);
 }
 /*
-    project page and blog styles
+    program / project page and blog styles
 */
-#projectContent .header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-#projectContent p {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.75);
-  text-align: justify;
+#projectContent {
+  margin: 0 160px;
 }
 .people, .relatedProjects {
   padding: 40px 0;
 }
 .people ul, .relatedProjects ul {
-  width: 640px;
   float: left;
 }
 .people li, .relatedProjects li {
+  list-style-type: none;
+  display: inline-block;
+  float: left;
   font-weight: bold;
-  margin: 0 10px 20px 10px;
+  margin-bottom: 20px;
 }
 .people li img, .relatedProjects li img {
   display: inline-block;
@@ -212,12 +209,24 @@ section#projectBlog {
   margin: 0 0 40px 0;
   color: #74726a;
 }
+#programList {
+  margin-bottom: 21px;
+}
+#programList h3 {
+  margin-top: 7px;
+}
+#programList p {
+  margin: 7px 0 0;
+  color: #74726A;
+}
+#programList li {
+  margin-bottom: 20px;
+}
 #people, #projects {
   padding: 0;
   margin: 0 0 80px 0;
 }
 #people ul, #projects ul {
-  width: 640px;
   float: right;
   list-style-type: none;
 }
@@ -345,6 +354,35 @@ button.submit:active {
   -o-box-shadow: 0 0 5px #003763 inset;
   box-shadow: 0 0 5px #003763 inset;
 }
+#eventInfo {
+  margin-bottom: 21px;
+}
+#eventInfo button.submit {
+  float: none;
+  margin: 0 0 21px 0;
+}
+#eventInfo .row {
+  padding: 7px 0;
+  margin: 0;
+}
+#eventInfo .row .label {
+  width: 60px;
+  margin: 0 20px 0 0;
+  font-weight: bold;
+  float: left;
+  display: inline-block;
+}
+#eventInfo .row .for {
+  width: 338px;
+  float: left;
+  display: inline-block;
+}
+#eventInfo .row .for span {
+  display: block;
+}
+#eventsContent .eventHeader {
+  margin: 7px 10px 14px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -401,12 +439,15 @@ hr {
 strong {
   font-weight: bold;
 }
-button {
+button, a.button, section#subNav .related a.button {
   background-color: #fff;
   border: 1px solid #D1CDC2;
   padding: 7px 14px;
   font-size: 12px;
   cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+  display: block;
   background-image: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
   background-image: -o-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f2f2f2));
@@ -419,14 +460,17 @@ button {
   -o-box-shadow: 0 0 0 1px #ffffff inset;
   box-shadow: 0 0 0 1px #ffffff inset;
 }
-button:active {
+a.button:hover, section#subNav .related a.button:hover {
+  text-decoration: none;
+}
+button:active, a.button:active, section#subNav .related a.button:active {
   border: 1px solid #666;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
   -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
 }
-button img {
+button img, a.button img, section#subNav .related a.button img {
   vertical-align: text-top;
 }
 /* columns */
@@ -500,16 +544,16 @@ button img {
   z-index: 100;
 }
 .topicColor {
-  color: #cb4b16;
+  color: #cb4b16 !important;
 }
 .peopleColor {
-  color: #859900;
+  color: #859900 !important;
 }
 .eventColor {
-  color: #2aa198;
+  color: #2aa198 !important;
 }
 .brandColor {
-  color: #4e7892;
+  color: #4e7892 !important;
 }
 .small {
   font-size: 12px;
@@ -635,9 +679,8 @@ button#follow {
   height: 51px;
 }
 #universalHeader ul {
-  list-style-type: none;
-  text-align: right;
   float: right;
+  list-style-type: none;
 }
 #universalHeader li {
   display: inline-block;
@@ -797,6 +840,11 @@ button#follow {
 #universalHeader li.username ul.dropdown li a.account:hover {
   color: #fff;
 }
+#universalHeader #tab a img {
+  float: right;
+  outline: none;
+  border: none;
+}
 /* secondary menu */
 #secondaryMenu ul {
   list-style-type: none;
@@ -888,8 +936,11 @@ section#subNav li.selected {
   background-color: rgba(0, 0, 0, 0.05);
   font-weight: bold;
 }
-section#subNav .c1 {
+section#subNav ul.c1 {
   margin: 0 10px 21px 10px;
+}
+section#subNav h3.c1 {
+  margin: 21px 10px 7px 10px;
 }
 section#subNav button {
   width: 100%;
@@ -946,6 +997,7 @@ section#title {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.75);
   margin-bottom: 42px;
+  float: none;
 }
 .content h3, .content h4 {
   margin: 0 0 14px 0;
@@ -954,6 +1006,9 @@ section#title {
   font-size: 14px;
   margin: 0 0 21px;
   color: rgba(0, 0, 0, 0.75);
+}
+.content p:last-child {
+  margin: 0;
 }
 .content p.large {
   font-size: 18px;
@@ -999,6 +1054,9 @@ section#title {
 .blogHeader {
   margin: 7px 0 14px;
 }
+.blogHeader button.submit {
+  float: none;
+}
 .tags li {
   display: inline-block;
   float: left;
@@ -1016,6 +1074,9 @@ section#title {
   font-weight: bold;
   padding: 0 7px;
   text-decoration: none;
+}
+.tags li a:before {
+  content: '#';
 }
 .tags li a:hover {
   background-color: #4e7892;
