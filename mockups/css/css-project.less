@@ -1,17 +1,9 @@
 /*
-    project page and blog styles
+    program / project page and blog styles
 */
 
 #projectContent {
-    .header {
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-    
-    p {
-        font-size: 14px;
-        color: @medium;
-        text-align: justify;
-    }
+    margin: 0 160px;
 }
     
 .people,
@@ -19,13 +11,15 @@
     padding: 40px 0;
     
     ul {
-        width: 640px;
         float: left;
     }
     
     li {
+        list-style-type: none;
+        display: inline-block;
+        float: left;
         font-weight: bold;
-        margin: 0 10px 20px 10px;
+        margin-bottom: 20px;
         
         img {
             display: inline-block;
@@ -34,10 +28,11 @@
             padding: 5px;
             background-color: #FFFFFF;
             border: 1px solid #D1CDC2;
+            
             -webkit-box-sizing: content-box;
-            -moz-box-sizing: content-box;
-            -o-box-sizing: content-box;
-            box-sizing: content-box;
+               -moz-box-sizing: content-box;
+                 -o-box-sizing: content-box;
+                    box-sizing: content-box;
         }
     }
 }
@@ -112,4 +107,21 @@ section#projectBlog{
 #compose {
     margin: 0 0 40px 0;
     color: @light;
+}
+
+#programList {
+    margin-bottom: 21px;
+    
+    h3 {
+        margin-top: 7px;
+    }
+    
+    p {
+        margin: 7px 0 0;
+        color: #74726A;
+    }
+    
+    li {
+        margin-bottom: 20px;
+    }
 }
