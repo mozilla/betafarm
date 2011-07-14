@@ -34,11 +34,8 @@
   </ul>
   {% if project.github -%}
     <div class="c1 related">
-      {% if download_url -%}
-        <a class="button sans" href="{{ download_url }}"><img src="{{ MEDIA_URL }}img/download.png">{{ _('Download') }}</a>
-      {% endif -%}
       {% if project.github -%}
-        <a class="button sans" href="{{ project.github }}"><img src="{{ MEDIA_URL }}img/fork.png">{{ _('Fork me!') }}</a>
+        <a class="button sans" href="{{ download_url }}"><img src="{{ MEDIA_URL }}img/download.png">{{ _('Download') }}</a>
       {% endif -%}
     </div>
   {% endif -%}
