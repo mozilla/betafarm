@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import address, gmap %}
 
 {% block page_title -%}
 {{ _('{event_name} : Events : Mozilla Betafarm')|f(event_name=event.name) }}
@@ -19,7 +18,7 @@
      {% set button_label = _('stop attending') %}
   {% else -%}
      {% set form_action = url('events_attend', slug=event.slug) %}
-     {% set button_label = _('attend this event!') %}
+     {% set button_label = _('RSVP to this event') %}
   {% endif -%}
 {% endif -%}
 
@@ -30,45 +29,72 @@
   </div>
 </section>
 
-<section id="eventContent">
-  <div class="c6">
-    <p>{{ event.description }}
-  </div>
-  <div class="row clearfix">
-    <div class="c1">
-      <form method="post" action="{{ form_action }}">
-        {{ csrf()|safe }}
-        <button class="submit sans">{{ button_label }}</button>
-      </form>
-    </div>
-    {% if event.venue -%}
-      <div class="c6">
-        {{ address(event.venue.name, event.venue.address,
-                   event.venue.address_two, event.venue.city,
-                   event.venue.state, event.venue.country,
-                   event.venue.zip_code) }}
-        <div id="venue_map">
-          {{ gmap(event.venue.address, event.venue.city,
-                  event.venue.state, event.venue.country,
-                  event.venue.zip_code, 300, 300,
-                  is_secure=request.is_secure()) }}
-        </div>
+<section class="w3">
+  <div id="eventInfo" class="c3 paper">
+    <form method="post" action="{{ form_action }}">
+      {{ csrf()|safe }}
+      <button class="submit sans">{{ button_label }}</button>
+    </form>
+    <img src="http://placehold.it/420x300/eee/ccc">
+
+    <div class="row clearfix">
+      <div class="label">{{ _('Date:') }}</div>
+      <div class="for">
+        {# todo: format date #}
+        <span class="line">{{ event.start }}</span>
       </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="label">{{ _('Time:') }}</div>
+      <div class="for">
+        {# todo: format time #}
+        <span class="line">{{ event.start }}</span>
+      </div>
+    </div>
+
+    {% if event.venue -%}
+    <div class="row clearfix">
+      <div class="label">{{ _('Location:') }}</div>
+      <div class="for">
+        <span class="line">{{ event.venue.address }}</span>
+        <span class="line">{{ event.venue.city }}, {{ event.venue.state }}</span>
+        <span class="line">{{ event.venue.country }} {{ event.venue.zip_code }}</span>
+      </div>
+    </div>
     {% endif -%}
   </div>
-  <div class="row people clearfix">
-    <div class="c1">
-      <h2 class="light">{{ _('Attending') }}</h2>
+
+</section>
+
+<section id="eventsContent" class="w3">
+  <div class="eventHeader">
+    <h4 class="sans">{{ _('About this event') }}</h4>
+  </div>
+  <div class="c3 content serif clearfix">
+    <p class="serif">{{ event.description }}</p>
+  </div>
+
+{% if event.attendees.all()|length > 0 -%}
+  <hr>
+
+  <div class="people clearfix">
+    <div class="c3">
+      <h2 class="light">{{ _('People attending ({count})')|f(count=event.attendees.all()|length) }}</h2>
     </div>
-    <ul class="peopleList clearfix">
+    <ul class="peopleList clearfix c3">
       {% for person in event.attendees.all() -%}
-        <li class="c2">
-          <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" height="32" width="32">
-          <span class="username"><a href="{{ url('users_profile', username=person.user.username) }}">{{ person.display_name }}</a></span>
+        <li>
+          <a href="{{ url('users_profile', username=person.user.username) }}">
+            <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" height="32" width="32">
+          </a>
         </li>
       {% endfor -%}
     </ul>
   </div>
+
+{% endif -%}
 </section>
+
 
 {% endblock -%}
