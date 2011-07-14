@@ -40,16 +40,14 @@
     <div class="row clearfix">
       <div class="label">{{ _('Date:') }}</div>
       <div class="for">
-        {# todo: format date #}
-        <span class="line">{{ event.start }}</span>
+        <span class="line">{{ event.start.strftime('%B %d, %Y') }}</span>
       </div>
     </div>
 
     <div class="row clearfix">
       <div class="label">{{ _('Time:') }}</div>
       <div class="for">
-        {# todo: format time #}
-        <span class="line">{{ event.start }}</span>
+        <span class="line">{{ event.start.strftime('%H:%M') }} - {{ event.end.strftime('%H:%M') }}</span>
       </div>
     </div>
 
