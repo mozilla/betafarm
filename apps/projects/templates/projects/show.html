@@ -34,12 +34,17 @@
   </ul>
   {% if project.github -%}
     <div class="c1 related">
-      <li class="icon github"><a class="brandColor" href="{{ project.github }}">{{ _('{project} on Github')|f(project=project.name) }}</a></li>
+      {% if download_url -%}
+        <a class="button sans" href="{{ download_url }}"><img src="{{ MEDIA_URL }}img/download.png">{{ _('Download') }}</a>
+      {% endif -%}
+      {% if project.github -%}
+        <a class="button sans" href="{{ project.github }}"><img src="{{ MEDIA_URL }}img/fork.png">{{ _('Fork me!') }}</a>
+      {% endif -%}
     </div>
   {% endif -%}
 </section>
 
-<section id="projectContent" class="w5 clearfix">
+<section id="projectContent" class="w3 clearfix">
   <div class="row clearfix">
     <div class="c1"></div>
     <div class="c3 content serif">

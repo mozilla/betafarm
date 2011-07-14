@@ -16,10 +16,14 @@ def all(request):
 def show(request, slug):
     project = get_object_or_404(Project, slug=slug)
     topic = request.session.get('topic', None) or project.topics.all()[0].name
-    return jingo.render(request, 'projects/show.html', {
+    context = {
         'project': project,
         'topic': topic
-    })
+    }
+    if project.github:
+        url = project.github.rstrip('/')
+        context['download_url'] = '%s/archives/master' % (url,)
+    return jingo.render(request, 'projects/show.html', context)
 
 
 def active(request):
