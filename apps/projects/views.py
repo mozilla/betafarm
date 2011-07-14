@@ -6,9 +6,10 @@ from projects.models import Project
 
 
 def all(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('name')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
+        'view': 'all'
     })
 
 
@@ -18,4 +19,20 @@ def show(request, slug):
     return jingo.render(request, 'projects/show.html', {
         'project': project,
         'topic': topic
+    })
+
+
+def active(request):
+    projects = Project.objects.all()
+    return jingo.render(request, 'projects/all.html', {
+        'projects': projects,
+        'view': 'active'
+    })
+
+
+def recent(request):
+    projects = Project.objects.all().order_by('-id')
+    return jingo.render(request, 'projects/all.html', {
+        'projects': projects,
+        'view': 'recent'
     })

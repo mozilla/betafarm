@@ -23,12 +23,10 @@
         <nav id="topNav" class="c4">
           <ul class="clearfix">
             <li class="mainItem">
-              <a class="topic dropdown{{ active(request, url('topics_all')) }}" href="{{ url('topics_all') }}">{{ _('Topics') }}</a>
+              <a class="topic dropdown" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
               <ul class="dropdown">
-                <li><a class="topic" href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
-                {% for topic in topics -%}
-                  <li><a class="topic" href="{{ url('topics_show', slug=topic.slug) }}">&mdash; {{ topic.name }}</a></li>
-                {% endfor -%}
+                <li><a class="topic" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
+                <li><a class="topic" href="">{{ _('Programs') }}</a></li>
               </ul>
             </li>
             <li class="mainItem">

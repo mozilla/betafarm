@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block page_title %}{{ _('Projects : Mozilla Betafarm') }}{% endblock %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Betafarm Home')),
+     last=_('Projects')) }}
+{% endblock -%}
+
+{% block content -%}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ _('Projects') }}</h1>
+  </div>
+</section>
+
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    <li{% if view == 'all' %} class="selected"{% endif %}>
+      <a class="brandColor" href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a>
+    </li>
+    <li{% if view == 'active' %} class="selected"{% endif %}>
+      <a href="{{ url('projects_active') }}">{{ _('Most Active') }}</a>
+    </li>
+    <li{% if view == 'recent' %} class="selected"{% endif %}>
+      <a href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a>
+    </li>
+  </ul>
+
+  <h3 class="light c1">{{ _('Topics') }}</h3>
+  <ul class="c1">
+  {% for topic in topics -%}
+    <li><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
+  {% endfor -%}
+  </ul>
+</section>
+
+<section id="projects" class="w5">
+  <ul id="projectList" class="clearfix">
+    <li class="search clearfix">
+      <div class="c2"><strong>{{ _('{count} projects')|f(count=projects|length) }}</strong></div>
+      <input class="search c2 sans" type="text" placeholder="search projects">
+    </li>
+    {% for project in projects -%}
+      <li class="project clearfix">
+        <div class="c1 vMaster"><img class="block" src="{{ MEDIA_URL }}{{ project.image_or_default }}"></div>
+        <div class="c3">
+          <div class="vAlign">
+            <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
+            <p class="serif">{{ project.description }}</p>
+          </div>
+        </div>
+      </li>
+    {% endfor -%}
+  </ul>
+</section>
+
+{% endblock %}
