@@ -4,6 +4,7 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('',
 
     # Sign in / Sign up
+    url(r'^browserid/$', 'users.views.browserid', name='users_browserid'),
     url(r'^signin/$', 'users.views.signin', name='users_signin'),
     url(r'^signup/$', 'users.views.signup', name='users_signup'),
     url(r'^signout/$', 'users.views.signout', name='users_signout'),
@@ -21,7 +22,7 @@ urlpatterns = patterns('',
 
     # Profile urls
     url(r'^profile/edit/$', 'users.views.edit', name='users_edit'),
-    url(r'^profile/(?P<username>[\w-]+)/$', 'users.views.profile',
+    url(r'^profile/(?P<username>[\.@\w-]+)/$', 'users.views.profile',
         name='users_profile'),
 
     # List profiles

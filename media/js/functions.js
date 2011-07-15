@@ -22,4 +22,15 @@ $(document).ready(function($) {
             $(this).css({ width : w });
         });
     });
+
+    // browserid
+    $('#browserid').bind('click', function(e) {
+        e.preventDefault();
+        navigator.id.getVerifiedEmail(function(assertion) {
+            if (assertion) {
+                $('#id_assertion').val(assertion.toString());
+                $('#browserid_form').submit();
+            }
+        });
+    });
 });

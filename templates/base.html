@@ -9,6 +9,9 @@
     {% block site_css %}
       {{ css('innovate_css') }}
     {% endblock %}
+
+    <script src="https://browserid.org/include.js" type="text/javascript"></script>
+
   </head>
   <body>
 
@@ -58,7 +61,13 @@
                 </ul>
               </li>
             {% else -%}
-              <li class="mainItem"><a class="login" href="{{ url('users.views.signin') }}">{{ _('Sign In') }}</a></li>
+              <li class="mainItem">
+                <form method="POST" action="{{ url('users_browserid') }}" id="browserid_form">
+                  {{ csrf()|safe }}
+                  <input type="hidden" name="assertion" id="id_assertion" />
+                  <a id="browserid" class="login" href="{{ url('users.views.signin') }}">{{ _('Sign In') }}</a>
+                </form>
+              </li>
             {% endif -%}
           </ul>
         </nav>

@@ -5,8 +5,10 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
 
 from users.decorators import anonymous_only
+from users.forms import BrowserIdForm
 from users.models import Profile
 from users.utils import (handle_signin, handle_signup, get_next_url,
                          handle_password_reset, handle_password_reset_confirm,
@@ -144,3 +146,23 @@ def staff(request):
         'profiles': paginator.page(1).object_list,
         'page': 'all'
     })
+
+
+@require_POST
+def browserid(request):
+    """Process browserid requests."""
+    form = BrowserIdForm(data=request.POST)
+    if form.is_valid():
+        assertion = form.cleaned_data['assertion']
+        if ':' in request.get_host():
+            host, port = request.get_host().split(':')
+        else:
+            host = request.get_host()
+            port = '80'
+        user = auth.authenticate(assertion=assertion, host=host, port=port)
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('users_profile', kwargs={
+                'username': user.username
+            }))
+    return HttpResponseRedirect(reverse('innovate_splash'))
