@@ -38,11 +38,12 @@
 
 <section id="people" class="w5">
   <ul id="peopleList" class="clearfix">
+{#  todo - implement search  
     <li class="search clearfix">
       <div class="c2"><strong>{{ _('{count} total users')|f(count=paginator.count) }}</strong></div>
-      {# todo - implement search #}
       <input class="search c2 sans" type="text" placeholder="search people">
     </li>
+#}
     <hr>
     {% for profile in profiles -%}
     <li class="person clearfix">

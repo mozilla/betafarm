@@ -39,10 +39,12 @@
 
 <section id="projects" class="w5">
   <ul id="projectList" class="clearfix">
+{# todo - implement search 
     <li class="search clearfix">
       <div class="c2"><strong>{{ _('{count} projects')|f(count=projects|length) }}</strong></div>
       <input class="search c2 sans" type="text" placeholder="search projects">
     </li>
+#}
     {% for project in projects -%}
       <li class="project clearfix">
         <div class="c1 vMaster"><img class="block" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></div>
