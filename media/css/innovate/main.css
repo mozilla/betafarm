@@ -380,6 +380,42 @@ button.submit:active {
 #eventInfo .row .for span {
   display: block;
 }
+#eventInfo .map {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #d7d9e8;
+}
+#eventInfo .map .zoom0, #eventInfo .map .zoom1, #eventInfo .map .zoom2 {
+  display: block;
+  -moz-transform: scale(1);
+  -moz-transition: opacity .5s;
+  -moz-transform-property: opacity, -moz-transform;
+}
+#eventInfo .map .zoom1, #eventInfo .map .zoom2 {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+#eventInfo .map .zoom2-hit {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  height: 33%;
+  margin: auto;
+}
+#eventInfo .map .map:hover .zoom0, #eventInfo .map .zoom2-hit:hover ~ .zoom1 {
+  -moz-transform: scale(2);
+}
+#eventInfo .map:hover .zoom1, #eventInfo .map .zoom2-hit:hover ~ .zoom2 {
+  opacity: 1;
+}
 #eventsContent .eventHeader {
   margin: 7px 10px 14px;
 }
