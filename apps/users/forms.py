@@ -63,10 +63,6 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
     remember_me = forms.BooleanField(required=False)
 
 
-class BrowserIdForm(forms.Form):
-    assertion = forms.CharField(widget=forms.HiddenInput())
-
-
 class SetPasswordForm(auth_forms.SetPasswordForm):
     """
     Subclass ``auth_forms.SetPasswordForm`` so that we can check that the

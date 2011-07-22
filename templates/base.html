@@ -62,7 +62,7 @@
               </li>
             {% else -%}
               <li class="mainItem">
-                <form method="POST" action="{{ url('users_browserid') }}" id="browserid_form">
+                <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
                   {{ csrf()|safe }}
                   <input type="hidden" name="assertion" id="id_assertion" />
                   <a id="browserid" class="login" href="{{ url('users.views.signin') }}">{{ _('Sign In') }}</a>

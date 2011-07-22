@@ -73,6 +73,13 @@ class Link(models.Model):
         return u'%s -> %s' % (self.name, self.url)
 
 
+def get_profile(cls):
+    """Create an empty profile for users if none exists."""
+    profile, created = Profile.objects.get_or_create(user=cls)
+    return profile
+User.get_profile = get_profile
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True,
                                 verbose_name=_(u'User'))

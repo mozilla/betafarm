@@ -196,6 +196,9 @@ INSTALLED_APPS = (
     # Database migrations
     'south',
 
+    # BrowserID support
+    'django_browserid',
+
     # Betafarm specific
     'innovate',
     'users',
@@ -274,9 +277,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Innovate Mozilla <innovate@mozilla.org>'
 
 AUTHENTICATION_BACKENDS = (
-    'users.backends.BrowserIdBackend',
-    'users.backends.CustomUserBackend',
+    'django_browserid.auth.BrowserIDBackend',
     'django.contrib.auth.backends.ModelBackend'
 )
 
 BROWSERID_VERIFY_URL = 'https://browserid.org/verify'
+BROWSERID_CREATE_USER = True
+LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL_FAILURE = '/'
