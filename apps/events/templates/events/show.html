@@ -37,8 +37,13 @@
       <button class="submit sans">{{ button_label }}</button>
     </form>
     {% endif -%}
-    <img src="http://placehold.it/420x300/eee/ccc">
 
+    <a class="map" href="http://maps.google.com/maps?q={{ event.venue.full_address }}">
+      <span class="zoom2-hit"></span>
+      <img class="zoom0" src="http://maps.google.com/maps/api/staticmap?zoom=7&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+      <img class="zoom1" src="http://maps.google.com/maps/api/staticmap?zoom=11&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+      <img class="zoom2" src="http://maps.google.com/maps/api/staticmap?zoom=13&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+    </a>
     <div class="row clearfix">
       <div class="label">{{ _('Date:') }}</div>
       <div class="for">

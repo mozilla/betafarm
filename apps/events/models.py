@@ -26,6 +26,16 @@ class Venue(models.Model):
     def __unicode__(self):
         return self.name
 
+    @property
+    def full_address(self):
+        fields = (self.address, self.address_two, self.city, self.state,
+                  self.country, self.zip_code)
+        populated = []
+        for field in fields:
+            if field:
+                populated.append(field)
+        return u', '.join(populated)
+
 
 class Event(models.Model):
     name = models.CharField(verbose_name=_(u'Event Name'),
