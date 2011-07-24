@@ -1,7 +1,0 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans %}
-http://{{ domain }}{{confirm_url }}
-
-Thanks! 
-
-The {{ domain }} team
-{% endblocktrans %}
