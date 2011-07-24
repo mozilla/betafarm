@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+import base64
 import datetime
 import hashlib
 import random
@@ -129,5 +132,23 @@ class Profile(models.Model):
         return unicode(self.user)
 
     @property
+    def has_chosen_identifier(self):
+        """Determine if username has been automatically generated or chosen."""
+        return not self.user.username == base64.urlsafe_b64encode(
+            hashlib.sha1(self.user.email).digest()).rstrip('=')
+
+    @property
+    def masked_email(self):
+        user, domain = self.user.email.split('@')
+        mask_part = lambda s, n: s[:n] + u'…' + s[-1:]
+        return '@'.join(
+            (mask_part(user, len(user) / 3),
+             mask_part(domain, 1)))
+
+    @property
     def display_name(self):
-        return self.name or self.user.username
+        if self.name:
+            return self.name
+        if self.has_chosen_identifier:
+            return self.user.username
+        return self.masked_email
