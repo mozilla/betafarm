@@ -123,7 +123,7 @@ section#projectList li p {
 /*
     program / project page and blog styles
 */
-#projectContent {
+#projectContent, #topicContent {
   margin: 0 160px;
 }
 .people, .relatedProjects {
@@ -259,6 +259,9 @@ section#projectBlog {
 #people li.project, #projects li.project {
   padding: 0 0 40px;
 }
+#people li.project:last-child, #projects li.project:last-child {
+  padding: 0 0 0;
+}
 #people li.project p, #projects li.project p {
   color: rgba(0, 0, 0, 0.75);
   font-size: 14px;
@@ -306,6 +309,8 @@ form input[type=text], form input[type=password], form textarea {
   padding: 3px;
   color: #222;
   background-color: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
+  font-size: 14px;
 }
 form input[type=text]:focus, form input[type=password]:focus, form textarea:focus {
   border: 1px solid #37A6FF;
@@ -359,7 +364,7 @@ button.submit:active {
 }
 #eventInfo button.submit {
   float: none;
-  margin: 0 0 21px 0;
+  margin: 0 0 15px 0;
 }
 #eventInfo .row {
   padding: 7px 0;
@@ -385,6 +390,7 @@ button.submit:active {
   position: relative;
   overflow: hidden;
   border: 1px solid #d7d9e8;
+  margin: 0 0 20px;
 }
 #eventInfo .map .zoom0, #eventInfo .map .zoom1, #eventInfo .map .zoom2 {
   display: block;
@@ -643,6 +649,10 @@ h1, h2 {
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  -o-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
 }
 button#follow {
   position: absolute;
@@ -1025,6 +1035,12 @@ section {
 section img.block {
   display: block;
 }
+section img.thick {
+  border: 2px solid rgba(0, 0, 0, 0.05);
+}
+section#subNav img.thick {
+  border-bottom: 0 none;
+}
 section#title {
   padding: 40px 0 21px;
 }
@@ -1032,7 +1048,7 @@ section#title {
 .content {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.75);
-  margin-bottom: 42px;
+  /* margin-bottom: 42px; */
   float: none;
 }
 .content h3, .content h4 {

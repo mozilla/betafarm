@@ -48,12 +48,12 @@
     {% for profile in profiles -%}
     <li class="person clearfix">
       <div class="c2">
-        <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" width="32" height="32">
+        <a href="{{ url('users_profile', username=profile.user.username) }}"><img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" width="32" height="32"></a>
         <span class="username"><a href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></span>
       </div>
       <div class="c2 right">
         {% if profile.website -%}
-          <a class="brandColor" href="{{ profile.website }}">{{ profile.website }}</a>
+          <a class="brandColor" target="_blank" href="{{ profile.website }}">{{ profile.website }}</a>
         {% endif -%}
       </div>
     </li>

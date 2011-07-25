@@ -18,7 +18,7 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <li class="selected"><a class="brandColor" href="{{ url('events_all') }}">{{ _('Events') }}</li>
+    <li class="selected"><a class="brandColor" href="{{ url('events_all') }}">{{ _('Events') }}</a></li>
   </ul>
 </section>
 
@@ -27,7 +27,9 @@
     {% for event in events -%}
     <li class="post c3">
       <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></h3>
-      <time>{{ event.start.strftime('%B %d, %Y') }}</time>
+      <div class="blogHeader">
+        <time>{{ event.start.strftime('%B %d, %Y') }}</time>
+      </div>
       <div class="content">
         <p class="serif">{{ event.description }}</p>
       </div>
@@ -42,7 +44,7 @@
     <h3 class="light">{{ _('Upcoming Events') }}</h3>
     <ul>
       {% for event in upcoming -%}
-        <li><a href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></li>
+        <li><strong><time>{{ event.start.strftime('%b %d') }}</time></strong> &mdash; <a class="brandColor" href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></li>
       {% endfor -%}
     </ul>
 </aside>

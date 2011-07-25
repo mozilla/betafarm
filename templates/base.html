@@ -88,13 +88,13 @@
         <div class="c1"></div>
         <div class="c3 actions">
           {% if user.is_authenticated() -%}
-            <p>follow us</p>
+            <p>Follow us!</p>
           {% else -%}
-            <p>follow us or <a class="brandColor" href="{{ url('users.views.signup') }}">sign up</a> for an account</p>
+            <p>Follow us or <a class="brandColor" href="{{ url('users.views.signup') }}">sign up</a> for an account</p>
           {% endif -%}
           <ul>
-            <li class="icon twitter"><a href="#">twitter</a></li>
-            <li class="icon facebook"><a href="#">facebook</a></li>
+            <li class="icon twitter"><a href="#">Twitter</a></li>
+            <li class="icon facebook"><a href="#">Facebook</a></li>
           </ul>
         </div>
       </div>
