@@ -4,3 +4,6 @@
 [submodule "vendor-local/src/django-taggit"]
 	path = vendor-local/src/django-taggit
 	url = git://github.com/alex/django-taggit.git
+[submodule "vendor-local/src/django-browserid"]
+	path = vendor-local/src/django-browserid
+	url = git://github.com/mozilla/django-browserid.git
