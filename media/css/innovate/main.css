@@ -46,6 +46,7 @@ section#about .actions li {
   float: left;
   margin: 0 0 0 10px;
   font-weight: bold;
+  padding: 3px 0;
 }
 section#about .actions li img {
   vertical-align: text-top;
@@ -684,27 +685,41 @@ button#follow {
 }
 .icon {
   background-repeat: no-repeat;
-  padding-left: 20px !important;
+  background-position: left 5px;
+  padding: 3px 0 3px 21px !important;
 }
 .pdf {
   background-image: url('/media/img/document.png');
-  background-position: left 5px;
+}
+.default {
+  background-image: url('/media/img/social-default.png');
 }
 .github {
   background-image: url('/media/img/social-gh.png');
-  background-position: left 3px;
 }
 .flickr {
   background-image: url('/media/img/social-flickr.png');
-  background-position: left 3px;
 }
 .facebook {
   background-image: url('/media/img/social-fb.png');
-  background-position: left 3px;
 }
 .twitter {
   background-image: url('/media/img/social-twitter.png');
-  background-position: left 3px;
+}
+.blogger {
+  background-image: url('/media/img/social-blogger.png');
+}
+.plus {
+  background-image: url('/media/img/social-plus.png');
+}
+.tumblr {
+  background-image: url('/media/img/social-tumblr.gif');
+}
+.vimeo {
+  background-image: url('/media/img/social-vimeo.png');
+}
+.youtube {
+  background-image: url('/media/img/social-youtube.png');
 }
 /* Universal */
 #universalHeader {
