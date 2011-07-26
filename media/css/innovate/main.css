@@ -230,10 +230,6 @@ section#projectBlog {
   float: right;
   list-style-type: none;
 }
-#people li:first-child, #projects li:first-child {
-  margin: 0 0 20px 0;
-  background-color: none;
-}
 #people li.person, #projects li.person {
   margin: 20px 0;
   line-height: 44px;
