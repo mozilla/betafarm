@@ -59,7 +59,6 @@ class Profile(models.Model):
                               blank=True)
     bio = models.TextField(verbose_name=_(u'Bio'), blank=True)
     links = models.ManyToManyField(Link, verbose_name=_(u'Links'), blank=True)
-    staff = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
     featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
                                        blank=True, null=True,

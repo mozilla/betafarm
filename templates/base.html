@@ -42,11 +42,7 @@
               </ul>
             </li>
             <li class="mainItem">
-              <a class="people dropdown{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
-              <ul class="dropdown">
-                <li><a class="people" href="{{ url('users_all') }}">{{ _('all members') }}</a></li>
-                <li><a class="people" href="{{ url('users_staff') }}">{{ _('staff') }}</a></li>
-              </ul>
+              <a class="mainItem{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
             </li>
             <li class="mainItem">
               <a class="about" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
@@ -147,7 +143,6 @@
           <strong>{{ _('People') }}</strong>
           <ul>
             <li><a href="{{ url('users_all') }}">{{ _('all members') }}</a></li>
-            <li><a href="{{ url('users_staff') }}">{{ _('staff') }}</a></li>
           </ul>
         </div>
       </div>
