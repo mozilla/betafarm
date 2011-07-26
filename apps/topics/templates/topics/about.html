@@ -19,7 +19,7 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <img class="block" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" height="140" width="140">
+    <img class="block thick" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" height="140" width="140">
     <li><a href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
     <li class="selected"><a class="brandColor" href="{{ url('topics_about', slug=topic.slug) }}">{{ _('About {topic}')|f(topic=topic.name) }}</a></li>
   </ul>

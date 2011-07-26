@@ -11,9 +11,14 @@
 <hr>
 
 <section id="headlines" class="clearfix">
-  <div class="c6">
-    <strong><img src="{{ MEDIA_URL }}img/rss.png"> {{ _('latest news:') }}</strong>
-    <p><a href="#">{{ _('rotating headlines here') }}</a></p>
+  <div class="c2 headlineLabel">
+    <div class="vAlign">
+        <strong><img src="{{ MEDIA_URL }}img/rss.png"> {{ _('latest news') }}</strong>
+    </div>
+  </div>
+  <div class="c4 headline vMaster">
+        <h2 class="serif"><a class="brandColor" href="#">{{ _('rotating headlines here') }}</a></h2>
+        <p class="serif">&raquo; hello</p>
   </div>
 </section>
 
@@ -44,8 +49,8 @@
     
     <div class="arrow"></div>
     <h5>{{ _('Featured Project') }}</h5>
-    <a class="brandColor" href="{{ url('projects_show', slug=featured_project.slug) }}"><img class="block" src="{{ MEDIA_URL }}{{ featured_project.featured_image_or_default }}" width="260" height="125"></a>
-    <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=featured_project.slug) }}">{{ featured_project.name }}</a></h3>
+    <a href="{{ url('projects_show', slug=featured_project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ featured_project.featured_image_or_default }}" width="260" height="125"></a>
+    <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=featured_project.slug) }}">{{ featured_project.name }}</a></h3>
     <p>{{ featured_project.description|truncate(43) }}</p>
   </div>
   {% else -%}
@@ -56,8 +61,8 @@
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Event') }}</h5>
-    <a href="{{ url('events_show', slug=featured_event.slug) }}"><img class="block" src="{{ MEDIA_URL }}{{ featured_event.featured_image_or_default }}" width="260" height="125"></a>
-    <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=featured_event.slug) }}">{{ featured_event.name }}</a></h3>
+    <a href="{{ url('events_show', slug=featured_event.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ featured_event.featured_image_or_default }}" width="260" height="125"></a>
+    <h3 class="normal"><a class="eventColor" href="{{ url('events_show', slug=featured_event.slug) }}">{{ featured_event.name }}</a></h3>
     <p>{{ featured_event.description|truncate(43) }}</p>
   </div>
   {% else -%}
@@ -68,8 +73,8 @@
   <div class="c2 paper">
     <div class="arrow"></div>
     <h5>{{ _('Featured Mozillian') }}</h5>
-    <a href="{{ url('users_profile', username=featured_user.user.username) }}"><img class="block" src="{{ MEDIA_URL }}{{ featured_user.featured_image_or_default }}" width="260" height="125"></a>
-    <h3 class="normal"><a class="brandColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.display_name }}</a></h3>
+    <a href="{{ url('users_profile', username=featured_user.user.username) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ featured_user.featured_image_or_default }}" width="260" height="125"></a>
+    <h3 class="normal"><a class="peopleColor" href="{{ url('users_profile', username=featured_user.user.username) }}">{{ featured_user.display_name }}</a></h3>
     <p>{{ featured_user.bio|truncate(45) }}</p>
   </div>
   {% else -%}

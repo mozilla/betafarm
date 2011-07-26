@@ -26,12 +26,20 @@
   <ul id="posts" class="clearfix">
     {% for event in events -%}
     <li class="post c3">
-      <h3 class="normal"><a class="brandColor" href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></h3>
-      <div class="blogHeader">
-        <time>{{ event.start.strftime('%B %d, %Y') }}</time>
+      <div class="eventMap">
+        <a class="map" href="{{ url('events_show', slug=event.slug) }}">
+          <span class="zoom2-hit"></span>
+          <img class="zoom0 thick block" src="http://maps.google.com/maps/api/staticmap?zoom=7&size=140x140&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+        </a>
       </div>
-      <div class="content">
-        <p class="serif">{{ event.description }}</p>
+      <div class="eventListInfo">
+        <h3 class="normal"><a class="eventColor" href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></h3>
+        <div class="blogHeader">
+          <time>{{ event.start.strftime('%B %d, %Y') }}</time>
+        </div>
+        <div class="content">
+          <p class="serif">{{ event.description|truncate(160) }}</p>
+        </div>
       </div>
     </li>
     {% endfor -%}
