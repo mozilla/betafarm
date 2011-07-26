@@ -1,16 +1,13 @@
 from django.contrib import auth
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
-from users.decorators import anonymous_only
 from users.models import Profile
 from users.utils import handle_profile_save
 
-from tower import ugettext as _
 import jingo
 
 
@@ -18,16 +15,6 @@ def signout(request):
     """Sign the user out, destroying their session."""
     auth.logout(request)
     return HttpResponseRedirect(reverse('innovate_splash'))
-
-
-@anonymous_only
-def confirm(request, confirmation_token):
-    """Confirm that a user is the owner of their email address."""
-    profile = get_object_or_404(Profile, confirmation_token=confirmation_token)
-    profile.user.is_active = True
-    profile.user.save()
-    messages.info(request, _('Thank you, you may now log in'))
-    return HttpResponseRedirect(reverse('users_signin'))
 
 
 def profile(request, username):
