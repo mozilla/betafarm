@@ -19,21 +19,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('projects', ['Link'])
 
-        if not db.dry_run:
-            for project in orm.Project.objects.all():
-                github_link = orm.Link(name='Source Code', url=project.github)
-                github_link.save()
-                blog_link = orm.Link(name='Blog', url=project.blog)
-                blog_link.save()
-                project.links.add(github_link, blog_link)
-                project.save()
-
-        # Deleting field 'Project.github'
-        db.delete_column('projects_project', 'github')
-
-        # Deleting field 'Project.blog'
-        db.delete_column('projects_project', 'blog')
-
         # Adding M2M table for field links on 'Project'
         db.create_table('projects_project_links', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
@@ -41,6 +26,27 @@ class Migration(SchemaMigration):
             ('link', models.ForeignKey(orm['projects.link'], null=False))
         ))
         db.create_unique('projects_project_links', ['project_id', 'link_id'])
+
+        if not db.dry_run:
+            result = db.execute('SELECT id, blog, github FROM projects_project')
+            for row in result:
+                id, blog, github = row
+                project = orm.Project.objects.get(id=id)
+                if github:
+                    github_link = orm.Link(name=u'Source Code', url=github)
+                    github_link.save()
+                    project.links.add(github_link)
+                if blog:
+                    blog_link = orm.Link(name=u'Blog', url=blog, blog=True)
+                    blog_link.save()
+                    project.links.add(blog_link)
+                project.save()
+
+        # Deleting field 'Project.github'
+        db.delete_column('projects_project', 'github')
+
+        # Deleting field 'Project.blog'
+        db.delete_column('projects_project', 'blog')
 
 
     def backwards(self, orm):
