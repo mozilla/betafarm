@@ -313,6 +313,9 @@ input.search:focus {
 /*
     signup css
 */
+#profile_edit .c3 {
+  margin: 40px 240px;
+}
 .errorlist {
   list-style-type: none;
 }
@@ -329,6 +332,13 @@ form label {
   display: block;
   color: #74726a;
 }
+form .avatarWrap img {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
 form input[type=text], form input[type=password], form textarea {
   font-size: 14px;
   width: 100%;
@@ -338,6 +348,9 @@ form input[type=text], form input[type=password], form textarea {
   background-color: #fafafa;
   font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
   font-size: 14px;
+}
+form textarea {
+  height: 105px;
 }
 form input[type=text]:focus, form input[type=password]:focus, form textarea:focus {
   border: 1px solid #37A6FF;
@@ -349,6 +362,21 @@ form input[type=text]:focus, form input[type=password]:focus, form textarea:focu
   -moz-box-shadow: 0 0 0 1px #37a6ff inset;
   -o-box-shadow: 0 0 0 1px #37a6ff inset;
   box-shadow: 0 0 0 1px #37a6ff inset;
+}
+form.signIn p {
+  margin: 10px 0;
+}
+form.signIn button.submit {
+  float: left;
+  margin-top: 0;
+}
+form.signIn input[type=checkbox],
+label[for=id_remember_me] {
+  display: inline-block;
+}
+.microtext a {
+  font-size: 11px;
+  line-height: 16px;
 }
 button.submit {
   float: right;
@@ -478,7 +506,7 @@ body {
   line-height: 21px;
   color: #222;
   overflow-y: scroll;
-  border-top: 2px solid #222;
+  border-top: 2px solid #686868;
 }
 nav,
 article,
@@ -764,6 +792,7 @@ button#follow {
 #universalHeader {
   padding: 0 0 20px 0;
   font-size: 12px;
+  position: relative;
   font-family: trebuchet MS;
   font-weight: bold;
   text-transform: uppercase;
@@ -771,11 +800,18 @@ button#follow {
 #universalHeader #icon {
   height: 51px;
 }
+#universalHeader #icon img {
+  opacity: 0.5;
+  -moz-transition: opacity 0.2s ease;
+}
+#universalHeader #icon img:hover {
+  opacity: 1;
+}
 #universalHeader nav#topNav {
   height: 51px;
 }
 #universalHeader ul {
-  float: right;
+  float: left;
   list-style-type: none;
 }
 #universalHeader li {
@@ -936,10 +972,19 @@ button#follow {
 #universalHeader li.username ul.dropdown li a.account:hover {
   color: #fff;
 }
-#universalHeader #tab a img {
-  float: right;
-  outline: none;
-  border: none;
+#universalHeader #tab {
+  width: 118px;
+  height: 49px;
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  background-image: url('/media/img/tab.png');
+}
+#universalHeader #tab a {
+  width: 118px;
+  height: 49px;
+  display: block;
 }
 /* secondary menu */
 #secondaryMenu ul {
@@ -1085,7 +1130,7 @@ section {
 section img.block {
   display: block;
 }
-section img.thick {
+section img.thick, .avatarWrap img {
   border: 2px solid rgba(0, 0, 0, 0.1);
   height: auto;
   -webkit-transition: all 0.2s ease;

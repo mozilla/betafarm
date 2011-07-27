@@ -18,7 +18,9 @@
       <ul>
         <li>
           <label for="id_avatar">{{ _('Picture') }}</label>
-          {{ form.avatar }}
+            <div class="avatarWrap clearfix">
+              {{ form.avatar }}
+            </div>
         </li>
         <li>
           <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
