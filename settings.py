@@ -199,6 +199,9 @@ INSTALLED_APPS = (
     # BrowserID support
     'django_browserid',
 
+    # Tagging
+    'taggit',
+
     # Betafarm specific
     'innovate',
     'users',

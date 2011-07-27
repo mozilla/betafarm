@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 
 from tower import ugettext_lazy as _
+from taggit.managers import TaggableManager
 
 from users.models import Profile
 
@@ -27,6 +28,8 @@ class Project(models.Model):
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
+
+    tags = TaggableManager()
 
     @property
     def image_or_default(self):
