@@ -46,5 +46,13 @@ class Project(models.Model):
     def featured_image_or_default(self):
         return self.featured_image or 'img/featured-default.gif'
 
+    @property
+    def nav_links(self):
+        return self.links.filter(blog=True)
+
+    @property
+    def other_links(self):
+        return self.links.filter(blog=False)
+
     def __unicode__(self):
         return self.name

@@ -23,7 +23,19 @@
   <ul class="c1">
     <img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
+    {% if project.nav_links -%}
+      {% for link in project.nav_links -%}
+      <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+      {% endfor -%}
+    {% endif -%}
   </ul>
+  {% if project.other_links -%}
+    <div class="c1 related">
+      {% for link in project.other_links -%}
+        <li><a class="icon brandColor" href="{{ link.url }}">{{ link.name }}</a></li>
+      {% endfor -%}
+    </div>
+  {% endif -%}
 </section>
 
 <section id="projectContent" class="w3 clearfix">
