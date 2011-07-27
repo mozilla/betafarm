@@ -14,17 +14,15 @@
   <div class="c2 paper">
     <h2 class="light">{{ _('Sign In') }}</h2>
     {{ errorlist(form) }}
-    <form action="{{ url('users.views.signin') }}" method="post">
+    <form class="clearfix signIn" action="{{ url('users.views.signin') }}" method="post">
       {{ csrf()|safe }}
       {{ form.as_p()|safe }}
       <button class="submit sans">{{ _('sign me in!') }}</button>
     </form>
-    <p>
-      <a href="{{ url('users_forgot_password') }}">{{ _('Forgot your Password?') }}</a>
-    </p>
-    <p>
-      <a href="{{ url('users_signup') }}">{{ _('No account? Sign up!') }}</a>
-    </p>
+    <div class="microtext">
+      <a class="brandColor" href="{{ url('users_forgot_password') }}">{{ _('Forgot your Password?') }}</a><br>
+      <a class="brandColor" href="{{ url('users_signup') }}">{{ _('No account? Sign up!') }}</a>
+    </div>
   </div>
 </section>
 {% endblock %}

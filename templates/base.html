@@ -17,10 +17,10 @@
     <div id="wrapper" class="clearfix">
 
       <header id="universalHeader" class="clearfix">
-        <div id="icon" class="c2">
+        <div id="icon" class="c1">
           <a href="{{ url('innovate.views.splash') }}"><img class="block" src="{{ MEDIA_URL }}img/logo.png" alt="mozilla betafarm"></a>
         </div>
-        <nav id="topNav" class="c4">
+        <nav id="topNav" class="c5">
           <ul class="clearfix">
             <li class="mainItem">
               <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
@@ -62,6 +62,7 @@
             {% endif -%}
           </ul>
         </nav>
+        <div id="tab"><a href="http://mozilla.com"></a></div>
       </header>
 
       <hr>
