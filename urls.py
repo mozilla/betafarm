@@ -7,11 +7,11 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^browserid/', include('django_browserid.urls')),
-    (r'', include('projects.urls')),
+    (r'^events', include('events.urls')),
+    (r'^topics', include('topics.urls')),
     (r'', include('innovate.urls')),
     (r'', include('users.urls')),
-    (r'^topics', include('topics.urls')),
-    (r'^events', include('events.urls'))
+    (r'', include('projects.urls')),
 )
 
 # Handle 404 and 500 errors
