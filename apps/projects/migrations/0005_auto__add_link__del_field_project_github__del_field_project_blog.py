@@ -1,13 +1,14 @@
 # encoding: utf-8
-import datetime
+
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Adding model 'Link'
         db.create_table('projects_link', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -17,6 +18,15 @@ class Migration(SchemaMigration):
             ('blog', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('projects', ['Link'])
+
+        if not db.dry_run:
+            for project in orm.Project.objects.all():
+                github_link = orm.Link(name='Source Code', url=project.github)
+                github_link.save()
+                blog_link = orm.Link(name='Blog', url=project.blog)
+                blog_link.save()
+                project.links.add(github_link, blog_link)
+                project.save()
 
         # Deleting field 'Project.github'
         db.delete_column('projects_project', 'github')
