@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from projects.models import Project
+from projects.models import Project, Link
 
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Link)

@@ -7,6 +7,16 @@ from taggit.managers import TaggableManager
 from users.models import Profile
 
 
+class Link(models.Model):
+    name = models.CharField(verbose_name=_(u'Name'), max_length=100)
+    url = models.URLField(verbose_name=_(u'URL'))
+    subscribe = models.BooleanField(default=False)
+    blog = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return u'%s -> %s' % (self.name, self.url)
+
+
 class Project(models.Model):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     slug = models.SlugField(verbose_name=_(u'Slug'), unique=True,
@@ -14,10 +24,6 @@ class Project(models.Model):
     description = models.CharField(verbose_name=_(u'Description'),
                                    max_length=200)
     long_description = models.TextField(verbose_name=_(u'Long Description'))
-    github = models.URLField(verbose_name=_(u'Github Repository'),
-                             blank=True, null=True)
-    blog = models.URLField(verbose_name=_(u'Project Blog'),
-                           blank=True, null=True)
     image = models.ImageField(verbose_name=_(u'Image'), blank=True,
                               upload_to=settings.PROJECT_IMAGE_PATH,
                               null=True)
@@ -26,10 +32,11 @@ class Project(models.Model):
                                        upload_to=settings.PROJECT_IMAGE_PATH)
     team_members = models.ManyToManyField(Profile,
                                           verbose_name=_(u'Team Members'))
+    links = models.ManyToManyField(Link, verbose_name=_(u'Links'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
 
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     @property
     def image_or_default(self):
