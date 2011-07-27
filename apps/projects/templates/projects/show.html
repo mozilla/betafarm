@@ -39,7 +39,7 @@
   {% if project.other_links -%}
     <div class="c1 related">
       {% for link in project.other_links -%}
-        <li><a class="icon brandColor" href="{{ link.url }}">{{ link.name }}</a></li>
+        <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
       {% endfor -%}
     </div>
   {% endif -%}
