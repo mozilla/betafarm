@@ -1,1 +1,3 @@
 src/django-taggit
+src/httplib2
+src/django-browserid
