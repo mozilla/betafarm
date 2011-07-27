@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle %}
+
+{% block page_title %}{{ _('Programs : Mozilla Betafarm') }}{% endblock %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Betafarm Home')),
+     last=_('Programs')) }}
+{% endblock -%}
+
+{% block content -%}
+{{ sectiontitle(_('Programs')) }}
+
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    <li><a href="{{ url('projects_programs') }}">{{ _('All (A-Z)') }}</a></li>
+  </ul>
+</section>
+
+<section id="projects" class="w5">
+  <ul id="projectList" class="clearfix">
+    {% for program in programs -%}
+      <li class="project clearfix">
+        <div class="c1 vMaster"><a href="{{ url('projects_show', slug=program.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ program.image_or_default }}" width="140" height="140"></a></div>
+        <div class="c3">
+          <div class="vAlign">
+            <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=program.slug) }}">{{ program.name }}</a></h3>
+            <p class="serif">{{ program.description }}</p>
+          </div>
+        </div>
+      </li>
+    {% endfor -%}
+  </ul>
+</section>
+{% endblock -%}

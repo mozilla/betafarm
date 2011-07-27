@@ -54,5 +54,9 @@ class Project(models.Model):
     def other_links(self):
         return self.links.filter(blog=False)
 
+    @property
+    def is_program(self):
+        return len(self.tags.filter(name='program'))
+
     def __unicode__(self):
         return self.name

@@ -22,10 +22,6 @@ def about(request):
     return jingo.render(request, 'innovate/about.html')
 
 
-def programs(request):
-    return jingo.render(request, 'innovate/programs.html')
-
-
 def handle404(request):
     return jingo.render(request, 'handlers/404.html')
 

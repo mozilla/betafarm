@@ -6,10 +6,17 @@
 {% endblock -%}
 
 {% block breadcrumbs -%}
+{% if project.is_program -%}
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Betafarm Home')),
+     (url('projects_programs'), _('Programs')),
+     last=project.name) }}
+{% else -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),
      (url('projects_all'), _('Projects')),
      last=project.name) }}
+{% endif -%}
 {% endblock -%}
 
 {% block content -%}
