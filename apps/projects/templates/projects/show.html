@@ -21,7 +21,7 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <img class="block" src="{{ MEDIA_URL }}{{ project.image_or_default }}" height="140" width="140">
+    <img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
     {% if project.blog -%}
       <li><a href="{{ project.blog }}">{{ _('Blog') }}</a></li>
@@ -38,8 +38,8 @@
 
 <section id="projectContent" class="w3 clearfix">
   <div class="row clearfix">
-    <div class="c1"></div>
     <div class="c3 content serif">
+      <h2 class="sans light">{{ _('About {project}')|f(project=project.name) }}</h2>
       {# only admins can edit project descriptions, so it's okay to use safe here. #}
       {{ project.long_description|safe }}
     </div>
@@ -48,7 +48,7 @@
   <hr>
 
   <div class="people clearfix">
-    <div class="c2">
+    <div class="c3">
       <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
     </div>
     <ul class="peopleList clearfix c3">

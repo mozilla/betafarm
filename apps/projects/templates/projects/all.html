@@ -18,15 +18,21 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <li{% if view == 'all' %} class="selected"{% endif %}>
-      <a class="brandColor" href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a>
-    </li>
-    <li{% if view == 'active' %} class="selected"{% endif %}>
-      <a href="{{ url('projects_active') }}">{{ _('Most Active') }}</a>
-    </li>
-    <li{% if view == 'recent' %} class="selected"{% endif %}>
-      <a href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a>
-    </li>
+    {% if view == 'all' -%}
+      <li class="selected"><a class="brandColor" href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
+    {% else -%}
+      <li><a href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
+    {% endif -%}
+    {% if view == 'active' %}
+      <li class="selected"><a class="brandColor" href="{{ url('projects_active') }}">{{ _('Most Active') }}</a></li>
+    {% else -%}
+      <li><a href="{{ url('projects_active') }}">{{ _('Most Active') }}</a></li>
+    {% endif %}
+    {% if view == 'recent' %}
+      <li class="selected"><a class="brandColor" href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a></li>
+    {% else -%}
+      <li><a href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a></li>
+    {% endif %}
   </ul>
 
   <h3 class="light c1">{{ _('Topics') }}</h3>
@@ -47,10 +53,10 @@
 #}
     {% for project in projects -%}
       <li class="project clearfix">
-        <div class="c1 vMaster"><img class="block" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></div>
+        <div class="c1 vMaster"><a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a></div>
         <div class="c3">
           <div class="vAlign">
-            <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
+            <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description }}</p>
           </div>
         </div>

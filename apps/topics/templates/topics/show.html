@@ -19,7 +19,7 @@
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
-    <img class="block" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" height="140" width="140">
+    <img class="block thick" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" height="140" width="140">
     <li class="selected"><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
     <li><a href="{{ url('topics_about', slug=topic.slug) }}">{{ _('About {topic}')|f(topic=topic.name) }}</a></li>
   </ul>
@@ -35,11 +35,11 @@
       {% for project in projects %}
       <li class="project clearfix">
         <div class="c1 vMaster">
-          <img class="block" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140">
+          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a>
         </div>
         <div class="c3">
           <div class="vAlign">
-            <h3 class="normal"><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
+            <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description }}</p>
           </div>
         </div>

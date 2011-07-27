@@ -26,7 +26,7 @@
         <nav id="topNav" class="c4">
           <ul class="clearfix">
             <li class="mainItem">
-              <a class="topic dropdown" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
+              <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
                 <li><a class="topic" href="{{ url('innovate_programs') }}">{{ _('Programs') }}</a></li>
@@ -45,11 +45,11 @@
               <a class="mainItem{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
             </li>
             <li class="mainItem">
-              <a class="about" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
+              <a class="about{{ active(request, url('innovate_about')) }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
             </li>
             {% if user.is_authenticated() -%}
               <li class="mainItem username">
-                <a class="account dropdown">{{ user.get_profile().display_name }}</a>
+                <a class="account dropdown" href="{{ url('users_profile', username=user.username) }}">{{ user.get_profile().display_name }}</a>
                 <ul class="dropdown">
                   <li><a class="account" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
                   <li><a class="account" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
@@ -85,28 +85,28 @@
 
     </div>
 
-    <section id="about" class="clearfix">
-      <div id="wrapper">
+    <section id="about">
+      <div id="wrapper" class="clearfix">
         <div class="c2">
           <p><strong>Mozilla Betafarm</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
         </div>
         <div class="c1"></div>
         <div class="c3 actions">
           {% if user.is_authenticated() -%}
-            <p>follow us</p>
+            <p>Follow us!</p>
           {% else -%}
-            <p>follow us or <a class="brandColor" href="{{ url('browserid_verify') }}">sign up</a> for an account</p>
+            <p>Follow us or <a class="brandColor" href="{{ url('browserid_verify') }}">sign up</a> for an account</p>
           {% endif -%}
           <ul>
-            <li class="icon twitter"><a href="#">twitter</a></li>
-            <li class="icon facebook"><a href="#">facebook</a></li>
+            <li class="icon twitter"><a href="#">Twitter</a></li>
+            <li class="icon facebook"><a href="#">Facebook</a></li>
           </ul>
         </div>
       </div>
     </section>
     
-    <footer class="clearfix">
-      <div id="wrapper">
+    <footer>
+      <div id="wrapper" class="clearfix">
         <div class="c2">
           <strong>{{ _('Mozilla Betafarm 2011') }}</strong>
         </div>
