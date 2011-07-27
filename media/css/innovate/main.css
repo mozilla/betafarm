@@ -327,6 +327,10 @@ form ul {
 form li {
   margin: 10px 0;
 }
+form li.links,
+form li.picture {
+  margin: 30px 0;
+}
 form label {
   display: block;
   color: #74726a;
@@ -376,6 +380,59 @@ label[for=id_remember_me] {
 .microtext a {
   font-size: 11px;
   line-height: 16px;
+}
+ul.yourLinks {
+  margin: 10px 0 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+ul.yourLinks li {
+  font-size: 12px;
+  margin: 0;
+  padding: 10px 5px;
+  line-height: 27px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+}
+ul.yourLinks .linkName {
+  width: 160px;
+  float: left;  
+  display: inline-block;
+  font-weight: bold;
+}
+ul.yourLinks .linkUrl {
+  float: left;
+  width: 190px;
+  display: inline-block;
+  text-align: right;
+  padding-left: 5px;
+}
+ul.yourLinks button {
+  float: left;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  width: 48px;
+  padding: 5px 0;
+}
+form .addLink {
+}
+form .addLink input {
+  width: 168px;
+  float: left;
+  margin: 0 5px 0 0;
+}
+form .addLink button {
+  padding: 4px 0px;
+  width: 72px;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}
+form input::-webkit-input-placeholder {
+    color: #ccc;
+}
+form input:-moz-placeholder {
+    color: #ccc;
 }
 button.submit {
   float: right;
@@ -546,8 +603,8 @@ strong {
 }
 button, a.button, section#subNav .related a.button {
   background-color: #fff;
-  border: 1px solid #D1CDC2;
-  padding: 7px 14px;
+  border: 1px solid #bbb;
+  padding: 5px 10px;
   font-size: 12px;
   cursor: pointer;
   text-align: center;
@@ -1344,6 +1401,12 @@ footer ul {
 }
 footer ul a {
   color: #74726a;
+}
+/* overflow */
+.overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 /* clearfix */
 .clearfix:after {
