@@ -68,6 +68,15 @@
       <hr>
 
       {% block breadcrumbs %}{% endblock %}
+      
+      {% if FALSE %}
+      <div id="notification" class="clearfix">
+        <div class="c6">
+          <strong>Awesome!</strong> Your profile was successfully updated
+          <a class="brandColor" href="#">&times; close</a>
+        </div>
+      </div>
+      {% endif %}
 
       {% if messages %}
         <ul class="user-messages">
