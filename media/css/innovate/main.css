@@ -798,6 +798,7 @@ h6 {
 }
 h1, h2 {
   margin: 0 0 21px 0;
+  color: #222;
 }
 .noMargin {
   margin: 0;
@@ -1249,6 +1250,7 @@ section img.block {
 section img.thick, .avatarWrap img {
   border: 2px solid rgba(0, 0, 0, 0.1);
   height: auto;
+  background-color: #fff;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;

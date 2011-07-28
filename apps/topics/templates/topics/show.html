@@ -28,10 +28,12 @@
 {% if projects -%}
 <section id="projectList" class="w5">
   <div class="wrap clearfix">
-    <div class="c1 right">
-      <h2 class="light">{{ _('Projects') }}</h2>
+    <div class="c1">
     </div>
     <ul>
+      <li>
+        <h2 class="light clearfix"><span class="c4">Projects focused on {{ topic.name }}</span></h2>
+      </li>
       {% for project in projects %}
       <li class="project clearfix">
         <div class="c1 vMaster">
