@@ -79,7 +79,8 @@
     <h4 class="sans">{{ _('About this event') }}</h4>
   </div>
   <div class="c3 content serif clearfix">
-    <p class="serif">{{ event.description }}</p>
+    {# events are only created by admins, so it's safe to use safe here. #}
+    <p class="serif">{{ event.description|safe }}</p>
   </div>
 
 {% if event.attendees.all()|length > 0 -%}
