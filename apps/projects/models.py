@@ -32,7 +32,8 @@ class Project(models.Model):
                                        upload_to=settings.PROJECT_IMAGE_PATH)
     team_members = models.ManyToManyField(Profile,
                                           verbose_name=_(u'Team Members'))
-    links = models.ManyToManyField(Link, verbose_name=_(u'Links'))
+    links = models.ManyToManyField(Link, verbose_name=_(u'Links'),
+                                   null=True, blank=True)
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
 
