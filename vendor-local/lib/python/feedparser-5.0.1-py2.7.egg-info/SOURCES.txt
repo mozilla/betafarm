@@ -1,0 +1,6 @@
+README
+feedparser/feedparser.py
+feedparser/feedparser.egg-info/PKG-INFO
+feedparser/feedparser.egg-info/SOURCES.txt
+feedparser/feedparser.egg-info/dependency_links.txt
+feedparser/feedparser.egg-info/top_level.txt
