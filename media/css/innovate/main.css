@@ -294,6 +294,11 @@ section#projectBlog {
   font-size: 14px;
   margin: 7px 0 0;
 }
+.projectTopic {
+  color: #888;
+  font-size: 11px;
+  margin: 5px 0 0;
+}
 input.search {
   font-size: 12px;
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -470,6 +475,42 @@ button.submit:active {
   -moz-box-shadow: 0 0 5px #003763 inset;
   -o-box-shadow: 0 0 5px #003763 inset;
   box-shadow: 0 0 5px #003763 inset;
+}
+button.unsubmit {
+  float: right;
+  border: 1px solid #B13D3D;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #B13D3D;
+  color: #fff;
+  cursor: pointer;
+  background-color: #B13D3D;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-image: -moz-linear-gradient(top, #EA7676 0%, #C84343 100%);
+  background-image: -o-linear-gradient(top, #EA7676 0%, #C84343 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EA7676), color-stop(100%, #C84343));
+  -webkit-box-shadow: 0 0 0 1px #EA7676 inset;
+  -moz-box-shadow: 0 0 0 1px #EA7676 inset;
+  -o-box-shadow: 0 0 0 1px #EA7676 inset;
+  box-shadow: 0 0 0 1px #EA7676 inset;
+}
+button.unsubmit:active {
+  border: 1px solid #712222;
+  text-shadow: -1px -1px 0 #712222;
+  color: #eee;
+  background-color: #006EC6;
+  background-image: -moz-linear-gradient(center top , #D06060 0%, #AE2121 100%);
+  background-image: -o-linear-gradient(top, #D06060 0%, #AE2121 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #D06060), color-stop(100%, #AE2121));
+  -webkit-box-shadow: 0 0 5px #003763 inset;
+  -moz-box-shadow: 0 0 5px #003763 inset;
+  -o-box-shadow: 0 0 5px #003763 inset;
+  box-shadow: 0 0 5px #712222 inset;
 }
 .eventMap {
     float: left;
@@ -1160,7 +1201,7 @@ section#subNav h3.c1 {
 }
 section#subNav button {
   width: 100%;
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
 }
 section#subNav .related li {
   border: none;

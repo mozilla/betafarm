@@ -27,10 +27,17 @@
       <li><a href="{{ project.blog }}">{{ _('Blog') }}</a></li>
     {% endif -%}
   </ul>
+  <div class="c1 related">
+    <button class="sans submit">Follow Project</button>
+    <!-- this is the unfollow button if a user is following a project
+    <button class="sans unsubmit">Unfollow</button> -->
+  </div>
   {% if project.github -%}
     <div class="c1 related">
       {% if project.github -%}
-        <a class="button sans" href="{{ project.github }}"><img src="{{ MEDIA_URL }}img/download.png">{{ _('Download') }}</a>
+        <ul>
+          <li class="icon github"><a class="brandColor" href="{{ project.github }}">{{ _('Github Repo') }}</a></li>
+        </ul>
       {% endif -%}
     </div>
   {% endif -%}
