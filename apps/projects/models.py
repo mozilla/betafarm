@@ -1,13 +1,21 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import pre_save, pre_delete
+
+from django_push.subscriber.signals import updated
 
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
+from projects import tasks
 from users.models import Profile
 
 
 class Link(models.Model):
+    """
+    A link that can be added to a project. Links can be 'subscribed' to, in
+    which case, entries from the links RSS/Atom feed will be syndicated.
+    """
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     url = models.URLField(verbose_name=_(u'URL'))
     subscribe = models.BooleanField(default=False)
@@ -15,6 +23,31 @@ class Link(models.Model):
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)
+
+
+def link_subscriber(sender, instance, **kwargs):
+    """Subscribe to link RSS/Atom feed."""
+    if not isinstance(instance, Link) or not instance.subscribe:
+        return
+    tasks.PushSubscriber.apply_async(args=(instance,))
+pre_save.connect(link_subscriber, sender=Link)
+
+
+def link_delete_handler(sender, instance, **kwargs):
+    """Send unsubscribe request to link hub."""
+    if not isinstance(instance, Link):
+        return
+    tasks.PushUnsubscriber.apply_async(args=(instance,))
+pre_delete.connect(link_delete_handler, sender=Link)
+
+
+def notification_listener(notification, **kwargs):
+    """Create entries for notification."""
+    sender = kwargs.get('sender', None)
+    if not sender:
+        return
+    tasks.PushNotificationHandler.apply_async(args=(notification, sender))
+updated.connect(notification_listener)
 
 
 class Project(models.Model):
@@ -32,7 +65,8 @@ class Project(models.Model):
                                        upload_to=settings.PROJECT_IMAGE_PATH)
     team_members = models.ManyToManyField(Profile,
                                           verbose_name=_(u'Team Members'))
-    links = models.ManyToManyField(Link, verbose_name=_(u'Links'))
+    links = models.ManyToManyField(Link, verbose_name=_(u'Links'),
+                                   blank=True, null=True)
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
 

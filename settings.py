@@ -70,7 +70,7 @@ PROD_DETAILS_DIR = path('lib/product_details_json')
 LANGUAGES = lazy(LazyLangs, dict)()
 
 # Paths that don't require a locale code in the URL.
-SUPPORTED_NONLOCALES = ['media']
+SUPPORTED_NONLOCALES = ['media', 'push']
 
 
 ## Media and templates.
@@ -202,6 +202,9 @@ INSTALLED_APPS = (
     # Tagging
     'taggit',
 
+    # Feed subscription
+    'django_push.subscriber',
+
     # Betafarm specific
     'innovate',
     'users',
@@ -288,3 +291,8 @@ BROWSERID_VERIFY_URL = 'https://browserid.org/verify'
 BROWSERID_CREATE_USER = True
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL_FAILURE = '/'
+
+PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
+PUSH_DEFAULT_HUB_USERNAME = ''
+PUSH_DEFAULT_HUB_PASSWORD = ''
+PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
