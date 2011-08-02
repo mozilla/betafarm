@@ -10,7 +10,9 @@ class PushSubscriber(Task):
     def run(self, link, **kwargs):
         p = PushFeedParser(link.url)
         p.parse()
-        Subscription.objects.subscribe(p.feed_url, hub=p.hub_url)
+        link.subscription = Subscription.objects.subscribe(
+            p.feed_url, hub=p.hub_url)
+        link.save()
 
 
 class PushUnsubscriber(Task):

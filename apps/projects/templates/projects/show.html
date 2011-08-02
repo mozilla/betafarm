@@ -36,11 +36,18 @@
       {% endfor -%}
     {% endif -%}
   </ul>
+  <div class="c1 related">
+    <button class="sans submit">Follow Project</button>
+    <!-- this is the unfollow button if a user is following a project
+    <button class="sans unsubmit">Unfollow</button> -->
+  </div>
   {% if project.other_links -%}
     <div class="c1 related">
+      <ul>
       {% for link in project.other_links -%}
         <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
       {% endfor -%}
+      </ul>
     </div>
   {% endif -%}
 </section>
