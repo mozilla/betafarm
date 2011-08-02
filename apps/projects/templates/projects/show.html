@@ -36,11 +36,21 @@
       {% endfor -%}
     {% endif -%}
   </ul>
-  {% if project.other_links -%}
+  <div class="c1 related">
+    <!-- todo: implement
+    <button class="sans submit">Follow Project</button> -->
+    <!-- this is the unfollow button if a user is following a project
+    <button class="sans unsubmit">Unfollow</button> -->
+  </div>
+  {% if project.github -%}
     <div class="c1 related">
+    {% if project.other_links -%}
+      <ul>
       {% for link in project.other_links -%}
         <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
       {% endfor -%}
+      </ul>
+    {% endif -%}
     </div>
   {% endif -%}
 </section>

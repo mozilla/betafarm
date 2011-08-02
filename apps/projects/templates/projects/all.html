@@ -58,6 +58,11 @@
           <div class="vAlign">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description }}</p>
+            {% for topic in project.topics.all() -%}
+              <div class="projectTopic">
+                focus: <a class="topicColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a>
+              </div>
+            {% endfor -%}
           </div>
         </div>
       </li>

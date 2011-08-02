@@ -16,7 +16,7 @@
     <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
       {{ csrf()|safe }}
       <ul>
-        <li>
+        <li class="picture">
           <label for="id_avatar">{{ _('Picture') }}</label>
             <div class="avatarWrap clearfix">
               {{ form.avatar }}
@@ -27,8 +27,28 @@
           {{ form.name }}
         </li>
         <li>
-          <label for="id_website">{{ _('Website') }}</label>
+          <label for="id_website">{{ _('Your Website') }}</label>
           {{ form.website }}
+        </li>
+        <li class="links">
+          <label>{{ _('Your Links') }}</label>
+          <ul class="yourLinks">
+            <li class="clearfix">
+                <div class="linkName overflow">Twitter</div>
+                <div class="linkUrl overflow"><a class="brandColor" href="#">http://twitter.com/_andychung</a></div>
+                <button class="delete sans">delete</button>
+            </li>
+            <li class="clearfix">
+                <div class="linkName overflow">GitHub</div>
+                <div class="linkUrl overflow"><a class="brandColor" href="#">http://github.com/andychung</a></div>
+                <button class="delete sans">delete</button>
+            </li>
+          </ul>
+          <div class="addLink">
+              <input type="text" placeholder="Link title">
+              <input type="text" placeholder="Link URL">
+              <button class="add sans">Add Link</button>
+          </div>
         </li>
         <li>
           <label for="id_bio">{{ _('Bio') }}</label>
