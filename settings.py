@@ -204,6 +204,7 @@ INSTALLED_APPS = (
 
     # Feed subscription
     'django_push.subscriber',
+    'feeds',
 
     # Betafarm specific
     'innovate',
