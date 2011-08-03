@@ -65,8 +65,8 @@ class Link(models.Model):
     url = models.URLField(verbose_name=_(u'URL'))
     subscribe = models.BooleanField(default=False)
     blog = models.BooleanField(default=False)
-    subscription = models.ForeignKey(Subscription, null=True)
-    project = models.ForeignKey(Project, null=False)
+    subscription = models.ForeignKey(Subscription, null=True, blank=True)
+    project = models.ForeignKey(Project, null=True, blank=True)
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)
