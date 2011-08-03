@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import pre_save, pre_delete
+from django.db.models.signals import post_save, pre_delete
 
 from django_push.subscriber.models import Subscription
 from django_push.subscriber.signals import updated
@@ -72,12 +72,14 @@ class Link(models.Model):
         return u'%s -> %s' % (self.name, self.url)
 
 
-def link_subscriber(sender, instance, **kwargs):
+def link_subscriber(sender, instance, created, **kwargs):
     """Subscribe to link RSS/Atom feed."""
     if not isinstance(instance, Link) or not instance.subscribe:
         return
+    if not created:
+        return
     tasks.PushSubscriber.apply_async(args=(instance,))
-pre_save.connect(link_subscriber, sender=Link)
+post_save.connect(link_subscriber, sender=Link)
 
 
 def link_delete_handler(sender, instance, **kwargs):
