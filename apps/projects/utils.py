@@ -1,9 +1,29 @@
 import feedparser
+import urllib2
+import urlparse
+
+from BeautifulSoup import BeautifulSoup
 
 from django.conf import settings
 
 DEFAULT_HUB_URL = getattr(settings, 'PUSH_DEFAULT_HUB', '')
 test_attr = lambda a, v, o: a in o and o[a] == v
+
+
+def normalize_url(url, base_url):
+    """Try to detect relative URLs and convert them into absolute URLs."""
+    parts = urlparse.urlparse(url)
+    if parts.scheme and parts.netloc:
+        return url  # looks fine
+    if not base_url:
+        return url
+    base_parts = urlparse.urlparse(base_url)
+    server = '://'.join((base_parts.scheme, base_parts.netloc))
+    if server[-1] != '/' and url[0] != '/':
+        server = server + '/'
+    if server[-1] == '/' and url[0] == '/':
+        server = server[:-1]
+    return server + url
 
 
 class PushParsingError(Exception):
@@ -16,7 +36,7 @@ class PushParsingError(Exception):
 
 class PushFeedParser(object):
 
-    _test_attr = lambda self, attr, val, obj: attr in obj and obj[attr] == val
+    _test_attr = lambda self, attr, val, obj: obj.has_key(attr) and obj[attr] == val
 
     def __init__(self, url):
         self.url = url
@@ -37,12 +57,11 @@ class PushFeedParser(object):
     def _is_hub_test(self, link):
         return self._test_attr('rel', 'hub', link)
 
-    def get_feed_url(self, parsed):
-        links = [l['href'] for l in parsed.feed.links
-                 if self._is_feed_test(l)]
-        if not links:
-            raise PushParsingError('URL does not have an RSS/Atom feed')
-        self.feed_url = links[0]
+    def get_feed_url(self, content):
+        soup = BeautifulSoup(content)
+        links = soup.findAll('link')
+        feeds = filter(self._is_feed_test, links)
+        self.feed_url = feeds[0].get('href', '')
 
     def get_hub_url(self, parsed):
         links = [l['href'] for l in parsed.feed.links
@@ -53,10 +72,9 @@ class PushFeedParser(object):
             self.hub_url = links[0]
 
     def parse(self):
-        parsed = feedparser.parse(self.url)
-        if not parsed.feed:
-            raise PushParsingError('URL does not have an RSS/Atom feed')
-        self.get_feed_url(parsed)
+        content = urllib2.urlopen(self.url).read()
+        self.get_feed_url(content)
+        self.feed_url = normalize_url(self.feed_url, self.url)
         parsed_feed = feedparser.parse(self.feed_url)
         if not parsed_feed.feed:
             raise PushParsingError('Invalid Feed Format')
