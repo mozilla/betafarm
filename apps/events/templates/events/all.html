@@ -38,7 +38,8 @@
           <time>{{ event.start.strftime('%B %d, %Y') }}</time>
         </div>
         <div class="content">
-          <p class="serif">{{ event.description|truncate(160) }}</p>
+          {# editable by admin only. okay to use 'safe' here. #}
+          <p class="serif">{{ event.description|truncate(160)|safe }}</p>
         </div>
       </div>
     </li>
