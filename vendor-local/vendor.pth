@@ -1,4 +1,4 @@
 src/django-taggit
-src/httplib2
+src/httplib2/python2
 src/django-browserid
 src/django-push/src
