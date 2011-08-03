@@ -61,7 +61,7 @@ class PushFeedParser(object):
         soup = BeautifulSoup(content)
         links = soup.findAll('link')
         feeds = filter(self._is_feed_test, links)
-        self.feed_url = feeds[0].get('href', '')
+        return feeds[0].get('href', '')
 
     def get_hub_url(self, parsed):
         links = [l['href'] for l in parsed.feed.links
@@ -73,8 +73,7 @@ class PushFeedParser(object):
 
     def parse(self):
         content = urllib2.urlopen(self.url).read()
-        self.get_feed_url(content)
-        self.feed_url = normalize_url(self.feed_url, self.url)
+        self.feed_url = normalize_url(self.get_feed_url(content), self.url)
         parsed_feed = feedparser.parse(self.feed_url)
         if not parsed_feed.feed:
             raise PushParsingError('Invalid Feed Format')
