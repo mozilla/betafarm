@@ -37,10 +37,17 @@ class PushNotificationHandler(Task):
 
     def run(self, notification, sender, **kwargs):
         log = self.get_logger(**kwargs)
+        if not isinstance(sender, Subscription):
+            return
         for entry in notification.entries:
             log.debug('Received notification of entry: %s, %s' % (
                 entry.title, entry.link))
             title = entry.title
             link = entry.link
             content = self._get_prefered_content(entry.content)
-            Entry(title=title, link=link, body=content, project=sender).save()
+            projects = filter(lambda x: x not in ['', None],
+                              [link.project for link in sender.link_set.all()])
+            for project in projects:
+                entry = Entry(title=title, link=link,
+                              body=content, project=project)
+                entry.save()
