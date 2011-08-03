@@ -21,3 +21,8 @@ django-celery
 Babel>=0.9.4
 -e git://github.com/clouserw/tower.git#egg=tower
 -e git://github.com/fwenzel/django-mozilla-product-details#egg=django-mozilla-product-details
+
+# Misc
+south==0.7.3
+feedparser==5.0.1
+BeautifulSoup==3.2.0
