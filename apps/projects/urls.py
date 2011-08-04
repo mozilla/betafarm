@@ -9,4 +9,6 @@ urlpatterns = patterns('',
     url(r'^projects/recent/$', 'projects.views.recent',
         name='projects_recent'),
     url(r'^(?P<slug>[\w-]+)/$', 'projects.views.show', name='projects_show'),
+    url(r'^(?P<slug>[\w-]+)/blog/$', 'projects.views.blog',
+        name='projects_blog')
 )

@@ -1,8 +1,10 @@
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 
 import jingo
 
 from projects.models import Project
+from feeds.models import Entry
 
 
 def all(request):
@@ -26,6 +28,16 @@ def show(request, slug):
     return jingo.render(request, 'projects/show.html', {
         'project': project,
         'topic': topic
+    })
+
+
+def blog(request, slug):
+    project = get_object_or_404(Project, slug=slug)
+    entries = Entry.objects.filter(project=project).order_by('-published')
+    paginator = Paginator(entries, 10)
+    return jingo.render(request, 'projects/blog.html', {
+        'project': project,
+        'posts': paginator
     })
 
 

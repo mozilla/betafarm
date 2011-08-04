@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block page_title -%}
+  {{ _('Blog : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
+{% endblock -%}
+
+{% block breadcrumbs -%}
+  {{ breadcrumbs(
+       (url('innovate_splash'), _('Betafarm Home')),
+       (url('projects_all'), _('Projects')),
+       (url('projects_show', slug=project.slug), project.name),
+       last=_('Blog')) }}
+{% endblock -%}
+
+{% block content -%}
+<section id="title" class="clearfix">
+  <div class="c6">
+    <h1 class="light noMargin">{{ _('{project} Blog')|f(project=project.name) }}</h1>
+  </div>
+</section>
+
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    <img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" height="140" width="140">
+    <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
+    <li class="selected"><a href="{{ url('projects_blog', slug=project.slug) }}">{{ _('Blog') }}</a></li>
+  </ul>
+  <div class="c1 related">
+    <!-- todo: implement 
+    <button class="sans submit">{{ _('Follow Project') }}</button>
+    <button class="sans unsubmit">{{ _('Unfollow') }}</button> -->
+  </div>
+  <div class="c1 related">
+    {% if project.other_links -%}
+      <ul>
+        {% for link in project.other_links -%}
+          <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
+        {% endfor -%}
+      </ul>
+    {% endif -%}
+  </div>
+</section>
+
+<section id="projectBlog" class="w5 clearfix">
+  {% if posts.object_list -%}
+  <ul id="posts">
+    {% for post in posts.object_list -%}
+      <li class="post c3">
+        <h3 class="normal"><a class="brandColor" href="{{ post.link }}">{{ post.title }}</a></h3>
+        <div class="blogHeader">
+          <time>{{ post.published.strftime("%B %e, %Y at %X %p") }}</time>
+        </div>
+        <div class="content">
+          {# 
+            project blog posts come in from RSS / Atom feeds.
+            The post body is sanitized through bleach. See 
+            apps/projects/tasks.py for a whitelist of allowed
+            elements and attributes.
+          #}
+          {{ post.body|truncatewords(100)|safe }}
+          <p><a class="brandColor" href="{{ post.link }}">{{ _('Read More &hellip;') }}</a></p>
+        </div>
+      </li>
+    {% endfor -%}
+  </ul>
+  {% else -%}
+    <div class="paper c3">
+      <h3>{{ _('Waiting for content &hellip;') }}</h3>
+      <p>{{ _('No posts yet! Check back though, I\'m sure we\'ll have something soon!') }}</p>
+    </div>
+  {% endif -%}
+</section>
+
+{% endblock -%}
