@@ -41,12 +41,17 @@ class Project(models.Model):
         return self.featured_image or 'img/featured-default.gif'
 
     @property
+    def blog(self):
+        blog = self.link_set.filter(blog=True)
+        return blog and blog[0] or None
+
+    @property
     def nav_links(self):
-        return self.links.filter(blog=True)
+        return self.link_set.filter(blog=True)
 
     @property
     def other_links(self):
-        return self.links.filter(blog=False)
+        return self.link_set.filter(blog=False)
 
     @property
     def is_program(self):
