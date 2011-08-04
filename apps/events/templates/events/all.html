@@ -39,7 +39,7 @@
         </div>
         <div class="content">
           {# editable by admin only. okay to use 'safe' here. #}
-          <p class="serif">{{ event.description|safe|truncate(160) }}</p>
+          <p class="serif">{{ event.description|truncate(160)|safe }}</p>
         </div>
       </div>
     </li>
