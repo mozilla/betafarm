@@ -5,3 +5,30 @@
   </div>
 </section>
 {%- endmacro %}
+
+{% macro subnav(media_url, image_url, navlinks, otherlinks, follow_buttons) -%}
+<section id="subNav" class="w1 clearfix">
+  <ul class="c1">
+    <img class="block thick" src="{{ media_url }}{{ image_url }}" height="140" width="140">
+    {% for link in navlinks -%}
+      <li class="{% if link[2] %}selected {% endif %}brandColor"><a href="{{ link[0] }}">{{ link[1] }}</a></li>
+    {% endfor -%}
+  </ul>
+  {% if follow_buttons -%}
+  <div class="c1 related">
+    <!-- todo: implement
+    <button class="sans submit">{{ _('Follow Project') }}</button>
+    <button class="sans unsubmit">{{ _('Unfollow') }}</button> -->
+  </div>
+  {% endif -%}
+  {% if otherlinks -%}
+    <div class="c1 related">
+      <ul>
+      {% for link in otherlinks -%}
+        <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
+      {% endfor -%}
+      </ul>
+    </div>
+  {% endif -%}
+</section>
+{%- endmacro %}

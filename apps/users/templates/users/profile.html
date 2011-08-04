@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle, subnav %}
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Betafarm') }}{% endblock -%}
 
@@ -9,22 +10,20 @@
      last=profile.display_name) }}
 {% endblock -%}
 
-{% block content -%}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ profile.display_name }}</h1>
-  </div>
-</section>
+{% if user.is_authenticated() and user.get_profile() == profile -%}
+{% set navlinks = (
+   (url('users_profile', username=profile.user.username), profile.display_name, True),
+   (url('users_edit'), _('Edit Profile'), False)
+) %}
+{% else -%}
+{% set navlinks = (
+   (url('users_profile', username=profile.user.username), profile.display_name, True),
+) %}
+{% endif -%}
 
-<section id="subNav" class="w1 clearfix">
-  <ul class="c1">
-    <img class="block thick" src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" height="140" width="140">
-    <li class="selected"><a class="brandColor" href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></li>
-    {% if user.is_authenticated() and user.get_profile() == profile -%}
-    <li><a class="brandColor" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
-    {% endif -%}
-  </ul>
-</section>
+{% block content -%}
+{{ sectiontitle(profile.display_name) }}
+{{ subnav(MEDIA_URL, profile.avatar_or_default, navlinks, (), False) }}
 
 <section id="userProfile" class="w5 clearfix">
 

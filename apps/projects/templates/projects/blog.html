@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle, subnav %}
 
 {% block page_title -%}
   {{ _('Blog : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
@@ -13,34 +14,16 @@
        last=_('Blog')) }}
 {% endblock -%}
 
-{% block content -%}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ _('{project} Blog')|f(project=project.name) }}</h1>
-  </div>
-</section>
+{% if project.blog -%}
+{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True), 
+                   (url('projects_blog', slug=project.slug), _('Blog'), False)) %}
+{% else -%}
+{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True),) %}
+{% endif -%}
 
-<section id="subNav" class="w1 clearfix">
-  <ul class="c1">
-    <img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" height="140" width="140">
-    <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ _('Info') }}</a></li>
-    <li class="selected"><a href="{{ url('projects_blog', slug=project.slug) }}">{{ _('Blog') }}</a></li>
-  </ul>
-  <div class="c1 related">
-    <!-- todo: implement 
-    <button class="sans submit">{{ _('Follow Project') }}</button>
-    <button class="sans unsubmit">{{ _('Unfollow') }}</button> -->
-  </div>
-  <div class="c1 related">
-    {% if project.other_links -%}
-      <ul>
-        {% for link in project.other_links -%}
-          <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
-        {% endfor -%}
-      </ul>
-    {% endif -%}
-  </div>
-</section>
+{% block content -%}
+{{ sectiontitle(_('{project} Blog')|f(project=project.name)) }}
+{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True) }}
 
 <section id="projectBlog" class="w5 clearfix">
   {% if posts.object_list -%}

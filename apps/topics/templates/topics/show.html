@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle, subnav %}
 
 {% block page_title %}{{ topic.name }} {{ _(': Topics : Mozilla Betafarm') }}{% endblock %}
 
@@ -11,19 +12,11 @@
 {% endblock %}
 
 {% block content %}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ topic.name }}</h1>
-  </div>
-</section>
-
-<section id="subNav" class="w1 clearfix">
-  <ul class="c1">
-    <img class="block thick" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" height="140" width="140">
-    <li class="selected"><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
-    <li><a href="{{ url('topics_about', slug=topic.slug) }}">{{ _('About {topic}')|f(topic=topic.name) }}</a></li>
-  </ul>
-</section>
+{{ sectiontitle(topic.name) }}
+{{ subnav(MEDIA_URL, topic.image_or_default, (
+     (url('topics_show', slug=topic.slug), topic.name, True),
+     (url('topics_about', slug=topic.slug), _('About {topic}')|f(topic=topic.name), False)
+), (), False) }}
 
 {% if projects -%}
 <section id="projectList" class="w5">
