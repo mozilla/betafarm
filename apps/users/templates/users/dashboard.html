@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle, subnav %}
+
+{% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Betafarm') }}{% endblock -%}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Betafarm Home')),
+     last=profile.display_name) }}
+{% endblock -%}
+
+{% block content -%}
+{{ sectiontitle(profile.display_name) }}
+{{ subnav(MEDIA_URL, profile.avatar_or_default, (
+    (url('users_dashboard'), _('Dashboard'), True),
+    (url('users_profile', username=profile.user.username), _('View your Profile'), False)
+   ), (), False) }}
+
+<section id="activity" class="clearfix">
+  <ul class="activityStream">
+    {% for update in updates -%}
+      <li class="update clearfix">
+        <div class="meta c1">
+          <a class="conceptColor" href="{{ url('projects_show', slug=update.project.slug) }}">{{ update.project.name }}</a>
+          <time>{{ update.published }}</title>
+          <h3><a href="#">#</a></h3>
+        </div>
+        <div class="c4">
+          <div class="icon"><div class="arrowRight"></div></div>
+          <div class="updateWrap paper">
+            <div class="updateHeader">
+              {{ _('<strong>{project}</strong> posted to their blog.')|f(project=update.project.name)|safe }}
+            </div>
+            <div class="updateBody blogged">
+              <h4 class="normal brandColor">{{ update.title }}</h4>
+              <p class="serif">
+                {{ update.body|truncatewords(20)|safe }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+    {% endfor -%}
+  </ul>
+
+  <div class="c1"></div>
+  <div class="c4">
+    <button class="sans" style="width:100%">load older</button>
+  </div>
+
+</section>
+
+{% endblock -%}

@@ -7,8 +7,20 @@ from django.shortcuts import get_object_or_404
 
 from users.models import Profile
 from users.utils import handle_profile_save
+from feeds.models import Entry
 
 import jingo
+
+
+@login_required
+def dashboard(request):
+    profile = request.user.get_profile()
+    entries = Entry.objects.filter(
+        project__in=profile.projects_following.all())
+    return jingo.render(request, 'users/dashboard.html', {
+        'profile': profile,
+        'updates': entries
+    })
 
 
 def signout(request):
