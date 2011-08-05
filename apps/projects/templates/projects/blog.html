@@ -31,9 +31,11 @@
     {% for post in posts.object_list -%}
       <li class="post c3">
         <h3 class="normal"><a class="brandColor" href="{{ post.link }}">{{ post.title }}</a></h3>
+        {% if post.published -%}
         <div class="blogHeader">
           <time>{{ post.published.strftime("%B %e, %Y at %X %p") }}</time>
         </div>
+        {% endif -%}
         <div class="content">
           {# 
             project blog posts come in from RSS / Atom feeds.
