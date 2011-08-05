@@ -70,22 +70,16 @@
 
       {% block breadcrumbs %}{% endblock %}
       
-      {% if FALSE %}
-      <div id="notification" class="clearfix">
-        <div class="c6">
-          <strong>Awesome!</strong> Your profile was successfully updated
-          <a class="brandColor" href="#">&times; close</a>
-        </div>
-      </div>
-      {% endif %}
-
-      {% if messages %}
-        <ul class="user-messages">
-          {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+      {% if messages -%}
+        {% for message in messages -%}
+          <div class="notification clearfix{% if message.tags %} {{ message.tags }}{% endif %}">
+            <div class="c6">
+              {{ message|safe }}
+              <a id="notification_close" class="brandColor" href="">&times; close</a>
+            </div>
+          </div>
+        {% endfor -%}
+      {% endif -%}
 
       {% block content %}{% endblock %}
 

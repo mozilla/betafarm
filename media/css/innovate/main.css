@@ -1153,10 +1153,10 @@ button#follow {
   position: relative;
 }
 /* notification */
-#notification a {
+.notification a {
   float: right;
 }
-#notification .c6 {
+.notification .c6 {
   margin: 10px;
   padding: 20px;
   background-color: #ffff99;

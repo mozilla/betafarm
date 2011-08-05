@@ -33,4 +33,10 @@ $(document).ready(function($) {
             }
         });
     });
+
+    // notification bar
+    $('#notification_close').bind('click', function(e) {
+        e.preventDefault();
+        $(this).parents('.notification').fadeOut();
+    });
 });

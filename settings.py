@@ -157,11 +157,13 @@ MIDDLEWARE_CLASSES = (
     'commons.middleware.LocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'commonware.middleware.FrameOptionsHeader',
+    'innovate.middleware.ProfileMiddleware',
 )
 
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
