@@ -10,7 +10,8 @@ favicons = (
     'plus',
     'tumblr',
     'vimeo',
-    'youtube'
+    'youtube',
+    'addons'
 )
 
 
