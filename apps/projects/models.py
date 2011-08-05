@@ -76,7 +76,7 @@ def link_subscriber(sender, instance, created, **kwargs):
     """Subscribe to link RSS/Atom feed."""
     if not isinstance(instance, Link) or not instance.subscribe:
         return
-    if not created:
+    if instance.subscription:
         return
     tasks.PushSubscriber.apply_async(args=(instance,))
 post_save.connect(link_subscriber, sender=Link)

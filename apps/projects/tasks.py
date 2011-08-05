@@ -1,5 +1,5 @@
 from celery.task import Task
-from django_push.subscriber.models import Subscription
+from django_push.subscriber.models import Subscription, SubscriptionError
 
 from projects.utils import PushFeedParser
 from feeds.models import Entry
@@ -8,17 +8,28 @@ from feeds.models import Entry
 class PushSubscriber(Task):
 
     def run(self, link, **kwargs):
+        log = self.get_logger(**kwargs)
         p = PushFeedParser(link.url)
         p.parse()
-        link.subscription = Subscription.objects.subscribe(
-            p.feed_url, hub=p.hub_url)
-        link.save()
+        try:
+            link.subscription = Subscription.objects.subscribe(
+                p.feed_url, hub=p.hub_url)
+            link.save()
+        except SubscriptionError, e:
+            log.warning('SubscriptionError. Retrying (%s)' % (link.url,))
+            log.warning('Error: %s' % (str(e),))
 
 
 class PushUnsubscriber(Task):
 
     def run(self, link, **kwargs):
-        Subscription.objects.unsubscribe(link.url)
+        log = self.get_logger(**kwargs)
+        if not link.subscription:
+            log.warning(
+                'Attempt to unsubscribe from link with no subscription: %s' % (
+                    link.url,))
+            return
+        Subscription.objects.unsubscribe(link.url, hub=link.subscription.hub)
 
 
 class PushNotificationHandler(Task):
