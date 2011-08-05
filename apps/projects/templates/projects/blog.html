@@ -44,7 +44,7 @@
             elements and attributes.
           #}
           {{ post.body|truncatewords(100)|safe }}
-          <p><a class="brandColor" href="{{ post.link.url }}">{{ _('Read More &hellip;') }}</a></p>
+          <p><a class="brandColor" href="{{ post.link }}">{{ _('Read More &hellip;') }}</a></p>
         </div>
       </li>
     {% endfor -%}
