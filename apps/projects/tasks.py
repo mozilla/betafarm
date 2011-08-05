@@ -64,7 +64,7 @@ class PushNotificationHandler(Task):
         body = bleach.clean(body, tags=TAGS, attributes=ATTRIBUTES)
         entry = Entry.objects.create(
             title=title, link=link, body=body, project=project,
-            updated=updated)
+            published=updated)
         return entry
 
     def run(self, notification, sender, **kwargs):
