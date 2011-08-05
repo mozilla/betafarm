@@ -13,6 +13,10 @@ def run_manage_cmd(cmd):
         run('python manage.py %s' % (cmd,))
 
 
+def restart_celeryd():
+    sudo('/etc/init.d/celeryd restart')
+
+
 def restart_apache():
     sudo('/etc/init.d/apache2 restart')
 
@@ -53,6 +57,7 @@ def switch(branchname):
     migrate()
     compress()
     restart_apache()
+    restart_celeryd()
 
 
 def deploy():
