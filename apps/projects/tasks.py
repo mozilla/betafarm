@@ -79,6 +79,6 @@ class PushNotificationHandler(Task):
             content = self._get_prefered_content(entry.content)
             updated = time.strftime('%Y-%m-%d %H:%M:%S', entry.updated_parsed)
             projects = filter(lambda x: x not in ['', None],
-                              [link.project for link in sender.link_set.all()])
+                              [l.project for l in sender.link_set.all()])
             for project in projects:
                 self.create_entry(title, link, content, updated, project)

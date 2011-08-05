@@ -66,3 +66,4 @@ def deploy():
     migrate()
     compress()
     restart_apache()
+    restart_celeryd()
