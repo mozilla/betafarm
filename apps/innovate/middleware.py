@@ -10,7 +10,8 @@ class ProfileMiddleware(object):
         try:
             path = u'/%s' % ('/'.join(request.path.split('/')[2:]),)
             match = resolve(path)
-            if match.url_name in ('users_edit', 'django.views.static.serve'):
+            if match.url_name in ('users_edit', 'django.views.static.serve',
+                                  'users_signout'):
                 return
         except:
             return
