@@ -7,7 +7,7 @@ from users.widgets import ImageFileInput
 class ProfileForm(forms.ModelForm):
 
     avatar = forms.ImageField(
-        widget=ImageFileInput())
+        widget=ImageFileInput(), required=False)
 
     class Meta:
         model = Profile
