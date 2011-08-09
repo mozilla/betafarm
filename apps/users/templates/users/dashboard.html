@@ -19,23 +19,23 @@
 
 <section id="activity" class="clearfix">
   <ul class="activityStream">
-    {% for update in updates -%}
+    {% for activity in activities.object_list -%}
       <li class="update clearfix">
         <div class="meta c1">
-          <a class="conceptColor" href="{{ url('projects_show', slug=update.project.slug) }}">{{ update.project.name }}</a>
-          <time>{{ update.published }}</title>
+          <a class="conceptColor" href="{{ url('projects_show', slug=activity.project.slug) }}">{{ activity.project.name }}</a>
+          <time>{{ activity.published }}</title>
           <h3><a href="#">#</a></h3>
         </div>
         <div class="c4">
           <div class="icon"><div class="arrowRight"></div></div>
           <div class="updateWrap paper">
             <div class="updateHeader">
-              {{ _('<strong>{project}</strong> posted to their blog.')|f(project=update.project.name)|safe }}
+              {{ _('<strong>{project}</strong> posted to their blog.')|f(project=activity.project.name)|safe }}
             </div>
             <div class="updateBody blogged">
-              <h4 class="normal brandColor">{{ update.title }}</h4>
+              <h4 class="normal brandColor">{{ activity.title }}</h4>
               <p class="serif">
-                {{ update.body|truncatewords(20)|safe }}
+                {{ activity.body|truncatewords(20)|safe }}
               </p>
             </div>
           </div>
@@ -44,10 +44,12 @@
     {% endfor -%}
   </ul>
 
+  {% if activities.has_next() -%}
   <div class="c1"></div>
   <div class="c4">
     <button class="sans" style="width:100%">load older</button>
   </div>
+  {% endif -%}
 
 </section>
 

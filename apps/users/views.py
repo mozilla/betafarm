@@ -17,9 +17,10 @@ def dashboard(request):
     profile = request.user.get_profile()
     entries = Entry.objects.filter(
         project__in=profile.projects_following.all())
+    paginator = Paginator(entries, 20)
     return jingo.render(request, 'users/dashboard.html', {
         'profile': profile,
-        'updates': entries
+        'activities': paginator.page(1)
     })
 
 
