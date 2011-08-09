@@ -35,6 +35,12 @@ class Project(models.Model):
 
     tags = TaggableManager(blank=True)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('projects_show', (), {
+            'slug': self.slug
+        })
+
     @property
     def image_or_default(self):
         return self.image or 'img/project-default.gif'
