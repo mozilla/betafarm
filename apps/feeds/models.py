@@ -2,6 +2,9 @@ import datetime
 
 from django.contrib import admin
 from django.db import models
+from django.db.models.signals import post_save
+
+from activity.models import broadcast
 
 
 class Entry(models.Model):
@@ -16,5 +19,12 @@ class Entry(models.Model):
 
     def __unicode__(self):
         return u'%s -> %s' % (self.title, self.link)
-
 admin.site.register(Entry)
+
+
+def entry_save_handler(sender, instance, **kwargs):
+    title = u'An update to the <a href="%s">%s</a> blog.' % (
+        instance.project.get_absolute_url(),
+        instance.project.name)
+    broadcast(instance, title)
+post_save.connect(entry_save_handler, sender=Entry)

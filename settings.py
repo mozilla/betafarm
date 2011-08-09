@@ -214,6 +214,7 @@ INSTALLED_APPS = (
     'topics',
     'projects',
     'events',
+    'activity',
 )
 
 # Tells the extract script what files to look for L10n in and what function
