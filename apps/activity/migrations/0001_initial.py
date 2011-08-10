@@ -12,7 +12,6 @@ class Migration(SchemaMigration):
         db.create_table('activity_activity', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('entry', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['feeds.Entry'], unique=True, null=True, blank=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=150)),
             ('published_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('activity', ['Activity'])
@@ -30,7 +29,6 @@ class Migration(SchemaMigration):
             'entry': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['feeds.Entry']", 'unique': 'True', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'published_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '150'})
         },
         'auth.group': {
             'Meta': {'object_name': 'Group'},

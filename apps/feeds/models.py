@@ -23,6 +23,5 @@ admin.site.register(Entry)
 
 
 def entry_save_handler(sender, instance, **kwargs):
-    title = u'New Blog Post.'
-    broadcast(instance, title)
+    broadcast(instance)
 post_save.connect(entry_save_handler, sender=Entry)
