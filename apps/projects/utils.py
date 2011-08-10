@@ -1,4 +1,5 @@
 import feedparser
+import time
 import urllib2
 import urlparse
 
@@ -24,6 +25,27 @@ def normalize_url(url, base_url):
     if server[-1] == '/' and url[0] == '/':
         server = server[:-1]
     return server + url
+
+
+class FeedEntryParser(object):
+    def __init__(self, entry):
+        self.title = entry.title
+        self.link = entry.link
+        self.content = self._get_prefered_content(entry.content)
+        self.updated = time.strftime('%Y-%m-%d %H:%M:%S',
+                                     entry.updated_parsed)
+
+    def _get_prefered_content(self, content):
+        if not isinstance(content, list):
+            return content.value
+        for c in content:
+            if c.type == 'text/html':
+                return c.value
+            if c.type == 'application/xhtml+xml':
+                return c.value
+            if c.type == 'text/plain':
+                return c.value
+        return content[0].value
 
 
 class PushParsingError(Exception):
