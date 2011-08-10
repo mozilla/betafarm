@@ -17,7 +17,7 @@ def dashboard(request):
     profile = request.user.get_profile()
     activities = Activity.objects.filter(
         entry__project__in=profile.projects_following.all()
-    ).select_related('entry', 'entry__project')
+    ).select_related('entry', 'entry__project').order_by('-published_on')
     paginator = Paginator(activities, 20)
     return jingo.render(request, 'users/dashboard.html', {
         'profile': profile,
