@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% set title = _('An Error Occurred') %}
 
+{% block page_id %}error_500{% endblock %}
+{% block section_class %}error{% endblock %}
+
 {% block content %}
 <section id="ohnoes" class="clearfix">
   <div class="c1"></div>

@@ -4,6 +4,9 @@
 
 {% block page_title %}{{ topic.name }} {{ _(': Topics : Mozilla Betafarm') }}{% endblock %}
 
+{% block page_id %}topic_details{% endblock %}
+{% block section_class %}projects{% endblock %}
+
 {% block breadcrumbs %}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),

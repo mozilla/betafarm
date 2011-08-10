@@ -5,6 +5,9 @@
 {{ _('{event_name} : Events : Mozilla Betafarm')|f(event_name=event.name) }}
 {% endblock -%}
 
+{% block page_id %}show_event{% endblock %}
+{% block section_class %}events{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Betafarm Home')),

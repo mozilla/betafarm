@@ -4,6 +4,9 @@
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Betafarm') }}{% endblock -%}
 
+{% block page_id %}user_profile{% endblock %}
+{% block section_class %}users{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),

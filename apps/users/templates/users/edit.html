@@ -2,6 +2,9 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/errorlist.html" import errorlist %}
 
+{% block page_id %}edit_user{% endblock %}
+{% block section_class %}users{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Betafarm Home')),
