@@ -7,10 +7,7 @@ class Activity(models.Model):
     published_on = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return u'%s:%s => %s' % (self.source_class, self.source_id, self.title)
-
-    def from_feed(self):
-        return self.entry != None
+        return u'%d: Entry: %s' % (self.pk, self.entry)
 
 
 def broadcast(source):
