@@ -28,16 +28,6 @@ $(document).ready(function($) {
         $('#ohnoes').css({'height': (h-a-71) });
     });
 
-    // vertical align class
-    $(window).bind('load resize', function() {
-        $('.vAlign').each(function() {
-            var h = $(this).parent().siblings('.vMaster').outerHeight();
-            var w = $(this).parent().width();
-            $(this).css({ height : h });
-            $(this).css({ width : w });
-        });
-    });
-
     // browserid
     $('#browserid').bind('click', function(e) {
         e.preventDefault();

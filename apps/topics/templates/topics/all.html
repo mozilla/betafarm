@@ -20,12 +20,11 @@
 <section id="topics" class="w6">
   <ul id="topicList" class="clearfix">
     {% for topic in topics -%}
-      <li class="topic">
-        <div class="c1 vMaster">
+      <li class="topic table_group">
+        <div class="c1 cell">
           <img class="block thick" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" width="140" height="140">
         </div>
-        <div class="c2">
-          <div class="vAlign">
+        <div class="c2 cell">
             <h3 class="normal"><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></h3>
             <p class="serif">{{ topic.description }}</p>
             {# note: once we have models for projects, research, etc then this
@@ -36,7 +35,6 @@
                   <li><a href="#">2 contests</a></li>
             </ul>
             #}
-          </div>
         </div>
       </li>
     {% endfor %}

@@ -29,17 +29,18 @@ section#headlines {
 
 section#headlines .headlineLabel {
     text-align: right;
-    padding: 0 20px;
+    padding: 0 14px;
     background-color: #fffbed;
     margin: 0 0 0 10px;
     width: 310px;
+    vertical-align: middle;
 }
 
 section#headlines .headlineLabel img {
   vertical-align: text-top;
 }
 section#headlines .headline {
-    width: 630px;
+    width: 552px;
     margin: 0 10px 0 0;
     padding: 30px 0 30px 60px;
     background-color: rgba(0,0,0,0.05);
@@ -772,6 +773,18 @@ button img, a.button img, section#subNav .related a.button img {
   display: table-cell;
   vertical-align: middle;
 }
+.table_group {
+    display: table;
+}
+.table_group .cell {
+    display: table-cell;
+    padding: 0 10px;
+    float: none;
+    vertical-align: middle;
+}
+.table_group .cell:first-child {
+    vertical-align: top;
+}
 .light {
   font-weight: 200;
 }
@@ -1068,6 +1081,9 @@ button#follow {
   background-color: #222;
   border-color: #222;
   z-index: 101;
+}
+#universalHeader li.username a.dropdown {
+    text-transform: none;
 }
 #universalHeader li.username ul.dropdown {
   background-color: #222;

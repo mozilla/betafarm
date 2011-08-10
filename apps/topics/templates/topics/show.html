@@ -31,15 +31,13 @@
         <h2 class="light clearfix"><span class="c4">Projects focused on {{ topic.name }}</span></h2>
       </li>
       {% for project in projects %}
-      <li class="project clearfix">
-        <div class="c1 vMaster">
+      <li class="project clearfix table_group">
+        <div class="c1 cell">
           <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a>
         </div>
-        <div class="c3">
-          <div class="vAlign">
+        <div class="c3 cell">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description }}</p>
-          </div>
         </div>
       </li>
       {% endfor %}
