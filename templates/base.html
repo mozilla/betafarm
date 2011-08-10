@@ -27,24 +27,24 @@
         </div>
         <nav id="topNav" class="c5">
           <ul class="clearfix">
-            <li class="mainItem">
+            <li>
               <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
                 <li><a class="topic" href="{{ url('projects_programs') }}">{{ _('Programs') }}</a></li>
               </ul>
             </li>
-            <li class="mainItem">
+            <li>
               <a class="event{{ active(request, url('events_all')) }}" href="{{ url('events_all') }}">{{ _('Events') }}</a>
             </li>
-            <li class="mainItem">
+            <li>
               <a class="people{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
             </li>
-            <li class="mainItem">
+            <li>
               <a class="about{{ active(request, url('innovate_about')) }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
             </li>
             {% if user.is_authenticated() -%}
-              <li class="mainItem username">
+              <li class="username">
                 <a class="account dropdown" href="{{ url('users_profile', username=user.username) }}">{{ user.get_profile().display_name }}</a>
                 <ul class="dropdown">
                   <li><a class="account" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
@@ -53,7 +53,7 @@
                 </ul>
               </li>
             {% else -%}
-              <li class="mainItem">
+              <li>
                 <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
                   {{ csrf()|safe }}
                   <input type="hidden" name="assertion" id="id_assertion" />

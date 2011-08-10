@@ -1,8 +1,23 @@
 $(document).ready(function($) {
 
     // header dropdowns
-    $('.mainItem a, ul.dropdown').hover(function() {
-        $(this).parent().toggleClass('hover');
+    var mainNav = $('#topNav');
+    mainNav.delegate('a.dropdown','mouseover focus',function() {
+        $(this).parent().addClass('hover');
+    });
+    mainNav.delegate('li','mouseleave', function() {
+        var current = $(this);
+        if (current.hasClass('hover')) {
+            current.removeClass('hover');
+        }
+    });
+    mainNav.delegate('a','blur',  function() {
+        var current = $(this),
+            parent = current.parent();
+            grand = parent.parent();
+        if (grand.is('ul.dropdown') && parent.is(':last-child')) {
+            grand.parent().removeClass('hover');
+        }
     });
 
     // sticky footer
