@@ -29,15 +29,19 @@ def normalize_url(url, base_url):
 
 class FeedEntryParser(object):
     def __init__(self, entry):
-        self.title = entry.title
+        self.title = entry.title[:100]
         self.link = entry.link
-        self.content = self._get_prefered_content(entry.content)
+        if hasattr(entry, 'content'):
+            content = entry.content
+        elif hasattr(entry, 'summary'):
+            content = entry.summary
+        self.content = self._get_prefered_content(content)
         self.updated = time.strftime('%Y-%m-%d %H:%M:%S',
                                      entry.updated_parsed)
 
     def _get_prefered_content(self, content):
         if not isinstance(content, list):
-            return content.value
+            return getattr(content, 'value', '')
         for c in content:
             if c.type == 'text/html':
                 return c.value
