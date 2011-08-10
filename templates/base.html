@@ -27,20 +27,20 @@
         </div>
         <nav id="topNav" class="c5">
           <ul class="clearfix">
-            <li>
+            <li class="projects">
               <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
                 <li><a class="topic" href="{{ url('projects_programs') }}">{{ _('Programs') }}</a></li>
               </ul>
             </li>
-            <li>
+            <li class="events">
               <a class="event{{ active(request, url('events_all')) }}" href="{{ url('events_all') }}">{{ _('Events') }}</a>
             </li>
-            <li>
-              <a class="people{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
+            <li class="users">
+              <a class="users{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
             </li>
-            <li>
+            <li class="about">
               <a class="about{{ active(request, url('innovate_about')) }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
             </li>
             {% if user.is_authenticated() -%}

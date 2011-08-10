@@ -921,6 +921,13 @@ button#follow {
   margin: 0 0 0 -1px;
   float: left;
   position: relative;
+  padding: 0;
+}
+.projects #universalHeader li.projects,
+.events #universalHeader li.events,
+.users #universalHeader li.users,
+.about #universalHeader li.about {
+    background: #FFF;
 }
 #universalHeader li a {
   display: block;
