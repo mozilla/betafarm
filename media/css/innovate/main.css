@@ -1082,11 +1082,7 @@ button#follow {
   right: 10px;
   top: 0;
   background-image: url('/media/img/tab.png');
-}
-#universalHeader #tab a {
-  width: 118px;
-  height: 49px;
-  display: block;
+  text-indent: -9999em;
 }
 /* secondary menu */
 #secondaryMenu ul {
