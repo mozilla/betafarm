@@ -38,9 +38,9 @@
                 </li>
                 {% if user.is_authenticated() -%}
                 <li class="username">
-                    <a class="account dropdown" href="{{ url('users_profile', username=user.username) }}">{{ user.get_profile().display_name }}</a>
+                    <a class="account dropdown" href="{{ url('users_dashboard') }}">{{ user.get_profile().display_name }}</a>
                     <ul class="dropdown">
-                        <li><a class="account" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
+                        <li><a class="account" href="{{ url('users_dashboard') }}">{{ _('Dashboard') }}</a></li>
                         <li><a class="account" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
                         <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
                     </ul>
