@@ -3,11 +3,15 @@
 {% block page_id %}home{% endblock %}
 {% block section_class %}home{% endblock %}
 
+{% block banner %}
+<h1><a href="{{ url('innovate.views.splash') }}"><img src="{{ MEDIA_URL }}img/logo.png" alt="mozilla betafarm" width="110" height="51" /></a></h1>
+{% endblock %}
+
 {% block content %}
 
 <section id="promoted" class="clearfix">
   <div class="c6">
-    <a href="{{ url('innovate_about') }}"><img class="block" src="http://placehold.it/940x350/eee/ccc"></a>
+    <a href="{{ url('innovate_about') }}"><img class="block" src="http://placehold.it/940x350/eee/ccc" width=940" height="350"></a>
   </div>
 </section>
 
