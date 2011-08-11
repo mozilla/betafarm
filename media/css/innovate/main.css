@@ -1516,3 +1516,78 @@ body:after {
   content: url('/media/img/breadcrumb.png') url('/media/img/breadcrumb2.png');
   display: none;
 }
+
+section#activity {
+    width: 800px;
+    display: inline-block;
+    float: left;
+    padding: 0;
+}
+
+section#activity ul {
+    list-style-type: none;
+}
+
+section#activity ul li {
+    margin: 0 0 20px;
+}
+
+section#activity ul .meta {
+    text-align: right;
+}
+
+section#activity ul .updateWrap {
+    float: left;
+    margin: 0 0 0 20px;
+    width: 536px;
+}
+
+section#activity ul .icon {
+    background-color: #dddddd;
+    display: block;
+    float: left;
+    height: 64px;
+    position: relative;
+    width: 64px;
+}
+
+section#activity ul time {
+    color: #74726a;
+    display: block;
+    font-style: italic;
+}
+
+section#activity ul .updateBody {
+    border-left: 1px solid rgba(0, 0, 0, 0.75);
+    margin: 10px 0 0;
+    padding: 0 0 0 10px;
+}
+
+section#activity ul .updateBody.blogged p {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+}
+
+.arrowRight {
+    background-image: url('/media/img/arrowRight.png');
+    display: block;
+    height: 22px;
+    margin-top: -11px;
+    position: absolute;
+    right: -21px;
+    top: 50%;
+    width: 11px;
+    z-index: 1;
+}
+
+.conceptColor {
+    color: #CB4B16;
+}
+
+.projectColor {
+    color: #2AA198;
+}
+
+.communityColor {
+    color: #859900;
+}

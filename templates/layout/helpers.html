@@ -2,7 +2,7 @@
 <h1 class="light c6">{{ name }}</h1>
 {%- endmacro %}
 
-{% macro subnav(media_url, image_url, navlinks, otherlinks, follow_buttons) -%}
+{% macro subnav(media_url, image_url, navlinks, otherlinks, follow_buttons, buttons, csrf) -%}
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
     <img class="block thick" src="{{ media_url }}{{ image_url }}" height="140" width="140">
@@ -12,9 +12,12 @@
   </ul>
   {% if follow_buttons -%}
   <div class="c1 related">
-    <!-- todo: implement
-    <button class="sans submit">{{ _('Follow Project') }}</button>
-    <button class="sans unsubmit">{{ _('Unfollow') }}</button> -->
+    {% for button in buttons -%}
+      <form action="{{ button[0] }}" method="post">
+        {{ csrf }}
+        <button class="sans {{ button[2] }}">{{ button[1] }}</button>
+      </form>
+    {% endfor -%}
   </div>
   {% endif -%}
   {% if otherlinks -%}

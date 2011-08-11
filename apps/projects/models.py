@@ -29,8 +29,17 @@ class Project(models.Model):
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
+    followers = models.ManyToManyField(Profile,
+                                       verbose_name=_(u'Followers'),
+                                       related_name=u'projects_following')
 
     tags = TaggableManager(blank=True)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('projects_show', (), {
+            'slug': self.slug
+        })
 
     @property
     def image_or_default(self):
