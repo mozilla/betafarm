@@ -24,7 +24,7 @@ $(document).ready(function($) {
     $(window).bind('load resize', function() {
         var h = $(window).height();
         var a = $('#about').outerHeight();
-        $('#wrapper').css({ 'min-height' : (h-a) });
+        $('.wrapper:first').css({ 'min-height' : (h-a) });
         $('#ohnoes').css({'height': (h-a-71) });
     });
 
