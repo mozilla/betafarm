@@ -3,7 +3,7 @@
 {% from "layout/helpers.html" import sectiontitle, subnav %}
 
 {% block page_title -%}
-  {{ _('Blog : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
+  {{ _('Activity : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
 {% endblock -%}
 
 {% block breadcrumbs -%}
@@ -11,11 +11,11 @@
        (url('innovate_splash'), _('Betafarm Home')),
        (url('projects_all'), _('Projects')),
        (url('projects_show', slug=project.slug), project.name),
-       last=_('Blog')) }}
+       last=_('Activity')) }}
 {% endblock -%}
 
 {% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), False),
-                   (url('projects_blog', slug=project.slug), _('Blog'), True)) %}
+                   (url('projects_activity', slug=project.slug), _('Activity'), True)) %}
 
 {% if user.get_profile() in project.followers.all() -%}
 {% set buttons = ((url('projects_unfollow', slug=project.slug), _('Unfollow'), 'unsubmit'),) %}
@@ -24,7 +24,7 @@
 {% endif -%}
 
 {% block content -%}
-{{ sectiontitle(_('{project} Blog')|f(project=project.name)) }}
+{{ sectiontitle(_('{project} Activity')|f(project=project.name)) }}
 {{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons, csrf()) }}
 
 <section id="projectBlog" class="w5 clearfix">

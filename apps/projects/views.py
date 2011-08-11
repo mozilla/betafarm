@@ -66,11 +66,11 @@ def unfollow(request, slug):
     }))
 
 
-def blog(request, slug):
+def activity(request, slug):
     project = get_object_or_404(Project, slug=slug)
     entries = Entry.objects.filter(project=project).order_by('-published')
     paginator = Paginator(entries, 10)
-    return jingo.render(request, 'projects/blog.html', {
+    return jingo.render(request, 'projects/activity.html', {
         'project': project,
         'posts': paginator
     })
