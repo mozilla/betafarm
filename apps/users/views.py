@@ -51,14 +51,12 @@ def edit(request):
     })
 
 
-def all(request):
+def all(request, page=1):
     """Display a paginated, searchable list of users."""
-    # TODO - Implement page argument
-    profiles = Profile.objects.all()
-    paginator = Paginator(profiles, 15)
+    paginator = Paginator(Profile.objects.all(), 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
-        'profiles': paginator.page(1).object_list,
+        'profiles': paginator.page(page),
         'page': 'all'
     })
 

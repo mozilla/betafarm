@@ -6,6 +6,9 @@
   {{ _('Blog : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
 {% endblock -%}
 
+{% block page_id %}project_blog{% endblock %}
+{% block section_class %}projects{% endblock %}
+
 {% block breadcrumbs -%}
   {{ breadcrumbs(
        (url('innovate_splash'), _('Betafarm Home')),

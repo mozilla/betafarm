@@ -6,7 +6,7 @@
 
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ MEDIA_URL }}img/favicon.png" type="image/png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ MEDIA_URL }}img/favicon.png" />
 
     {% block site_css %}
       {{ css('innovate_css') }}
@@ -15,11 +15,11 @@
     <script src="https://browserid.org/include.js" type="text/javascript"></script>
 
   </head>
-  <body>
+  <body id="{% block page_id %}{% endblock %}" class="{% block section_class %}{% endblock %}">
 
     <div id="grid"></div>
 
-    <div id="wrapper" class="clearfix">
+    <div class="wrapper clearfix">
 
       <header id="universalHeader" class="clearfix">
         <div id="icon" class="c1">
@@ -27,24 +27,24 @@
         </div>
         <nav id="topNav" class="c5">
           <ul class="clearfix">
-            <li class="mainItem">
+            <li class="projects">
               <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
               <ul class="dropdown">
                 <li><a class="topic" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
                 <li><a class="topic" href="{{ url('projects_programs') }}">{{ _('Programs') }}</a></li>
               </ul>
             </li>
-            <li class="mainItem">
+            <li class="events">
               <a class="event{{ active(request, url('events_all')) }}" href="{{ url('events_all') }}">{{ _('Events') }}</a>
             </li>
-            <li class="mainItem">
-              <a class="people{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
+            <li class="users">
+              <a class="users{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
             </li>
-            <li class="mainItem">
+            <li class="about">
               <a class="about{{ active(request, url('innovate_about')) }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
             </li>
             {% if user.is_authenticated() -%}
-              <li class="mainItem username">
+              <li class="username">
                 <a class="account dropdown" href="{{ url('users_dashboard') }}">{{ user.get_profile().display_name }}</a>
                 <ul class="dropdown">
                   <li><a class="account" href="{{ url('users_profile', username=user.username) }}">{{ _('Profile') }}</a></li>
@@ -52,7 +52,7 @@
                 </ul>
               </li>
             {% else -%}
-              <li class="mainItem">
+              <li>
                 <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
                   {{ csrf()|safe }}
                   <input type="hidden" name="assertion" id="id_assertion" />
@@ -62,7 +62,7 @@
             {% endif -%}
           </ul>
         </nav>
-        <div id="tab"><a href="http://mozilla.com"></a></div>
+        <a id="tab" href="http://mozilla.com">mozilla.com</a>
       </header>
 
       <hr>
@@ -85,7 +85,7 @@
     </div>
 
     <section id="about">
-      <div id="wrapper" class="clearfix">
+      <div class="wrapper clearfix">
         <div class="c2">
           <p><strong>Mozilla Betafarm</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
         </div>
@@ -105,7 +105,7 @@
     </section>
     
     <footer>
-      <div id="wrapper" class="clearfix">
+      <div class="wrapper clearfix">
         <div class="c2">
           <strong>{{ _('Mozilla Betafarm 2011') }}</strong>
         </div>
