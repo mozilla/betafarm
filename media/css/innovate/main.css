@@ -61,27 +61,27 @@ section#headlines .headline p {
   font-style: italic;
   margin: 0;
 }
-aside#about {
+aside#site_meta {
   color: #74726a;
   background-color: rgba(0, 0, 0, 0.05);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 40px 0;
 }
-#about .actions {
+#site_meta .actions {
   text-align: right;
 }
-#about .actions ul {
+#site_meta .actions ul {
   list-style-type: none;
   float: right;
 }
-#about .actions li {
+#site_meta .actions li {
   float: left;
   margin: 0 0 0 10px;
   font-weight: bold;
   padding: 3px 0;
   border-bottom: none;
 }
-#about .actions li img {
+#site_meta .actions li img {
   vertical-align: text-top;
 }
 /* 

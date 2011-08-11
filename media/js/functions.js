@@ -23,7 +23,7 @@ $(document).ready(function($) {
     // sticky footer
     $(window).bind('load resize', function() {
         var h = $(window).height();
-        var a = $('#about').outerHeight();
+        var a = $('#site_meta').outerHeight();
         $('.wrapper:first').css({ 'min-height' : (h-a) });
         $('#ohnoes').css({'height': (h-a-71) });
     });
