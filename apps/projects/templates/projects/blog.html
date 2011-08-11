@@ -14,16 +14,18 @@
        last=_('Blog')) }}
 {% endblock -%}
 
-{% if project.blog -%}
-{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True), 
-                   (url('projects_blog', slug=project.slug), _('Blog'), False)) %}
+{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), False),
+                   (url('projects_blog', slug=project.slug), _('Blog'), True)) %}
+
+{% if user.get_profile() in project.followers.all() -%}
+{% set buttons = ((url('projects_unfollow', slug=project.slug), _('Unfollow'), 'unsubmit'),) %}
 {% else -%}
-{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True),) %}
+{% set buttons = ((url('projects_follow', slug=project.slug), _('Follow'), 'submit'),) %}
 {% endif -%}
 
 {% block content -%}
 {{ sectiontitle(_('{project} Blog')|f(project=project.name)) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True) }}
+{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons, csrf()) }}
 
 <section id="projectBlog" class="w5 clearfix">
   {% if posts.object_list -%}
