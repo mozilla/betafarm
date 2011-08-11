@@ -61,25 +61,27 @@ section#headlines .headline p {
   font-style: italic;
   margin: 0;
 }
-section#about {
+#about {
   color: #74726a;
   background-color: rgba(0, 0, 0, 0.05);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 40px 0;
 }
-section#about .actions {
+#about .actions {
   text-align: right;
 }
-section#about .actions ul {
+#about .actions ul {
   list-style-type: none;
   float: right;
 }
-section#about .actions li {
+#about .actions li {
   float: left;
   margin: 0 0 0 10px;
   font-weight: bold;
   padding: 3px 0;
+  border-bottom: none;
 }
-section#about .actions li img {
+#about .actions li img {
   vertical-align: text-top;
 }
 /* 
@@ -912,14 +914,17 @@ button#follow {
   font-weight: bold;
   text-transform: uppercase;
 }
-#universalHeader #icon {
-  height: 51px;
+div[role="banner"] h1 {
+    margin-bottom: 0
 }
-#universalHeader #icon img {
+div[role="banner"] a {
+  height: 51px;
+  display: block;
   opacity: 0.5;
   -moz-transition: opacity 0.2s ease;
 }
-#universalHeader #icon img:hover {
+div[role="banner"] a:hover,
+div[role="banner"] a:focus {
   opacity: 1;
 }
 #universalHeader nav#topNav {
@@ -1276,6 +1281,9 @@ aside p {
 section {
   padding: 40px 0;
   position: relative;
+}
+section[role="main"] {
+    padding: 0;
 }
 section img.block {
   display: block;
