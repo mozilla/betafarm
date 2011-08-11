@@ -10,8 +10,8 @@ import jingo
 
 from tower import ugettext as _
 
+from activity.models import Activity
 from projects.models import Project
-from feeds.models import Entry
 
 
 def all(request):
@@ -68,11 +68,13 @@ def unfollow(request, slug):
 
 def activity(request, slug):
     project = get_object_or_404(Project, slug=slug)
-    entries = Entry.objects.filter(project=project).order_by('-published')
-    paginator = Paginator(entries, 10)
+    activities = Activity.objects.filter(
+        entry__project=project).select_related(
+        'entry', 'entry__project').order_by('-published_on')
+    paginator = Paginator(activities, 10)
     return jingo.render(request, 'projects/activity.html', {
         'project': project,
-        'posts': paginator
+        'activities': paginator.page(1)
     })
 
 

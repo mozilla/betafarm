@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import sectiontitle, subnav %}
+{% from "activity/helpers.html" import activity %}
 
 {% block page_title -%}
   {{ _('Activity : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
@@ -30,30 +31,21 @@
 {{ sectiontitle(_('{project} Activity')|f(project=project.name)) }}
 {{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons, csrf()) }}
 
-<section id="projectBlog" class="w5 clearfix">
-  {% if posts.object_list -%}
-  <ul id="posts">
-    {% for post in posts.object_list -%}
-      <li class="post c3">
-        <h3 class="normal"><a class="brandColor" href="{{ post.link }}">{{ post.title }}</a></h3>
-        {% if post.published -%}
-        <div class="blogHeader">
-          <time>{{ post.published.strftime("%B %e, %Y at %X %p") }}</time>
-        </div>
-        {% endif -%}
-        <div class="content">
-          {# 
-            project blog posts come in from RSS / Atom feeds.
-            The post body is sanitized through bleach. See 
-            apps/projects/tasks.py for a whitelist of allowed
-            elements and attributes.
-          #}
-          {{ post.body|truncatewords(100)|safe }}
-          <p><a class="brandColor" href="{{ post.link }}">{{ _('Read More &hellip;') }}</a></p>
-        </div>
-      </li>
+<section id="activity" class="clearfix">
+  {% if activities.object_list -%}
+  <ul class="activityStream">
+    {% for obj in activities.object_list -%}
+      {{ activity(obj) }}
     {% endfor -%}
   </ul>
+
+  {% if activities.has_next() -%}
+    <div class="c1"></div>
+    <div class="c4">
+      <button class="sans" style="width:100%">{{ _('load older') }}</button>
+    </div>
+  {% endif -%}
+
   {% else -%}
     <div class="paper c3">
       <h3>{{ _('Waiting for content &hellip;') }}</h3>
