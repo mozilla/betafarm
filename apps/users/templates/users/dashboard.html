@@ -22,8 +22,8 @@
     {% for activity in activities.object_list -%}
       <li class="update clearfix">
         <div class="meta c1">
-          <a class="projectColor" href="activity.entry.project.get_absolute_url() ">{{ activity.entry.project.name }}</a>
-          <time>{{ activity.published_on }}</title>
+          <a class="projectColor" href="{{ activity.entry.project.get_absolute_url() }}">{{ activity.entry.project.name }}</a>
+          <time>{{ _('{timesince} ago')|f(timesince=activity.published_on|timesince) }}</title>
         </div>
         <div class="c4">
           <div class="icon"><div class="arrowRight"></div></div>
