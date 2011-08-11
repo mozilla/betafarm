@@ -61,7 +61,7 @@ section#headlines .headline p {
   font-style: italic;
   margin: 0;
 }
-#about {
+aside#about {
   color: #74726a;
   background-color: rgba(0, 0, 0, 0.05);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -1284,6 +1284,9 @@ section {
 }
 section[role="main"] {
     padding: 0;
+}
+section[role="main"] h1 {
+    padding: 40px 0 21px;
 }
 section img.block {
   display: block;
