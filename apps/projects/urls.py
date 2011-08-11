@@ -13,6 +13,6 @@ urlpatterns = patterns('',
         name='projects_follow'),
     url(r'^(?P<slug>[\w-]+)/unfollow/$', 'projects.views.unfollow',
         name='projects_unfollow'),
-    url(r'^(?P<slug>[\w-]+)/blog/$', 'projects.views.blog',
-        name='projects_blog')
+    url(r'^(?P<slug>[\w-]+)/activity/$', 'projects.views.activity',
+        name='projects_activity')
 )
