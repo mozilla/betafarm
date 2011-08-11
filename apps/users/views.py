@@ -5,10 +5,24 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
+from activity.models import Activity
 from users.models import Profile
 from users.utils import handle_profile_save
 
 import jingo
+
+
+@login_required
+def dashboard(request):
+    profile = request.user.get_profile()
+    activities = Activity.objects.filter(
+        entry__project__in=profile.projects_following.all()
+    ).select_related('entry', 'entry__project').order_by('-published_on')
+    paginator = Paginator(activities, 20)
+    return jingo.render(request, 'users/dashboard.html', {
+        'profile': profile,
+        'activities': paginator.page(1)
+    })
 
 
 def signout(request):

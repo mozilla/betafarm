@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle, subnav %}
+
+{% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Betafarm') }}{% endblock -%}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+     (url('innovate_splash'), _('Betafarm Home')),
+     last=profile.display_name) }}
+{% endblock -%}
+
+{% block content -%}
+{{ sectiontitle(profile.display_name) }}
+{{ subnav(MEDIA_URL, profile.avatar_or_default, (
+    (url('users_dashboard'), _('Dashboard'), True),
+    (url('users_profile', username=profile.user.username), _('View your Profile'), False)
+   ), (), False) }}
+
+<section id="activity" class="clearfix">
+  <ul class="activityStream">
+    {% for activity in activities.object_list -%}
+      <li class="update clearfix">
+        <div class="meta c1">
+          <a class="projectColor" href="{{ activity.entry.project.get_absolute_url() }}">{{ activity.entry.project.name }}</a>
+          <time>{{ _('{timesince} ago')|f(timesince=activity.published_on|timesince) }}</title>
+        </div>
+        <div class="c4">
+          <div class="icon"><div class="arrowRight"></div></div>
+          <div class="updateWrap paper">
+            <div class="updateHeader brandColor">
+              {{ activity.entry.title }}
+            </div>
+              <div class="updateBody blogged">
+                <p class="serif">
+                  {{ activity.entry.body|truncatewords(50)|striptags }} (<a class="brandColor" href="{{ activity.entry.link }}">{{ _('read more&hellip;') }}</a>)
+                </p>
+              </div>
+          </div>
+        </div>
+      </li>
+    {% endfor -%}
+  </ul>
+
+  {% if activities.has_next() -%}
+  <div class="c1"></div>
+  <div class="c4">
+    <button class="sans" style="width:100%">load older</button>
+  </div>
+  {% endif -%}
+
+</section>
+
+{% endblock -%}
