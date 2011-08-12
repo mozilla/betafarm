@@ -67,12 +67,18 @@ aside#site_meta {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 40px 0;
 }
+#site_meta p {
+    width: 300px;
+    float: left;
+}
 #site_meta .actions {
   text-align: right;
+  float: right;
 }
 #site_meta .actions ul {
   list-style-type: none;
   float: right;
+  clear: left;
 }
 #site_meta .actions li {
   float: left;
