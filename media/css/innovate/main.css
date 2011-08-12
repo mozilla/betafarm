@@ -10,17 +10,44 @@ a img {
 section#promoted {
   padding: 0;
 }
-section#details {
-  padding: 40px 0 0 0;
+.dive-in {
+    padding: 40px 0;
 }
-section#featured {
-  padding: 20px 0 40px 0;
+.dive-in img {
+    margin: 10px 0;
 }
-section#featured p, section#details p {
+.dive-in section {
+    padding: 0
+}
+.dive-in article {
+    margin-top: 20px;
+}
+.dive-in h2,
+.dive-in h4 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
+}
+.dive-in h3 {
+    font-size: 12px;
+}
+.dive-in .projects h2 a,
+.dive-in .projects  h4 {
+    color: #CB4B16;
+}
+.dive-in .events h2 a,
+.dive-in .events  h4 {
+    color: #2AA198;
+}
+.dive-in .people h2 a,
+.dive-in .people  h4 {
+    color: #859900;
+}
+.dive-in a:hover h4 {
+    text-decoration: underline;
+}
+.dive-in p {
   color: #74726a;
-}
-section#featured img {
-  margin: 10px 0;
 }
 
 section#headlines {
@@ -35,7 +62,11 @@ section#headlines .headlineLabel {
     width: 310px;
     vertical-align: middle;
 }
-
+.headlineLabel h2 {
+    float: right;
+    font-size: 12px;
+    margin-bottom : 0;
+}
 section#headlines .headlineLabel img {
   vertical-align: text-top;
 }
@@ -48,7 +79,7 @@ section#headlines .headline {
     background-repeat: no-repeat;
     background-position: center left;
 }
-section#headlines .headline h2 {
+section#headlines .headline h3 {
   font-size: 21px;
   line-height: 28px;
   font-weight: normal;
@@ -875,6 +906,9 @@ button#follow {
   background-position: left 5px;
   padding: 3px 0 3px 21px !important;
 }
+.rss {
+    background: transparent url('/media/img/icons-sprite.png') no-repeat 1px 2px;
+}:
 .pdf {
   background-image: url('/media/img/document.png');
 }
