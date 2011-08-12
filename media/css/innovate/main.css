@@ -1551,6 +1551,10 @@ section#activity ul .icon {
     width: 64px;
 }
 
+section#activity ul .updateHeader img {
+    vertical-align: middle;
+}
+
 section#activity ul time {
     color: #74726a;
     display: block;

@@ -35,12 +35,11 @@
   {% if activities.object_list -%}
   <ul class="activityStream">
     {% for obj in activities.object_list -%}
-      {{ activity(obj) }}
+      {{ activity(obj, False) }}
     {% endfor -%}
   </ul>
 
   {% if activities.has_next() -%}
-    <div class="c1"></div>
     <div class="c4">
       <button class="sans" style="width:100%">{{ _('load older') }}</button>
     </div>
