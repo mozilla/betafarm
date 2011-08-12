@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav %}
+{% from "layout/helpers.html" import sectiontitle, subnav with context %}
 
 {% block page_title -%}
  {{ _('{project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
@@ -38,7 +38,7 @@
 
 {% block content -%}
 {{ sectiontitle(project.name) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons, csrf()) }}
+{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
 
 <section id="projectContent" class="w3 clearfix">
   <div class="row clearfix">

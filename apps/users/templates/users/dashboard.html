@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav %}
-{% from "activity/helpers.html" import activity %}
+{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "activity/helpers.html" import activity with context %}
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Betafarm') }}{% endblock -%}
 

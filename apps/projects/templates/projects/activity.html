@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav %}
-{% from "activity/helpers.html" import activity %}
+{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "activity/helpers.html" import activity with context %}
 
 {% block page_title -%}
   {{ _('Activity : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
@@ -29,7 +29,7 @@
 
 {% block content -%}
 {{ sectiontitle(_('{project} Activity')|f(project=project.name)) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons, csrf()) }}
+{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
 
 <section id="activity" class="clearfix">
   {% if activities.object_list -%}
