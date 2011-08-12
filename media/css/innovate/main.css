@@ -10,6 +10,9 @@ a img {
 section#promoted {
   padding: 0;
 }
+#promoted div {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
 .dive-in {
     padding: 40px 0;
 }
@@ -1176,8 +1179,8 @@ div[role="banner"] a:focus {
   text-decoration: none;
 }
 #secondaryMenu #breadcrumbs {
-  /* this is an ugly hack */
-
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-width: 1px 0;
 }
 #secondaryMenu #breadcrumbs a {
   color: #74726a;
