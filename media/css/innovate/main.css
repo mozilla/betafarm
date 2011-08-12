@@ -905,12 +905,13 @@ button#follow {
   margin: 0 0 40px 0;
 }
 .icon {
+  background-image: url('/media/img/icons-sprite.png');
   background-repeat: no-repeat;
   background-position: left 5px;
   padding: 3px 0 3px 21px !important;
 }
 .rss {
-    background: transparent url('/media/img/icons-sprite.png') no-repeat 1px 2px;
+    background-position: -118px -48px;
 }:
 .pdf {
   background-image: url('/media/img/document.png');
@@ -925,10 +926,10 @@ button#follow {
   background-image: url('/media/img/social-flickr.png');
 }
 .facebook {
-  background-image: url('/media/img/social-fb.png');
+  background-position: -162px -87px;
 }
 .twitter {
-  background-image: url('/media/img/social-twitter.png');
+  background-position: -142px -66px;
 }
 .blogger {
   background-image: url('/media/img/social-blogger.png');
@@ -1163,7 +1164,7 @@ div[role="banner"] a:focus {
   position: absolute;
   right: 10px;
   top: 0;
-  background-image: url('/media/img/tab.png');
+  background-image: url('/media/img/icons-sprite.png');
   text-indent: -9999em;
 }
 /* secondary menu */
