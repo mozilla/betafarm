@@ -15,6 +15,7 @@ from projects.models import Project
 
 
 def all(request):
+    """Display a list of all projects."""
     projects = Project.objects.exclude(tags__name='program').order_by('name')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
@@ -23,6 +24,7 @@ def all(request):
 
 
 def programs(request):
+    """Display a list of all programs."""
     programs = Project.objects.filter(tags__name='program').order_by('-name')
     return jingo.render(request, 'projects/programs.html', {
         'programs': programs,
@@ -30,6 +32,7 @@ def programs(request):
 
 
 def show(request, slug):
+    """Display information about a single project, specified by ``slug``."""
     project = get_object_or_404(Project, slug=slug)
     topic = request.session.get('topic', None) or project.topics.all()[0].name
     return jingo.render(request, 'projects/show.html', {
@@ -41,6 +44,10 @@ def show(request, slug):
 @login_required
 @require_POST
 def follow(request, slug):
+    """
+    Add the currently logged in user as a follower of the project specified
+    by ``slug``.
+    """
     project = get_object_or_404(Project, slug=slug)
     project.followers.add(request.user.get_profile())
     project.save()
@@ -55,6 +62,10 @@ def follow(request, slug):
 @login_required
 @require_POST
 def unfollow(request, slug):
+    """
+    Remove the currently logged in user from the list of followers for
+    the project specified by ``slug``.
+    """
     project = get_object_or_404(Project, slug=slug)
     project.followers.remove(request.user.get_profile())
     project.save()
@@ -79,6 +90,8 @@ def activity(request, slug):
 
 
 def active(request):
+    """Display a list of the most active projects."""
+    # TODO - We don't have anything with which to measure activity yet.
     projects = Project.objects.exclude(tags__name='program').order_by('-name')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
@@ -87,6 +100,7 @@ def active(request):
 
 
 def recent(request):
+    """Display a list of the most recent projects."""
     projects = Project.objects.exclude(tags__name='program').order_by('-id')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,

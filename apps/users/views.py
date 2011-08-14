@@ -32,6 +32,7 @@ def signout(request):
 
 
 def profile(request, username):
+    """Display profile page for user specified by ``username``."""
     user = get_object_or_404(auth.models.User, username=username)
     profile = get_object_or_404(Profile, user=user)
     return jingo.render(request, 'users/profile.html', {
@@ -41,6 +42,7 @@ def profile(request, username):
 
 @login_required
 def edit(request):
+    """Edit the currently logged in users profile."""
     form = handle_profile_save(request)
     if form.is_valid():
         return HttpResponseRedirect(reverse('users_profile', kwargs={
@@ -53,6 +55,7 @@ def edit(request):
 
 def all(request, page=1):
     """Display a paginated, searchable list of users."""
+    # TODO - Implement support for search.
     paginator = Paginator(Profile.objects.all(), 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
