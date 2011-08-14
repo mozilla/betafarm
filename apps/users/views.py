@@ -88,24 +88,24 @@ def all(request, page=1):
     })
 
 
-def active(request):
+def active(request, page=1):
     """Display a list of the most active users."""
     # TODO - We don't have anything with which to measure activity yet.
     profiles = Profile.objects.all().order_by('-user__last_login')
     paginator = Paginator(profiles, 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
-        'profiles': paginator.page(1).object_list,
+        'profiles': paginator.page(page),
         'page': 'active'
     })
 
 
-def recent(request):
+def recent(request, page=1):
     """Display a list of the most recent users."""
     profiles = Profile.objects.all().order_by('-user__date_joined')
     paginator = Paginator(profiles, 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
-        'profiles': paginator.page(1).object_list,
+        'profiles': paginator.page(page),
         'page': 'recent'
     })
