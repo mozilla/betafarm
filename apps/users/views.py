@@ -70,7 +70,7 @@ def edit(request):
     profile = request.user.get_profile()
     if request.method == 'POST':
         form = ProfileForm(data=request.POST,
-                           files=request.POST,
+                           files=request.FILES,
                            instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
