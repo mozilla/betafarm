@@ -20,15 +20,14 @@
 
 <section id="activity" class="clearfix">
   <ul class="activityStream">
-    {% for obj in activities.object_list -%}
-      {{ activity(obj) }}
-    {% endfor -%}
+    {% set show_meta = True %}
+    {% include "activity/activity.html" %}
   </ul>
 
-  {% if activities.has_next() -%}
+  {% if has_more -%}
   <div class="c1"></div>
   <div class="c4">
-    <button class="sans" style="width:100%">load older</button>
+    <button page="1" class="fetchActivity sans" style="width:100%">load older</button>
   </div>
   {% endif -%}
 

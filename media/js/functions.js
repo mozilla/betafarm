@@ -44,4 +44,34 @@ $(document).ready(function($) {
         e.preventDefault();
         $(this).parents('.notification').fadeOut();
     });
+
+    // fetch a page of results and cache
+    var fetch_and_cache = function(page) {
+        $.get(document.URL + page + '/', function(data) {
+            $('<div></div>').attr('id', 'activities_page_' + page)
+                .append(data).hide().appendTo('body');
+        }).error(function() {
+            $('button.fetchActivity').detach();
+        });
+    };
+
+    // fetch more activity
+    $('button.fetchActivity').bind('click', function(e) {
+        e.preventDefault();
+
+        var page = parseInt($(this).attr('page')) + 1;
+        var cached = $('#activities_page_' + page);
+
+        if (!cached.length) {
+            $.get(document.URL + page + '/', function(data) {
+                $('ul.activityStream').append(data);
+            });
+        } else {
+            $('ul.activityStream').append(cached.html());
+        }
+
+        fetch_and_cache(page + 1);
+        $('button.fetchActivity').attr('page', page);
+    });
+
 });

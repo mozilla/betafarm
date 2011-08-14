@@ -32,18 +32,17 @@
 {{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
 
 <section id="activity" class="clearfix">
-  {% if activities.object_list -%}
+  {% if activities -%}
   <ul class="activityStream">
-    {% for obj in activities.object_list -%}
-      {{ activity(obj, False) }}
-    {% endfor -%}
+    {% set show_meta = False %}
+    {% include "activity/activity.html" %}
   </ul>
 
-  {% if activities.has_next() -%}
+{% if has_more -%}
     <div class="c4">
-      <button class="sans" style="width:100%">{{ _('load older') }}</button>
+      <button page="1" class="fetchActivity sans" style="width:100%">{{ _('load older') }}</button>
     </div>
-  {% endif -%}
+{% endif -%}
 
   {% else -%}
     <div class="paper c3">

@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
 
 from activity.models import Activity
@@ -11,17 +11,41 @@ from users.utils import handle_profile_save
 
 import jingo
 
+ACTIVITY_PAGE_SIZE = 20
+
 
 @login_required
-def dashboard(request):
+def dashboard_activity(request, page=1):
+    """Display a single page of activities for a users dashboard."""
+    start = int(page) * ACTIVITY_PAGE_SIZE
+    end = start + ACTIVITY_PAGE_SIZE
     profile = request.user.get_profile()
     activities = Activity.objects.filter(
         entry__project__in=profile.projects_following.all()
-    ).select_related('entry', 'entry__project').order_by('-published_on')
-    paginator = Paginator(activities, 20)
+    ).select_related('entry', 'entry__project').order_by(
+        '-published_on')[start:end]
+    if not activities:
+        raise Http404
+    return jingo.render(request, 'activity/activity.html', {
+        'activities': activities,
+        'show_meta': True,
+    })
+
+
+@login_required
+def dashboard(request):
+    """Display first page of activities for a users dashboard."""
+    profile = request.user.get_profile()
+    activities = Activity.objects.filter(
+        entry__project__in=profile.projects_following.all()
+    ).select_related(
+        'entry', 'entry__project'
+    ).order_by('-published_on')[:ACTIVITY_PAGE_SIZE]
+    has_more = Activity.objects.all().count() > ACTIVITY_PAGE_SIZE
     return jingo.render(request, 'users/dashboard.html', {
         'profile': profile,
-        'activities': paginator.page(1)
+        'activities': activities,
+        'has_more': has_more
     })
 
 

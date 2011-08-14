@@ -1,8 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_POST
 
@@ -12,6 +11,8 @@ from tower import ugettext as _
 
 from activity.models import Activity
 from projects.models import Project
+
+ACTIVITY_PAGE_SIZE = 10
 
 
 def all(request):
@@ -77,15 +78,36 @@ def unfollow(request, slug):
     }))
 
 
-def activity(request, slug):
+def activity_page(request, slug, page=1):
+    """Fetch a page of project activity. Useful for xhr."""
     project = get_object_or_404(Project, slug=slug)
+    start = int(page) * ACTIVITY_PAGE_SIZE
+    end = start + ACTIVITY_PAGE_SIZE
     activities = Activity.objects.filter(
         entry__project=project).select_related(
-        'entry', 'entry__project').order_by('-published_on')
-    paginator = Paginator(activities, 10)
+        'entry', 'entry__project').order_by(
+        '-published_on')[start:end]
+    if not activities:
+        raise Http404
+    return jingo.render(request, 'activity/activity.html', {
+        'activities': activities,
+        'show_meta': False,
+    })
+
+
+def activity(request, slug):
+    """Display project activity."""
+    project = get_object_or_404(Project, slug=slug)
+    activities = Activity.objects.filter(
+        entry__project=project
+    ).select_related('entry', 'entry__project').order_by(
+        '-published_on'
+    )[:ACTIVITY_PAGE_SIZE]
+    has_more = Activity.objects.all().count() > ACTIVITY_PAGE_SIZE
     return jingo.render(request, 'projects/activity.html', {
         'project': project,
-        'activities': paginator.page(1)
+        'activities': activities,
+        'has_more': has_more
     })
 
 

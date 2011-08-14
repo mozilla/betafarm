@@ -14,5 +14,8 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[\w-]+)/unfollow/$', 'projects.views.unfollow',
         name='projects_unfollow'),
     url(r'^(?P<slug>[\w-]+)/activity/$', 'projects.views.activity',
-        name='projects_activity')
+        name='projects_activity'),
+    url(r'^(?P<slug>[\w-]+)/activity/(?P<page>\d+)/$',
+        'projects.views.activity_page',
+        name='projects_activity_page')
 )

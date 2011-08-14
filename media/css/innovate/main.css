@@ -847,17 +847,6 @@ button#follow {
   left: 20px;
   background-image: url('/media/img/arrow.png');
 }
-.arrowRight {
-  background-image: url("/media/img/arrowRight.png");
-  display: block;
-  height: 22px;
-  margin-top: -11px;
-  position: absolute;
-  right: -21px;
-  top: 50%;
-  width: 11px;
-  z-index: 1;
-}
 .right {
   text-align: right;
 }
@@ -1542,13 +1531,18 @@ section#activity ul .updateWrap {
     width: 536px;
 }
 
-section#activity ul .icon {
-    background-color: #dddddd;
+section#activity ul img {
     display: block;
     float: left;
     height: 64px;
     position: relative;
     width: 64px;
+}
+
+section#activity img {
+    display: block;
+    float: left;
+    position: relative;
 }
 
 section#activity ul .updateHeader img {
@@ -1578,7 +1572,8 @@ section#activity ul .updateBody.blogged p {
     height: 22px;
     margin-top: -11px;
     position: absolute;
-    right: -21px;
+    right: 0px;
+    left: 74px;
     top: 50%;
     width: 11px;
     z-index: 1;

@@ -8,8 +8,10 @@
   {% endif -%}
   <div class="c4">
     {% if show_meta -%}
-    <div class="icon"><div class="arrowRight"></div></div>
+      <img src="{{ MEDIA_URL }}{{ activity.entry.project.image_or_default }}" width="64" height="64">
+      <div class="arrowRight"></div>
     {% endif -%}
+
     <div class="updateWrap paper">
       {% if 'github' in activity.entry.link -%}
         <div class="updateHeader">

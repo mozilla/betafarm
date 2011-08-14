@@ -3,6 +3,8 @@ from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('',
     url(r'^dashboard/$', 'users.views.dashboard', name='users_dashboard'),
+    url(r'^dashboard/(?P<page>\d+)/', 'users.views.dashboard_activity',
+        name='users_dashboard_activity'),
     url(r'^signout/$', 'users.views.signout', name='users_signout'),
     url(r'^profile/edit/$', 'users.views.edit', name='users_edit'),
     url(r'^profile/(?P<username>[\w-]+)/$', 'users.views.profile',
