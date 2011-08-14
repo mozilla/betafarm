@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 from activity.models import Activity
 from users.models import Profile
-from users.utils import handle_profile_save
+from users.forms import ProfileForm
 
 import jingo
 
@@ -67,11 +67,20 @@ def profile(request, username):
 @login_required
 def edit(request):
     """Edit the currently logged in users profile."""
-    form = handle_profile_save(request)
-    if form.is_valid():
-        return HttpResponseRedirect(reverse('users_profile', kwargs={
-            'username': request.user.username
-        }))
+    profile = request.user.get_profile()
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST,
+                           files=request.POST,
+                           instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return HttpResponseRedirect(reverse('users_profile', kwargs={
+                'username': request.user.username
+            }))
+    else:
+        form = ProfileForm(instance=profile)
     return jingo.render(request, 'users/edit.html', {
         'form': form
     })
