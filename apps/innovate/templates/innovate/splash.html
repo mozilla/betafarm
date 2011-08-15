@@ -17,17 +17,21 @@
 
 <hr>
 
+{% if entry -%}
 <section id="headlines" class="clearfix table_group">
   <div class="c2 headlineLabel cell">
         <h2 class="icon rss">{{ _('latest news') }}</h2>
   </div>
   <div class="c4 headline cell">
-        <h3 class="serif"><a class="brandColor" href="#">{{ _('rotating headlines here') }}</a></h3>
-        <p class="serif">&raquo; hello</p>
+        <h3 class="serif"><a class="brandColor" href="{{ entry.link }}">{{ entry.title }}</a></h3>
+        {% if entry.body -%}
+          <p class="serif">&raquo; {{ entry.body|striptags|truncatewords(5) }}</p>
+        {% endif -%}
   </div>
 </section>
-
 <hr>
+{% endif -%}
+
 
 <div class="dive-in clearfix">
     <section class="projects c2">
