@@ -9,15 +9,14 @@ from feeds.models import Entry
 
 
 def splash(request):
-    def get_random(cls):
-        choices = cls.objects.filter(featured=True)
+    def get_random(cls, **kwargs):
+        choices = cls.objects.filter(**kwargs)
         return choices and random.choice(choices) or None
-    entry = random.choice(Entry.objects.all())
     return jingo.render(request, 'innovate/splash.html', {
-        'featured_project': get_random(Project),
-        'featured_event': get_random(Event),
-        'featured_user': get_random(Profile),
-        'entry': entry
+        'featured_project': get_random(Project, featured=True),
+        'featured_event': get_random(Event, featured=True),
+        'featured_user': get_random(Profile, featured=True),
+        'entry': get_random(Entry)
     })
 
 
