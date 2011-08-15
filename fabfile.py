@@ -27,10 +27,10 @@ def clone():
         run('git clone --recursive %s' % (git_repo,))
 
 
-def update():
+def update(branch):
     """Update project source."""
     with cd(env.proj_root):
-        run('git pull origin master')
+        run('git pull origin %s' % (branch,))
 
 
 def syncdb():
@@ -60,8 +60,8 @@ def switch(branchname):
     restart_celeryd()
 
 
-def deploy():
-    update()
+def deploy(branch):
+    update(branch)
     syncdb()
     migrate()
     compress()
