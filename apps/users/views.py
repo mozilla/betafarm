@@ -113,10 +113,10 @@ def add_link(request):
 
     form = ProfileLinksForm()
     return jingo.render(request, 'users/profile_link_add.html', {
-        'form':form
+        'form': form
     })
 
-   
+
 @login_required
 def edit(request):
     """Edit the currently logged in users profile."""
