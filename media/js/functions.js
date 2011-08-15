@@ -74,37 +74,55 @@ $(document).ready(function($) {
         $('button.fetchActivity').attr('page', page);
     });
 
-    // delete a profile link
-    $('ul.yourLinks button.delete').bind('click', function(e) {
-        e.preventDefault();
-        var $token = $(this).closest('form').find('input[name=csrfmiddlewaretoken]');
-        var $id = $(this).attr('link_id');
-        $.post(document.URL + 'link/delete/', {
-            'id': $id,
-            'csrfmiddlewaretoken': $token.val()
-        }, function(data) {
-            console.log('done');
-            $('button.delete[link_id=' + $id + ']').parent().fadeOut('slow');
-        });
-    });
-
-    // add a profile link
-    $('#profile_add_link').bind('click', function(e) {
-        e.preventDefault();
-        var $token = $(this).closest('form').find('input[name=csrfmiddlewaretoken]');
-        var $name = $(this).siblings('input[name=link_name]');
-        var $url = $(this).siblings('input[name=link_url]');
-        $.post(document.URL + 'link/add/', {
-            'link_name': $name.val(),
-            'link_url': $url.val(),
-            'csrfmiddlewaretoken': $token.val()
-        }, function(data) {
-            $.get(document.URL + 'links/', function(e) {
-                $('ul.yourLinks').replaceWith(e);
+    $('li.links').bind('click', function(event) {
+        var that = $(event.target),
+            csrf = that.closest('form').find('input[name=csrfmiddlewaretoken]');
+        if (that.hasClass('delete')) {
+            $.ajax({
+                type:'POST',
+                url: that.attr('href'),
+                data: {
+                    'csrfmiddlewaretoken':csrf.val()
+                },
+                success: function() {
+                    parent = that.parent();
+                    parent.fadeOut('slow', function() {
+                        parent.remove();
+                    });
+                }
             });
-            $name.val('');
-            $url.val('');
-        });
+            return false;
+        }
+        if (that.hasClass('add')) {
+            var parent = that.parent(),
+                name = parent.find('input[name=link_name]'),
+                name_val = name.val(),
+                url = parent.find('input[name=link_url]'),
+                url_val = url.val();
+            $.ajax({
+                type:'POST',
+                url:that.attr('href'),
+                data: {
+                    'name':name_val,
+                    'url':url_val,
+                    'csrfmiddlewaretoken':csrf.val()
+                },
+                success: function() {
+                    $.ajax({
+                        type:'GET',
+                        url:parent.attr('data-list-links'),
+                        success : function(data) {
+                            $('ul.yourLinks').replaceWith(data);
+                            name.val('');
+                            url.val('');
+                        }
+                    });
+                },
+                error: function(data) {
+                    console.log(data)
+                }
+            });
+            return false;
+        }
     });
-
 });

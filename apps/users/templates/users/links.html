@@ -3,7 +3,7 @@
     <li class="clearfix">
       <div class="linkName overflow">{{ link.name }}</div>
       <div class="linkUrl overflow"><a class="brandColor" href="{{ link.url }}">{{ link.url }}</a></div>
-      <button link_id="{{ link.pk }}" class="delete sans">delete</button>
+      <a href="{{ url('users_profile_delete_link', link.id) }}" class="button delete sans">delete</a>
     </li>
   {% endfor -%}
 </ul>

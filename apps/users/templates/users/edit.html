@@ -37,10 +37,10 @@
         <li class="links">
           <label>{{ _('Your Links') }}</label>
           {% include "users/links.html" %}
-          <div class="addLink">
+          <div class="clearfix addLink" data-list-links="{{ url('users_profile_links') }}">
             <input name="link_name" type="text" placeholder="Link title">
             <input name="link_url" type="text" placeholder="Link URL">
-            <button id="profile_add_link" class="add sans">Add Link</button>
+            <a class="button add sans" href="{{ url('users_profile_add_link') }}">Add Link</a>
           </div>
         </li>
         <li>
@@ -48,7 +48,7 @@
           {{ form.bio }}
         </li>
       </ul>
-      <button class="submit sans">{{ _('save!') }}</button>
+      <button class="submit sans" type="submit">{{ _('save!') }}</button>
     </form>
   </div>
 </section>
