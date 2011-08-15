@@ -22,11 +22,16 @@
     <div id="wrapper" class="clearfix">
 
       <header id="universalHeader" class="clearfix">
+<!--
         <div id="icon" class="c1">
           <a href="{{ url('innovate.views.splash') }}"><img class="block" src="{{ MEDIA_URL }}img/logo.png" alt="mozilla betafarm"></a>
         </div>
-        <nav id="topNav" class="c5">
+-->
+        <nav id="topNav" class="c6">
           <ul class="clearfix">
+            <li class="mainItem">
+              <a class="about{{ active(request, url('innovate.views.splash')) }}" href="{{ url('innovate.views.splash') }}">{{ _('Home') }}</a>
+            </li>
             <li class="mainItem">
               <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
               <ul class="dropdown">
