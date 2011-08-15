@@ -5,7 +5,7 @@ import urllib2
 from django.core.management.base import BaseCommand
 
 from feeds.models import Entry
-from projects.models import Project
+from projects.models import Link
 from projects.utils import FeedEntryParser
 
 # Whitelisted tags and attributes
@@ -24,17 +24,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """
-        ./manage.py importfeed http://feed/url project-slug 10
+        ./manage.py importfeed http://feed/url linkid 10
         """
         if len(args) < 2:
-            print 'You must provide a feed URL and a project slug'
-            print 'usage: ./manage.py feedurl project-slug [nentries]'
+            print 'You must provide a feed URL and a link id'
+            print 'usage: ./manage.py feedurl linkid [nentries]'
             return
-        (feed_url, slug) = args[:2]
+        (feed_url, link_id) = args[:2]
         try:
-            project = Project.objects.get(slug=slug)
-        except Project.DoesNotExist:
-            print 'Unknown project: %s' % (slug,)
+            link = Link.objects.get(id=link_id)
+        except Link.DoesNotExist:
+            print 'No link with id: %d' % (link_id,)
             return
         feed = urllib2.urlopen(feed_url).read()
         parsed = feedparser.parse(feed)
@@ -44,6 +44,6 @@ class Command(BaseCommand):
                 parsed_entry.content, tags=TAGS, attributes=ATTRIBUTES,
                 strip=True)
             entry = Entry.objects.create(
-                title=parsed_entry.title, link=parsed_entry.link, body=content,
-                project=project, published=parsed_entry.updated)
+                title=parsed_entry.title, url=parsed_entry.link, body=content,
+                link=link, published=parsed_entry.updated)
             print entry

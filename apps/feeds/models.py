@@ -10,15 +10,19 @@ from activity.models import broadcast
 class Entry(models.Model):
     title = models.CharField(max_length=100)
     published = models.DateTimeField(default=datetime.datetime.now())
-    link = models.URLField()
+    url = models.URLField()
     body = models.TextField()
-    project = models.ForeignKey('projects.Project')
+    link = models.ForeignKey('projects.Link')
 
     class Meta:
         verbose_name_plural = u'entries'
 
     def __unicode__(self):
         return u'%s -> %s' % (self.title, self.link)
+
+    @property
+    def project(self):
+        return self.link.project or None
 admin.site.register(Entry)
 
 

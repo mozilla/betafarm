@@ -81,6 +81,7 @@ class Link(models.Model):
     blog = models.BooleanField(default=False)
     subscription = models.ForeignKey(Subscription, null=True, blank=True)
     project = models.ForeignKey(Project, null=True, blank=True)
+    featured = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)

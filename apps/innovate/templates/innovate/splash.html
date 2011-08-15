@@ -23,7 +23,7 @@
         <h2 class="icon rss">{{ _('latest news') }}</h2>
   </div>
   <div class="c4 headline cell">
-        <h3 class="serif"><a class="brandColor" href="{{ entry.link }}">{{ entry.title }}</a></h3>
+        <h3 class="serif"><a class="brandColor" href="{{ entry.url }}">{{ entry.title }}</a></h3>
         {% if entry.body -%}
           <p class="serif">&raquo; {{ entry.body|striptags|truncatewords(5) }}</p>
         {% endif -%}

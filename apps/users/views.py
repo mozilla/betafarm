@@ -23,8 +23,8 @@ def dashboard_activity(request, page=1):
     end = start + ACTIVITY_PAGE_SIZE
     profile = request.user.get_profile()
     activities = Activity.objects.filter(
-        entry__project__in=profile.projects_following.all()
-    ).select_related('entry', 'entry__project').order_by(
+        entry__link__project__in=profile.projects_following.all()
+    ).select_related('entry', 'entry__link', 'entry__link__project').order_by(
         '-published_on')[start:end]
     if not activities:
         raise Http404
@@ -39,9 +39,9 @@ def dashboard(request):
     """Display first page of activities for a users dashboard."""
     profile = request.user.get_profile()
     activities = Activity.objects.filter(
-        entry__project__in=profile.projects_following.all()
+        entry__link__project__in=profile.projects_following.all()
     ).select_related(
-        'entry', 'entry__project'
+        'entry', 'entry__link', 'entry__link__project'
     ).order_by('-published_on')[:ACTIVITY_PAGE_SIZE]
     has_more = Activity.objects.all().count() > ACTIVITY_PAGE_SIZE
     return jingo.render(request, 'users/dashboard.html', {

@@ -13,21 +13,21 @@
     {% endif -%}
 
     <div class="updateWrap paper">
-      {% if 'github' in activity.entry.link -%}
+      {% if 'github' in activity.entry.url -%}
         <div class="updateHeader">
-          <img src="{{ MEDIA_URL }}img/social-gh.png"> {{ _('via') }} <a class="brandColor" href="{{ activity.entry.link }}">{{ _('Github') }}</a>:
+          <img src="{{ MEDIA_URL }}img/social-gh.png"> {{ _('via') }} <a class="brandColor" href="{{ activity.entry.url }}">{{ _('Github') }}</a>:
         </div>
         <div class="updateBody blogged">
           <h4 class="normal brandColor">{{ activity.entry.title }}</h4>
           <p class="serif">
-            {{ activity.entry.body|striptags }} (<a class="brandColor" href="{{ activity.entry.link }}">{{ _('diff') }}</a>)
+            {{ activity.entry.body|striptags }} (<a class="brandColor" href="{{ activity.entry.url }}">{{ _('diff') }}</a>)
           </p>
         </div>
       {% else -%}
-        <a class="brandColor updateHeader" href="{{ activity.entry.link }}">{{ activity.entry.title }}</a>
+        <a class="brandColor updateHeader" href="{{ activity.entry.url }}">{{ activity.entry.title }}</a>
         <div class="updateBody blogged">
           <p class="serif">
-            {{ activity.entry.body|truncatewords(50)|striptags }} (<a class="brandColor" href="{{ activity.entry.link }}">{{ _('read more') }}</a>)
+            {{ activity.entry.body|truncatewords(50)|striptags }} (<a class="brandColor" href="{{ activity.entry.url }}">{{ _('read more') }}</a>)
           </p>
         </div>
       {% endif -%}

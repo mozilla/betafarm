@@ -84,8 +84,8 @@ def activity_page(request, slug, page=1):
     start = int(page) * ACTIVITY_PAGE_SIZE
     end = start + ACTIVITY_PAGE_SIZE
     activities = Activity.objects.filter(
-        entry__project=project).select_related(
-        'entry', 'entry__project').order_by(
+        entry__link__project=project).select_related(
+        'entry', 'entry__link', 'entry__link__project').order_by(
         '-published_on')[start:end]
     if not activities:
         raise Http404
@@ -99,8 +99,8 @@ def activity(request, slug):
     """Display project activity."""
     project = get_object_or_404(Project, slug=slug)
     activities = Activity.objects.filter(
-        entry__project=project
-    ).select_related('entry', 'entry__project').order_by(
+        entry__link__project=project
+    ).select_related('entry', 'entry__link', 'entry__link__project').order_by(
         '-published_on'
     )[:ACTIVITY_PAGE_SIZE]
     has_more = Activity.objects.all().count() > ACTIVITY_PAGE_SIZE
