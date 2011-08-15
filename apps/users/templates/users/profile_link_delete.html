@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+
+{% block page_id %}delte_user_link{% endblock %}
+{% block section_class %}profile{% endblock %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Betafarm Home')),
+    (url('users_edit'), _('Edit Profile')),
+    last=_('Delete profile link')) }}
+{% endblock -%}
+
+{% block content -%}
+<h1 class="c6 light">Delete profile link</h1>
+<section id="profile_edit" class="clearfix">
+  <div class="c3 paper">
+    <h2 class="light">{{ _('Link to delete') }}</h2>
+    <form action="{{ url('users_profile_delete_link', link.id) }}" method="post">
+      {{ csrf()|safe }}
+      <ul class="yourLinks">
+        <li class="clearfix">
+            <div class="linkName overflow">{{ link.name }}</div>
+            <div class="linkUrl overflow">{{ link.url }}</div>
+        </li>
+      </ul>
+      <p class="meta"><button class="submit sans">{{ _('Delete link') }}</button> or <a class="brandColor" href="{{ url('users_edit') }}">return to editing your  profile</a></p>
+    </form>
+  </div>
+</section>
+{% endblock -%}

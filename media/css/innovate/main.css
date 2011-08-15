@@ -455,12 +455,13 @@ ul.yourLinks .linkUrl {
   text-align: right;
   padding-left: 5px;
 }
-ul.yourLinks button {
+ul.yourLinks .button {
   float: left;
   display: inline-block;
   margin: 0 0 0 10px;
   width: 48px;
   padding: 5px 0;
+  line-height: 1;
 }
 form .addLink {
 }
@@ -554,6 +555,14 @@ button.unsubmit:active {
   -moz-box-shadow: 0 0 5px #003763 inset;
   -o-box-shadow: 0 0 5px #003763 inset;
   box-shadow: 0 0 5px #712222 inset;
+}
+.meta {
+    text-align: right;
+}
+.meta button {
+    float: none;
+    display: inline-block;
+    zoom: 1;
 }
 .eventMap {
     float: left;

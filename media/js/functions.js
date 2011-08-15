@@ -75,19 +75,26 @@ $(document).ready(function($) {
     });
 
     // delete a profile link
-    $('ul.yourLinks button.delete').bind('click', function(e) {
-        e.preventDefault();
-        var $token = $(this).closest('form').find('input[name=csrfmiddlewaretoken]');
-        var $id = $(this).attr('link_id');
-        $.post(document.URL + 'link/delete/', {
-            'id': $id,
-            'csrfmiddlewaretoken': $token.val()
-        }, function(data) {
-            console.log('done');
-            $('button.delete[link_id=' + $id + ']').parent().fadeOut('slow');
-        });
+    $('li.links').bind('click', function(event) {
+        var that = $(event.target),
+            csrf = that.closest('form').find('input[name=csrfmiddlewaretoken]');
+        if (that.hasClass('delete')) {
+            $.ajax({
+                type:'POST',
+                url: that.attr('href'),
+                data: {
+                    'csrfmiddlewaretoken':csrf.val()
+                },
+                success: function() {
+                    parent = that.parent();
+                    parent.fadeOut('slow', function() {
+                        parent.remove();
+                    });
+                }
+            });
+        }
+        return false;
     });
-
     // add a profile link
     $('#profile_add_link').bind('click', function(e) {
         e.preventDefault();
