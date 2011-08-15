@@ -94,6 +94,7 @@ $(document).ready(function($) {
             return false;
         }
         if (that.hasClass('add')) {
+            $('#addLinkErrorList').detach();
             var parent = that.parent(),
                 name = parent.find('input[name=link_name]'),
                 name_val = name.val(),
@@ -119,7 +120,28 @@ $(document).ready(function($) {
                     });
                 },
                 error: function(data) {
-                    console.log(data)
+                    var response = $.parseJSON(data.responseText);
+                    var errors = [];
+                    if (response.hasOwnProperty('url')) {
+                        errors.push({
+                            'msg': response.url,
+                            'href': '#id_url'
+                        });
+                    }
+                    if (response.hasOwnProperty('name')) {
+                        errors.push({
+                            'msg': response.name,
+                            'href': '#id_name'
+                        });
+                    }
+                    var $errorList = $('<ul></ul>').addClass('errorlist')
+                        .attr('id', 'addLinkErrorList');
+                    $.each(errors, function(i, e) {
+                        var $link = $('<a></a>').attr('href', e.href)
+                            .append(e.msg.toString());
+                        $errorList.append($('<li></li>').append($link));
+                    });
+                    $('div.addLink').before($errorList);
                 }
             });
             return false;

@@ -1,3 +1,5 @@
+import json
+
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -102,15 +104,10 @@ def add_link(request):
             return HttpResponseRedirect(reverse('users_edit'))
         else:
             if request.is_ajax():
-                print '### Need to raise an error for jQuery to pick up ###'
-                return jingo.render(request, 'layout/errorlist.html', {
-                    'form': form
-                })
-            else:
-                return jingo.render(request, 'users/profile_link_add.html', {
-                    'form': form
-                })
-
+                return HttpResponse(json.dumps(form.errors), status=400)
+            return jingo.render(request, 'users/profile_link_add.html', {
+                'form': form
+            })
     form = ProfileLinksForm()
     return jingo.render(request, 'users/profile_link_add.html', {
         'form': form
