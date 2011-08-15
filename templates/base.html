@@ -57,16 +57,6 @@
                   <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
                 </ul>
               </li>
-            {% else -%}
-<!--
-              <li class="mainItem">
-                <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
-                  {{ csrf()|safe }}
-                  <input type="hidden" name="assertion" id="id_assertion" />
-                  <a id="browserid" class="login" href="#">{{ _('Sign In') }}</a>
-                </form>
-              </li>
--->
             {% endif -%}
           </ul>
         </nav>
@@ -111,7 +101,8 @@
     <footer>
       <div id="wrapper" class="clearfix">
         <div class="c2">
-          <strong>{{ _('Mozilla Betafarm 2011') }}</strong>
+          <p><strong>{{ _('Mozilla Labs 2011') }}</strong></p>
+          <a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="../media/img/cc.png"></a>
         </div>
         <div class="c1">
           <strong>{{ _('Info') }}</strong>
@@ -134,7 +125,6 @@
         <div class="c1">
           <strong>{{ _('Topics') }}</strong>
           <ul>
-            <li><a href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
             {% for topic in topics -%}
               <li><a href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name|lower }}</a></li>
             {% endfor -%}
