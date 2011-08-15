@@ -80,18 +80,14 @@ def delete_link(request, id):
     link = get_object_or_404(Link, pk=id)
     if request.user.get_profile() != link.profile:
         raise Http404
-    
-    if request.is_ajax():
+    if request.method == 'POST':
         link.delete()
-        return HttpResponse(status=204)
-    else:
-        if request.method == 'POST':
-            link.delete()
-            return HttpResponseRedirect(reverse('users_edit')) 
-        else:
-            return jingo.render(request, 'users/profile_link_delete.html', {
-                'link': link
-            })
+        if request.is_ajax():
+            return HttpResponse(status=204)
+        return HttpResponseRedirect(reverse('users_edit'))
+    return jingo.render(request, 'users/profile_link_delete.html', {
+        'link': link
+    })
 
 
 @login_required
