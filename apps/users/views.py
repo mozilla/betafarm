@@ -2,11 +2,12 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
 
 from activity.models import Activity
-from users.models import Profile
+from users.models import Profile, Link
 from users.forms import ProfileForm
 
 import jingo
@@ -65,6 +66,41 @@ def profile(request, username):
 
 
 @login_required
+def links(request):
+    if not request.is_ajax():
+        raise Http404
+    profile = request.user.get_profile()
+    links = Link.objects.filter(profile=profile).order_by('id')
+    return jingo.render(request, 'users/links.html', {
+        'links': links
+    })
+
+
+@login_required
+@require_POST
+def delete_link(request):
+    if not request.is_ajax():
+        raise Http404
+    link = get_object_or_404(Link, pk=request.POST['id'])
+    if request.user.get_profile() != link.profile:
+        raise Http404
+    link.delete()
+    return HttpResponse(status=204)
+
+
+@login_required
+@require_POST
+def add_link(request):
+    if not request.is_ajax():
+        raise Http404
+    name = request.POST['link_name']
+    url = request.POST['link_url']
+    link = Link(name=name, url=url, profile=request.user.get_profile())
+    link.save()
+    return HttpResponse(status=204)
+
+
+@login_required
 def edit(request):
     """Edit the currently logged in users profile."""
     profile = request.user.get_profile()
@@ -79,10 +115,11 @@ def edit(request):
             return HttpResponseRedirect(reverse('users_profile', kwargs={
                 'username': request.user.username
             }))
-    else:
-        form = ProfileForm(instance=profile)
+    form = ProfileForm(instance=profile)
+    links = profile.link_set.all()
     return jingo.render(request, 'users/edit.html', {
-        'form': form
+        'form': form,
+        'links': links
     })
 
 

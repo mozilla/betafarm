@@ -74,4 +74,37 @@ $(document).ready(function($) {
         $('button.fetchActivity').attr('page', page);
     });
 
+    // delete a profile link
+    $('ul.yourLinks button.delete').bind('click', function(e) {
+        e.preventDefault();
+        var $token = $(this).closest('form').find('input[name=csrfmiddlewaretoken]');
+        var $id = $(this).attr('link_id');
+        $.post(document.URL + 'link/delete/', {
+            'id': $id,
+            'csrfmiddlewaretoken': $token.val()
+        }, function(data) {
+            console.log('done');
+            $('button.delete[link_id=' + $id + ']').parent().fadeOut('slow');
+        });
+    });
+
+    // add a profile link
+    $('#profile_add_link').bind('click', function(e) {
+        e.preventDefault();
+        var $token = $(this).closest('form').find('input[name=csrfmiddlewaretoken]');
+        var $name = $(this).siblings('input[name=link_name]');
+        var $url = $(this).siblings('input[name=link_url]');
+        $.post(document.URL + 'link/add/', {
+            'link_name': $name.val(),
+            'link_url': $url.val(),
+            'csrfmiddlewaretoken': $token.val()
+        }, function(data) {
+            $.get(document.URL + 'links/', function(e) {
+                $('ul.yourLinks').replaceWith(e);
+            });
+            $name.val('');
+            $url.val('');
+        });
+    });
+
 });

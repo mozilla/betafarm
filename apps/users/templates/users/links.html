@@ -1,0 +1,9 @@
+<ul class="yourLinks">
+  {% for link in links -%}
+    <li class="clearfix">
+      <div class="linkName overflow">{{ link.name }}</div>
+      <div class="linkUrl overflow"><a class="brandColor" href="{{ link.url }}">{{ link.url }}</a></div>
+      <button link_id="{{ link.pk }}" class="delete sans">delete</button>
+    </li>
+  {% endfor -%}
+</ul>

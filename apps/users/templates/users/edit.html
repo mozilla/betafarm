@@ -36,22 +36,11 @@
         </li>
         <li class="links">
           <label>{{ _('Your Links') }}</label>
-          <ul class="yourLinks">
-            <li class="clearfix">
-                <div class="linkName overflow">Twitter</div>
-                <div class="linkUrl overflow"><a class="brandColor" href="#">http://twitter.com/_andychung</a></div>
-                <button class="delete sans">delete</button>
-            </li>
-            <li class="clearfix">
-                <div class="linkName overflow">GitHub</div>
-                <div class="linkUrl overflow"><a class="brandColor" href="#">http://github.com/andychung</a></div>
-                <button class="delete sans">delete</button>
-            </li>
-          </ul>
+          {% include "users/links.html" %}
           <div class="addLink">
-              <input type="text" placeholder="Link title">
-              <input type="text" placeholder="Link URL">
-              <button class="add sans">Add Link</button>
+            <input name="link_name" type="text" placeholder="Link title">
+            <input name="link_url" type="text" placeholder="Link URL">
+            <button id="profile_add_link" class="add sans">Add Link</button>
           </div>
         </li>
         <li>
