@@ -1,10 +1,8 @@
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import post_save
 
 from tower import ugettext_lazy as _
 
-from activity.models import broadcast
 from users.models import Profile
 
 
@@ -67,10 +65,3 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.name
-
-
-def event_save_handler(sender, instance, **kwargs):
-    """TODO: Support event creation."""
-    title = u'An event was changed.'
-    broadcast(instance, title)
-post_save.connect(event_save_handler, sender=Event)
