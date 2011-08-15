@@ -18,7 +18,7 @@ class Entry(models.Model):
         verbose_name_plural = u'entries'
 
     def __unicode__(self):
-        return u'%s -> %s' % (self.title, self.link)
+        return u'%s -> %s' % (self.title, self.url)
 
     @property
     def project(self):
