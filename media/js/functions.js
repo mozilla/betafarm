@@ -74,7 +74,6 @@ $(document).ready(function($) {
         $('button.fetchActivity').attr('page', page);
     });
 
-    // delete a profile link
     $('li.links').bind('click', function(event) {
         var that = $(event.target),
             csrf = that.closest('form').find('input[name=csrfmiddlewaretoken]');
@@ -93,25 +92,34 @@ $(document).ready(function($) {
                 }
             });
         }
+        if (that.hasClass('add')) {
+            var parent = that.parent(),
+                name = parent.find('input[name=link_name]'),
+                name_val = name.val(),
+                url = parent.find('input[name=link_url]'),
+                url_val = url.val();
+            $.ajax({
+                type:'POST',
+                url:parent.attr('data-add-url'),
+                data: {
+                    'link_name':name_val,
+                    'link_url':url_val,
+                    'csrfmiddlewaretoken':csrf.val()
+                },
+                success: function() {
+                    $.ajax({
+                        type:'GET',
+                        url:parent.attr('data-list-links'),
+                        success : function(data) {
+                            $('ul.yourLinks').replaceWith(data);
+                            name.val('');
+                            url.val('');
+                        }
+                    });
+                }
+            });
+            
+        }
         return false;
     });
-    // add a profile link
-    $('#profile_add_link').bind('click', function(e) {
-        e.preventDefault();
-        var $token = $(this).closest('form').find('input[name=csrfmiddlewaretoken]');
-        var $name = $(this).siblings('input[name=link_name]');
-        var $url = $(this).siblings('input[name=link_url]');
-        $.post(document.URL + 'link/add/', {
-            'link_name': $name.val(),
-            'link_url': $url.val(),
-            'csrfmiddlewaretoken': $token.val()
-        }, function(data) {
-            $.get(document.URL + 'links/', function(e) {
-                $('ul.yourLinks').replaceWith(e);
-            });
-            $name.val('');
-            $url.val('');
-        });
-    });
-
 });

@@ -37,10 +37,10 @@
         <li class="links">
           <label>{{ _('Your Links') }}</label>
           {% include "users/links.html" %}
-          <div class="addLink">
+          <div class="addLink" data-add-url="{{ url('users_profile_add_link') }}" data-list-links="{{ url('users_profile_links') }}">
             <input name="link_name" type="text" placeholder="Link title">
             <input name="link_url" type="text" placeholder="Link URL">
-            <button id="profile_add_link" class="add sans">Add Link</button>
+            <button class="add sans">Add Link</button>
           </div>
         </li>
         <li>

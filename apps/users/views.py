@@ -119,6 +119,13 @@ def edit(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            # adding in a link non-JS
+            name = request.POST['link_name']
+            url = request.POST['link_url']
+            if not name == "" and not url == "":
+                link = Link(name=name, url=url, profile=profile)
+                link.save()
+                return HttpResponseRedirect(reverse('users_edit'))
             return HttpResponseRedirect(reverse('users_profile', kwargs={
                 'username': request.user.username
             }))
