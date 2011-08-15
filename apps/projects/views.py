@@ -103,7 +103,7 @@ def activity(request, slug):
     ).select_related('entry', 'entry__link', 'entry__link__project').order_by(
         '-published_on'
     )[:ACTIVITY_PAGE_SIZE]
-    has_more = Activity.objects.all().count() > ACTIVITY_PAGE_SIZE
+    has_more = len(activities) > ACTIVITY_PAGE_SIZE
     return jingo.render(request, 'projects/activity.html', {
         'project': project,
         'activities': activities,
