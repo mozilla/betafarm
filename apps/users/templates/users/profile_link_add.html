@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/errorlist.html" import errorlist %}
+
+{% block page_id %}add_user_link{% endblock %}
+{% block section_class %}profile{% endblock %}
+
+{% block breadcrumbs -%}
+{{ breadcrumbs(
+    (url('innovate_splash'), _('Betafarm Home')),
+    (url('users_edit'), _('Edit profile')),
+    last=_('Add profile link')) }}
+{% endblock -%}
+
+{% block content -%}
+<h1 class="c6 light">Add profile link</h1>
+<section id="profile_edit" class="clearfix">
+  <div class="c3 paper">
+    <h2 class="light">{{ _('Add a link') }}</h2>
+    {{ errorlist(form) }}
+    <form action="{{ url('users_profile_add_link') }}" method="post">
+      {{ csrf()|safe }}
+      <ul>
+        <li class="links">
+          <div class="clearfix addLink">
+            <div>
+                <label for="id_name">{{ _('Link title') }}</label>
+                {{ form.name }}
+            </div>
+            <div>
+                <label for="id_url">{{ _('Link URL') }}</label>
+                {{ form.url }}
+            </div>
+            <button class="add sans" href="{{ url('users_profile_add_link') }}">Add Link</button>
+          </div>
+        </li>
+      </ul>
+    </form>
+  </div>
+</section>
+{% endblock -%}

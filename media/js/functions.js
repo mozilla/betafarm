@@ -91,6 +91,7 @@ $(document).ready(function($) {
                     });
                 }
             });
+            return false;
         }
         if (that.hasClass('add')) {
             var parent = that.parent(),
@@ -100,10 +101,10 @@ $(document).ready(function($) {
                 url_val = url.val();
             $.ajax({
                 type:'POST',
-                url:parent.attr('data-add-url'),
+                url:that.attr('href'),
                 data: {
-                    'link_name':name_val,
-                    'link_url':url_val,
+                    'name':name_val,
+                    'url':url_val,
                     'csrfmiddlewaretoken':csrf.val()
                 },
                 success: function() {
@@ -116,10 +117,12 @@ $(document).ready(function($) {
                             url.val('');
                         }
                     });
+                },
+                error: function(data) {
+                    console.log(data)
                 }
             });
-            
+            return false;
         }
-        return false;
     });
 });

@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 
 from activity.models import Activity
 from users.models import Profile, Link
-from users.forms import ProfileForm
+from users.forms import ProfileForm, ProfileLinksForm
 
 import jingo
 
@@ -96,17 +96,37 @@ def delete_link(request, id):
 
 
 @login_required
-@require_POST
 def add_link(request):
-    if not request.is_ajax():
-        raise Http404
-    name = request.POST['link_name']
-    url = request.POST['link_url']
-    link = Link(name=name, url=url, profile=request.user.get_profile())
-    link.save()
-    return HttpResponse(status=204)
+    profile = request.user.get_profile()
+    if request.method == 'POST':
+        form = ProfileLinksForm(data=request.POST)
+        if form.is_valid():
+            #name = request.POST['link_name']
+            #url = request.POST['link_url']
+            #link = Link(name=name, url=url, profile=request.user.get_profile())
+            #link.save()
+            #return HttpResponse(status=204)
+            link = form.save(commit=False)
+            link.profile = profile
+            link.save()
+            return HttpResponseRedirect(reverse('users_edit'))
+        else:
+            if request.is_ajax():
+                print '### Need to raise an error for jQuery to pick up ###'
+                return jingo.render(request, 'layout/errorlist.html', {
+                    'form': form
+                })
+            else:
+                return jingo.render(request, 'users/profile_link_add.html', {
+                    'form': form
+                })
 
+    form = ProfileLinksForm()
+    return jingo.render(request, 'users/profile_link_add.html', {
+        'form':form
+    })
 
+   
 @login_required
 def edit(request):
     """Edit the currently logged in users profile."""
