@@ -58,6 +58,7 @@
                 </ul>
               </li>
             {% else -%}
+<!--
               <li class="mainItem">
                 <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
                   {{ csrf()|safe }}
@@ -65,6 +66,7 @@
                   <a id="browserid" class="login" href="#">{{ _('Sign In') }}</a>
                 </form>
               </li>
+-->
             {% endif -%}
           </ul>
         </nav>
@@ -97,11 +99,7 @@
         </div>
         <div class="c1"></div>
         <div class="c3 actions">
-          {% if user.is_authenticated() -%}
             <p>Follow us!</p>
-          {% else -%}
-            <p>Follow us or <a class="brandColor" href="{{ url('browserid_verify') }}">sign up</a> for an account</p>
-          {% endif -%}
           <ul>
             <li class="icon twitter"><a href="#">Twitter</a></li>
             <li class="icon facebook"><a href="#">Facebook</a></li>
@@ -119,12 +117,18 @@
           <strong>{{ _('Info') }}</strong>
           <ul>
             <li><a href="http://www.mozilla.org/contact/">{{ _('contact us') }}</a></li>
-{% if not user.is_authenticated() -%}
-            <li><a href="{{ url('browserid_verify') }}">{{ _('sign up') }}</a></li>
-{% endif -%}
             <li><a href="{{ url('innovate_about') }}">{{ _('about us') }}</a></li>
             <li><a href="http://www.mozilla.org/about/policies/privacy-policy.html">{{ _('privacy policy') }}</a></li>
             <li><a href="http://www.mozilla.com/en-US/about/legal.html">{{ _('legal') }}</a></li>
+            {% if not user.is_authenticated() -%}
+              <li class="mainItem">
+                <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
+                  {{ csrf()|safe }}
+                  <input type="hidden" name="assertion" id="id_assertion" />
+                  <a id="browserid" class="login" href="#">{{ _('sign In') }}</a>
+                </form>
+              </li>
+            {% endif -%}
           </ul>
         </div>
         <div class="c1">
