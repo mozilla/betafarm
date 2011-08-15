@@ -16,7 +16,7 @@ def splash(request):
         'featured_project': get_random(Project, featured=True),
         'featured_event': get_random(Event, featured=True),
         'featured_user': get_random(Profile, featured=True),
-        'entry': get_random(Entry)
+        'entry': get_random(Entry, link__featured=True)
     })
 
 
