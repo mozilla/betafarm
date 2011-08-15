@@ -100,11 +100,6 @@ def add_link(request):
     if request.method == 'POST':
         form = ProfileLinksForm(data=request.POST)
         if form.is_valid():
-            #name = request.POST['link_name']
-            #url = request.POST['link_url']
-            #link = Link(name=name, url=url, profile=request.user.get_profile())
-            #link.save()
-            #return HttpResponse(status=204)
             link = form.save(commit=False)
             link.profile = profile
             link.save()
