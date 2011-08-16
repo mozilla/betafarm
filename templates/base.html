@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html LANG="{{ LANG }}" dir="{{ DIR }}">
+<html LANG="{{ LANG }}" dir="{{ DIR }}" class="no-js">
 <head>
     <title>{% block page_title %}Mozilla Betafarm{% endblock %}</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
@@ -10,6 +10,7 @@
     <script src="https://browserid.org/include.js" type="text/javascript"></script>
 </head>
 <body id="{% block page_id %}{% endblock %}" class="{% block section_class %}{% endblock %}">
+    <script type="text/javascript">document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, '')</script>
     <div id="grid"></div>
     <div class="wrapper clearfix">
         <header id="universalHeader" class="clearfix">
