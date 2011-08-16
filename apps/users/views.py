@@ -150,6 +150,7 @@ def all(request, page=1):
     """Display a paginated, searchable list of users."""
     # TODO - Implement support for search.
     profiles = Profile.objects.all().order_by('name')
+    profiles = filter(lambda p: p.has_chosen_identifier, profiles)
     paginator = Paginator(profiles, 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
@@ -162,6 +163,7 @@ def active(request, page=1):
     """Display a list of the most active users."""
     # TODO - We don't have anything with which to measure activity yet.
     profiles = Profile.objects.all().order_by('-user__last_login')
+    profiles = filter(lambda p: p.has_chosen_identifier, profiles)
     paginator = Paginator(profiles, 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
@@ -173,6 +175,7 @@ def active(request, page=1):
 def recent(request, page=1):
     """Display a list of the most recent users."""
     profiles = Profile.objects.all().order_by('-user__date_joined')
+    profiles = filter(lambda p: p.has_chosen_identifier, profiles)
     paginator = Paginator(profiles, 15)
     return jingo.render(request, 'users/all.html', {
         'paginator': paginator,
