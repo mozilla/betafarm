@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>New Projects Page</title>
+    
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen"> 
+    <script src="js/jquery-1.6.1.min.js" type="text/javascript" charset="utf-8"></script> 
+    <script src="js/jquery.isotope.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/functions.js" type="text/javascript" charset="utf-8"></script> 
+
+</head>
+<body>
+
+<div id="wrapper" class="cf">
+    
+    <div id="fakeHeader"></div>
+    
+    <div id="title" class="cf">
+        <div class="c6">
+            <h1 class="light">Projects</h1>
+        </div>
+    </div>
+
+    <div id="subNav" class="w1 cf">
+        <ul class="nav c1">
+            <li class="selected"><a href="#">All (A-Z)</a></li>
+            <li><a href="#">Most Active</a></li>
+            <li><a href="#">Most Recent</a></li>
+        </ul>
+        
+        <h3 class="light c1">Sort by topic</h3>
+        <ul class="tags c1 cf">
+            <li data-filter=".apps" class="tag apps">apps</li>
+            <li data-filter=".identity" class="tag identity">identity</li>
+            <li data-filter=".social" class="tag social">social</li>
+            <li data-filter=".platform" class="tag platform">platform</li>
+            <li data-filter=".media" class="tag media">media</li>
+            <li data-filter=".education" class="tag education">education</li>
+        </ul>
+    </div>
+    
+    <div id="topicDescription" class="cf w2">
+        <div class="c2 wrap">
+        
+            <div class="topic apps">
+                <h2 class="light">Apps</h2>
+                <p>Web browsers are adding capabilities that allow web applications to create richer, more integrated experiences. Mozilla has created a gallery of user interface concepts to show how applications can enhance your web environment. Web Applications are built using HTML5, and can run in any modern browser or mobile OS. For users who don't mind running alpha-quality code, we have a number of prototypes that you can try out.</p>
+            </div>
+        
+            <div class="topic identity">
+                <h2 class="light">Identity</h2>
+                <p>Your online identity, which is key to enabling a personalized Web experience, is not simply a single atom of data. It is a dense cluster of your accounts (e.g. e-mail, banking, shopping, etc.), relationships and other personal information, spread across the Web and throughout all of your personal computing devices. Your Web browser, as your most trusted relationship in your life online, has nearly perfect knowledge of everything you do on the Web. We like to think of it as the user agent of all that you do online. We envision a world where your personal "user agent" will play an even more active and critical role in helping you control and shape your online experience.</p>
+            </div>
+        
+            <div class="topic social">
+                <h2 class="light">Social</h2>
+                <p>Just as Firefox brought choice and innovation to a once-monopolistic browser market, browsers can bring choice to the rapidly centralizing world of social networks. To achieve this, we need more than just another social network; we need a vision and plan for the social Web-one that is built upon technological interoperability and the values of the open Web.</p>
+            </div>
+        
+            <div class="topic platform">
+                <h2 class="light">Platform</h2>
+                <p>Mozilla is a major force in the development of the Web’s fundamental technologies. The Web continues to shift. Major additions or changes require significant research and experimentation before they can be brought to fruition. We're willing to take on long-term research projects, even on a speculative basis to improve existing languages like JavaScript {link, link, link}, as well as design work focused on brand new languages {link}. What used to be a passive way for users to navigate linked documents has become an active, living platform where people have persistent, personalized relationships with full-fledged applications-and each other. Our platform projects include making Web applications as compelling to users and developers as alternative distribution models. </p>
+            </div>
+        
+            <div class="topic media">
+                <h2 class="light">Media</h2>
+                <p>Mozilla is driving open-web innovation in media-from film to journalism. Projects like the Knight-Mozilla News Technology Partnership (MoJo) are helping hundreds of contributors to create new ideas, tools, and news experiences that benefit readers and newsmakers alike-all with open technologies. And projects like Universal Subtitles and Popcorn are creating foundational techologies that allow anyone to create media that is just like the web: collaborative, dynamic, and at pushing the boundaries of how we tell stories.</p>
+            </div>
+        
+            <div class="topic education">
+                <h2 class="light">Education</h2>
+                <p>We believe in open technologies because they allow anyone with the skills and creativity to make things on the Web. Mozilla is creating tools and programs to help everyone from kids to developers learn the skills they need to help build the Web. Through programs like Hackasaurus and School of Webcraft (in partnership with P2PU), we are trying to build new ways to learn and teach web developer skills.</p>
+            </div>
+            
+            <a class="close" href="#" data-filter="*">close</a>            
+        </div>
+    </div>
+    
+    <div id="projects" class="w3 cf">
+        <ul class="projectList">
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">AwesomeBar HD</a></h3>
+                    <p>This spin-off from the Home Dash project combines the location bar and the search bar with a Mozilla twist.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform identity cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">BrowserID</a></h3>
+                    <p>A safer and easier way to sign in.</p>
+                    <ul class="tags">
+                        <li data-filter=".identity" class="tag identity">identity</li>
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Find Suggest</a></h3>
+                    <p>Easily see if the page you're on will contain the word that you're currently typing.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="project education cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Hackasaurus</a></h3>
+                    <p>Building a generation of webmakers. Hackasaurus makes it easy for youth to learn about, explore and make stuff on the web.</p>
+                    <ul class="tags">
+                        <li data-filter=".education" class="tag education">education</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Home Dash</a></h3>
+                    <p>In this stripped-down UI, a standard web browser interface is replaced instead by the Firefox logo, which brings up a dashboard.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Instant Preview</a></h3>
+                    <p>In this Prospector experiment, results that get highlighted in the Awesome Bar suggestions will automatically start loading for you to preview. </p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project media cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Knight Mozilla News Technology Project</a></h3>
+                    <p>The Knight-Mozilla News Technology Partnership (MoJo) is a three-year program with the Knight Foundation to drive innovation in journalism using open web technologies.</p>
+                    <ul class="tags">
+                        <li data-filter=".media" class="tag media">media</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">LessChrome HD</a></h3>
+                    <p>This Prospector experiment shows less browser chrome by default, except when needed.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project education cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Mozilla Hive NYC</a></h3>
+                    <p>Hive NYC is a New York-based Mozilla learning lab that engages youth around innovation, digital media and web-making.</p>
+                    <ul class="tags">
+                        <li data-filter=".education" class="tag education">education</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project education cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Mozilla Open Badges</a></h3>
+                    <p>Badges provide public recognition for learning regardless of where or how it happens.</p>
+                    <ul class="tags">
+                        <li data-filter=".education" class="tag education">education</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">OneLiner</a></h3>
+                    <p>Combines tabs and search box on one line to take up less browser page space.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Predictive Newtab</a></h3>
+                    <p>Explore the idea of supplementing the fixed list of top sites with a dynamic list that changes based on your behavior.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project media cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Popcorn</a></h3>
+                    <p>We're bringing  filmmakers, hackers and web makers together to explore how modern browser technologies like HTML5 can reshape moving images on the web.</p>
+                    <ul class="tags">
+                        <li data-filter=".media" class="tag media">media</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Recall Monkey</a></h3>
+                    <p>Find something you've already visited in the past with the help of Recall Monkey.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project education cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">School of Webcraft</a></h3>
+                    <p>The School of Webcraft is a free online community for social learning about open web development.</p>
+                    <ul class="tags">
+                        <li data-filter=".education" class="tag education">education</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Search Tabs</a></h3>
+                    <p>This experiment detects when you've done a search from the search bar or triggered a default search from the location bar and lets you try it again with a different search provider.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Snaporama</a></h3>
+                    <p>Snaporama extends the life of your tabs.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Speak Words</a></h3>
+                    <p>As you type, Firefox fills in word suggestions based on your recent browsing. </p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="project platform cf">
+                <div class="c3 info">
+                    <h3 class="normal"><a href="#">Tab Focus</a></h3>
+                    <p>Tab Focus lets you "automagically" organize tab groups.</p>
+                    <ul class="tags">
+                        <li data-filter=".platform" class="tag platform">platform</li>
+                    </ul>
+                </div>
+            </li>
+
+            
+        </ul>
+    </div>
+    
+</div>
+
+</body>
+</html>
