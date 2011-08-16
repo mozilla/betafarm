@@ -44,9 +44,6 @@ def dashboard(request):
         'entry', 'entry__link', 'entry__link__project'
     ).order_by('-published_on')
     has_more = len(activities) > ACTIVITY_PAGE_SIZE
-    print '### activities ###'
-    print len(activities)
-    print '###'
     return jingo.render(request, 'users/dashboard.html', {
         'profile': profile,
         'activities': activities[:ACTIVITY_PAGE_SIZE],
@@ -99,9 +96,6 @@ def delete_link(request, id):
 def add_link(request):
     profile = request.user.get_profile()
     if request.method == 'POST':
-        print '### Post ###'
-        print request.POST
-        print '###'
         form = ProfileLinksForm(data=request.POST)
         if form.is_valid():
             link = form.save(commit=False)
