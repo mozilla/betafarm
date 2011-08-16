@@ -42,11 +42,14 @@ def dashboard(request):
         entry__link__project__in=profile.projects_following.all()
     ).select_related(
         'entry', 'entry__link', 'entry__link__project'
-    ).order_by('-published_on')[:ACTIVITY_PAGE_SIZE]
+    ).order_by('-published_on')
     has_more = len(activities) > ACTIVITY_PAGE_SIZE
+    print '### activities ###'
+    print len(activities)
+    print '###'
     return jingo.render(request, 'users/dashboard.html', {
         'profile': profile,
-        'activities': activities,
+        'activities': activities[:ACTIVITY_PAGE_SIZE],
         'has_more': has_more
     })
 
