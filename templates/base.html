@@ -48,14 +48,6 @@
                         <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
                     </ul>
                 </li>
-                {% else -%}
-                <li>
-                    <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form" role="form">
-                        {{ csrf()|safe }}
-                        <input type="hidden" name="assertion" id="id_assertion" />
-                        <a id="browserid" class="login" href="#">{{ _('Sign In') }}</a>
-                    </form>
-                </li>
                 {% endif -%}
             </ul>
             </nav>
@@ -82,15 +74,11 @@
             <div class="c6">
                 <p><strong>Mozilla Betafarm</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
                 <div class="actions">
-                    {% if user.is_authenticated() -%}
-                        <p>Follow us!</p>
-                    {% else -%}
-                        <p>Follow us or <a class="brandColor" href="{{ url('browserid_verify') }}">sign up</a> for an account</p>
-                    {% endif -%}
-                    <ul>
-                        <li><a class="icon twitter" href="https://twitter.com/#!/mozlabs">Twitter</a></li>
-                        <li><a class="icon facebook" href="http://www.facebook.com/mozlabs">Facebook</a></li>
-                    </ul>
+                  <p>Follow us!</p>
+                  <ul>
+                    <li><a class="icon twitter" href="https://twitter.com/#!/mozlabs">Twitter</a></li>
+                    <li><a class="icon facebook" href="http://www.facebook.com/mozlabs">Facebook</a></li>
+                  </ul>
                 </div>
             </div>
         </div>
@@ -98,24 +86,30 @@
     <footer>
         <div class="wrapper clearfix">
             <div class="c2">
-                <strong>{{ _('Mozilla Betafarm 2011') }}</strong>
+                <strong>{{ _('Mozilla Labs 2011') }}</strong>
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="{{ MEDIA_URL }}img/cc.png"></a>
             </div>
             <div class="c1" role="contentinfo">
                 <strong>{{ _('Info') }}</strong>
                 <ul>
                     <li><a href="http://www.mozilla.org/contact/">{{ _('contact us') }}</a></li>
-                    {% if not user.is_authenticated() -%}
-                    <li><a href="{{ url('browserid_verify') }}">{{ _('sign up') }}</a></li>
-                    {% endif -%}
                     <li><a href="{{ url('innovate_about') }}">{{ _('about us') }}</a></li>
                     <li><a href="http://www.mozilla.org/about/policies/privacy-policy.html">{{ _('privacy policy') }}</a></li>
                     <li><a href="http://www.mozilla.com/en-US/about/legal.html">{{ _('legal') }}</a></li>
+                    {% if not user.is_authenticated() -%}
+                      <li class="mainItem">
+                        <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
+                          {{ csrf()|safe }}
+                          <input type="hidden" name="assertion" id="id_assertion" />
+                          <a id="browserid" class="login" href="#">{{ _('sign In') }}</a>
+                        </form>
+                      </li>
+                    {% endif -%}
                 </ul>
             </div>
             <div class="c1">
                 <strong>{{ _('Topics') }}</strong>
                 <ul>
-                    <li><a href="{{ url('topics_all') }}">{{ _('all topics') }}</a></li>
                     {% for topic in topics -%}
                     <li><a href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name|lower }}</a></li>
                     {% endfor -%}
