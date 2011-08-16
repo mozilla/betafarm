@@ -13,7 +13,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('name', 'website', 'avatar', 'bio')
 
- 
+
 class ProfileLinksForm(forms.ModelForm):
 
     class Meta:
