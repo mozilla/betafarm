@@ -127,17 +127,14 @@ def edit(request):
             profile.user = request.user
             profile.save()
             # adding in a link non-JS
-            name = request.POST['link_name']
-            url = request.POST['link_url']
-            if not name == "" and not url == "":
-                linksForm = ProfileLinksForm(data={
-                    'url': url,
-                    'name': name
-                })
-                if linksForm.is_valid():
-                    link = linksForm.save(commit=False)
-                    link.profile = profile
-                    link.save()
+            links_form = ProfileLinksForm(data={
+                'url': request.POST['link_url'],
+                'name': request.POST['link_name']
+            })
+            if links_form.is_valid():
+                link = links_form.save(commit=False)
+                link.profile = profile
+                link.save()
             return HttpResponseRedirect(reverse('users_profile', kwargs={
                 'username': request.user.username
             }))
