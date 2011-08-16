@@ -1264,6 +1264,7 @@ a img.thick:hover {
 }
 section#subNav img.thick {
   border-bottom: 0 none;
+  min-height: 140px;
 }
 section#title {
   padding: 40px 0 21px;
@@ -1319,7 +1320,7 @@ section#title {
 }
 .content li {
   padding: 0 0 7px;
-  color: rgba(0, 0, 0, 0.25);
+  margin-left: 1em;
 }
 .content li span {
   color: rgba(0, 0, 0, 0.75);
