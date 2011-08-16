@@ -37,11 +37,20 @@
         <li class="links">
           <label>{{ _('Your Links') }}</label>
           {% include "users/links.html" %}
-          <div class="clearfix addLink" data-list-links="{{ url('users_profile_links') }}">
-            <input id="id_name" name="link_name" type="text" placeholder="Link title">
-            <input id="id_url" name="link_url" type="text" placeholder="Link URL">
+          <fieldset id="add_links">
+            <legend><span>Add a link</span></legend>
+            <div class="clearfix addLink" data-list-links="{{ url('users_profile_links') }}">
+            <div>
+            <label for="id_title">Title</label>
+            <input id="id_title" name="link_name" type="text">
+            </div>
+            <div>
+            <label for="id_url">URL</label>
+            <input id="id_url" name="link_url" type="text">
+            </div>
             <a class="button add sans" href="{{ url('users_profile_add_link') }}">Add Link</a>
-          </div>
+            </div>
+          </fieldset>
         </li>
         <li>
           <label for="id_bio">{{ _('Bio') }}</label>

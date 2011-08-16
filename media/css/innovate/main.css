@@ -1,4 +1,4 @@
-/*
+_l/*
     Master styles
 */
 a img {
@@ -463,13 +463,35 @@ li.links .button {
   padding: 5px 0;
   line-height: 1;
 }
+.message {
+    padding: 10px 26px;
+    display: none;
+    background: transparent url('/media/img/ajax-loader.gif') no-repeat right center;
+    text-align: right; 
+    color: #74726A;
+    font-weight: bold;
+}
+#add_links {
+    border: none;
+}
+#add_links legend {
+    margin-bottom: 10px;
+    color: #74726A;
+}
 div.addLink a.button {
     width: 60px;
+}
+.no-js #edit_user .addLink a.button {
+    margin: 0;
 }
 form .addLink div {
     float: left;
 }
-#add_user_link .addLink button {
+.no-js #edit_user .addLink div {
+    display: none;
+}
+div.addLink .button,
+.addLink button {
     margin-top: 1.6em;
     float: left;
 }

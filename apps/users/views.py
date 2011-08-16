@@ -96,6 +96,9 @@ def delete_link(request, id):
 def add_link(request):
     profile = request.user.get_profile()
     if request.method == 'POST':
+        print '### Post ###'
+        print request.POST
+        print '###'
         form = ProfileLinksForm(data=request.POST)
         if form.is_valid():
             link = form.save(commit=False)
@@ -130,9 +133,14 @@ def edit(request):
             name = request.POST['link_name']
             url = request.POST['link_url']
             if not name == "" and not url == "":
-                link = Link(name=name, url=url, profile=profile)
-                link.save()
-                return HttpResponseRedirect(reverse('users_edit'))
+                linksForm = ProfileLinksForm(data={
+                    'url': url,
+                    'name': name
+                })
+                if linksForm.is_valid():
+                    link = linksForm.save(commit=False)
+                    link.profile = profile
+                    link.save()
             return HttpResponseRedirect(reverse('users_profile', kwargs={
                 'username': request.user.username
             }))

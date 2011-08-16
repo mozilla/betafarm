@@ -96,10 +96,23 @@ $(document).ready(function($) {
         if (that.hasClass('add')) {
             $('#addLinkErrorList').detach();
             var parent = that.parent(),
+                grand_parent = parent.parent(),
                 name = parent.find('input[name=link_name]'),
                 name_val = name.val(),
                 url = parent.find('input[name=link_url]'),
-                url_val = url.val();
+                url_val = url.val(),
+                message = false,
+                loading;
+            if (!message) {
+                message = $('<div class="message">Adding link...</div>').prependTo(grand_parent);
+            }
+            loading = window.setTimeout(function() {
+                loading = false;
+                grand_parent.css('visibility','hidden');
+                message.css('display','block');
+                parent.css('display','none');
+                grand_parent.css('visibility','visible');
+            }, 500); 
             $.ajax({
                 type:'POST',
                 url:that.attr('href'),
@@ -109,6 +122,13 @@ $(document).ready(function($) {
                     'csrfmiddlewaretoken':csrf.val()
                 },
                 success: function() {
+                    if (!loading) {
+                        message.css('display','none');
+                        parent.css('display','block');
+                        grand_parent.css('visibility','visible'); 
+                    } else {
+                        window.clearTimeout(loading);
+                    }             
                     $.ajax({
                         type:'GET',
                         url:parent.attr('data-list-links'),
@@ -120,30 +140,44 @@ $(document).ready(function($) {
                     });
                 },
                 error: function(data) {
+                    if (!loading) {
+                        message.css('display','none');
+                        parent.css('display','block');
+                        grand_parent.css('visibility','visible');
+                    } else {
+                        window.clearTimeout(loading);
+                    }
                     var response = $.parseJSON(data.responseText);
                     var errors = [];
                     if (response.hasOwnProperty('url')) {
                         errors.push({
+                            'label': 'URL',
                             'msg': response.url,
                             'href': '#id_url'
                         });
                     }
                     if (response.hasOwnProperty('name')) {
                         errors.push({
+                            'label': 'Title',
                             'msg': response.name,
-                            'href': '#id_name'
+                            'href': '#id_title'
                         });
                     }
                     var $errorList = $('<ul></ul>').addClass('errorlist')
                         .attr('id', 'addLinkErrorList');
                     $.each(errors, function(i, e) {
-                        var $link = $('<a></a>').attr('href', e.href)
-                            .append(e.msg.toString());
+                        var $link = $('<a class="error"></a>').attr('href', e.href)
+                            .append(e.label + ": " + e.msg.toString());
                         $errorList.append($('<li></li>').append($link));
                     });
                     $('div.addLink').before($errorList);
                 }
             });
+            return false;
+        }
+        if (that.hasClass('error')) {
+            var input_id = '#' + that.attr('href').split('#')[1];
+            $(input_id).focus();
             return false;
         }
     });
