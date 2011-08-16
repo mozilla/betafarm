@@ -940,42 +940,42 @@ button#follow {
 }
 .rss {
     background-position: -118px -48px;
-}:
+}
 .pdf {
-  background-image: url('/media/img/document.png');
+  background-position: -202px -130px;
 }
 .default {
-  background-image: url('/media/img/social-default.png');
+  background-position: -182px -109px;
 }
 .github {
-  background-image: url('/media/img/social-gh.png');
+  background-position: -242px -170px;
 }
 .flickr {
-  background-image: url('/media/img/social-flickr.png');
+  background-position: -222px -150px
 }
 .facebook {
-  background-position: -162px -87px;
+  background-position: -162px -90px;
 }
 .twitter {
-  background-position: -142px -66px;
+  background-position: -142px -70px;
 }
 .blogger {
-  background-image: url('/media/img/social-blogger.png');
+  background-position: -262px -190px;
 }
 .plus {
-  background-image: url('/media/img/social-plus.png');
+  background-position: -282px -210px;
 }
 .tumblr {
-  background-image: url('/media/img/social-tumblr.gif');
+  background-position: -302px -230px;
 }
 .vimeo {
-  background-image: url('/media/img/social-vimeo.png');
+  background-position: -322px -250px;
 }
 .youtube {
-  background-image: url('/media/img/social-youtube.png');
+  background-position: -342px -270px;
 }
 .addons {
-  background-image: url('/media/img/social-amo.png');
+  background-position: -362px -290px;
 }
 /* Universal */
 #universalHeader {

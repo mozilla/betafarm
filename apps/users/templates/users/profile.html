@@ -41,7 +41,7 @@
       <h3 class="light">{{ _('Social') }}</h3>
       <ul>
         {% for link in profile.link_set.all() -%}
-        <li class="icon{{ favicon(link.url) }}"><a class="brandColor" href="{{ link.url }}">{{ link.name }}</a></li>
+        <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
         {% endfor -%}
       </ul>
       <h3 class="light">{{ _('Projects') }}</h3>
