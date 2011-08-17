@@ -87,7 +87,7 @@
         <div class="wrapper clearfix">
             <div class="c2">
                 <strong>{{ _('Mozilla Labs 2011') }}</strong>
-                <a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="{{ MEDIA_URL }}img/cc.png"></a>
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="{{ MEDIA_URL }}img/cc.png" alt="{{ ('Creative Commons - Attribution ShareAlike 3.0') }}" width="80" height="15"></a>
             </div>
             <div class="c1" role="contentinfo">
                 <strong>{{ _('Info') }}</strong>
@@ -97,13 +97,13 @@
                     <li><a href="http://www.mozilla.org/about/policies/privacy-policy.html">{{ _('privacy policy') }}</a></li>
                     <li><a href="http://www.mozilla.com/en-US/about/legal.html">{{ _('legal') }}</a></li>
                     {% if not user.is_authenticated() -%}
-                      <li class="mainItem">
+                    <li>
                         <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
-                          {{ csrf()|safe }}
-                          <input type="hidden" name="assertion" id="id_assertion" />
-                          <a id="browserid" class="login" href="#">{{ _('sign In') }}</a>
+                            {{ csrf()|safe }}
+                            <input type="hidden" name="assertion" id="id_assertion" />
+                            <a id="browserid" class="login" href="#">{{ _('sign In') }}</a>
                         </form>
-                      </li>
+                    </li>
                     {% endif -%}
                 </ul>
             </div>

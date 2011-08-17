@@ -1563,6 +1563,9 @@ footer ul {
 footer ul a {
   color: #74726a;
 }
+footer a[rel=license] {
+    display: block;
+}
 /* overflow */
 .overflow {
   text-overflow: ellipsis;
