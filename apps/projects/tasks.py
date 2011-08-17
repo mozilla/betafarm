@@ -47,12 +47,12 @@ class PushUnsubscriber(Task):
 
 class PushNotificationHandler(Task):
 
-    def create_entry(self, entry, project):
+    def create_entry(self, entry, link):
         content = bleach.clean(
             entry.content, tags=TAGS, attributes=ATTRIBUTES, strip=True)
         entry = Entry.objects.create(
-            title=entry.title, link=entry.link, body=content,
-            project=project, published=entry.updated)
+            title=entry.title, url=entry.link, body=content,
+            link=link, published=entry.updated)
         return entry
 
     def run(self, notification, sender, **kwargs):
@@ -61,9 +61,7 @@ class PushNotificationHandler(Task):
             return
         for entry in notification.entries:
             log.debug('Received notification of entry: %s, %s' % (
-                entry.title, entry.link))
+                entry.title, entry.url))
             parsed = FeedEntryParser(entry)
-            projects = filter(lambda x: x not in ['', None],
-                              [l.project for l in sender.link_set.all()])
-            for project in projects:
-                self.create_entry(parsed, project)
+            for link in sender.link_set.all():
+                self.create_entry(parsed, link)

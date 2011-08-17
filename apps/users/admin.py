@@ -15,8 +15,8 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'service')
-    search_fields = ('name', 'service')
+    list_display = ('name', 'url')
+    search_fields = ('name', 'url')
 
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Link, LinkAdmin)

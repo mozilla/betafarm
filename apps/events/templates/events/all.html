@@ -13,11 +13,7 @@
 {% endblock -%}
 
 {% block content -%}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ _('Events') }}</h1>
-  </div>
-</section>
+<h1 class="light c6">{{ _('Events') }}</h1>
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
@@ -32,7 +28,7 @@
       <div class="eventMap">
         <a class="map" href="{{ url('events_show', slug=event.slug) }}">
           <span class="zoom2-hit"></span>
-          <img class="zoom0 thick block" src="http://maps.google.com/maps/api/staticmap?zoom=7&amp;size=140x140&amp;maptype=roadmap&amp;sensor=false&amp;markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+          <img class="zoom0 thick block" width="140" height="140" src="http://maps.google.com/maps/api/staticmap?zoom=7&amp;size=140x140&amp;maptype=roadmap&amp;sensor=false&amp;markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
         </a>
       </div>
       <div class="eventListInfo">

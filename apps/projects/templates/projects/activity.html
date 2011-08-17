@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav %}
+{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "activity/helpers.html" import activity with context %}
 
 {% block page_title -%}
   {{ _('Activity : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
@@ -20,7 +21,7 @@
 {% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), False),
                    (url('projects_activity', slug=project.slug), _('Activity'), True)) %}
 
-{% if user.get_profile() in project.followers.all() -%}
+{% if user.is_authenticated() and user.get_profile() in project.followers.all() -%}
 {% set buttons = ((url('projects_unfollow', slug=project.slug), _('Unfollow'), 'unsubmit'),) %}
 {% else -%}
 {% set buttons = ((url('projects_follow', slug=project.slug), _('Follow'), 'submit'),) %}
@@ -28,32 +29,21 @@
 
 {% block content -%}
 {{ sectiontitle(_('{project} Activity')|f(project=project.name)) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons, csrf()) }}
+{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
 
-<section id="projectBlog" class="w5 clearfix">
-  {% if posts.object_list -%}
-  <ul id="posts">
-    {% for post in posts.object_list -%}
-      <li class="post c3">
-        <h3 class="normal"><a class="brandColor" href="{{ post.link }}">{{ post.title }}</a></h3>
-        {% if post.published -%}
-        <div class="blogHeader">
-          <time>{{ post.published.strftime("%B %e, %Y at %X %p") }}</time>
-        </div>
-        {% endif -%}
-        <div class="content">
-          {# 
-            project blog posts come in from RSS / Atom feeds.
-            The post body is sanitized through bleach. See 
-            apps/projects/tasks.py for a whitelist of allowed
-            elements and attributes.
-          #}
-          {{ post.body|truncatewords(100)|safe }}
-          <p><a class="brandColor" href="{{ post.link }}">{{ _('Read More &hellip;') }}</a></p>
-        </div>
-      </li>
-    {% endfor -%}
+<section id="activity" class="clearfix">
+  {% if activities -%}
+  <ul class="activityStream">
+    {% set show_meta = False %}
+    {% include "activity/activity.html" %}
   </ul>
+
+{% if has_more -%}
+    <div class="c4">
+      <button page="1" class="fetchActivity sans" style="width:100%">{{ _('load older') }}</button>
+    </div>
+{% endif -%}
+
   {% else -%}
     <div class="paper c3">
       <h3>{{ _('Waiting for content &hellip;') }}</h3>
