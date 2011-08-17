@@ -55,6 +55,46 @@ $(document).ready(function($) {
         });
     };
 
+    $('a.fetchActivity').bind('click', function() {
+        var current = $(this),
+            ajax_url = current.attr('href'),
+            ajax_hole = $('ul.activityStream'),
+            max_entries = ajax_hole.attr('data-total-entries'),
+            loader = false,
+            loading;
+        if (!loader) {
+            loader = $('<div class="message"><b>Loading older entries</b></div>').insertBefore(current);
+        }
+        loading = window.setTimeout(function() {
+            loading = false;
+            loader.css('display','block');
+            current.css('display','none');
+        }, 500);
+        $.ajax({
+            type:'GET',
+            url: ajax_url,
+            success: function(data) {
+                ajax_hole.append(data);
+                var current_total = ajax_hole.find('li').length,
+                    more = current_total < max_entries;
+                if (more) {
+                    var page = parseInt(ajax_url.replace(/[^\d]+/,'')),
+                        new_url = ajax_url.replace(/[\d]+/, page + 1);
+                        current.attr('href',new_url);
+                } else {
+                    current.remove();
+                }
+                if (!loading) {
+                    loader.css('display', 'none');
+                    current.css('display','block');
+                } else {
+                    window.clearTimeout(loading);
+                }
+            }
+        });
+        return false;
+    });
+
     // fetch more activity
     $('button.fetchActivity').bind('click', function(e) {
         e.preventDefault();
