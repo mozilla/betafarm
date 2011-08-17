@@ -3,6 +3,9 @@
 
 {% block page_title %}{{ _('People : Mozilla Betafarm') }}{% endblock %}
 
+{% block page_id %}all_users{% endblock %}
+{% block section_class %}users{% endblock %}
+
 {% block breadcrumbs %}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Betafarm Home')),
@@ -10,11 +13,7 @@
 {% endblock %}
 
 {% block content %}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ _('People') }}</h1>
-  </div>
-</section>
+<h1 class="light c6">{{ _('People') }}</h1>
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
@@ -45,7 +44,7 @@
     </li>
 #}
     <hr>
-    {% for profile in profiles -%}
+    {% for profile in profiles.object_list -%}
     <li class="person clearfix">
       <div class="c2">
         <a href="{{ url('users_profile', username=profile.user.username) }}"><img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" width="32" height="32"></a>
@@ -59,6 +58,12 @@
     </li>
     <hr>
     {% endfor -%}
+  {% if profiles.has_next() -%}
+    <li>
+    <a href="{{ url('users_all_page', page=profiles.next_page_number()) }}">{{ _('More') }}</a>
+  </li>
+  {% endif -%}
+
   </ul>
 </section>
 {% endblock %}

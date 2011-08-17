@@ -5,6 +5,9 @@
 {{ _('{event_name} : Events : Mozilla Betafarm')|f(event_name=event.name) }}
 {% endblock -%}
 
+{% block page_id %}show_event{% endblock %}
+{% block section_class %}events{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Betafarm Home')),
@@ -23,18 +26,14 @@
 {% endif -%}
 
 {% block content -%}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ event.name }}</h1>
-  </div>
-</section>
+<h1 class="light c6">{{ event.name }}</h1>
 
 <section class="w3">
   <div id="eventInfo" class="c3 paper">
 
     <a class="map" href="http://maps.google.com/maps?q={{ event.venue.full_address }}">
       <span class="zoom2-hit"></span>
-      <img class="zoom0" src="http://maps.google.com/maps/api/staticmap?zoom=7&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+      <img class="zoom0" width="420" height="300" src="http://maps.google.com/maps/api/staticmap?zoom=7&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
       <img class="zoom1" src="http://maps.google.com/maps/api/staticmap?zoom=11&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
       <img class="zoom2" src="http://maps.google.com/maps/api/staticmap?zoom=13&size=420x300&maptype=roadmap&sensor=false&markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
     </a>

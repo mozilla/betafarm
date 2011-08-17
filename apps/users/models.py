@@ -24,16 +24,9 @@ def determine_upload_path(instance, filename):
 
 
 class Link(models.Model):
-    SUPPORTED_SERVICES = (
-        (u'github', u'Github'),
-        (u'flickr', u'Flickr'),
-        (u'twitter', u'Twitter'),
-        (u'other', u'Other')
-    )
-    service = models.CharField(max_length=50, verbose_name=_(u'Service Name'),
-                               choices=SUPPORTED_SERVICES, default=u'other')
     name = models.CharField(max_length=50, verbose_name=_(u'Link Name'))
     url = models.URLField(verbose_name=_(u'URL'), max_length=255)
+    profile = models.ForeignKey('users.Profile', blank=True, null=True)
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)
@@ -58,7 +51,6 @@ class Profile(models.Model):
     website = models.URLField(verbose_name=_(u'Website'), max_length=255,
                               blank=True)
     bio = models.TextField(verbose_name=_(u'Bio'), blank=True)
-    links = models.ManyToManyField(Link, verbose_name=_(u'Links'), blank=True)
     featured = models.BooleanField(default=False)
     featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
                                        blank=True, null=True,

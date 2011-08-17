@@ -27,10 +27,10 @@ def clone():
         run('git clone --recursive %s' % (git_repo,))
 
 
-def update():
+def update(branch):
     """Update project source."""
     with cd(env.proj_root):
-        run('git pull origin master')
+        run('git pull origin %s' % (branch,))
 
 
 def syncdb():
@@ -48,11 +48,11 @@ def compress():
     run_manage_cmd('compress_assets')
 
 
-def switch(branchname):
-    """Switch branches"""
+def new_branch(branch):
+    """Checkout a new branch"""
     with cd(env.proj_root):
-        run('git checkout %s' % (branchname,))
-        run('git pull origin %s' % (branchname,))
+        run('git checkout -b %s origin/%s' % (branch, branch))
+    update(branch)
     syncdb()
     migrate()
     compress()
@@ -60,8 +60,9 @@ def switch(branchname):
     restart_celeryd()
 
 
-def deploy():
-    update()
+def deploy(branch):
+    """Deploy latest code from ``branch``."""
+    update(branch)
     syncdb()
     migrate()
     compress()
