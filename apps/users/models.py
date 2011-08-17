@@ -58,23 +58,39 @@ class Profile(models.Model):
 
     @property
     def avatar_or_default(self):
+        """Return user provided avatar, or default if none exists."""
         return self.avatar or 'img/person-default.gif'
 
     @property
     def featured_image_or_default(self):
+        """Return featured image for splash page."""
         return self.featured_image or 'img/featured-default.gif'
 
     def __unicode__(self):
+        """Return a string representation of the user."""
         return unicode(self.user)
 
     @property
-    def has_chosen_identifier(self):
-        """Determine if username has been automatically generated or chosen."""
-        return not self.user.username == base64.urlsafe_b64encode(
+    def username_hash(self):
+        """
+        Return a hash of the users email. Used as a URL component when no
+        username is set (as is the case with users signed up via BrowserID).
+        """
+        return base64.urlsafe_b64encode(
             hashlib.sha1(self.user.email).digest()).rstrip('=')
 
     @property
+    def has_chosen_identifier(self):
+        """Determine if user has a generated or chosen public identifier.."""
+        return self.name or (not self.user.username == self.username_hash)
+
+    @property
     def masked_email(self):
+        """
+        If a user does not have a display name or a username, their email may
+        be displayed on their profile. This returns a masked copy so we don't
+        leak that data.
+        """
         user, domain = self.user.email.split('@')
         mask_part = lambda s, n: s[:n] + u'…' + s[-1:]
         return '@'.join(
@@ -83,6 +99,7 @@ class Profile(models.Model):
 
     @property
     def display_name(self):
+        """Choose and return the best public display identifier for a user."""
         if self.name:
             return self.name
         if self.has_chosen_identifier:
