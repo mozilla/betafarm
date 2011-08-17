@@ -48,11 +48,11 @@ def compress():
     run_manage_cmd('compress_assets')
 
 
-def switch(branchname):
-    """Switch branches"""
+def new_branch(branch):
+    """Checkout a new branch"""
     with cd(env.proj_root):
-        run('git checkout %s' % (branchname,))
-        run('git pull origin %s' % (branchname,))
+        run('git checkout -b %s origin/%s' % (branch, branch))
+    update(branch)
     syncdb()
     migrate()
     compress()
@@ -61,6 +61,7 @@ def switch(branchname):
 
 
 def deploy(branch):
+    """Deploy latest code from ``branch``."""
     update(branch)
     syncdb()
     migrate()
