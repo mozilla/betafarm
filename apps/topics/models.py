@@ -15,10 +15,14 @@ class Topic(models.Model):
     image = models.ImageField(verbose_name=_(u'Image'), blank=True,
                               upload_to=settings.TOPIC_IMAGE_PATH, null=True,
                               max_length=settings.MAX_FILEPATH_LENGTH)
+    draft = models.BooleanField(default=False)
 
     @property
     def image_or_default(self):
         return self.image or 'img/topic-default.gif'
 
     def __unicode__(self):
-        return self.name
+        if self.draft:
+            return "%s (in draft)" % self.name
+        else:
+            return self.name
