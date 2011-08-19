@@ -47,7 +47,9 @@
       <h3 class="light">{{ _('Projects') }}</h3>
       <ul>
         {% for project in profile.project_set.all() -%}
+            {% if not project.active_topics.count() == 0 %}
           <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></li>
+            {% endif %}
         {% endfor -%}
       </ul>
       {% if profile.bio -%}
