@@ -300,3 +300,5 @@ PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
 PUSH_DEFAULT_HUB_USERNAME = ''
 PUSH_DEFAULT_HUB_PASSWORD = ''
 PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
+
+SOUTH_TESTS_MIGRATE = False
