@@ -83,16 +83,26 @@ def activity_page(request, slug, page=1):
     project = get_object_or_404(Project, slug=slug)
     start = int(page) * ACTIVITY_PAGE_SIZE
     end = start + ACTIVITY_PAGE_SIZE
-    activities = Activity.objects.filter(
+    all_activities = Activity.objects.filter(
         entry__link__project=project).select_related(
         'entry', 'entry__link', 'entry__link__project').order_by(
-        '-published_on')[start:end]
+        '-published_on')
+    activities = all_activities[start:end]
     if not activities:
         raise Http404
-    return jingo.render(request, 'activity/activity.html', {
-        'activities': activities,
-        'show_meta': False,
-    })
+    if request.is_ajax():
+        return jingo.render(request, 'activity/activity.html', {
+            'activities': activities,
+            'show_meta': False,
+         })
+    else:
+        has_more = len(all_activities) > end
+        return jingo.render(request, 'projects/activity.html', {
+            'project': project,
+            'activities': activities,
+            'has_more': has_more,
+            'next_page': int(page) + 1
+        })
 
 
 def activity(request, slug):
@@ -107,7 +117,9 @@ def activity(request, slug):
     return jingo.render(request, 'projects/activity.html', {
         'project': project,
         'activities': activities[:ACTIVITY_PAGE_SIZE],
-        'has_more': has_more
+        'has_more': has_more,
+        'next_page': 1,
+        'total': len(activities)
     })
 
 

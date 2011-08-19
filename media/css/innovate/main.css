@@ -471,6 +471,14 @@ li.links .button {
     color: #74726A;
     font-weight: bold;
 }
+#activity .message {
+    text-align: center;
+    background: none;
+}
+.message b {
+    background: transparent url('/media/img/ajax-loader.gif') no-repeat left center;
+    padding-left: 26px;
+}
 #add_links {
     border: none;
 }
@@ -1562,6 +1570,9 @@ footer ul {
 }
 footer ul a {
   color: #74726a;
+}
+footer a[rel=license] {
+    display: block;
 }
 /* overflow */
 .overflow {

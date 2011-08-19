@@ -33,14 +33,14 @@
 
 <section id="activity" class="clearfix">
   {% if activities -%}
-  <ul class="activityStream">
+  <ul class="activityStream" data-total-entries="{{ total }}">
     {% set show_meta = False %}
     {% include "activity/activity.html" %}
   </ul>
 
 {% if has_more -%}
     <div class="c4">
-      <button page="1" class="fetchActivity sans" style="width:100%">{{ _('load older') }}</button>
+      <a class="button fetchActivity sans" href="{{ url('projects_activity', slug=project.slug) }}{{ next_page }}/">{{ _('show older') }}</a>
     </div>
 {% endif -%}
 

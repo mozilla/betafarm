@@ -22,16 +22,26 @@ def dashboard_activity(request, page=1):
     start = int(page) * ACTIVITY_PAGE_SIZE
     end = start + ACTIVITY_PAGE_SIZE
     profile = request.user.get_profile()
-    activities = Activity.objects.filter(
+    all_activities = Activity.objects.filter(
         entry__link__project__in=profile.projects_following.all()
     ).select_related('entry', 'entry__link', 'entry__link__project').order_by(
-        '-published_on')[start:end]
+        '-published_on')
+    activities = all_activities[start:end]
     if not activities:
         raise Http404
-    return jingo.render(request, 'activity/activity.html', {
-        'activities': activities,
-        'show_meta': True,
-    })
+    if request.is_ajax():
+        return jingo.render(request, 'activity/activity.html', {
+            'activities': activities,
+            'show_meta': True,
+        })
+    else:
+        has_more = len(all_activities) > end
+        return jingo.render(request, 'users/dashboard.html', {
+            'profile': profile,
+            'activities': activities,
+            'has_more': has_more,
+            'next_page': int(page) + 1
+        })
 
 
 @login_required
@@ -47,7 +57,9 @@ def dashboard(request):
     return jingo.render(request, 'users/dashboard.html', {
         'profile': profile,
         'activities': activities[:ACTIVITY_PAGE_SIZE],
-        'has_more': has_more
+        'has_more': has_more,
+        'next_page' : 1,
+        'total': len(activities)
     })
 
 
