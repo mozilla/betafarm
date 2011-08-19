@@ -59,7 +59,7 @@ class Profile(models.Model):
     @property
     def avatar_or_default(self):
         """Return user provided avatar, or default if none exists."""
-        return self.avatar or 'img/person-default.gif'
+        return self.avatar or 'img/user-default.jpg'
 
     @property
     def featured_image_or_default(self):
