@@ -8,6 +8,9 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
+        # disable foreign key checks in case this migration is run before 'feeds.Entry' exists.
+        db.execute('SET FOREIGN_KEY_CHECKS=0')
+
         # Adding model 'Activity'
         db.create_table('activity_activity', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -15,7 +18,6 @@ class Migration(SchemaMigration):
             ('published_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal('activity', ['Activity'])
-
 
     def backwards(self, orm):
         
