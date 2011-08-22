@@ -14,26 +14,26 @@ class ProfileData(TestCase):
             password=u'password1',
             is_active=True
         )
-        self.Profile = Profile.objects.create(
+        self.profile = Profile.objects.create(
             user=self.User
         )
 
     def test_social_links(self):
-        user_slug = '/en-US/profile/%s/' % self.Profile.user.username
+        user_slug = '/en-US/profile/%s/' % self.profile.user.username
         response = self.client.get(user_slug)
         self.assertEqual(response.context['social_links'], False)
 
         Link.objects.create(
             name=u'Test',
             url=u'http://www.mozilla.org',
-            profile=self.Profile
+            profile=self.profile
         )
 
         response = self.client.get(user_slug)
         self.assertNotEqual(response.context['social_links'], False)
 
     def test_project_links(self):
-        user_slug = '/en-US/profile/%s/' % self.Profile.user.username
+        user_slug = '/en-US/profile/%s/' % self.profile.user.username
         response = self.client.get(user_slug)
         self.assertEqual(response.context['projects'], False)
 
@@ -44,7 +44,7 @@ class ProfileData(TestCase):
             long_description=u'Blah blah'
         )
 
-        p.followers.add(self.Profile)
+        p.followers.add(self.profile)
 
         response = self.client.get(user_slug)
         self.assertNotEqual(response.context['projects'], False)
