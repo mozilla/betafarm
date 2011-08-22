@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
-from innovate import middleware
-
 
 def get_users(filter_f=None):
     users = User.objects.all()
