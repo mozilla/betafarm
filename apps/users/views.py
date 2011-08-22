@@ -58,7 +58,7 @@ def dashboard(request):
         'profile': profile,
         'activities': activities[:ACTIVITY_PAGE_SIZE],
         'has_more': has_more,
-        'next_page' : 1,
+        'next_page': 1,
         'total': len(activities)
     })
 
