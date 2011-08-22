@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from users.models import Profile, Link
 from projects.models import Project
 
+
 class ProfileData(TestCase):
-    
+
     def setUp(self):
         self.client = Client()
         self.User = User.objects.create(
