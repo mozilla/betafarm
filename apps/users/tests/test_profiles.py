@@ -44,7 +44,7 @@ class ProfileData(TestCase):
             long_description=u'Blah blah'
         )
 
-        p.followers.add(self.profile)
+        p.team_members.add(self.profile)
 
         response = self.client.get(user_slug)
         self.assertNotEqual(response.context['projects'], False)
