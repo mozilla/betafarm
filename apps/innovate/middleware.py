@@ -9,15 +9,25 @@ class ProfileMiddleware(object):
 
     @classmethod
     def safe_paths(cls):
-        return ('users_edit', 'django.views.static.serve', 'users_signout')
+        return ('users_edit', 'django.views.static.serve', 'users_signout',
+                'users_profile_add_link', 'users_profile_links',
+                'users_profile_delete_link')
+
+    def is_safe(self, path):
+        try:
+            match = resolve(path)
+            return match.url_name in self.__class__.safe_paths()
+        except:
+            return False
 
     def process_request(self, request):
-        try:
-            path = u'/%s' % ('/'.join(request.path.split('/')[2:]),)
-            match = resolve(path)
-            if match.url_name in ProfileMiddleware.safe_paths():
-                return
-        except:
+        # django debug_toolbar
+        if '__debug__' in request.path:
+            return
+        if self.is_safe(request.path):
+            return
+        path = u'/%s' % ('/'.join(request.path.split('/')[2:]),)
+        if self.is_safe(path):
             return
         if request.user.is_authenticated():
             profile = request.user.get_profile()

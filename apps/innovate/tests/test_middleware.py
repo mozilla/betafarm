@@ -65,20 +65,31 @@ class MiddlewareTests(TestCase):
         with user_with_generated_id(fake):
             client = Client()
             client.login()
-            response = self._get_and_follow_redirect(
-                client, reverse('users_edit'))
-            assert response.status_code == 200
-            response = self._get_and_follow_redirect(
-                client, reverse('django.views.static.serve', kwargs={
-                    'path': '/media/css/innovate/main.css',
-                }))
-            assert response.status_code == 200
+            expect_ok = (
+                self._get_and_follow_redirect(client, reverse('users_edit')),
+                self._get_and_follow_redirect(
+                    client, reverse('django.views.static.serve', kwargs={
+                        'path': '/media/css/innovate/main.css'
+                    })
+                ),
+                self._get_and_follow_redirect(
+                    client, reverse('users_profile_add_link')),
+                self._get_and_follow_redirect(
+                    client, reverse('users_profile_links')),
+                self._get_and_follow_redirect(
+                    client, reverse('users_profile_delete_link', kwargs={
+                        'id': 1,
+                    })
+                )
+            )
+            for response in expect_ok:
+                self.assertEqual(200, response.status_code)
+            # users_signout is expected to 302 regardless.
             response = self._get_and_follow_redirect(
                 client, reverse('users_signout'))
-            # users_signout is expected to 302 regardless.
-            assert response.status_code == 302
+            self.assertEqual(302, response.status_code)
             location = response.get('location', None)
-            assert location == 'http://testserver/'
+            self.assertEqual('http://testserver/', location)
 
     @fudge.patch('django_browserid.auth.BrowserIDBackend.authenticate')
     def test_user_with_chosen_id(self, fake):
