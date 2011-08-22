@@ -53,8 +53,18 @@ def profile(request, username):
     """Display profile page for user specified by ``username``."""
     user = get_object_or_404(auth.models.User, username=username)
     profile = get_object_or_404(Profile, user=user)
+    if profile.link_set.count() != 0:
+        social_links = profile.link_set.all()
+    else:
+        social_links = False
+    if profile.project_set.count() != 0:
+        projects = profile.project_set.all()
+    else:
+        projects = False
     return jingo.render(request, 'users/profile.html', {
-        'profile': profile
+        'profile': profile,
+        'social_links': social_links,
+        'projects': projects
     })
 
 
