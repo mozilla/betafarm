@@ -44,7 +44,7 @@
             <img class="block thick" src="{{ MEDIA_URL }}{{ featured_project.featured_image_or_default }}" width="260" height="125">
             <h4>{{ featured_project.name }}</h4>
             </a>
-            <p>{{ featured_project.description|truncate(43) }}</p>
+            <p>{{ featured_project.description|striptags|truncate(43) }}</p>
         </article>
         {% endif %}
     </section>
@@ -59,7 +59,7 @@
             <img class="block thick" src="{{ MEDIA_URL }}{{ featured_event.featured_image_or_default }}" width="260" height="125">
             <h4>{{ featured_event.name }}</h4>
             </a>
-            <p>{{ featured_event.description|truncate(43) }}</p>
+            <p>{{ featured_event.description|striptags|truncate(43) }}</p>
         </article>
         {% endif %}
     </section>
@@ -74,7 +74,7 @@
             <img class="block thick" src="{{ MEDIA_URL }}{{ featured_user.featured_image_or_default }}" width="260" height="125">
             <h4>{{ featured_user.display_name }}</h4>
             </a>
-            <p>{{ featured_user.bio|truncate(45) }}</p>
+            <p>{{ featured_user.bio|striptags|truncate(45) }}</p>
         </article>
         {% endif %}
     </section>
