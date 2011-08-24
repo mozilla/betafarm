@@ -733,7 +733,7 @@ hr {
 strong {
   font-weight: bold;
 }
-button, a.button, section#subNav .related a.button {
+button, a.button {
   background-color: #fff;
   border: 1px solid #bbb;
   padding: 5px 10px;
@@ -754,17 +754,17 @@ button, a.button, section#subNav .related a.button {
   -o-box-shadow: 0 0 0 1px #ffffff inset;
   box-shadow: 0 0 0 1px #ffffff inset;
 }
-a.button:hover, section#subNav .related a.button:hover {
+a.button:hover  {
   text-decoration: none;
 }
-button:active, a.button:active, section#subNav .related a.button:active {
+button:active, a.button:active {
   border: 1px solid #666;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
   -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 20px rgba(0, 0, 0, 0.25) inset;
 }
-button img, a.button img, section#subNav .related a.button img {
+button img, a.button img {
   vertical-align: text-top;
 }
 /* columns */
@@ -1286,51 +1286,48 @@ div[role="banner"] a:focus {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 /* sub navigation */
-section#subNav {
-  width: 160px;
-}
-section#subNav li {
+.sup li {
   list-style-type: none;
   border-width: 1px 0 0 0;
   border-color: rgba(0, 0, 0, 0.15);
   border-style: solid;
   position: relative;
 }
-section#subNav a {
+.sup a {
   display: block;
   padding: 5px;
 }
-section#subNav li:last-child {
+.sup li:last-child {
   border-width: 1px 0;
 }
-section#subNav li.selected a:after {
+.sup li.selected a:after {
   content: '\276F';
   float: right;
   color: #4e7892;
 }
-section#subNav li.selected {
+.sup li.selected {
   background-color: rgba(0, 0, 0, 0.05);
   font-weight: bold;
 }
-section#subNav ul.c1 {
-  margin: 0 10px 21px 10px;
+.sup ul {
+  margin-bottom: 21px;
 }
-section#subNav h3.c1 {
+.sup h3 {
   margin: 21px 10px 7px 10px;
 }
-section#subNav button {
+.sup button {
   width: 100%;
   margin: 0 0 20px 0;
 }
-section#subNav .related li {
+.sup .related li {
   border: none;
   display: block;
 }
-section#subNav .related a {
+.sup .related a {
   display: inline;
   padding: 0;
 }
-section#subNav .related img {
+.sup .related img {
   vertical-align: text-top;
 }
 /* sidebar (research and events) */
@@ -1383,7 +1380,7 @@ section img.thick, .avatarWrap img {
 a img.thick:hover {
   border: 2px solid rgba(0, 0, 0, 0.2);  
 }
-section#subNav img.thick {
+.sup img.thick {
   border-bottom: 0 none;
   min-height: 140px;
 }
