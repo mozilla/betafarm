@@ -50,6 +50,10 @@ class Project(models.Model):
         return self.featured_image or 'img/featured-default.gif'
 
     @property
+    def active_topics(self):
+        return self.topics.filter(draft=False)
+    
+    @property
     def blog(self):
         blog = self.link_set.filter(blog=True)
         return blog and blog[0] or None

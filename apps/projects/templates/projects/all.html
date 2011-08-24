@@ -51,6 +51,7 @@
     </li>
 #}
     {% for project in projects -%}
+        {% if not project.active_topics.count() == 0 %}
       <li class="project clearfix table_group">
         <div class="c1 cell"><a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a></div>
         <div class="c3 cell">
@@ -58,12 +59,13 @@
             <p class="serif">{{ project.description }}</p>
             <div class="projectTopic">
               focus:
-              {% for topic in project.topics.all() -%}
+              {% for topic in project.active_topics -%}
                 <a class="topicColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a>{% if not loop.last -%}, {% endif -%}
               {% endfor -%}
           </div>
         </div>
       </li>
+      {% endif %}
     {% endfor -%}
   </ul>
 </section>

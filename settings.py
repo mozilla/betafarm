@@ -111,6 +111,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #'jingo_minify.helpers.build_ids',
 
     'topics.context_processors.topics',
+    'django.core.context_processors.request',
 )
 
 TEMPLATE_DIRS = (
@@ -164,6 +165,8 @@ MIDDLEWARE_CLASSES = (
 
     'commonware.middleware.FrameOptionsHeader',
     'innovate.middleware.ProfileMiddleware',
+
+    'waffle.middleware.WaffleMiddleware',
 )
 
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
@@ -207,6 +210,9 @@ INSTALLED_APPS = (
     # Feed subscription
     'django_push.subscriber',
     'feeds',
+
+    # Feature flipping
+    'waffle',
 
     # Betafarm specific
     'innovate',
@@ -300,3 +306,5 @@ PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
 PUSH_DEFAULT_HUB_USERNAME = ''
 PUSH_DEFAULT_HUB_PASSWORD = ''
 PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
+
+SOUTH_TESTS_MIGRATE = False

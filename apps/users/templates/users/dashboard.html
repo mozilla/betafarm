@@ -5,6 +5,9 @@
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Betafarm') }}{% endblock -%}
 
+{% block page_id %}dashboard{% endblock %}
+{% block section_class %}profile{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),
@@ -19,7 +22,7 @@
    ), (), False) }}
 
 <section id="activity" class="clearfix">
-  <ul class="activityStream">
+  <ul class="activityStream" data-total-entries="{{ total }}">
     {% set show_meta = True %}
     {% include "activity/activity.html" %}
   </ul>
@@ -27,7 +30,7 @@
   {% if has_more -%}
   <div class="c1"></div>
   <div class="c4">
-    <button page="1" class="fetchActivity sans" style="width:100%">load older</button>
+    <a class="button fetchActivity sans" href="{{ url('users_dashboard') }}{{ next_page }}/">{{ _('load older') }}</a>
   </div>
   {% endif -%}
 
