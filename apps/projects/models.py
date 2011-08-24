@@ -29,8 +29,17 @@ class Project(models.Model):
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
+    followers = models.ManyToManyField(Profile,
+                                       verbose_name=_(u'Followers'),
+                                       related_name=u'projects_following')
 
     tags = TaggableManager(blank=True)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('projects_show', (), {
+            'slug': self.slug
+        })
 
     @property
     def image_or_default(self):
@@ -40,6 +49,10 @@ class Project(models.Model):
     def featured_image_or_default(self):
         return self.featured_image or 'img/featured-default.gif'
 
+    @property
+    def active_topics(self):
+        return self.topics.filter(draft=False)
+    
     @property
     def blog(self):
         blog = self.link_set.filter(blog=True)
@@ -72,6 +85,7 @@ class Link(models.Model):
     blog = models.BooleanField(default=False)
     subscription = models.ForeignKey(Subscription, null=True, blank=True)
     project = models.ForeignKey(Project, null=True, blank=True)
+    featured = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)

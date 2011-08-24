@@ -3,6 +3,9 @@
 
 {% block page_title %}{{ _('About : Mozilla Betafarm') }}{% endblock %}
 
+{% block page_id %}about{% endblock %}
+{% block section_class %}about{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Betafarm Home')),
@@ -10,11 +13,7 @@
 {% endblock -%}
 
 {% block content -%}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ _('About Mozilla Betafarm') }}</h1>
-  </div>
-</section>
+<h1 class="light c6">{{ _('About Mozilla Betafarm') }}</h1>
 <section class="w3 clearfix">
   <div class="c3 content">
     <p class="serif large topicColor"><em>Mozilla&rsquo;s</em> mission is to move the Web forward with the user always front, center and fully in control.</p>
@@ -23,7 +22,7 @@
     
     <p class="serif">Not all of the ideas you see here will make it to fruition&mdash;some of them will quite possibly fail. If you're interested in not just watching the Web evolve but taking an active part in shaping its future, we invite you to join in our open innovation process.</p>
     
-    <p class="serif">Find a project that resonates with you and get involved. Or <a href="signup.html">Join <em>Mozilla</em></a> and become a supporter of our ongoing efforts.</p>
+    <p class="serif">Find a project that resonates with you and get involved. Or <a href="https://join.mozilla.org/">Join <em>Mozilla</em></a> and become a supporter of our ongoing efforts.</p>
   </div>
 </section>
 {% endblock -%}

@@ -2,6 +2,9 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/errorlist.html" import errorlist %}
 
+{% block page_id %}edit_user{% endblock %}
+{% block section_class %}profile{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Betafarm Home')),
@@ -9,6 +12,7 @@
 {% endblock -%}
 
 {% block content -%}
+<h1 class="c6 light">Edit profile</h1>
 <section id="profile_edit" class="clearfix">
   <div class="c3 paper">
     <h2 class="light">{{ _('Your Profile') }}</h2>
@@ -32,30 +36,28 @@
         </li>
         <li class="links">
           <label>{{ _('Your Links') }}</label>
-          <ul class="yourLinks">
-            <li class="clearfix">
-                <div class="linkName overflow">Twitter</div>
-                <div class="linkUrl overflow"><a class="brandColor" href="#">http://twitter.com/_andychung</a></div>
-                <button class="delete sans">delete</button>
-            </li>
-            <li class="clearfix">
-                <div class="linkName overflow">GitHub</div>
-                <div class="linkUrl overflow"><a class="brandColor" href="#">http://github.com/andychung</a></div>
-                <button class="delete sans">delete</button>
-            </li>
-          </ul>
-          <div class="addLink">
-              <input type="text" placeholder="Link title">
-              <input type="text" placeholder="Link URL">
-              <button class="add sans">Add Link</button>
-          </div>
+          {% include "users/links.html" %}
+          <fieldset id="add_links">
+            <legend><span>Add a link</span></legend>
+            <div class="clearfix addLink" data-list-links="{{ url('users_profile_links') }}">
+            <div>
+            <label for="id_title">Title</label>
+            <input id="id_title" name="link_name" type="text">
+            </div>
+            <div>
+            <label for="id_url">URL</label>
+            <input id="id_url" name="link_url" type="text">
+            </div>
+            <a class="button add sans" href="{{ url('users_profile_add_link') }}">Add Link</a>
+            </div>
+          </fieldset>
         </li>
         <li>
           <label for="id_bio">{{ _('Bio') }}</label>
           {{ form.bio }}
         </li>
       </ul>
-      <button class="submit sans">{{ _('save!') }}</button>
+      <button class="submit sans" type="submit">{{ _('save!') }}</button>
     </form>
   </div>
 </section>

@@ -1,0 +1,5 @@
+{% from "activity/helpers.html" import activity with context %}
+
+{% for obj in activities -%}
+  {{ activity(obj, show_meta) }}
+{% endfor -%}

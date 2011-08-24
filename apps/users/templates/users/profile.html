@@ -4,9 +4,13 @@
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Betafarm') }}{% endblock -%}
 
+{% block page_id %}user_profile{% endblock %}
+{% block section_class %}profile{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),
+     (url('users_all'), _('People')),
      last=profile.display_name) }}
 {% endblock -%}
 
@@ -34,18 +38,24 @@
     </div>
 
     <aside class="c2 paper researchSidebar">
+      {% if social_links %}
       <h3 class="light">{{ _('Social') }}</h3>
       <ul>
-        {% for link in profile.links.all() -%}
-        <li class="{{ link.service }} icon"><a class="brandColor" href="{{ link.url }}">{{ link.name }}</a></li>
+        {% for link in profile.link_set.all() -%}
+        <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
         {% endfor -%}
       </ul>
+      {% endif %}
+      {% if projects %}
       <h3 class="light">{{ _('Projects') }}</h3>
       <ul>
         {% for project in profile.project_set.all() -%}
+            {% if not project.active_topics.count() == 0 %}
           <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></li>
+            {% endif %}
         {% endfor -%}
       </ul>
+      {% endif %}
       {% if profile.bio -%}
       <h3 class="light">{{ _('About') }}</h3>
       <p>{{ profile.bio }}</p>

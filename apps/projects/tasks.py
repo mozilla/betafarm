@@ -1,10 +1,9 @@
-import time
 import bleach
 
 from celery.task import Task
 from django_push.subscriber.models import Subscription, SubscriptionError
 
-from projects.utils import PushFeedParser
+from projects.utils import PushFeedParser, FeedEntryParser
 from feeds.models import Entry
 
 
@@ -48,23 +47,12 @@ class PushUnsubscriber(Task):
 
 class PushNotificationHandler(Task):
 
-    def _get_prefered_content(self, content):
-        if not isinstance(content, list):
-            return content.value
-        for c in content:
-            if c.type == 'text/html':
-                return c.value
-            if c.type == 'application/xhtml+xml':
-                return c.value
-            if c.type == 'text/plain':
-                return c.value
-        return content[0].value
-
-    def create_entry(self, title, link, body, updated, project):
-        body = bleach.clean(body, tags=TAGS, attributes=ATTRIBUTES)
+    def create_entry(self, entry, link):
+        content = bleach.clean(
+            entry.content, tags=TAGS, attributes=ATTRIBUTES, strip=True)
         entry = Entry.objects.create(
-            title=title, link=link, body=body, project=project,
-            published=updated)
+            title=entry.title, url=entry.link, body=content,
+            link=link, published=entry.updated)
         return entry
 
     def run(self, notification, sender, **kwargs):
@@ -73,12 +61,7 @@ class PushNotificationHandler(Task):
             return
         for entry in notification.entries:
             log.debug('Received notification of entry: %s, %s' % (
-                entry.title, entry.link))
-            title = entry.title
-            link = entry.link
-            content = self._get_prefered_content(entry.content)
-            updated = time.strftime('%Y-%m-%d %H:%M:%S', entry.updated_parsed)
-            projects = filter(lambda x: x not in ['', None],
-                              [l.project for l in sender.link_set.all()])
-            for project in projects:
-                self.create_entry(title, link, content, updated, project)
+                entry.title, entry.url))
+            parsed = FeedEntryParser(entry)
+            for link in sender.link_set.all():
+                self.create_entry(parsed, link)

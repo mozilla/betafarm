@@ -1,4 +1,4 @@
-/*
+_l/*
     Master styles
 */
 a img {
@@ -10,17 +10,47 @@ a img {
 section#promoted {
   padding: 0;
 }
-section#details {
-  padding: 40px 0 0 0;
+#promoted div {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
-section#featured {
-  padding: 20px 0 40px 0;
+.dive-in {
+    padding: 40px 0;
 }
-section#featured p, section#details p {
+.dive-in img {
+    margin: 10px 0;
+}
+.dive-in section {
+    padding: 0
+}
+.dive-in article {
+    margin-top: 20px;
+}
+.dive-in h2,
+.dive-in h4 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
+}
+.dive-in h3 {
+    font-size: 12px;
+}
+.dive-in .projects h2 a,
+.dive-in .projects  h4 {
+    color: #CB4B16;
+}
+.dive-in .events h2 a,
+.dive-in .events  h4 {
+    color: #2AA198;
+}
+.dive-in .people h2 a,
+.dive-in .people  h4 {
+    color: #859900;
+}
+.dive-in a:hover h4 {
+    text-decoration: underline;
+}
+.dive-in p {
   color: #74726a;
-}
-section#featured img {
-  margin: 10px 0;
 }
 
 section#headlines {
@@ -29,17 +59,22 @@ section#headlines {
 
 section#headlines .headlineLabel {
     text-align: right;
-    padding: 0 20px;
+    padding: 0 14px;
     background-color: #fffbed;
     margin: 0 0 0 10px;
     width: 310px;
+    vertical-align: middle;
 }
-
+.headlineLabel h2 {
+    float: right;
+    font-size: 12px;
+    margin-bottom : 0;
+}
 section#headlines .headlineLabel img {
   vertical-align: text-top;
 }
 section#headlines .headline {
-    width: 630px;
+    width: 552px;
     margin: 0 10px 0 0;
     padding: 30px 0 30px 60px;
     background-color: rgba(0,0,0,0.05);
@@ -47,7 +82,7 @@ section#headlines .headline {
     background-repeat: no-repeat;
     background-position: center left;
 }
-section#headlines .headline h2 {
+section#headlines .headline h3 {
   font-size: 21px;
   line-height: 28px;
   font-weight: normal;
@@ -60,25 +95,33 @@ section#headlines .headline p {
   font-style: italic;
   margin: 0;
 }
-section#about {
+aside#site_meta {
   color: #74726a;
   background-color: rgba(0, 0, 0, 0.05);
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 40px 0;
 }
-section#about .actions {
+#site_meta p {
+    width: 300px;
+    float: left;
+}
+#site_meta .actions {
   text-align: right;
-}
-section#about .actions ul {
-  list-style-type: none;
   float: right;
 }
-section#about .actions li {
+#site_meta .actions ul {
+  list-style-type: none;
+  float: right;
+  clear: left;
+}
+#site_meta .actions li {
   float: left;
   margin: 0 0 0 10px;
   font-weight: bold;
   padding: 3px 0;
+  border-bottom: none;
 }
-section#about .actions li img {
+#site_meta .actions li img {
   vertical-align: text-top;
 }
 /* 
@@ -412,14 +455,53 @@ ul.yourLinks .linkUrl {
   text-align: right;
   padding-left: 5px;
 }
-ul.yourLinks button {
+li.links .button {
   float: left;
   display: inline-block;
   margin: 0 0 0 10px;
   width: 48px;
   padding: 5px 0;
+  line-height: 1;
 }
-form .addLink {
+.message {
+    padding: 10px 26px;
+    display: none;
+    background: transparent url('/media/img/ajax-loader.gif') no-repeat right center;
+    text-align: right; 
+    color: #74726A;
+    font-weight: bold;
+}
+#activity .message {
+    text-align: center;
+    background: none;
+}
+.message b {
+    background: transparent url('/media/img/ajax-loader.gif') no-repeat left center;
+    padding-left: 26px;
+}
+#add_links {
+    border: none;
+}
+#add_links legend {
+    margin-bottom: 10px;
+    color: #74726A;
+}
+div.addLink a.button {
+    width: 60px;
+}
+.no-js #edit_user .addLink a.button {
+    margin: 0;
+}
+form .addLink div {
+    float: left;
+}
+.no-js #edit_user .addLink div {
+    display: none;
+}
+div.addLink .button,
+.addLink button {
+    margin-top: 1.6em;
+    float: left;
 }
 form .addLink input {
   width: 168px;
@@ -511,6 +593,14 @@ button.unsubmit:active {
   -moz-box-shadow: 0 0 5px #003763 inset;
   -o-box-shadow: 0 0 5px #003763 inset;
   box-shadow: 0 0 5px #712222 inset;
+}
+.meta {
+    text-align: right;
+}
+.meta button {
+    float: none;
+    display: inline-block;
+    zoom: 1;
 }
 .eventMap {
     float: left;
@@ -622,7 +712,7 @@ footer {
 .serif {
   font-family: "Georgia", Times New Roman, Times, serif;
 }
-#wrapper {
+.wrapper {
   width: 960px;
   margin: 0 auto;
   position: relative;
@@ -772,6 +862,18 @@ button img, a.button img, section#subNav .related a.button img {
   display: table-cell;
   vertical-align: middle;
 }
+.table_group {
+    display: table;
+}
+.table_group .cell {
+    display: table-cell;
+    padding: 0 10px;
+    float: none;
+    vertical-align: middle;
+}
+.table_group .cell:first-child {
+    vertical-align: top;
+}
 .light {
   font-weight: 200;
 }
@@ -832,17 +934,6 @@ button#follow {
   left: 20px;
   background-image: url('/media/img/arrow.png');
 }
-.arrowRight {
-  background-image: url("/media/img/arrowRight.png");
-  display: block;
-  height: 22px;
-  margin-top: -11px;
-  position: absolute;
-  right: -21px;
-  top: 50%;
-  width: 11px;
-  z-index: 1;
-}
 .right {
   text-align: right;
 }
@@ -850,45 +941,49 @@ button#follow {
   margin: 0 0 40px 0;
 }
 .icon {
+  background-image: url('/media/img/icons-sprite.png');
   background-repeat: no-repeat;
   background-position: left 5px;
   padding: 3px 0 3px 21px !important;
 }
+.rss {
+    background-position: -118px -48px;
+}
 .pdf {
-  background-image: url('/media/img/document.png');
+  background-position: -202px -130px;
 }
 .default {
-  background-image: url('/media/img/social-default.png');
+  background-position: -182px -109px;
 }
 .github {
-  background-image: url('/media/img/social-gh.png');
+  background-position: -242px -170px;
 }
 .flickr {
-  background-image: url('/media/img/social-flickr.png');
+  background-position: -222px -150px
 }
 .facebook {
-  background-image: url('/media/img/social-fb.png');
+  background-position: -162px -90px;
 }
 .twitter {
-  background-image: url('/media/img/social-twitter.png');
+  background-position: -142px -70px;
 }
 .blogger {
-  background-image: url('/media/img/social-blogger.png');
+  background-position: -262px -190px;
 }
 .plus {
-  background-image: url('/media/img/social-plus.png');
+  background-position: -282px -210px;
 }
 .tumblr {
-  background-image: url('/media/img/social-tumblr.gif');
+  background-position: -302px -230px;
 }
 .vimeo {
-  background-image: url('/media/img/social-vimeo.png');
+  background-position: -322px -250px;
 }
 .youtube {
-  background-image: url('/media/img/social-youtube.png');
+  background-position: -342px -270px;
 }
 .addons {
-  background-image: url('/media/img/social-amo.png');
+  background-position: -362px -290px;
 }
 /* Universal */
 #universalHeader {
@@ -899,14 +994,17 @@ button#follow {
   font-weight: bold;
   text-transform: uppercase;
 }
-#universalHeader #icon {
-  height: 51px;
+div[role="banner"] h1 {
+    margin-bottom: 0
 }
-#universalHeader #icon img {
+div[role="banner"] a {
+  height: 51px;
+  display: block;
   opacity: 0.5;
   -moz-transition: opacity 0.2s ease;
 }
-#universalHeader #icon img:hover {
+div[role="banner"] a:hover,
+div[role="banner"] a:focus {
   opacity: 1;
 }
 #universalHeader nav#topNav {
@@ -921,6 +1019,13 @@ button#follow {
   margin: 0 0 0 -1px;
   float: left;
   position: relative;
+  padding: 0;
+}
+.projects #universalHeader li.projects,
+.events #universalHeader li.events,
+.users #universalHeader li.users,
+.about #universalHeader li.about {
+    background: #FFF;
 }
 #universalHeader li a {
   display: block;
@@ -964,6 +1069,7 @@ button#follow {
   color: #cb4b16;
 }
 #universalHeader li ul.dropdown {
+  display: none;
   position: absolute;
   width: 190px;
   top: 51px;
@@ -1011,7 +1117,10 @@ button#follow {
 #universalHeader li ul.dropdown li.divide a {
   border-top: 3px double rgba(0, 0, 0, 0.05);
 }
-#universalHeader li.hover a, #universalHeader li.hover a.selected {
+#topNav a:hover,
+#topNav a:focus,
+#topNav .hover a,
+#universalHeader li.hover a.selected {
   z-index: 101;
   -webkit-transition: background-color 0.1s linear;
   -moz-transition: background-color 0.1s linear;
@@ -1024,16 +1133,20 @@ button#follow {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding-bottom: 15px;
 }
-#universalHeader li.hover li a:hover {
+#universalHeader li.hover li a:hover,
+#universalHeader li.hover li a:focus {
   color: #4e7892;
 }
-#universalHeader li.hover li a.topic:hover {
+#universalHeader li.hover li a.topic:hover,
+#universalHeader li.hover li a.topic:focus {
   color: #cb4b16;
 }
-#universalHeader li.hover li a.people:hover {
+#universalHeader li.hover li a.people:hover,
+#universalHeader li.hover li a.people:focus {
   color: #859900;
 }
-#universalHeader li.hover li a.event:hover {
+#universalHeader li.hover li a.event:hover,
+#universalHeader li.hover li a.event:focus {
   color: #2aa198;
 }
 #universalHeader li.hover ul.dropdown {
@@ -1043,6 +1156,7 @@ button#follow {
   transition: opacity 0.2s linear;
   opacity: 1;
   left: 0;
+  display: block;
 }
 #universalHeader li.username {
   min-width: 120px;
@@ -1052,6 +1166,9 @@ button#follow {
   background-color: #222;
   border-color: #222;
   z-index: 101;
+}
+#universalHeader li.username a.dropdown {
+    text-transform: none;
 }
 #universalHeader li.username ul.dropdown {
   background-color: #222;
@@ -1071,22 +1188,20 @@ button#follow {
 #universalHeader li.username ul.dropdown li a.account {
   color: #ccc;
 }
-#universalHeader li.username ul.dropdown li a.account:hover {
+#universalHeader li.username ul.dropdown li a.account:hover,
+#universalHeader li.username ul.dropdown li a.account:focus {
   color: #fff;
 }
 #universalHeader #tab {
   width: 118px;
   height: 49px;
   display: block;
+  overflow: hidden;
   position: absolute;
   right: 10px;
   top: 0;
-  background-image: url('/media/img/tab.png');
-}
-#universalHeader #tab a {
-  width: 118px;
-  height: 49px;
-  display: block;
+  background-image: url('/media/img/icons-sprite.png');
+  text-indent: -9999em;
 }
 /* secondary menu */
 #secondaryMenu ul {
@@ -1101,8 +1216,8 @@ button#follow {
   text-decoration: none;
 }
 #secondaryMenu #breadcrumbs {
-  /* this is an ugly hack */
-
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-width: 1px 0;
 }
 #secondaryMenu #breadcrumbs a {
   color: #74726a;
@@ -1247,6 +1362,12 @@ section {
   padding: 40px 0;
   position: relative;
 }
+section[role="main"] {
+    padding: 0;
+}
+section[role="main"] h1 {
+    padding: 40px 0 21px;
+}
 section img.block {
   display: block;
 }
@@ -1264,6 +1385,7 @@ a img.thick:hover {
 }
 section#subNav img.thick {
   border-bottom: 0 none;
+  min-height: 140px;
 }
 section#title {
   padding: 40px 0 21px;
@@ -1319,7 +1441,7 @@ section#title {
 }
 .content li {
   padding: 0 0 7px;
-  color: rgba(0, 0, 0, 0.25);
+  margin-left: 1em;
 }
 .content li span {
   color: rgba(0, 0, 0, 0.75);
@@ -1449,6 +1571,9 @@ footer ul {
 footer ul a {
   color: #74726a;
 }
+footer a[rel=license] {
+    display: block;
+}
 /* overflow */
 .overflow {
   text-overflow: ellipsis;
@@ -1474,4 +1599,89 @@ html[xmlns] .clearfix {
 body:after {
   content: url('/media/img/breadcrumb.png') url('/media/img/breadcrumb2.png');
   display: none;
+}
+
+section#activity {
+    width: 800px;
+    display: inline-block;
+    float: left;
+    padding: 0;
+}
+
+section#activity ul {
+    list-style-type: none;
+}
+
+section#activity ul li {
+    margin: 0 0 20px;
+}
+
+section#activity ul .meta {
+    text-align: right;
+}
+
+section#activity ul .updateWrap {
+    float: left;
+    margin: 0 0 0 20px;
+    width: 536px;
+}
+
+section#activity ul img {
+    display: block;
+    float: left;
+    height: 64px;
+    position: relative;
+    width: 64px;
+}
+
+section#activity img {
+    display: block;
+    float: left;
+    position: relative;
+}
+
+section#activity ul .updateHeader img {
+    vertical-align: middle;
+}
+
+section#activity ul time {
+    color: #74726a;
+    display: block;
+    font-style: italic;
+}
+
+section#activity ul .updateBody {
+    border-left: 1px solid rgba(0, 0, 0, 0.75);
+    margin: 10px 0 0;
+    padding: 0 0 0 10px;
+}
+
+section#activity ul .updateBody.blogged p {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+}
+
+.arrowRight {
+    background-image: url('/media/img/arrowRight.png');
+    display: block;
+    height: 22px;
+    margin-top: -11px;
+    position: absolute;
+    right: 0px;
+    left: 74px;
+    top: 50%;
+    width: 11px;
+    z-index: 1;
+}
+
+.conceptColor {
+    color: #CB4B16;
+}
+
+.projectColor {
+    color: #2AA198;
+}
+
+.communityColor {
+    color: #859900;
 }

@@ -10,3 +10,6 @@
 [submodule "vendor-local/src/django-push"]
 	path = vendor-local/src/django-push
 	url = git://github.com/brutasse/django-push.git
+[submodule "vendor-local/src/django-waffle"]
+	path = vendor-local/src/django-waffle
+	url = git://github.com/jsocol/django-waffle.git

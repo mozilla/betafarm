@@ -3,6 +3,9 @@
 
 {% block page_title %}{{ _('Projects : Mozilla Betafarm') }}{% endblock %}
 
+{% block page_id %}all_projects{% endblock %}
+{% block section_class %}projects{% endblock %}
+
 {% block breadcrumbs -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Betafarm Home')),
@@ -10,11 +13,7 @@
 {% endblock -%}
 
 {% block content -%}
-<section id="title" class="clearfix">
-  <div class="c6">
-    <h1 class="light noMargin">{{ _('Projects') }}</h1>
-  </div>
-</section>
+<h1 class="light c6">{{ _('Projects') }}</h1>
 
 <section id="subNav" class="w1 clearfix">
   <ul class="c1">
@@ -52,21 +51,21 @@
     </li>
 #}
     {% for project in projects -%}
-      <li class="project clearfix">
-        <div class="c1 vMaster"><a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a></div>
-        <div class="c3">
-          <div class="vAlign">
+        {% if not project.active_topics.count() == 0 %}
+      <li class="project clearfix table_group">
+        <div class="c1 cell"><a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a></div>
+        <div class="c3 cell">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description }}</p>
             <div class="projectTopic">
               focus:
-              {% for topic in project.topics.all() -%}
+              {% for topic in project.active_topics -%}
                 <a class="topicColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a>{% if not loop.last -%}, {% endif -%}
               {% endfor -%}
-            </div>
           </div>
         </div>
       </li>
+      {% endif %}
     {% endfor -%}
   </ul>
 </section>
