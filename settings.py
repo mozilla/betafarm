@@ -148,6 +148,7 @@ MINIFY_BUNDLES = {
         'innovate_js': (
             'js/libs/jquery-1.6.1.min.js',
             'js/functions.js',
+            'js/libs/jquery.isotope.min.js',
         ),
     }
 }

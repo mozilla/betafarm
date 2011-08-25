@@ -29,6 +29,11 @@ def show(request, slug):
 def about(request, slug):
     """Show more detailed information about a specific topic."""
     topic = get_object_or_404(Topic, slug=slug)
-    return jingo.render(request, 'topics/about.html', {
-        'topic': topic
-    })
+    if request.is_ajax():
+        return jingo.render(request, 'topics/ajax/about.html', {
+            'topic': topic
+        })
+    else:
+        return jingo.render(request, 'topics/about.html', {
+            'topic': topic
+        })
