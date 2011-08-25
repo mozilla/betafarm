@@ -153,11 +153,11 @@ betafarm.project_links = function() {
 }();
 
 betafarm.streams = function() {
-    var fetch, init;
+    var fetch, init,
+        loader = false;
     fetch = function(el, bucket) {
         var ajax_url = el.attr('href'),
             max_entries = bucket.attr('data-total-entries'),
-            loader = false,
             loading;
         if (!loader) {
             loader = $('<div class="message"><b>Loading older entries</b></div>').insertBefore(el);
