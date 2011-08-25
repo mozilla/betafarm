@@ -1726,6 +1726,7 @@ section#activity ul .updateBody.blogged p {
     overflow: hidden;
     -moz-transition: width 0.4s ease 1.2s, opacity 0.8s ease 0.4s, margin 0.8s ease 0.4s;
     -webkit-transition: width 0.4s ease 1.2s, opacity 0.8s ease 0.4s, margin 0.8s ease 0.4s;
+    -o-transition: width 0.4s ease 1.2s, opacity 0.8s ease 0.4s, margin 0.8s ease 0.4s;
     transition: width 0.4s ease 1.2s, opacity 0.8s ease 0.4s, margin 0.8s ease 0.4s;
     text-align: right;
 }
@@ -1764,12 +1765,14 @@ section#activity ul .updateBody.blogged p {
     margin: 0;
     -moz-transition: width 0.4s ease 0.4s, opacity 0.8s ease 0.8s, margin 0.8s ease 0.8s;
     -webkit-transition: width 0.4s ease 0.4s, opacity 0.8s ease 0.8s, margin 0.8s ease 0.8s;
+    -o-transition: width 0.4s ease 0.4s, opacity 0.8s ease 0.8s, margin 0.8s ease 0.8s;
     transition: width 0.4s ease 0.4s, opacity 0.8s ease 0.8s, margin 0.8s ease 0.8s;
 }
 #objects {
     margin: 0 155px;
     -moz-transition: all 0.4s ease 1.2s;
     -webkit-transition: all 0.4s ease 1.2s;
+    -o-transition: all 0.4s ease 1.2s;
     transition: all 0.4s ease 1.2s;
 }
 #objects #projectList {
@@ -1779,6 +1782,7 @@ section#activity ul .updateBody.blogged p {
     margin: 0;
      -moz-transition: all 0.4s ease 0.4s;
     -webkit-transition: all 0.4s ease 0.4s;
+    -o-transition: all 0.4s ease 0.4s;
     transition: all 0.4s ease 0.4s;
 
 }
