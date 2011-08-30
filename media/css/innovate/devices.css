@@ -489,6 +489,8 @@ a:hover {
   padding: 0 0 20px 0;
   font-size: 12px;
   position: relative;
+  /* fix to have the drop-down display correctly */
+  z-index: 200;
   font-family: trebuchet MS;
   font-weight: bold;
   text-transform: uppercase;
@@ -510,6 +512,7 @@ div[role="banner"] a:focus {
   height: 52px;
   position: relative;
   z-index: 5;
+  margin-right: 123px;
 }
 #universalHeader ul {
   float: left;
@@ -575,7 +578,7 @@ div[role="banner"] a:focus {
   display: none;
   position: absolute;
   width: 190px;
-  top: 51px;
+  top: 46px;
   left: -999em;
   background-color: rgba(255, 255, 255, 0.9);
   color: #fff;
@@ -632,10 +635,6 @@ div[role="banner"] a:focus {
   background-color: #fff;
   border-color: #D1CDC2;
 }
-#universalHeader li.hover a.dropdown {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding-bottom: 15px;
-}
 #universalHeader li.hover li a:hover,
 #universalHeader li.hover li a:focus {
   color: #4e7892;
@@ -668,7 +667,6 @@ div[role="banner"] a:focus {
   color: #fff;
   background-color: #222;
   border-color: #222;
-  z-index: 101;
 }
 #universalHeader li.username a.dropdown {
     text-transform: none;
@@ -677,12 +675,18 @@ div[role="banner"] a:focus {
   background-color: #222;
   border: 1px solid #000;
   width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #universalHeader li.username ul.dropdown li {
   width: 100%;
 }
 #universalHeader li.username ul.dropdown li a {
   width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   border-top: 1px solid #444;
 }
 #universalHeader li.username ul.dropdown li:first-child a {
@@ -701,11 +705,77 @@ div[role="banner"] a:focus {
   display: block;
   overflow: hidden;
   position: absolute;
-  right: 10px;
+  right: 0;
   top: 0;
   background-image: url('/media/img/icons-sprite.png');
   text-indent: -9999em;
   z-index: 10;
+}
+/**= Breadcrumb */
+#secondaryMenu ul {
+  list-style-type: none;
+  font-size: 12px;
+  padding-left: 0;
+  margin: 0;
+}
+#secondaryMenu li {
+  float: left;
+  display: inline-block;
+}
+#secondaryMenu li a {
+  text-decoration: none;
+}
+#secondaryMenu #breadcrumbs {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-width: 1px 0;
+}
+#secondaryMenu #breadcrumbs a {
+  color: #74726a;
+}
+#secondaryMenu #breadcrumbs li.crumb:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+#secondaryMenu #breadcrumbs li {
+  margin: 0 8px 0 -14px;
+  padding: 0 12px 0 12px;
+  background-image: url('/media/img/breadcrumb.png'), url('/media/img/breadcrumb2.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center right, -5px center;
+  position: relative;
+}
+#secondaryMenu #breadcrumbs li:first-child {
+  margin: 0 8px 0 0;
+  padding: 0 12px 0 0;
+  background-image: url('/media/img/breadcrumb.png');
+  background-repeat: no-repeat;
+  background-position: center right;
+  z-index: 8;
+}
+#secondaryMenu #breadcrumbs li:nth-child(2) {
+  z-index: 7;
+}
+#secondaryMenu #breadcrumbs li:nth-child(3) {
+  z-index: 6;
+}
+#secondaryMenu #breadcrumbs li:nth-child(4) {
+  z-index: 5;
+}
+#secondaryMenu #breadcrumbs li:nth-child(5) {
+  z-index: 4;
+}
+#secondaryMenu #breadcrumbs li:nth-child(6) {
+  z-index: 3;
+}
+#secondaryMenu #breadcrumbs li:nth-child(7) {
+  z-index: 2;
+}
+#secondaryMenu #breadcrumbs li:last-child {
+  background-image: none;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  position: relative;
 }
 /**= Site aside */
 aside#site_meta {
@@ -755,10 +825,6 @@ footer {
 footer ul {
   list-style-type: none;
 }
-footer strong {
-    float: left;
-    margin-right: 15px;
-}
 footer li {
     border-left: 1px solid #74726A;
     float: left;
@@ -784,6 +850,10 @@ footer a[rel=license] {
 footer .c1 {
     clear: left;
 }
+footer .c1 strong {
+    float: left;
+    margin-right: 15px;
+}
 /*= Helpers */
 .clearfix:before,
 .clearfix:after {
@@ -793,6 +863,9 @@ footer .c1 {
 
 .clearfix:after {
     clear:both;
+}
+.brandColor {
+  color: #4e7892 !important;
 }
 .icon {
   background-image: url('/media/img/icons-sprite.png');

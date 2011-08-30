@@ -65,18 +65,25 @@
   width: 960px;
 }
 /*= Overrides */
+#universalHeader li ul.dropdown {
+    top: 51px;
+}
+#universalHeader li.hover a.dropdown {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 15px;
+}
 aside#site_meta {
     padding: 40px 0;
 }
 footer {
     padding: 100px 0;
 }
-footer strong {
-    float: none;
-    margin-right: 0;
-}
 footer .c1 {
     clear: none;
+}
+footer .c1 strong {
+    float: none;
+    margin-right: 0;
 }
 footer ul {
     padding-left: 0;
