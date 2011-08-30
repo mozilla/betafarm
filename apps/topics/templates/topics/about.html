@@ -2,14 +2,14 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import sectiontitle, subnav %}
 
-{% block page_title %}{{ _('About {topic} : Topics : Mozilla Betafarm')|f(topic=topic.name) }}{% endblock %}
+{% block page_title %}{{ _('About {topic} : Topics : Mozilla Labs')|f(topic=topic.name) }}{% endblock %}
 
 {% block page_id %}topic_about{% endblock %}
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-    (url('innovate_splash'), _('Betafarm Home')),
+    (url('innovate_splash'), _('Mozilla Labs Home')),
     (url('topics_show', slug=topic.slug), topic.name),
     last=_('About')) }}
 {% endblock -%}
