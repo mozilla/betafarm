@@ -1477,7 +1477,8 @@ section#title {
   border: none;
 }
 .tags a {
-  text-transform: lowercase;
+    margin: 0;
+    text-transform: lowercase;
   background-color: rgba(0, 0, 0, 0.25);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
