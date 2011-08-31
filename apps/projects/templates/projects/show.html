@@ -43,22 +43,17 @@
 {{ sectiontitle(project.name) }}
 {{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
 
-<section id="projectContent" class="w3 clearfix">
+<section id="projectContent" class="c3 clearfix">
   <div class="row clearfix">
-    <div class="c3 content serif">
+    <div class="content serif">
       <h2 class="sans light">{{ _('About {project}')|f(project=project.name) }}</h2>
       {# only admins can edit project descriptions, so it's okay to use safe here. #}
       {{ project.long_description|safe }}
     </div>
   </div>
-
-  <hr>
-
   <div class="people clearfix">
-    <div class="c3">
-      <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
-    </div>
-    <ul class="peopleList clearfix c3">
+    <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
+    <ul class="db_related clearfix">
       {% for person in project.team_members.all() -%}
         <li>
           <a href="{{ url('users_profile', username=person.user.username) }}">

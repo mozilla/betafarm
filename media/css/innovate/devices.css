@@ -780,6 +780,14 @@ footer .c1 strong {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.75);
 }
+.people {
+    margin-top: 20px;
+    padding: 40px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.people h2 {
+    font-size: 18px;
+}
 .db_related {
     float: left;
     margin: 0;
@@ -986,12 +994,4 @@ img.zoom1 {
 }
 .events_content h2 {
     font-size: 14px;
-}
-.events_content .people {
-    margin-top: 20px;
-    padding: 40px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-}
-.events_content .people h2 {
-    font-size: 18px;
 }
