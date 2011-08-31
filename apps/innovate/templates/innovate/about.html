@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 
-{% block page_title %}{{ _('About : Mozilla Betafarm') }}{% endblock %}
+{% block page_title %}{{ _('About : Mozilla Labs') }}{% endblock %}
 
 {% block page_id %}about{% endblock %}
 {% block section_class %}about{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-    (url('innovate_splash'), _('Betafarm Home')),
+    (url('innovate_splash'), _('Mozilla Labs Home')),
     last=_('About')) }}
 {% endblock -%}
 
 {% block content -%}
-<h1 class="light c6">{{ _('About Mozilla Betafarm') }}</h1>
-<section class="w3 clearfix">
+<h1 class="light c6">{{ _('About Mozilla Labs') }}</h1>
+<section class="w6 clearfix">
+  <div class="c3">
+    <img src="{{ MEDIA_URL }}img/about_labs.png" alt="" width="460" height="533" />
+  </div>
   <div class="c3 content">
     <p class="serif large topicColor"><em>Mozilla&rsquo;s</em> mission is to move the Web forward with the user always front, center and fully in control.</p>
     

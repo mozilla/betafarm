@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 
-{% block page_title %}{{ _('People : Mozilla Betafarm') }}{% endblock %}
+{% block page_title %}{{ _('People : Mozilla Labs') }}{% endblock %}
 
 {% block page_id %}all_users{% endblock %}
 {% block section_class %}users{% endblock %}
 
 {% block breadcrumbs %}
 {{ breadcrumbs(
-    (url('innovate_splash'), _('Betafarm Home')),
+    (url('innovate_splash'), _('Mozilla Labs Home')),
     last=_('People')) }}
 {% endblock %}
 
