@@ -52,7 +52,7 @@ class Project(models.Model):
     @property
     def active_topics(self):
         return self.topics.filter(draft=False)
-    
+
     @property
     def blog(self):
         blog = self.link_set.filter(blog=True)

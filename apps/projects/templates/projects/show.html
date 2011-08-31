@@ -30,7 +30,7 @@
 {% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True),) %}
 {% endif -%}
 
-{% if  user.is_authenticated() %}
+{% if user.is_authenticated() %}
     {% if user.get_profile() in project.followers.all() -%}
     {% set buttons = ((url('projects_unfollow', slug=project.slug), _('Unfollow'), 'unsubmit'),) %}
     {% else -%}
