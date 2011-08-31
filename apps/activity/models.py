@@ -1,7 +1,9 @@
 from django.db import models
 
+from innovate.models import BaseModel
 
-class Activity(models.Model):
+
+class Activity(BaseModel):
     entry = models.ForeignKey('feeds.Entry', blank=True, null=True,
                               unique=True)
     published_on = models.DateTimeField(auto_now_add=True)

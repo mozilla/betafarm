@@ -8,11 +8,12 @@ from django_push.subscriber.signals import updated
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
+from innovate.models import BaseModel
 from projects import tasks
 from users.models import Profile
 
 
-class Project(models.Model):
+class Project(BaseModel):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     slug = models.SlugField(verbose_name=_(u'Slug'), unique=True,
                             max_length=100)
@@ -74,7 +75,7 @@ class Project(models.Model):
         return self.name
 
 
-class Link(models.Model):
+class Link(BaseModel):
     """
     A link that can be added to a project. Links can be 'subscribed' to, in
     which case, entries from the links RSS/Atom feed will be syndicated.

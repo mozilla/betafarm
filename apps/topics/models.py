@@ -3,8 +3,10 @@ from django.db import models
 
 from tower import ugettext_lazy as _
 
+from innovate.models import BaseModel
 
-class Topic(models.Model):
+
+class Topic(BaseModel):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     slug = models.SlugField(verbose_name=_(u'Slug'), unique=True,
                             max_length=100)

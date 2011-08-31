@@ -4,10 +4,11 @@ from django.contrib import admin
 from django.db import models
 from django.db.models.signals import post_save
 
+from innovate.models import BaseModel
 from activity.models import broadcast
 
 
-class Entry(models.Model):
+class Entry(BaseModel):
     title = models.CharField(max_length=100)
     published = models.DateTimeField(default=datetime.datetime.now())
     url = models.URLField()

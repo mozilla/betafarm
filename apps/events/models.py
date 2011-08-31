@@ -3,10 +3,11 @@ from django.db import models
 
 from tower import ugettext_lazy as _
 
+from innovate.models import BaseModel
 from users.models import Profile
 
 
-class Venue(models.Model):
+class Venue(BaseModel):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     slug = models.SlugField(verbose_name=_(u'URL Slug'), unique=True,
                             max_length=100)
@@ -37,7 +38,7 @@ class Venue(models.Model):
         return u', '.join(populated)
 
 
-class Event(models.Model):
+class Event(BaseModel):
     name = models.CharField(verbose_name=_(u'Event Name'),
                             max_length=100)
     slug = models.SlugField(verbose_name=_(u'Slug'), unique=True,
