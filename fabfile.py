@@ -60,11 +60,19 @@ def new_branch(branch):
     restart_celeryd()
 
 
+def submodules():
+    with cd(env.proj_root):
+        run('git submodule init')
+        run('git submodule sync')
+        run('git submodule update')
+
+
 def deploy(branch):
     """Deploy latest code from ``branch``."""
     update(branch)
     syncdb()
     migrate()
     compress()
+    submodules()
     restart_apache()
     restart_celeryd()

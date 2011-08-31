@@ -153,11 +153,11 @@ betafarm.project_links = function() {
 }();
 
 betafarm.streams = function() {
-    var fetch, init;
+    var fetch, init,
+        loader = false;
     fetch = function(el, bucket) {
         var ajax_url = el.attr('href'),
             max_entries = bucket.attr('data-total-entries'),
-            loader = false,
             loading;
         if (!loader) {
             loader = $('<div class="message"><b>Loading older entries</b></div>').insertBefore(el);
@@ -206,6 +206,87 @@ betafarm.streams = function() {
 
 }();
 
+betafarm.filtering = function() {
+    
+    var init, filter, display,
+        filtered = $('#projectList'),
+        holder = $('#projects'),
+        info,
+        loader = false;
+
+    filter = function(topic, aside) {
+        info.find('.current').removeClass('current');
+        aside.addClass('current');
+        filtered.isotope({
+            filter: '.' + topic
+        });
+    };
+   
+    display = function(topic, data) {
+        var topic_info = $('#' + topic),
+            loading;
+        if (!loader) {
+            loader = $('<div class="message c2">Loading topic data</div>').appendTo(info);
+        }
+        if (topic_info.length) {
+            filter(topic, topic_info);
+        } else {
+            loading = window.setTimeout(function() {
+                loading = false;
+                info.addClass('loading');
+            }, 500);
+            $.ajax({
+                type: 'GET',
+                url: data + 'about/',
+                success: function(data) {
+                    info.prepend(data);
+                    filter(topic, $('#' + topic));
+                    if (!loading) {
+                        info.removeClass('loading');
+                    } else {
+                        window.clearTimeout(loading);
+                    }
+                }
+            });
+        }
+    };
+
+    init = function() {
+        
+        if ($('#all_projects').length) {
+            var area = $('section[role=main]');
+
+            info = $('<div id="meta" class="w2"><div class="c2 close ajax_content"><a class="close" href="#">Show all topics</a></div></div>').prependTo(holder);
+                        
+            filtered.isotope({
+                itemSelector : '.project',
+                layoutMode : 'fitRows'
+            });
+        
+            area.bind('click', function(e) {
+                var target = $(e.target);
+                if (target.is('a.tag')) {
+                    holder.addClass('shift');
+                    var url = target.attr('href'),
+                        chunks = target.attr('href').split('/');
+                    display(chunks[chunks.length-2], url);
+
+                    return false;
+                }
+                if (target.is('a.close')) {
+                    holder.removeClass('shift');
+                    filtered.isotope({ filter: '*' });
+                    return false;
+                }
+            });
+        }
+    };
+    
+    return {
+        'init': init
+    };
+}();
+
 $(function($) {
     // sticky footer
     $(window).bind('load resize', function() {
@@ -232,4 +313,5 @@ $(function($) {
     betafarm.navigation.init();
     betafarm.project_links.init();
     betafarm.streams.init();
+    betafarm.filtering.init();
 });

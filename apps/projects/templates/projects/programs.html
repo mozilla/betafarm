@@ -2,21 +2,21 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import sectiontitle %}
 
-{% block page_title %}{{ _('Programs : Mozilla Betafarm') }}{% endblock %}
+{% block page_title %}{{ _('Programs : Mozilla Labs') }}{% endblock %}
 
 {% block page_id %}all_programs{% endblock %}
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Betafarm Home')),
+     (url('innovate_splash'), _('Mozilla Labs Home')),
      last=_('Programs')) }}
 {% endblock -%}
 
 {% block content -%}
 {{ sectiontitle(_('Programs')) }}
 
-<section id="subNav" class="w1 clearfix">
+<section class="sup w1 clearfix">
   <ul class="c1">
     <li class="selected"><a href="{{ url('projects_programs') }}">{{ _('All (A-Z)') }}</a></li>
   </ul>

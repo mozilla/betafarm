@@ -4,7 +4,7 @@
 {% from "activity/helpers.html" import activity with context %}
 
 {% block page_title -%}
-  {{ _('Activity : {project} : Projects : Mozilla Betafarm')|f(project=project.name) }}
+  {{ _('Activity : {project} : Projects : Mozilla Labs')|f(project=project.name) }}
 {% endblock -%}
 
 {% block page_id %}project_blog{% endblock %}
@@ -12,7 +12,7 @@
 
 {% block breadcrumbs -%}
   {{ breadcrumbs(
-       (url('innovate_splash'), _('Betafarm Home')),
+       (url('innovate_splash'), _('Mozilla Labs Home')),
        (url('projects_all'), _('Projects')),
        (url('projects_show', slug=project.slug), project.name),
        last=_('Activity')) }}

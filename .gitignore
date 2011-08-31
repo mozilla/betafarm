@@ -1,6 +1,7 @@
 settings_local.py
 *.py[co]
 *.sw[po]
+*.komodoproject
 .coverage
 pip-log.txt
 docs/_gh-pages
