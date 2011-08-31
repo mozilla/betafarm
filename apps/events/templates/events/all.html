@@ -22,33 +22,26 @@
 </section>
 
 <section id="eventsContent" class="c3">
-  <ul id="posts" class="clearfix">
+  <ul id="posts" class="db_objects clearfix">
     {% for event in events -%}
-    <li class="post">
-      <div class="eventMap">
-        <a class="map" href="{{ url('events_show', slug=event.slug) }}">
-          <span class="zoom2-hit"></span>
-          <img class="zoom0 thick block" width="140" height="140" src="http://maps.google.com/maps/api/staticmap?zoom=7&amp;size=140x140&amp;maptype=roadmap&amp;sensor=false&amp;markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+    <li class="obj">
+        <a href="{{ url('events_show', slug=event.slug) }}">
+            <img class="zoom0 thick block" width="140" height="140" src="http://maps.google.com/maps/api/staticmap?zoom=7&amp;size=140x140&amp;maptype=roadmap&amp;sensor=false&amp;markers=color:red|{{ event.venue.full_address }}&center={{ event.venue.full_address }}">
+            <h3>{{ event.name }}</h3> 
+            <time datetime="{{ event.start.strftime('%Y-%m-%d') }}">{{ event.start.strftime('%B %d, %Y') }}</time>
         </a>
-      </div>
-      <div class="eventListInfo">
-        <h3 class="normal"><a class="eventColor" href="{{ url('events_show', slug=event.slug) }}">{{ event.name }}</a></h3>
-        <div class="blogHeader">
-          <time datetime="{{ event.start.strftime('%Y-%m-%d') }}">{{ event.start.strftime('%B %d, %Y') }}</time>
-        </div>
         <div class="content">
           {# editable by admin only. okay to use 'safe' here. #}
           <p class="serif">{{ event.description|truncate(160)|safe }}</p>
         </div>
-      </div>
     </li>
     {% endfor -%}
   </ul>
 </section>
 
 {% if upcoming -%}
-<aside id="eventsSidebar" class="w2 clearfix">
-  <div class="c2 paper">
+<aside id="eventsSidebar" class="c2 clearfix">
+  <div class="paper">
     <h3 class="light">{{ _('Upcoming Events') }}</h3>
     <ul>
       {% for event in upcoming -%}

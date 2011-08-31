@@ -68,12 +68,32 @@
   width: 100%;
 }
 /*= Overrides */
+section[role="main"] h1 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 #universalHeader li ul.dropdown {
     top: 51px;
 }
 #universalHeader li.hover a.dropdown {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding-bottom: 15px;
+}
+.sup ul {
+    border-bottom: none;
+}
+.sup li {
+    border-width: 0 0 1px 0;
+    float: none;
+}
+.sup li:first-child {
+    border-width: 1px 0;
+}
+.sup a {
+    padding: 5px;
+}
+.sup li.selected a:after {
+    content: '\276F';
 }
 aside#site_meta {
     padding: 40px 0;
@@ -107,4 +127,40 @@ footer li a {
     margin: 10px 0;
     float: none;
     width: 100%;
+}
+/**= Event page */
+.map .zoom0,
+.map .zoom1,
+.map .zoom2 {
+  display: block;
+  -moz-transform: scale(1);
+  -moz-transition: opacity .5s;
+  -moz-transform-property: opacity, -moz-transform;
+}
+.map .zoom1,
+.map .zoom2 {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.map .zoom2-hit {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  height: 33%;
+  margin: auto;
+}
+.map .map:hover .zoom0,
+.map .zoom2-hit:hover ~ .zoom1 {
+  -moz-transform: scale(2);
+}
+.map:hover .zoom1,
+.map .zoom2-hit:hover ~ .zoom2 {
+  opacity: 1;
 }
