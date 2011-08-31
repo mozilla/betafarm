@@ -35,7 +35,7 @@
         <h2><a href="{{ url('projects_all') }}">{{ _('Projects') }}</a></h2>       
         <p>{% trans %}Check out the areas of focus on the open web that we're thinking about; projects, research, and contests!{% endtrans %}</p>
         {% if featured_project %}
-        <article class="paper">
+        <article class="paper clearfix">
             <div class="arrow"></div>
             <h3>{{ _('Featured Project') }}</h3>
             <a href="{{ url('projects_show', slug=featured_project.slug) }}">
@@ -50,7 +50,7 @@
         <h2><a href="{{ url('events_all') }}">{{ _('Events') }}</a></h2>
         <p>{% trans %}Find and participate in events happening in your area or engage in one of our online contests.{% endtrans %}</p>
         {% if featured_event %}
-        <article class="paper">
+        <article class="paper clearfix">
             <div class="arrow"></div>
             <h3>{{ _('Featured Event') }}</h3>
             <a href="{{ url('events_show', slug=featured_event.slug) }}">
@@ -65,7 +65,7 @@
         <h2><a href="{{ url('users_all') }}">{{ _('People') }}</a></h2>
         <p>{% trans %}The open web is made up of awesome people, connect and communicate with some of them here.{% endtrans %}</p>
         {% if featured_user %}
-        <article class="paper">
+        <article class="paper clearfix">
             <div class="arrow"></div>
             <h3>{{ _('Featured Mozillian') }}</h3>
             <a href="{{ url('users_profile', username=featured_user.user.username) }}">

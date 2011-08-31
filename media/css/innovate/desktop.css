@@ -99,3 +99,12 @@ footer li {
 footer li a {
     padding: 0;
 }
+/**= Homepage */
+.dive-in section {
+    clear: none;
+}
+.dive-in img {
+    margin: 10px 0;
+    float: none;
+    width: 100%;
+}
