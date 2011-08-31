@@ -15,8 +15,8 @@
 {% block content %}
 <h1 class="light c6">{{ _('People') }}</h1>
 
-<section class="sup w1 clearfix">
-  <ul class="c1">
+<section class="sup c1 clearfix">
+  <ul>
     {% if page == 'all' -%}
     <li class="selected"><a class="brandColor" href="{{ url('users_all') }}">{{ _('All (A-Z)') }}</a></li>
     {% else -%}
@@ -35,7 +35,7 @@
   </ul>
 </section>
 
-<section id="people" class="w5">
+<section id="people" class="c5">
   <ul id="peopleList" class="clearfix">
 {#  todo - implement search  
     <li class="search clearfix">
@@ -43,20 +43,18 @@
       <input class="search c2 sans" type="text" placeholder="search people">
     </li>
 #}
-    <hr>
     {% for profile in profiles.object_list -%}
     <li class="person clearfix">
-      <div class="c2">
+      <div>
         <a href="{{ url('users_profile', username=profile.user.username) }}"><img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" width="32" height="32"></a>
         <span class="username"><a href="{{ url('users_profile', username=profile.user.username) }}">{{ profile.display_name }}</a></span>
       </div>
-      <div class="c2 right">
+      <div class="right">
         {% if profile.website -%}
           <a class="brandColor" target="_blank" href="{{ profile.website }}">{{ profile.website }}</a>
         {% endif -%}
       </div>
     </li>
-    <hr>
     {% endfor -%}
   {% if profiles.has_next() -%}
     <li>

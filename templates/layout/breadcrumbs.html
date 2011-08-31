@@ -1,6 +1,6 @@
 {% macro breadcrumbs() -%}
-<nav id="secondaryMenu" class="clearfix">
-  <ul id="breadcrumbs" class="c6 clearfix">
+<nav id="secondaryMenu" class="c6 clearfix">
+  <ul id="breadcrumbs" class="clearfix">
   {% for crumb in varargs -%}
     <li class="crumb"><a href="{{ crumb[0] }}">{{ crumb[1] }}</a></li>
   {% endfor -%}

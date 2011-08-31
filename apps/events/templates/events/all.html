@@ -15,16 +15,16 @@
 {% block content -%}
 <h1 class="light c6">{{ _('Events') }}</h1>
 
-<section class="sup w1 clearfix">
-  <ul class="c1">
+<section class="sup c1 clearfix">
+  <ul>
     <li class="selected"><a class="brandColor" href="{{ url('events_all') }}">{{ _('Events') }}</a></li>
   </ul>
 </section>
 
-<section id="eventsContent" class="w3">
+<section id="eventsContent" class="c3">
   <ul id="posts" class="clearfix">
     {% for event in events -%}
-    <li class="post c3">
+    <li class="post">
       <div class="eventMap">
         <a class="map" href="{{ url('events_show', slug=event.slug) }}">
           <span class="zoom2-hit"></span>

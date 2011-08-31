@@ -21,14 +21,13 @@
     (url('users_profile', username=profile.user.username), _('View your Profile'), False)
    ), (), False) }}
 
-<section id="activity" class="clearfix">
+<section id="activity" class="c5 clearfix">
   <ul class="activityStream" data-total-entries="{{ total }}">
     {% set show_meta = True %}
     {% include "activity/activity.html" %}
   </ul>
 
   {% if has_more -%}
-  <div class="c1"></div>
   <div class="c4">
     <a class="button fetchActivity sans" href="{{ url('users_dashboard') }}{{ next_page }}/">{{ _('load older') }}</a>
   </div>

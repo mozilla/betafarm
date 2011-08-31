@@ -3,15 +3,15 @@
 {%- endmacro %}
 
 {% macro subnav(media_url, image_url, navlinks, otherlinks, follow_buttons, buttons) -%}
-<section class="sup w1 clearfix">
-  <ul class="c1">
+<section class="sup c1 clearfix">
+  <ul>
     <img class="block thick" src="{{ media_url }}{{ image_url }}" height="140" width="140">
     {% for link in navlinks -%}
       <li class="{% if link[2] %}selected {% endif %}brandColor"><a href="{{ link[0] }}">{{ link[1] }}</a></li>
     {% endfor -%}
   </ul>
   {% if follow_buttons -%}
-  <div class="c1 related">
+  <div class="related">
     {% for button in buttons -%}
       <form action="{{ button[0] }}" method="post">
         {{ csrf() }}
@@ -21,7 +21,7 @@
   </div>
   {% endif -%}
   {% if otherlinks -%}
-    <div class="c1 related">
+    <div class="related">
       <ul>
       {% for link in otherlinks -%}
         <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>

@@ -141,6 +141,7 @@ def JINJA_CONFIG():
 MINIFY_BUNDLES = {
     'css': {
         'innovate_css': (
+            'css/innovate/normalise.css',
             'css/innovate/devices.css',
         ),
     },

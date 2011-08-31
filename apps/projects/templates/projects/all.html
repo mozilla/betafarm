@@ -15,8 +15,8 @@
 {% block content -%}
 <h1 class="light c6">{{ _('Projects') }}</h1>
 
-<section class="w1 clearfix sup">
-  <ul class="c1 nav">
+<section class="c1 clearfix sup">
+  <ul class="nav">
     {% if view == 'all' -%}
       <li class="selected"><a class="brandColor" href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
     {% else -%}
@@ -34,8 +34,8 @@
     {% endif %}
   </ul>
 
-  <h3 class="light c1">{{ _('View by Topic') }}</h3>
-  <ul class="c1 tags">
+  <h3 class="light">{{ _('View by Topic') }}</h3>
+  <ul class="tags">
   {% for topic in topics -%}
     <li><a class="tag {{ topic.slug }}" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
   {% endfor -%}

@@ -28,8 +28,8 @@
 {% block content -%}
 <h1 class="light c6">{{ event.name }}</h1>
 
-<section class="w3">
-  <div id="eventInfo" class="c3 paper">
+<section class="c3">
+  <div id="eventInfo" class="paper">
 
     <a class="map" href="http://maps.google.com/maps?q={{ event.venue.full_address }}">
       <span class="zoom2-hit"></span>
@@ -73,23 +73,19 @@
 
 </section>
 
-<section id="eventsContent" class="w3">
+<section id="eventsContent" class="c3">
   <div class="eventHeader">
     <h4 class="sans">{{ _('About this event') }}</h4>
   </div>
-  <div class="c3 content serif clearfix">
+  <div class="content serif clearfix">
     {# events are only created by admins, so it's safe to use safe here. #}
     <p class="serif">{{ event.description|safe }}</p>
   </div>
 
 {% if event.attendees.all()|length > 0 -%}
-  <hr>
-
   <div class="people clearfix">
-    <div class="c3">
-      <h2 class="light">{{ _('People attending ({count})')|f(count=event.attendees.all()|length) }}</h2>
-    </div>
-    <ul class="peopleList clearfix c3">
+    <h2 class="light">{{ _('People attending ({count})')|f(count=event.attendees.all()|length) }}</h2>
+    <ul class="peopleList clearfix">
       {% for person in event.attendees.all() -%}
         <li>
           <a href="{{ url('users_profile', username=person.user.username) }}">
