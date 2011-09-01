@@ -74,6 +74,9 @@
 .people {
     padding: 40px 0;
 }
+.notification .c6 {
+  margin: 10px;
+}
 section[role="main"] h1 {
     padding-left: 10px;
     padding-right: 10px;
@@ -218,4 +221,11 @@ footer li a {
 .users #people {
     float: right;
     margin-bottom: 80px;
+}
+/***= Profile admin */
+#profile_edit .paper {
+    display: block;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 40px;
 }

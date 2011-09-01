@@ -13,12 +13,12 @@
 
 {% block content -%}
 <h1 class="c6 light">Delete profile link</h1>
-<section id="profile_edit" class="c6 clearfix">
+<section id="profile_edit" class="w6 clearfix">
   <div class="c3 paper">
     <h2 class="light">{{ _('Link to delete') }}</h2>
     <form action="{{ url('users_profile_delete_link', link.id) }}" method="post">
       {{ csrf()|safe }}
-      <ul class="yourLinks">
+      <ul class="yourLinks db_objects">
         <li class="clearfix">
             <div class="linkName overflow">{{ link.name }}</div>
             <div class="linkUrl overflow">{{ link.url }}</div>

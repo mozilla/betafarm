@@ -825,6 +825,153 @@ footer .c1 strong {
     padding-left: 26px;
     display: inline-block;
 }
+.notification a {
+  float: right;
+}
+.notification .c6 {
+    margin-top: 20px;
+  padding: 20px;
+  background-color: #ffff99;
+  border: 1px solid #EBEA00;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+/**= Forms */
+form li {
+  margin: 10px 0;
+}
+form li.links,
+form li.picture {
+  margin: 30px 0;
+}
+form label {
+  display: block;
+  color: #74726a;
+}
+form .avatarWrap img {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+form input[type=text], form input[type=password], form textarea {
+  font-size: 14px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  padding: 3px;
+  color: #222;
+  background-color: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
+  font-size: 14px;
+}
+form textarea {
+  height: 105px;
+}
+form input[type=text]:focus, form input[type=password]:focus, form textarea:focus {
+  border: 1px solid #37A6FF;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 0 0 1px #37a6ff inset;
+  -moz-box-shadow: 0 0 0 1px #37a6ff inset;
+  -o-box-shadow: 0 0 0 1px #37a6ff inset;
+  box-shadow: 0 0 0 1px #37a6ff inset;
+}
+ul.yourLinks {
+  margin: 10px 0 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 0;
+}
+ul.yourLinks li {
+  font-size: 12px;
+  margin: 0;
+  padding: 10px 5px;
+  line-height: 27px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+}
+ul.yourLinks .linkName {
+  width: 160px;
+  float: left;  
+  display: inline-block;
+  font-weight: bold;
+}
+ul.yourLinks .linkUrl {
+  float: left;
+  width: 190px;
+  display: inline-block;
+  text-align: right;
+  padding-left: 5px;
+}
+li.links .button {
+  float: left;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  width: 48px;
+  padding: 5px 0;
+  line-height: 1;
+}
+#add_links {
+    border: none;
+    padding: 0;
+}
+#add_links legend {
+    margin-bottom: 10px;
+    color: #74726A;
+}
+div.addLink a.button {
+    width: 60px;
+}
+.no-js #edit_user .addLink a.button {
+    margin: 0;
+}
+form .addLink div {
+    float: left;
+}
+.no-js #edit_user .addLink div {
+    display: none;
+}
+div.addLink .button,
+.addLink button {
+    margin-top: 1.6em;
+    float: left;
+}
+form .addLink input {
+  width: 168px;
+  float: left;
+  margin: 0 5px 0 0;
+}
+form .addLink button {
+  padding: 4px 0px;
+  width: 72px;
+}
+form .meta {
+    text-align: right;
+}
+#profile_edit form .meta button {
+    float: none;
+    display: inline-block;
+    zoom: 1;
+}
+/***= Form errors */
+.errorlist {
+  padding-left: 0;
+  margin: 0;
+}
+.errorlist li, .errorlist li a {
+  color: #ff5959;
+}
 /*= Site sections */
 /**= Generic content */
 .content {
@@ -1070,4 +1217,12 @@ img.zoom1 {
     background: #FFF;
     border: 1px solid #D1CDC2;
     padding: 5px;
+}
+/**= User admin */
+#profile_edit .paper button{
+    margin: 20px 0;
+    float: right;
+}
+#profile_edit .paper {
+    overflow: hidden;
 }

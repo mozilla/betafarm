@@ -13,13 +13,13 @@
 
 {% block content -%}
 <h1 class="c6 light">Edit profile</h1>
-<section id="profile_edit" class="c6 clearfix">
+<section id="profile_edit" class="w6 clearfix">
   <div class="c3 paper">
     <h2 class="light">{{ _('Your Profile') }}</h2>
     {{ errorlist(form) }}
     <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
       {{ csrf()|safe }}
-      <ul>
+      <ul class="db_objects">
         <li class="picture">
           <label for="id_avatar">{{ _('Picture') }}</label>
             <div class="avatarWrap clearfix">
