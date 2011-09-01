@@ -21,19 +21,19 @@
   box-sizing: border-box;
 }
 .c1 {
-  width: 16.66%;
+  width: 16.66%; /* 160/960 = 0.1666667 */
 }
 .c2 {
-  width: 33.33%;
+  width: 33.33%; /* 320/960 = 0.33333 */
 }
 .c3 {
-  width: 50%;
+  width: 50%; /* 480/960 = 0.5 */
 }
 .c4 {
-  width: 640px;
+  width: 66.66%; /*640/960 = 0.666666 */
 }
 .c5 {
-  width: 83.33%;
+  width: 83.33%; /* 800/960 = 0.8333333 */
 }
 .c6 {
   width: 100%;
@@ -68,6 +68,12 @@
   width: 100%;
 }
 /*= Overrides */
+.paper {
+    padding: 20px;
+}
+.people {
+    padding: 40px 0;
+}
 section[role="main"] h1 {
     padding-left: 10px;
     padding-right: 10px;
@@ -78,6 +84,9 @@ section[role="main"] h1 {
 #universalHeader li.hover a.dropdown {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding-bottom: 15px;
+}
+.pagination {
+    margin-bottom: 0;
 }
 .sup ul {
     border-bottom: none;
@@ -94,6 +103,10 @@ section[role="main"] h1 {
 }
 .sup li.selected a:after {
     content: '\276F';
+}
+.sup button {
+  width: 100%;
+  margin: 0 0 20px 0;
 }
 aside#site_meta {
     padding: 40px 0;
@@ -127,6 +140,43 @@ footer li a {
     margin: 10px 0;
     float: none;
     width: 100%;
+}
+/**= Activity lists */
+.update .meta {
+    float: left;
+    width: 30%;
+    text-align: right;
+}
+.update .meta img {
+    float: right;
+    margin: 0 10px;
+}
+.update .description {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.expanded .description {
+    padding-left: 10px;
+    width: 70%;
+    float: right;
+}
+.expanded .arrowRight {
+    background-image: url('/media/img/arrowRight.png');
+    display: block;
+    height: 22px;
+    margin-top: -22px;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    width: 11px;
+    z-index: 1;
+}
+/**= Projects */
+.projects #projectContent,
+.projects #activity {
+    float: right;
 }
 /**= Event page */
 .map .zoom0,
@@ -163,4 +213,9 @@ footer li a {
 .map:hover .zoom1,
 .map .zoom2-hit:hover ~ .zoom2 {
   opacity: 1;
+}
+/**= Users */
+.users #people {
+    float: right;
+    margin-bottom: 80px;
 }

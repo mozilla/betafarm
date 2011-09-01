@@ -181,6 +181,7 @@ button.unsubmit:active {
 }
 .wrapper aside p {
   color: #74726a;
+  margin: 0;
 }
 section {
   padding: 40px 0;
@@ -204,13 +205,16 @@ section img.thick, .avatarWrap img {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 a img.thick:hover {
   border: 2px solid rgba(0, 0, 0, 0.2);  
 }
 .sup img.thick {
-  border-bottom: 0 none;
   min-height: 140px;
+  margin-bottom: 21px;
 }
 .c1,
 .c2,
@@ -565,8 +569,7 @@ div[role="banner"] a:focus {
   margin: 21px 0 7px 0;
 }
 .sup button {
-  width: 100%;
-  margin: 0 0 20px 0;
+  float: none;
 }
 .sup .related li {
   border: none;
@@ -767,10 +770,6 @@ footer .c1 strong {
     margin: 0 0 40px;
     padding: 0 0 20px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
-    -moz-box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
-    -o-box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
-    box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
 }
 .db_objects time {
   color: #74726a;
@@ -782,7 +781,7 @@ footer .c1 strong {
 }
 .people {
     margin-top: 20px;
-    padding: 40px 0;
+    padding-top: 20px;
     border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 .people h2 {
@@ -802,6 +801,29 @@ footer .c1 strong {
     background: #FFF;
     padding: 5px;
     border: 1px solid #D1CDC2;
+}
+.pagination {
+    margin: 20px 0;
+    overflow: hidden;
+}
+.pagination .btn {
+    float: left;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 5px;
+}
+/** = AJAX messages */
+.message {
+    padding: 10px 26px;
+    display: none;
+    background: transparent url('/media/img/ajax-loader.gif') no-repeat right center;
+    text-align: right; 
+    color: #74726A;
+    font-weight: bold;
+}
+.message b {
+    background: transparent url('/media/img/ajax-loader.gif') no-repeat left center;
+    padding-left: 26px;
+    display: inline-block;
 }
 /*= Site sections */
 /**= Generic content */
@@ -858,6 +880,30 @@ footer .c1 strong {
 }
 .content li:last-child {
   padding: 0;
+}
+/**= Activity lists */
+.update .meta {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.update .meta a {
+    color: #2AA198;
+}
+.update .meta time {
+    display: block;
+    font-style: italic;
+}
+.update_body {
+    border-left: 1px solid rgba(0, 0, 0, 0.75);
+    padding-left: 10px;
+}
+.update_body p {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+}
+#activity .message {
+    text-align: center;
+    background: none;
 }
 /**= Homepage */
 #promoted img {
@@ -959,6 +1005,12 @@ section#headlines .headline p {
   margin: 0;
 }
 /**= Events page */
+.events .obj {
+    -webkit-box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
+    -moz-box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
+    -o-box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
+    box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.05) inset;
+}
 .map {
     display: block;
     margin-bottom: 20px;
@@ -994,4 +1046,28 @@ img.zoom1 {
 }
 .events_content h2 {
     font-size: 14px;
+}
+.events_content .people h2 {
+    font-size: 18px;
+}
+/*= Users */
+.users .obj {
+    padding: 20px 0;
+    margin: 0;
+}
+.users .obj:first-child {
+    border-top: 1px solid rgba(0,0,0,0.1)
+}
+.users .obj a {
+    float: right;
+    line-height: 42px;
+    font-weight: bold;
+}
+.users .obj a:first-child {
+    float: left;
+}
+.users .obj img {
+    background: #FFF;
+    border: 1px solid #D1CDC2;
+    padding: 5px;
 }

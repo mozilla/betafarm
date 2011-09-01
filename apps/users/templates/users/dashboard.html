@@ -22,15 +22,13 @@
    ), (), False) }}
 
 <section id="activity" class="c5 clearfix">
-  <ul class="activityStream" data-total-entries="{{ total }}">
+  <ul class="activityStream db_objects" data-total-entries="{{ total }}">
     {% set show_meta = True %}
     {% include "activity/activity.html" %}
   </ul>
 
   {% if has_more -%}
-  <div class="c4">
     <a class="button fetchActivity sans" href="{{ url('users_dashboard') }}{{ next_page }}/">{{ _('load older') }}</a>
-  </div>
   {% endif -%}
 
 </section>
