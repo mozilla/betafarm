@@ -259,6 +259,7 @@ div[role="banner"] a:hover,
 div[role="banner"] a:focus {
   opacity: 1;
 }
+.home #universalHeader li.splash,
 .projects #universalHeader li.projects,
 .events #universalHeader li.events,
 .users #universalHeader li.users,
