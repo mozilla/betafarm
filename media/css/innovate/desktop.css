@@ -229,3 +229,15 @@ footer li a {
     float: none;
     margin-bottom: 40px;
 }
+/**= Projects/topics */
+.sup .tags li {
+    margin-right: 0;
+}
+.sup .tags a {
+    padding: 0 10px;
+}
+#meta .ajax_content {
+    /* left padding - 80/320 = 0.25* /
+    /* right padding - 20/320 = 0.0625 */
+    padding: 0 6.25% 0 25%;
+}

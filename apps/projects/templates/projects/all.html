@@ -42,16 +42,16 @@
   </ul>
 </section>
 
-<section id="projects" class="w5 clearfix">
-    <div id="objects" class="w3 clearfix">
-    <ul id="projectList">
+<div id="projects" class="w5 clearfix">
+    <div id="objects" class="clearfix">
+    <ul id="projectList" class="db_objects">
     {% for project in projects -%}
         {% if not project.active_topics.count() == 0 %}
-        <li class="project clearfix {% for t in project.active_topics %}{{ t.slug }} {% endfor %}">
+        <li class="obj project clearfix {% for t in project.active_topics %}{{ t.slug }} {% endfor %}">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description|striptags }}</p>
             <div class="projectTopic">
-                <ul class="tags inline clearfix">
+                <ul class="tags db_related clearfix">
                 {% for topic in project.active_topics -%}
                 <li>
                     <a class="tag {{ topic.slug }}" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a>
@@ -63,6 +63,6 @@
     {% endfor -%}
     </ul>
     </div>
-</section>
+</div>
 
 {% endblock %}
