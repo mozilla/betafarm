@@ -328,6 +328,9 @@ footer li a {
     float: none;
     width: 100%;
 }
+section#headlines {
+    padding: 0 10px;
+}
 /**= Activity lists */
 .update .meta {
     float: left;

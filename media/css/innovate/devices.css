@@ -969,6 +969,10 @@ section#promoted {
 
 section#headlines {
     padding: 0;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 section#headlines .headlineLabel {
@@ -976,8 +980,9 @@ section#headlines .headlineLabel {
     padding: 0 14px;
     background-color: #fffbed;
     margin: 0 0 0 10px;
-    width: 310px;
     vertical-align: middle;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: 40%;
 }
 .headlineLabel h2 {
     float: right;
@@ -988,13 +993,14 @@ section#headlines .headlineLabel img {
   vertical-align: text-top;
 }
 section#headlines .headline {
-    width: 552px;
     margin: 0 10px 0 0;
     padding: 30px 0 30px 60px;
     background-color: rgba(0,0,0,0.05);
     background-image: url('/media/img/headline-arrow.png');
     background-repeat: no-repeat;
     background-position: center left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: 60%;
 }
 section#headlines .headline h3 {
   font-size: 21px;
