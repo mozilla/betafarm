@@ -51,7 +51,7 @@
       {{ project.long_description|safe }}
     </div>
   </div>
-  <div class="people clearfix">
+  <div class="associated clearfix">
     <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
     <ul class="db_related clearfix">
       {% for person in project.team_members.all() -%}

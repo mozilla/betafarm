@@ -71,7 +71,7 @@
   </div>
 
 {% if event.attendees.all()|length > 0 -%}
-  <div class="people clearfix">
+  <div class="associated clearfix">
     <h2 class="light">{{ _('People attending ({count})')|f(count=event.attendees.all()|length) }}</h2>
     <ul class="db_related clearfix">
       {% for person in event.attendees.all() -%}

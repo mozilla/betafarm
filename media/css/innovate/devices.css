@@ -792,14 +792,6 @@ footer .c1 strong {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.75);
 }
-.people {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-}
-.people h2 {
-    font-size: 18px;
-}
 .db_related {
     float: left;
     margin: 0;
@@ -1407,4 +1399,13 @@ img.zoom1 {
     -webkit-transition-property: -webkit-transform, opacity;
     -moz-transition-property: -moz-transform, opacity;
     transition-property: ransform, opacity;
+}
+/*= Misc (here largely for cascade reasons) */
+.associated {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.associated h2 {
+    font-size: 18px;
 }
