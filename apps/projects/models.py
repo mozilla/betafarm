@@ -55,19 +55,6 @@ class Project(BaseModel):
         return self.topics.filter(draft=False)
 
     @property
-    def blog(self):
-        blog = self.link_set.filter(blog=True)
-        return blog and blog[0] or None
-
-    @property
-    def nav_links(self):
-        return self.link_set.filter(blog=True)
-
-    @property
-    def other_links(self):
-        return self.link_set.filter(blog=False)
-
-    @property
     def is_program(self):
         return len(self.tags.filter(name='program'))
 
@@ -83,7 +70,6 @@ class Link(BaseModel):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     url = models.URLField(verbose_name=_(u'URL'))
     subscribe = models.BooleanField(default=False)
-    blog = models.BooleanField(default=False)
     subscription = models.ForeignKey(Subscription, null=True, blank=True)
     project = models.ForeignKey(Project, null=True, blank=True)
     featured = models.BooleanField(default=False)

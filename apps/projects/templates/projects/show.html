@@ -23,12 +23,8 @@
 {% endif -%}
 {% endblock -%}
 
-{% if project.blog -%}
 {% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True), 
                    (url('projects_activity', slug=project.slug), _('Activity'), False)) %}
-{% else -%}
-{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True),) %}
-{% endif -%}
 
 {% if user.is_authenticated() %}
     {% if user.get_profile() in project.followers.all() -%}
