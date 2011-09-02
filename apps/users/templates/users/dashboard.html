@@ -24,7 +24,7 @@
 <section id="activity" class="c5 clearfix">
   <ul class="activityStream db_objects" data-total-entries="{{ total }}">
     {% set show_meta = True %}
-    {% include "activity/activity.html" %}
+    {% include "activity/ajax/activity.html" %}
   </ul>
 
   {% if has_more -%}

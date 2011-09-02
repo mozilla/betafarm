@@ -215,6 +215,8 @@ a img.thick:hover {
 .sup img.thick {
   min-height: 140px;
   margin-bottom: 21px;
+  width: 100%;
+  max-width: 140px;
 }
 .c1,
 .c2,
