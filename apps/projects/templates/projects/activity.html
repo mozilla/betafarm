@@ -35,7 +35,7 @@
     {% if activities -%}
         <ul class="activityStream db_objects" data-total-entries="{{ total }}">
             {% set show_meta = False %}
-            {% include "activity/activity.html" %}
+            {% include "activity/ajax/activity.html" %}
         </ul>
         {% if has_more -%}
             <a class="button fetchActivity sans" href="{{ url('projects_activity', slug=project.slug) }}{{ next_page }}/">{{ _('show older') }}</a>
