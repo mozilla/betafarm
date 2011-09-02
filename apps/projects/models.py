@@ -43,8 +43,10 @@ class Project(BaseModel):
         })
 
     @property
-    def image_or_default(self):
-        return self.image or 'img/project-default.gif'
+    def image_url(self):
+        media_url = getattr(settings, 'MEDIA_URL', '')
+        path = lambda f: f and '%s%s' % (media_url, f)
+        return path(self.image) or path('img/project-default.gif')
 
     @property
     def featured_image_or_default(self):

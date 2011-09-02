@@ -16,7 +16,7 @@
 
 {% block content -%}
 {{ sectiontitle(profile.display_name) }}
-{{ subnav(MEDIA_URL, profile.avatar_or_default, (
+{{ subnav(profile.avatar_url(), (
     (url('users_dashboard'), _('Dashboard'), True),
     (url('users_profile', username=profile.user.username), _('View your Profile'), False)
    ), (), False) }}

@@ -311,3 +311,5 @@ PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
 SOUTH_TESTS_MIGRATE = False
 CACHE_BACKEND = 'caching.backends.locmem://'
 CACHE_COUNT_TIMEOUT = 60
+
+GRAVATAR_URL = 'https://secure.gravatar.com/avatar/'

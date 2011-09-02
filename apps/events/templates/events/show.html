@@ -93,7 +93,7 @@
       {% for person in event.attendees.all() -%}
         <li>
           <a href="{{ url('users_profile', username=person.user.username) }}">
-            <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" height="32" width="32">
+            <img src="{{ person.avatar_url(32) }}" height="32" width="32">
           </a>
         </li>
       {% endfor -%}

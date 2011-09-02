@@ -57,10 +57,22 @@ class Profile(BaseModel):
                                        blank=True, null=True,
                                        upload_to=settings.USER_AVATAR_PATH)
 
+    def get_gravatar_url(self, size=140):
+        base_url = getattr(settings, 'GRAVATAR_URL', None)
+        if not base_url:
+            return None
+        return '%s%s?s=%d' % (base_url, self.email_hash, size)
+
     @property
-    def avatar_or_default(self):
-        """Return user provided avatar, or default if none exists."""
-        return self.avatar or 'img/user-default.jpg'
+    def email_hash(self):
+        """MD5 hash of users email address."""
+        return hashlib.md5(self.user.email).hexdigest()
+
+    def avatar_url(self, size=140):
+        """Return user provided avatar, or gravatar if none exists."""
+        media_url = getattr(settings, 'MEDIA_URL', None)
+        path = lambda f: f and "%s%s" % (media_url, f)
+        return path(self.avatar) or self.get_gravatar_url(size)
 
     @property
     def featured_image_or_default(self):

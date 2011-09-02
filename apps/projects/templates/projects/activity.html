@@ -29,7 +29,7 @@
 
 {% block content -%}
 {{ sectiontitle(_('{project} Activity')|f(project=project.name)) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
+{{ subnav(project.image_url, navlinks, project.link_set.all(), True, buttons) }}
 
 <section id="activity" class="clearfix">
   {% if activities -%}

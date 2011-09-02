@@ -37,7 +37,7 @@
 
 {% block content -%}
 {{ sectiontitle(project.name) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
+{{ subnav(project.image_url, navlinks, project.link_set.all(), True, buttons) }}
 
 <section id="projectContent" class="w3 clearfix">
   <div class="row clearfix">
@@ -58,7 +58,7 @@
       {% for person in project.team_members.all() -%}
         <li>
           <a href="{{ url('users_profile', username=person.user.username) }}">
-            <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" width="32" height="32">
+            <img src="{{ person.avatar_url(32) }}" width="32" height="32">
           </a>
         </li>
       {% endfor -%}

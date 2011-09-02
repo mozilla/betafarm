@@ -22,7 +22,7 @@
     {% for topic in topics -%}
       <li class="topic table_group">
         <div class="c1 cell">
-          <img class="block thick" src="{{ MEDIA_URL }}{{ topic.image_or_default }}" width="140" height="140">
+          <img class="block thick" src="{{ topic.image_url }}" width="140" height="140">
         </div>
         <div class="c2 cell">
             <h3 class="normal"><a class="brandColor" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></h3>

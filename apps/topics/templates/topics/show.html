@@ -16,7 +16,7 @@
 
 {% block content %}
 {{ sectiontitle(topic.name) }}
-{{ subnav(MEDIA_URL, topic.image_or_default, (
+{{ subnav(topic.image_url, (
      (url('topics_show', slug=topic.slug), topic.name, True),
      (url('topics_about', slug=topic.slug), _('About {topic}')|f(topic=topic.name), False)
 ), (), False) }}
@@ -33,7 +33,7 @@
       {% for project in projects %}
       <li class="project clearfix table_group">
         <div class="c1 cell">
-          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a>
+          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ project.image_url }}" width="140" height="140"></a>
         </div>
         <div class="c3 cell">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>

@@ -16,7 +16,7 @@
 
 {% block content -%}
 {{ sectiontitle(topic.name) }}
-{{ subnav(MEDIA_URL, topic.image_or_default, (
+{{ subnav(topic.image_url, (
     (url('topics_show', slug=topic.slug), topic.name, False),
     (url('topics_about', slug=topic.slug), _('About {topic}')|f(topic=topic.name), True)
 ), (), False) }}

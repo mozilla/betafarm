@@ -27,7 +27,7 @@
 
 {% block content -%}
 {{ sectiontitle(profile.display_name) }}
-{{ subnav(MEDIA_URL, profile.avatar_or_default, navlinks, (), False) }}
+{{ subnav(profile.avatar_url(140), navlinks, (), False) }}
 
 <section id="userProfile" class="w5 clearfix">
 
