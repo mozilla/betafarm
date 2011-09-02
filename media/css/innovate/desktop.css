@@ -84,12 +84,193 @@ section[role="main"] h1 {
     padding-left: 10px;
     padding-right: 10px;
 }
+#universalHeader nav#topNav {
+  height: 52px;
+  position: relative;
+  z-index: 5;
+  margin-right: 123px;
+}
+#universalHeader ul {
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+#universalHeader li {
+  display: inline-block;
+  margin: 0 0 0 -1px;
+  float: left;
+  position: relative;
+  padding: 0;
+  clear: none;
+  border-bottom: none;
+}
 #universalHeader li ul.dropdown {
     top: 51px;
+    margin-top: 0;
 }
 #universalHeader li.hover a.dropdown {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding-bottom: 15px;
+}
+#universalHeader li a {
+  display: block;
+  text-decoration: none;
+  padding: 15px 30px 10px 10px;
+  border-color: #D1CDC2;
+  border-width: 0 1px;
+  border-style: solid;
+  color: #444;
+  cursor: pointer;
+  position: relative;
+  text-align: left;
+}
+#universalHeader li a:active {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+#universalHeader li a.login, #universalHeader li a.join {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  z-index: 0;
+}
+#universalHeader li a.login:hover, #universalHeader li a.join:hover {
+  color: #fff;
+  background-color: #222;
+  border-color: #222;
+  z-index: 101;
+}
+#universalHeader li a.login:active, #universalHeader li a.join:active {
+  background-color: #4e7892;
+}
+#universalHeader li a.selected {
+  color: #4e7892;
+}
+#universalHeader li a.event.selected {
+  color: #2aa198;
+}
+#universalHeader li a.people.selected {
+  color: #859900;
+}
+#universalHeader li a.topic.selected {
+  color: #cb4b16;
+}
+#universalHeader li ul.dropdown {
+  display: none;
+  position: absolute;
+  width: 190px;
+  left: -999em;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #fff;
+  z-index: 100;
+  text-align: left;
+  opacity: 0;
+  border: 1px solid #D1CDC2;
+  -webkit-border-radius: 0 2px 2px 2px;
+  -moz-border-radius: 0 2px 2px 2px;
+  -o-border-radius: 0 2px 2px 2px;
+  border-radius: 0 2px 2px 2px;
+  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  -o-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+#universalHeader li ul.dropdown li a {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: block;
+  width: 190px;
+  padding: 5px 10px;
+  background-color: transparent;
+  background-image: none;
+  margin: 0;
+  font-size: 10px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#universalHeader li ul.dropdown li:first-child a {
+  border-top: none;
+}
+#universalHeader li ul.dropdown li:hover a {
+  background-image: none;
+}
+#universalHeader li ul.dropdown li.divide a {
+  border-top: 3px double rgba(0, 0, 0, 0.05);
+}
+#topNav a:hover,
+#topNav a:focus,
+#topNav .hover a,
+#universalHeader li.hover a.selected {
+  z-index: 101;
+  -webkit-transition: background-color 0.1s linear;
+  -moz-transition: background-color 0.1s linear;
+  -o-transition: background-color 0.1s linear;
+  transition: background-color 0.1s linear;
+  background-color: #fff;
+  border-color: #D1CDC2;
+}
+#universalHeader li.hover li a:hover,
+#universalHeader li.hover li a:focus {
+  color: #4e7892;
+}
+#universalHeader li.hover li a.topic:hover,
+#universalHeader li.hover li a.topic:focus {
+  color: #cb4b16;
+}
+#universalHeader li.hover li a.people:hover,
+#universalHeader li.hover li a.people:focus {
+  color: #859900;
+}
+#universalHeader li.hover li a.event:hover,
+#universalHeader li.hover li a.event:focus {
+  color: #2aa198;
+}
+#universalHeader li.hover ul.dropdown {
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  opacity: 1;
+  left: 0;
+  display: block;
+}
+#universalHeader li.username {
+  min-width: 120px;
+}
+#universalHeader li.username ul.dropdown {
+  background-color: #222;
+  border: 1px solid #000;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#universalHeader li.username ul.dropdown li {
+  width: 100%;
+}
+#universalHeader li.username ul.dropdown li a {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-top: 1px solid #444;
+}
+#universalHeader li.username ul.dropdown li:first-child a {
+  border-top: none;
+}
+#universalHeader li.username ul.dropdown li a.account {
+  color: #ccc;
+}
+#universalHeader li.username ul.dropdown li a.account:hover,
+#universalHeader li.username ul.dropdown li a.account:focus {
+  color: #fff;
 }
 .pagination {
     margin-bottom: 0;
