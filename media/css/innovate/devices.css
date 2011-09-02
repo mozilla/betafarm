@@ -678,6 +678,19 @@ footer .c1 strong {
 .serif {
   font-family: "Georgia", Times New Roman, Times, serif;
 }
+.table_group {
+    display: table;
+    width: 100%;
+}
+.table_group .cell {
+    display: table-cell;
+    padding: 0 10px;
+    float: none;
+    vertical-align: middle;
+}
+.table_group .cell:first-child {
+    vertical-align: top;
+}
 .paper {
   position: relative;
   padding: 20px;
@@ -1353,9 +1366,13 @@ img.zoom1 {
 #projectList .obj p {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.75);
+    margin: 0;
 }
 #projectList h3 a {
     color: #CB4B16;
+}
+#projectList .cell:first-child {
+    width: 140px;
 }
 .shift #objects {
     padding: 0;

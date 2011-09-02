@@ -67,6 +67,9 @@
 .w6 {
   width: 100%;
 }
+section.offset {
+    float: right;
+}
 /*= Overrides */
 .paper {
     padding: 20px;
@@ -176,11 +179,6 @@ footer li a {
     width: 11px;
     z-index: 1;
 }
-/**= Projects */
-.projects #projectContent,
-.projects #activity {
-    float: right;
-}
 /**= Event page */
 .map .zoom0,
 .map .zoom1,
@@ -219,7 +217,6 @@ footer li a {
 }
 /**= Users */
 .users #people {
-    float: right;
     margin-bottom: 80px;
 }
 /***= Profile admin */
