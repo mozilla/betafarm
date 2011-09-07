@@ -2,17 +2,18 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/errorlist.html" import errorlist %}
 
+{% block page_title %}{{ _('Edit Your Profile') }}{% endblock %}
 {% block page_id %}edit_user{% endblock %}
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
     (url('innovate_splash'), _('Mozilla Labs Home')),
-    last=_('Edit Profile')) }}
+    last=_('Edit Your Profile')) }}
 {% endblock -%}
 
 {% block content -%}
-<h1 class="c6 light">Edit profile</h1>
+<h1 class="c6 light">{{ _('Edit Your Profile') }}</h1>
 <section id="profile_edit" class="clearfix">
   <div class="c3 paper">
     <h2 class="light">{{ _('Your Profile') }}</h2>
@@ -22,9 +23,17 @@
       <ul>
         <li class="picture">
           <label for="id_avatar">{{ _('Picture') }}</label>
-            <div class="avatarWrap clearfix">
-              {{ form.avatar }}
-            </div>
+          <div class="avatarWrap clearfix">
+            <img src="{{ user.get_profile().avatar_url(60) }}">
+            <br />
+            {{ form.avatar }}
+          </div>
+          {% if user.get_profile().avatar -%}
+          <div class="clearfix">
+            <label for="avatar-clear_id">{{ _('Delete Picture') }}</label>
+            <input type="checkbox" name="avatar-clear" id="avatar-clear_id" />
+          </div>
+          {% endif -%}
         </li>
         <li>
           <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
