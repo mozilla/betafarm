@@ -159,6 +159,7 @@ section[role="main"] h1 {
   position: absolute;
   width: 190px;
   left: -999em;
+  background: #FFF;
   background-color: rgba(255, 255, 255, 0.9);
   color: #fff;
   z-index: 100;
@@ -289,7 +290,7 @@ section[role="main"] h1 {
     padding: 5px;
 }
 .sup li.selected a:after {
-    content: '\276F';
+    content: '>';
 }
 .sup button {
   width: 100%;

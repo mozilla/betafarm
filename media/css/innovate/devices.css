@@ -198,6 +198,7 @@ section img.block {
   display: block;
 }
 section img.thick, .avatarWrap img {
+  border: 2px solid #CCC;
   border: 2px solid rgba(0, 0, 0, 0.1);
   height: auto;
   background-color: #fff;
@@ -332,6 +333,7 @@ div[role="banner"] a:focus {
   text-decoration: none;
 }
 #secondaryMenu #breadcrumbs {
+    border: 1px solid #D9D5C9;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-width: 1px 0;
 }
@@ -339,6 +341,7 @@ div[role="banner"] a:focus {
   color: #74726a;
 }
 #secondaryMenu #breadcrumbs li.crumb:hover {
+  background-color: #F2EEE0;
   background-color: rgba(0, 0, 0, 0.05);
   z-index: 100;
 }
@@ -396,9 +399,9 @@ div[role="banner"] a:focus {
 }
 .sup li {
   list-style-type: none;
+  border: 1px solid #CACABE;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-width: 0 1px 0 0;
-  border-color: rgba(0, 0, 0, 0.15);
-  border-style: solid;
   position: relative;
   float: left;
 }
@@ -414,6 +417,7 @@ div[role="banner"] a:focus {
   color: #4e7892;
 }
 .sup li.selected {
+  background: #F2EEE0;
   background-color: rgba(0, 0, 0, 0.05);
   font-weight: bold;
 }
@@ -440,7 +444,9 @@ div[role="banner"] a:focus {
 /**= Site aside */
 aside#site_meta {
   color: #74726a;
+  background-color: #F2EEE0;
   background-color: rgba(0, 0, 0, 0.05);
+  border-top: 1px solid #D9D5C9;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1em 0;
 }
@@ -637,6 +643,7 @@ footer .c1 strong {
 .db_objects .obj {
     margin: 0 0 40px;
     padding: 0 0 20px 0;
+    border-bottom: 1px solid #E5D1E4;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .db_objects time {
@@ -1071,6 +1078,7 @@ img.zoom1 {
     margin: 0;
 }
 .users .obj:first-child {
+    border-top: 1px solid #E5D1E4;
     border-top: 1px solid rgba(0,0,0,0.1)
 }
 .users .obj a {
