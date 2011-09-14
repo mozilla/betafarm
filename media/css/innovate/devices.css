@@ -322,7 +322,7 @@ div[role="banner"] a:focus {
   display: block;
   overflow: hidden;
   position: absolute;
-  right: 30px;
+  right: 20px;
   top: 0;
   background-image: url('/media/img/icons-sprite.png');
   text-indent: -9999em;
