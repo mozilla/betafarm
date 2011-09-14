@@ -296,13 +296,22 @@ div[role="banner"] a:focus {
     text-transform: none;
     font-weight: normal;
 }
-#universalHeader li.username a, #universalHeader li.username a:hover {
-  color: #fff;
+#universalHeader #topNav li.username a,
+#universalHeader #topNav li.username a:hover {
   background-color: #222;
   border-color: #222;
+  color: #FFF;
+}
+#universalHeader #topNav li.username .dropdown a {
+    color: #CCC;
+}
+#universalHeader #topNav li.username .dropdown a:hover,
+#universalHeader #topNav li.username .dropdown a:focus {
+    color: #FFF;
 }
 #universalHeader li.username {
     border-bottom: none;
+    background: #222;
 }
 #universalHeader li.username a.dropdown {
     text-transform: none;
