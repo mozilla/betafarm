@@ -142,18 +142,6 @@ section[role="main"] h1 {
 #universalHeader li a.login:active, #universalHeader li a.join:active {
   background-color: #4e7892;
 }
-#universalHeader li a.selected {
-  color: #4e7892;
-}
-#universalHeader li a.event.selected {
-  color: #2aa198;
-}
-#universalHeader li a.people.selected {
-  color: #859900;
-}
-#universalHeader li a.topic.selected {
-  color: #cb4b16;
-}
 #universalHeader li ul.dropdown {
   display: none;
   position: absolute;
@@ -221,18 +209,6 @@ section[role="main"] h1 {
 #universalHeader li.hover li a:focus {
   color: #4e7892;
 }
-#universalHeader li.hover li a.topic:hover,
-#universalHeader li.hover li a.topic:focus {
-  color: #cb4b16;
-}
-#universalHeader li.hover li a.people:hover,
-#universalHeader li.hover li a.people:focus {
-  color: #859900;
-}
-#universalHeader li.hover li a.event:hover,
-#universalHeader li.hover li a.event:focus {
-  color: #2aa198;
-}
 #universalHeader li.hover ul.dropdown {
   -webkit-transition: opacity 0.2s linear;
   -moz-transition: opacity 0.2s linear;
@@ -298,6 +274,9 @@ section[role="main"] h1 {
 }
 aside#site_meta {
     padding: 40px 0;
+}
+#site_meta .actions li {
+    float: left;
 }
 footer {
     padding: 100px 0;

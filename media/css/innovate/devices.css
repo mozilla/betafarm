@@ -262,20 +262,21 @@ div[role="banner"] a:hover,
 div[role="banner"] a:focus {
   opacity: 1;
 }
-.home #universalHeader li.splash,
-.projects #universalHeader li.projects,
-.events #universalHeader li.events,
-.users #universalHeader li.users,
-.about #universalHeader li.about {
-    background: #FFF;
+.home #universalHeader li.splash a,
+.projects #universalHeader li.projects a,
+.events #universalHeader li.events a,
+.users #universalHeader li.users a,
+.about #universalHeader li.about a {
+    color: #4E7892;
+}
+.wrapper #universalHeader li ul.dropdown a {
+    color: #444;
 }
 #universalHeader ul {
     margin: 0;
     padding-left: 0;
 }
 #universalHeader li {
-    float: left;
-    clear: left;
     border-bottom: 1px solid #D1CDC2;
 }
 #universalHeader ul a {
@@ -471,7 +472,6 @@ aside#site_meta {
   padding-left: 0;
 }
 #site_meta .actions li {
-  float: left;
   margin: 0 0 0 10px;
   font-weight: bold;
   padding: 3px 0;
@@ -1259,9 +1259,9 @@ img.zoom1 {
 .isotope,
 .isotope .isotope-item {
     /* change duration value to whatever you like */
-    -webkit-transition-duration: 0.8s;
-    -moz-transition-duration: 0.8s;
-    transition-duration: 0.8s;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
 .isotope .isotope-item {
