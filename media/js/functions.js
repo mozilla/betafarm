@@ -226,7 +226,7 @@ betafarm.filtering = function() {
         var topic_info = $('#' + topic),
             loading;
         if (!loader) {
-            loader = $('<div class="message c2">Loading topic data</div>').appendTo(info);
+            loader = $('<div class="message">Loading topic data</div>').appendTo(info);
         }
         if (topic_info.length) {
             filter(topic, topic_info);
@@ -256,7 +256,7 @@ betafarm.filtering = function() {
         if ($('#all_projects').length) {
             var area = $('section[role=main]');
 
-            info = $('<div id="meta" class="w2"><div class="c2 close ajax_content"><a class="close" href="#">Show all topics</a></div></div>').prependTo(holder);
+            info = $('<div id="meta"><div class="close ajax_content"><a class="close" href="#">Show all topics</a></div></div>').prependTo(holder);
                         
             filtered.isotope({
                 itemSelector : '.project',

@@ -1,0 +1,418 @@
+/*= Grids */
+.wrapper {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 960px;
+}
+/* Lack of media query suport means we should probably restrict things a little bit  */
+.bad-ie .wrapper {
+    min-width: 740px;
+}
+/* columns */
+.c1,
+.c2,
+.c3,
+.c4,
+.c5,
+.c6 {
+  min-height: 1px;
+  display: inline-block;
+  padding: 0 10px;
+  float: left;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.c1 {
+  width: 16.66%; /* 160/960 = 0.1666667 */
+}
+.c2 {
+  width: 33.33%; /* 320/960 = 0.33333 */
+}
+.c3 {
+  width: 50%; /* 480/960 = 0.5 */
+}
+.c4 {
+  width: 66.66%; /*640/960 = 0.666666 */
+}
+.c5 {
+  width: 83.33%; /* 800/960 = 0.8333333 */
+}
+.c6 {
+  width: 100%;
+}
+/* column wraps */
+.w1,
+.w2,
+.w3,
+.w4,
+.w5,
+.w6 {
+  display: inline-block;
+  float: left;
+  padding: 0;
+}
+.w1 {
+  width: 16.66%;
+}
+.w2 {
+  width: 33.33%;
+}
+.w3 {
+  width: 50%;
+}
+.w4 {
+  width: 640px;
+}
+.w5 {
+  width: 83.33%;
+}
+.w6 {
+  width: 100%;
+}
+section.offset {
+    float: right;
+}
+/*= Overrides */
+.paper {
+    padding: 20px;
+}
+.people {
+    padding: 40px 0;
+}
+.notification .c6 {
+  margin: 10px;
+}
+section[role="main"] h1 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#universalHeader nav#topNav {
+  height: 52px;
+  position: relative;
+  z-index: 5;
+}
+#universalHeader #tab {
+    right: 30px;
+}
+#universalHeader ul {
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+#universalHeader li {
+  display: inline-block;
+  margin: 0 0 0 -1px;
+  float: left;
+  position: relative;
+  padding: 0;
+  clear: none;
+  border-bottom: none;
+}
+#universalHeader li ul.dropdown {
+    top: 51px;
+    margin-top: 0;
+}
+#universalHeader li.hover a.dropdown {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 15px;
+}
+#universalHeader li a {
+  display: block;
+  text-decoration: none;
+  border-color: #D1CDC2;
+  border-width: 0 1px;
+  border-style: solid;
+  color: #444;
+  padding: 15px 30px 10px 10px;
+  cursor: pointer;
+  position: relative;
+  text-align: left;
+}
+@media all and (max-width: 826px) {
+    #universalHeader li a {
+        padding: 10px;
+    }
+    #universalHeader li ul.dropdown {
+        top: 46px;
+    }
+}
+#universalHeader li a:active {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+#universalHeader li a.login, #universalHeader li a.join {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  z-index: 0;
+}
+#universalHeader li a.login:hover, #universalHeader li a.join:hover {
+  color: #fff;
+  background-color: #222;
+  border-color: #222;
+  z-index: 101;
+}
+#universalHeader li a.login:active, #universalHeader li a.join:active {
+  background-color: #4e7892;
+}
+#universalHeader li ul.dropdown {
+  display: none;
+  position: absolute;
+  width: 190px;
+  left: -999em;
+  background: #FFF;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #fff;
+  z-index: 100;
+  text-align: left;
+  opacity: 0;
+  border: 1px solid #D1CDC2;
+  -webkit-border-radius: 0 2px 2px 2px;
+  -moz-border-radius: 0 2px 2px 2px;
+  -o-border-radius: 0 2px 2px 2px;
+  border-radius: 0 2px 2px 2px;
+  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  -o-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+#universalHeader li ul.dropdown li a {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: block;
+  width: 190px;
+  padding: 5px 10px;
+  background-color: transparent;
+  background-image: none;
+  margin: 0;
+  font-size: 10px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#universalHeader li ul.dropdown li:first-child a {
+  border-top: none;
+}
+#universalHeader li ul.dropdown li:hover a {
+  background-image: none;
+}
+#universalHeader li ul.dropdown li.divide a {
+  border-top: 3px double rgba(0, 0, 0, 0.05);
+}
+#topNav a:hover,
+#topNav a:focus,
+#topNav .hover a,
+#universalHeader li.hover a.selected {
+  z-index: 101;
+  -webkit-transition: background-color 0.1s linear;
+  -moz-transition: background-color 0.1s linear;
+  -o-transition: background-color 0.1s linear;
+  transition: background-color 0.1s linear;
+  background-color: #fff;
+  border-color: #D1CDC2;
+}
+#universalHeader li.hover li a:hover,
+#universalHeader li.hover li a:focus {
+  color: #4e7892;
+}
+#universalHeader li.hover ul.dropdown {
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  opacity: 1;
+  left: 0;
+  display: block;
+}
+#universalHeader li.username {
+  min-width: 120px;
+}
+#universalHeader li.username ul.dropdown {
+  background-color: #222;
+  border: 1px solid #000;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#universalHeader li.username ul.dropdown li {
+  width: 100%;
+}
+#universalHeader li.username ul.dropdown li a {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-top: 1px solid #444;
+}
+#universalHeader li.username ul.dropdown li:first-child a {
+  border-top: none;
+}
+#universalHeader li.username ul.dropdown li a.account {
+  color: #ccc;
+}
+#universalHeader li.username ul.dropdown li a.account:hover,
+#universalHeader li.username ul.dropdown li a.account:focus {
+  color: #fff;
+}
+.pagination {
+    margin-bottom: 0;
+}
+.sup ul {
+    border-bottom: none;
+}
+.sup li {
+    border-width: 0 0 1px 0;
+    float: none;
+}
+.sup li:first-child {
+    border-width: 1px 0;
+}
+.sup a {
+    padding: 5px;
+}
+.sup li.selected a:after {
+    content: '>';
+}
+.sup button {
+  width: 100%;
+  margin: 0 0 20px 0;
+}
+aside#site_meta {
+    padding: 40px 0;
+}
+#site_meta .actions li {
+    float: left;
+}
+footer {
+    padding: 100px 0;
+}
+footer .c1 {
+    clear: none;
+}
+footer .c1 strong {
+    float: none;
+    margin-right: 0;
+}
+footer ul {
+    padding-left: 0;
+    margin: 0;
+}
+footer li {
+    border-left: none;
+    float: none;
+}
+footer li a {
+    padding: 0;
+}
+/**= Homepage */
+.dive-in section {
+    clear: none;
+}
+.dive-in img {
+    margin: 10px 0;
+    float: none;
+    width: 100%;
+}
+section#headlines {
+    padding: 0 10px;
+}
+/**= Activity lists */
+.update .meta {
+    float: left;
+    width: 30%;
+    text-align: right;
+}
+.update .meta img {
+    float: right;
+    margin: 0 10px;
+}
+.update .description {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.expanded .description {
+    padding-left: 10px;
+    width: 70%;
+    float: right;
+}
+.expanded .arrowRight {
+    background-image: url('/media/img/arrowRight.png');
+    display: block;
+    height: 22px;
+    margin-top: -22px;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    width: 11px;
+    z-index: 1;
+}
+/**= Event page */
+.map .zoom0,
+.map .zoom1,
+.map .zoom2 {
+  display: block;
+  -moz-transform: scale(1);
+  -moz-transition: opacity .5s;
+  -moz-transform-property: opacity, -moz-transform;
+}
+.map .zoom1,
+.map .zoom2 {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.map .zoom2-hit {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  height: 33%;
+  margin: auto;
+}
+.map .map:hover .zoom0,
+.map .zoom2-hit:hover ~ .zoom1 {
+  -moz-transform: scale(2);
+}
+.map:hover .zoom1,
+.map .zoom2-hit:hover ~ .zoom2 {
+  opacity: 1;
+}
+/**= Users */
+.users #people {
+    margin-bottom: 80px;
+}
+/***= Profile admin */
+#profile_edit .paper {
+    display: block;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 40px;
+}
+/**= Projects/topics */
+.sup .tags li {
+    margin-right: 0;
+}
+.sup .tags a {
+    padding: 0 10px;
+}
+#meta .ajax_content {
+    /* left padding - 80/320 = 0.25* /
+    /* right padding - 20/320 = 0.0625 */
+    padding: 0 6.25% 0 25%;
+}

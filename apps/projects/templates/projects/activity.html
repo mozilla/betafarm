@@ -31,25 +31,21 @@
 {{ sectiontitle(_('{project} Activity')|f(project=project.name)) }}
 {{ subnav(project.image_url, navlinks, project.link_set.all(), True, buttons) }}
 
-<section id="activity" class="clearfix">
-  {% if activities -%}
-  <ul class="activityStream" data-total-entries="{{ total }}">
-    {% set show_meta = False %}
-    {% include "activity/activity.html" %}
-  </ul>
-
-{% if has_more -%}
-    <div class="c4">
-      <a class="button fetchActivity sans" href="{{ url('projects_activity', slug=project.slug) }}{{ next_page }}/">{{ _('show older') }}</a>
-    </div>
-{% endif -%}
-
-  {% else -%}
-    <div class="paper c3">
-      <h3>{{ _('Waiting for content &hellip;') }}</h3>
-      <p>{{ _('No posts yet! Check back though, I\'m sure we\'ll have something soon!') }}</p>
-    </div>
-  {% endif -%}
+<section id="activity" class="c4 clearfix">
+    {% if activities -%}
+        <ul class="activityStream db_objects" data-total-entries="{{ total }}">
+            {% set show_meta = False %}
+            {% include "activity/ajax/activity.html" %}
+        </ul>
+        {% if has_more -%}
+            <a class="button fetchActivity sans" href="{{ url('projects_activity', slug=project.slug) }}{{ next_page }}/">{{ _('show older') }}</a>
+        {% endif -%}
+    {% else -%}
+        <div class="paper">
+            <h3>{{ _('Waiting for content &hellip;') }}</h3>
+            <p>{{ _('No posts yet! Check back though, I\'m sure we\'ll have something soon!') }}</p>
+        </div>
+    {% endif -%}
 </section>
 
 {% endblock -%}

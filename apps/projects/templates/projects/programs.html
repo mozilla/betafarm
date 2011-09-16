@@ -17,17 +17,17 @@
 {{ sectiontitle(_('Programs')) }}
 
 <section class="sup w1 clearfix">
-  <ul class="c1">
+  <ul>
     <li class="selected"><a href="{{ url('projects_programs') }}">{{ _('All (A-Z)') }}</a></li>
   </ul>
 </section>
 
-<section id="projects" class="w5">
-  <ul id="projectList" class="clearfix">
+<section id="projects" class="offset c4">
+  <ul id="projectList" class="db_objects clearfix">
     {% for program in programs -%}
-      <li class="project clearfix table_group">
-        <div class="c1 cell"><a href="{{ url('projects_show', slug=program.slug) }}"><img class="block thick" src="{{ program.image_url }}" width="140" height="140"></a></div>
-        <div class="c3 cell">
+      <li class="obj project clearfix table_group">
+        <div class="cell"><a href="{{ url('projects_show', slug=program.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ program.image_or_default }}" width="140" height="140"></a></div>
+        <div class="cell">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=program.slug) }}">{{ program.name }}</a></h3>
             <p class="serif">{{ program.description }}</p>
         </div>

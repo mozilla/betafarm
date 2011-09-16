@@ -22,20 +22,16 @@
 ), (), False) }}
 
 {% if projects -%}
-<section id="projectList" class="w5">
+<section class="c4 offset">
   <div class="wrap clearfix">
-    <div class="c1">
-    </div>
-    <ul>
-      <li>
-        <h2 class="light clearfix"><span class="c4">Projects focused on {{ topic.name }}</span></h2>
-      </li>
+        <h2 class="light">Projects focused on {{ topic.name }}</h2>
+      <ul id="projectList" class="db_objects">
       {% for project in projects %}
-      <li class="project clearfix table_group">
-        <div class="c1 cell">
-          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ project.image_url }}" width="140" height="140"></a>
+      <li class="project obj clearfix table_group">
+        <div class="cell">
+          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a>
         </div>
-        <div class="c3 cell">
+        <div class="cell">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
             <p class="serif">{{ project.description }}</p>
         </div>

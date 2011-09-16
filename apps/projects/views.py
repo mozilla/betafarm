@@ -91,7 +91,7 @@ def activity_page(request, slug, page=1):
     if not activities:
         raise Http404
     if request.is_ajax():
-        return jingo.render(request, 'activity/activity.html', {
+        return jingo.render(request, 'activity/ajax/activity.html', {
             'activities': activities,
             'show_meta': False,
          })

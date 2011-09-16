@@ -21,9 +21,9 @@
     (url('topics_about', slug=topic.slug), _('About {topic}')|f(topic=topic.name), True)
 ), (), False) }}
 
-<section id="topicContent" class="w3 clearfix">
+<section id="topicContent" class="w4 clearfix">
   <div class="row clearfix">
-    <div class="c3 content serif">
+    <div class="content serif">
       {# only admins can modify topics, so it's safe to use 'safe' here. #}
       <p class="serif">{{ topic.long_description|safe }}</p>
     </div>

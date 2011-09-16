@@ -30,7 +30,7 @@ def dashboard(request, page=0):
     if request.is_ajax():
         if not all_activities:
             raise Http404
-        return jingo.render(request, 'activity/activity.html', {
+        return jingo.render(request, 'activity/ajax/activity.html', {
             'activities': activities,
             'show_meta': True
         })

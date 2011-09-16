@@ -5,7 +5,7 @@
 {% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Labs') }}{% endblock -%}
 
 {% block page_id %}user_profile{% endblock %}
-{% block section_class %}profile{% endblock %}
+{% block section_class %}users{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
@@ -29,14 +29,13 @@
 {{ sectiontitle(profile.display_name) }}
 {{ subnav(profile.avatar_url(140), navlinks, (), False) }}
 
-<section id="userProfile" class="w5 clearfix">
+<section id="userProfile" class="c3 clearfix">
 
-  <div class="row clearfix">
-    <div class="c3 researchDescription">
+    <div class="researchDescription">
       {# TODO - Implement #}
       Recent Activity ...
     </div>
-
+</section>
     <aside class="c2 paper researchSidebar">
       {% if social_links %}
       <h3 class="light">{{ _('Social') }}</h3>
@@ -61,7 +60,5 @@
       <p>{{ profile.bio }}</p>
       {% endif -%}
     </aside>
-  </div>
-</section>
 
 {% endblock -%}

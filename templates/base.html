@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--[if (lt IE 9)]><html lang="{{ LANG }}" dir="{{ DIR }}" class="no-js bad-ie"><!--<![endif]-->
+<!--[if (gt IE 8)|!(IE)]><html lang="{{ LANG }}" dir="{{ DIR }}" class="no-js"><!--<![endif]-->
 <html LANG="{{ LANG }}" dir="{{ DIR }}" class="no-js">
 <head>
     <title>{% block page_title %}Mozilla Labs{% endblock %}</title>
@@ -7,7 +9,12 @@
     {% block site_css %}
         {{ css('innovate_css') }}
     {% endblock %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/innovate/desktop.css" media="all and (min-width:45em)" />
     <script src="https://browserid.org/include.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/innovate/desktop.css" />
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body id="{% block page_id %}{% endblock %}" class="{% block section_class %}{% endblock %}">
     <script type="text/javascript">
@@ -19,7 +26,7 @@
         <header id="universalHeader" class="clearfix">
             <nav id="topNav" class="c6" role="navigation">
             <ul class="clearfix">
-                <li class="mainItem">
+                <li class="splash">
                   <a class="about{{ active(request, url('innovate.views.splash')) }}" href="{{ url('innovate.views.splash') }}">{{ _('Home') }}</a>
                 </li>
                 <li class="projects">
@@ -71,7 +78,10 @@
     <aside id="site_meta">
         <div class="wrapper clearfix">
             <div class="c6">
-                <p><strong>Mozilla Labs</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
+                <div class="meta">
+                    <p><strong>Mozilla Labs</strong> embraces the spirit of open innovation and experimentation on the web. Curious?</p>
+                    <p>Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
+                </div>
                 <div class="actions">
                   <p>Follow us!</p>
                   <ul>
@@ -115,7 +125,7 @@
                 </ul>
             </div>
             <div class="c1">
-                <strong>Events</strong>
+                <strong>{{ _('Events') }}</strong>
                 <ul>
                     <li><a href="{{ url('events_all') }}">{{ _('events home') }}</a></li>
                     {# TODO - Implement 
@@ -134,13 +144,5 @@
     {% block site_js %}
       {{ js('innovate_js') }}
     {% endblock %}
-    <script type="text/javascript">
-        var uvOptions = {};
-        (function() {
-            var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-             uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/CMh6pgazkneWI6Atv0sLpg.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-        })();
-    </script>
 </body>
 </html>

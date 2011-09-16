@@ -14,13 +14,13 @@
 
 {% block content -%}
 <h1 class="c6 light">Add profile link</h1>
-<section id="profile_edit" class="clearfix">
+<section id="profile_edit" class="w6 clearfix">
   <div class="c3 paper">
     <h2 class="light">{{ _('Add a link') }}</h2>
     {{ errorlist(form) }}
     <form action="{{ url('users_profile_add_link') }}" method="post">
       {{ csrf()|safe }}
-      <ul>
+      <ul class="db_objects">
         <li class="links">
           <div class="clearfix addLink">
             <div>
