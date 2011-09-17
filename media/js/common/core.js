@@ -67,6 +67,12 @@ betafarm.areas = {
         onload : function() {
             betafarm.admin_links.init();
         }
+    },
+    project_blog : {
+        requires : betafarm.prepare_media('js/include/betafarm.streams.js'),
+        onload : function() {
+            betafarm.streams.init();        
+        }
     }
 }
 
