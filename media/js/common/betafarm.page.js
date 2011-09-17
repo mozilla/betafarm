@@ -42,7 +42,7 @@ betafarm.page = function() {
                 // load in the required file and once done call the onload to init it
                 if (req && req.length) {
                     $LAB
-                    .script(bd.MEDIA_URL + req[0] + '?build=' + bd.JS_BUILD_ID)
+                    .script(req)
                     .wait(function() {
                         obj.onload();
                     });

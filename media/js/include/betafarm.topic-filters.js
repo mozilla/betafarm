@@ -1,4 +1,4 @@
-betafarm.topic-filters = function() {
+betafarm.topic_filters = function() {
     
     var init, filter, display,
         filtered = $('#projectList'),

@@ -1,4 +1,4 @@
-betafarm.admin-links = function() {
+betafarm.admin_links = function() {
     var add, bin, init;
     add = function(el, csrf) {
         $('#addLinkErrorList').detach();

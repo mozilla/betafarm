@@ -149,6 +149,7 @@ MINIFY_BUNDLES = {
         'innovate_js': (
             'js/common/ext/jquery-1.6.1.min.js',
             'js/common/ext/LAB.min.js',
+            'js/common/betafarm.page.js',
             'js/common/core.js',
         ),
     }
