@@ -108,7 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
 
     'commons.context_processors.i18n',
-    #'jingo_minify.helpers.build_ids',
+    'jingo_minify.helpers.build_ids',
 
     'topics.context_processors.topics',
     'django.core.context_processors.request',
