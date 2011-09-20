@@ -37,16 +37,10 @@
 
 <section id="people" class="offset c4">
   <ul id="peopleList" class="db_objects clearfix">
-{#  todo - implement search  
-    <li class="search clearfix">
-      <div class="c2"><strong>{{ _('{count} total users')|f(count=paginator.count) }}</strong></div>
-      <input class="search c2 sans" type="text" placeholder="search people">
-    </li>
-#}
     {% for profile in profiles.object_list -%}
     <li class="obj person clearfix">
         <a href="{{ url('users_profile', username=profile.user.username) }}">
-            <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" width="32" height="32">
+            <img src="{{ profile.avatar_url(32) }}" width="32" height="32">
             {{ profile.display_name }}
         </a>
         {% if profile.website -%}
