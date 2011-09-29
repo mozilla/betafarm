@@ -2,7 +2,7 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 
 {% block page_title -%}
-{{ _('{event_name} : Events : Mozilla Labs')|f(event_name=event.name) }}
+{{ _('{event_name} : Events : {name}')|f(event_name=event.name, name=app_name) }}
 {% endblock -%}
 
 {% block page_id %}show_event{% endblock %}
@@ -10,7 +10,7 @@
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-    (url('innovate_splash'), _('Mozilla Labs Home')),
+    (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
     (url('events_all'), _('Events')),
     last=event.name) }}
 {% endblock -%}

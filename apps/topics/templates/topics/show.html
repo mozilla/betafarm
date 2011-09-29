@@ -2,14 +2,14 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import sectiontitle, subnav %}
 
-{% block page_title %}{{ topic.name }} {{ _(': Topics : Mozilla Labs') }}{% endblock %}
+{% block page_title %}{{ topic.name }} {{ _(': Topics : {name}')|f(name=app_name) }}{% endblock %}
 
 {% block page_id %}topic_details{% endblock %}
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs %}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
+     (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
      (url('projects_all'), _('Projects')),
      last=topic.name) }}
 {% endblock %}
@@ -29,7 +29,7 @@
       {% for project in projects %}
       <li class="project obj clearfix table_group">
         <div class="cell">
-          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ MEDIA_URL }}{{ project.image_or_default }}" width="140" height="140"></a>
+          <a href="{{ url('projects_show', slug=project.slug) }}"><img class="block thick" src="{{ project.image_url }}" width="140" height="140"></a>
         </div>
         <div class="cell">
             <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>

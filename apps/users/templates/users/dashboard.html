@@ -3,14 +3,14 @@
 {% from "layout/helpers.html" import sectiontitle, subnav with context %}
 {% from "activity/helpers.html" import activity with context %}
 
-{% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Labs') }}{% endblock -%}
+{% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : {name}')|f(name=app_name) }}{% endblock -%}
 
 {% block page_id %}dashboard{% endblock %}
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
+     (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
      last=profile.display_name) }}
 {% endblock -%}
 

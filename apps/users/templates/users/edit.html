@@ -2,13 +2,13 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/errorlist.html" import errorlist %}
 
-{% block page_title %}{{ _('Edit Your Profile') }}{% endblock %}
+{% block page_title %}{{ _('Edit Profile : {name}')|f(name=app_name) }}{% endblock %}
 {% block page_id %}edit_user{% endblock %}
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-    (url('innovate_splash'), _('Mozilla Labs Home')),
+    (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
     last=_('Edit Your Profile')) }}
 {% endblock -%}
 

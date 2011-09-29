@@ -3,7 +3,7 @@
 <!--[if (gt IE 8)|!(IE)]><html lang="{{ LANG }}" dir="{{ DIR }}" class="no-js"><!--<![endif]-->
 <html LANG="{{ LANG }}" dir="{{ DIR }}" class="no-js">
 <head>
-    <title>{% block page_title %}Mozilla Labs{% endblock %}</title>
+    <title>{% block page_title %}{{ app_name }}{% endblock %}</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
     <link rel="shortcut icon" type="image/x-icon" href="{{ MEDIA_URL }}img/favicon.png" />
@@ -83,7 +83,7 @@
         <div class="wrapper clearfix">
             <div class="c6">
                 <div class="meta">
-                    <p><strong>Mozilla Labs</strong> embraces the spirit of open innovation and experimentation on the web. Curious?</p>
+                    <p><strong>{{ app_name }}</strong> embraces the spirit of open innovation and experimentation on the web. Curious?</p>
                     <p>Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
                 </div>
                 <div class="actions">
@@ -99,7 +99,7 @@
     <footer>
         <div class="wrapper clearfix">
             <div class="c2">
-                <strong>{{ _('Mozilla Labs 2011') }}</strong>
+                <strong>{{ _('{name} 2011')|f(name=app_name) }}</strong>
                 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="{{ MEDIA_URL }}img/cc.png" alt="{{ ('Creative Commons - Attribution ShareAlike 3.0') }}" width="80" height="15"></a>
             </div>
             <div class="c1" role="contentinfo">

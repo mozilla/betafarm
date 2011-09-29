@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block page_title %}{{ _('Page Not Found : Mozilla Labs') }}{% endblock %}
+{% block page_title %}{{ _('Page Not Found : {name}')|f(name=app_name) }}{% endblock %}
 
 {% block page_id %}error_404{% endblock %}
 {% block section_css %}error{% endblock %}

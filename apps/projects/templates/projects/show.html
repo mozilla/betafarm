@@ -3,7 +3,7 @@
 {% from "layout/helpers.html" import sectiontitle, subnav with context %}
 
 {% block page_title -%}
- {{ _('{project} : Projects : Mozilla Labs')|f(project=project.name) }}
+ {{ _('{project} : Projects : {name}')|f(project=project.name, name=app_name) }}
 {% endblock -%}
 
 {% block page_id %}project_detail{% endblock %}
@@ -12,12 +12,12 @@
 {% block breadcrumbs -%}
 {% if project.is_program -%}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
+     (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
      (url('projects_programs'), _('Programs')),
      last=project.name) }}
 {% else -%}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
+     (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
      (url('projects_all'), _('Projects')),
      last=project.name) }}
 {% endif -%}

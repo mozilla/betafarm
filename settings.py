@@ -22,6 +22,7 @@ DATABASES = {}  # See settings_local.
 # Site ID is used by Django's Sites framework.
 SITE_ID = 1
 
+APP_NAME = 'Mozilla Labs'
 
 ## Internationalization.
 
@@ -112,6 +113,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'topics.context_processors.topics',
     'django.core.context_processors.request',
+    'innovate.context_processors.app_name'
 )
 
 TEMPLATE_DIRS = (

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 
-{% block page_title %}{{ _('Projects : Mozilla Labs') }}{% endblock %}
+{% block page_title %}{{ _('Projects : {name}')|f(name=app_name) }}{% endblock %}
 
 {% block page_id %}all_projects{% endblock %}
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
+     (url('innovate_splash'), _('{name} Home')|f(name=app_name)),
      last=_('Projects')) }}
 {% endblock -%}
 
