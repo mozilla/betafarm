@@ -30,9 +30,9 @@ def about(request):
 
 def handle404(request):
     """Handle 404 responses."""
-    return jingo.render(request, 'handlers/404.html')
+    return jingo.render(request, 'handlers/404.html', status=404)
 
 
 def handle500(request):
     """Handle server errors."""
-    return jingo.render(request, 'handlers/500.html')
+    return jingo.render(request, 'handlers/500.html', status=500)
