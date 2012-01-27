@@ -69,7 +69,7 @@ class Profile(BaseModel):
 
     def __unicode__(self):
         """Return a string representation of the user."""
-        return unicode(self.user)
+        return self.display_name
 
     @property
     def username_hash(self):
