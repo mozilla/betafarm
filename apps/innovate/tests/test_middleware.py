@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
+from users.models import Link
+
 
 def get_users(filter_f=None):
     users = User.objects.all()
@@ -21,14 +23,14 @@ def get_users(filter_f=None):
 def user_with_generated_id(fake_auth, **kwargs):
     users = get_users(lambda u: not u.get_profile().has_chosen_identifier)
     fake_auth.expects_call().returns(users[0])
-    yield
+    yield users[0]
 
 
 @contextmanager
 def user_with_chosen_id(fake_auth, **kwargs):
     users = get_users(lambda u: u.get_profile().has_chosen_identifier)
     fake_auth.expects_call().returns(users[0])
-    yield
+    yield users[0]
 
 
 class MiddlewareTests(TestCase):
@@ -39,12 +41,12 @@ class MiddlewareTests(TestCase):
 
     fixtures = ['users.json']
 
-    def _get_and_follow_redirect(self, client, path):
-        response = client.get(path)
+    def _get_and_follow_redirect(self, client, path, **kwargs):
+        response = client.get(path, **kwargs)
         if response.status_code != 301:
             return response
         location = response.get('location', None)
-        return client.get(location)
+        return client.get(location, **kwargs)
 
     @fudge.patch('django_browserid.auth.BrowserIDBackend.authenticate')
     def test_unsafe_paths(self, fake):
@@ -62,23 +64,24 @@ class MiddlewareTests(TestCase):
 
     @fudge.patch('django_browserid.auth.BrowserIDBackend.authenticate')
     def test_safe_paths(self, fake):
-        with user_with_generated_id(fake):
+        with user_with_generated_id(fake) as user:
+            link = Link.objects.create(
+                name="Mozilla",
+                url="http://www.mozilla.org",
+                profile=user.get_profile(),
+            )
             client = Client()
             client.login()
             expect_ok = (
                 self._get_and_follow_redirect(client, reverse('users_edit')),
                 self._get_and_follow_redirect(
-                    client, reverse('django.views.static.serve', kwargs={
-                        'path': '/media/css/innovate/main.css'
-                    })
-                ),
-                self._get_and_follow_redirect(
                     client, reverse('users_profile_add_link')),
                 self._get_and_follow_redirect(
-                    client, reverse('users_profile_links')),
+                    client, reverse('users_profile_links'),
+                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest'),
                 self._get_and_follow_redirect(
                     client, reverse('users_profile_delete_link', kwargs={
-                        'id': 1,
+                        'id': link.pk,
                     })
                 )
             )
