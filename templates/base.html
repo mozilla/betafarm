@@ -29,9 +29,6 @@
                         <li><a class="topic" href="{{ url('projects_programs') }}">{{ _('Programs') }}</a></li>
                     </ul>
                 </li>
-                <li class="events">
-                    <a class="event{{ active(request, url('events_all')) }}" href="{{ url('events_all') }}">{{ _('Events') }}</a>
-                </li>
                 <li class="users">
                     <a class="users{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
                 </li>
@@ -112,15 +109,6 @@
                     {% for topic in topics -%}
                     <li><a href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name|lower }}</a></li>
                     {% endfor -%}
-                </ul>
-            </div>
-            <div class="c1">
-                <strong>Events</strong>
-                <ul>
-                    <li><a href="{{ url('events_all') }}">{{ _('events home') }}</a></li>
-                    {# TODO - Implement 
-                    <li><a href="#">education</a></li>
-                    <li><a href="#">calendar</a></li>   #}
                 </ul>
             </div>
             <div class="c1">
