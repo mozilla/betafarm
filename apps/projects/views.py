@@ -17,18 +17,10 @@ ACTIVITY_PAGE_SIZE = 10
 
 def all(request):
     """Display a list of all projects."""
-    projects = Project.objects.exclude(tags__name='program').order_by('name')
+    projects = Project.objects.order_by('name')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
         'view': 'all'
-    })
-
-
-def programs(request):
-    """Display a list of all programs."""
-    programs = Project.objects.filter(tags__name='program').order_by('-name')
-    return jingo.render(request, 'projects/programs.html', {
-        'programs': programs,
     })
 
 
@@ -135,7 +127,7 @@ def active(request):
 
 def recent(request):
     """Display a list of the most recent projects."""
-    projects = Project.objects.exclude(tags__name='program').order_by('-id')
+    projects = Project.objects.order_by('-id')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
         'view': 'recent'

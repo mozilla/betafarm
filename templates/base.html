@@ -23,11 +23,7 @@
                   <a class="about{{ active(request, url('innovate.views.splash')) }}" href="{{ url('innovate.views.splash') }}">{{ _('Home') }}</a>
                 </li>
                 <li class="projects">
-                    <a class="topic dropdown{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('What We Do') }}</a>
-                    <ul class="dropdown">
-                        <li><a class="topic" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
-                        <li><a class="topic" href="{{ url('projects_programs') }}">{{ _('Programs') }}</a></li>
-                    </ul>
+                    <a class="topic{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('Projects') }}</a>
                 </li>
                 <li class="events">
                     <a class="event{{ active(request, url('events_all')) }}" href="{{ url('events_all') }}">{{ _('Events') }}</a>

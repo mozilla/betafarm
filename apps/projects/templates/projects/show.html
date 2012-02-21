@@ -10,17 +10,10 @@
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs -%}
-{% if project.is_program -%}
-{{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
-     (url('projects_programs'), _('Programs')),
-     last=project.name) }}
-{% else -%}
 {{ breadcrumbs(
      (url('innovate_splash'), _('Mozilla Labs Home')),
      (url('projects_all'), _('Projects')),
      last=project.name) }}
-{% endif -%}
 {% endblock -%}
 
 {% if project.blog -%}
