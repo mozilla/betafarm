@@ -22,11 +22,6 @@
     {% else -%}
       <li><a href="{{ url('users_all') }}">{{ _('All (A-Z)') }}</a></li>
     {% endif -%}
-    {% if page == 'active' -%}
-      <li class="selected"><a class="brandColor" href="{{ url('users_active') }}">{{ _('Most Active') }}</a></li>
-    {% else -%}
-      <li><a href="{{ url('users_active') }}">{{ _('Most Active') }}</a></li>
-    {% endif -%}
     {% if page == 'recent' -%}
       <li class="selected"><a class="brandColor" href="{{ url('users_recent') }}">{{ _('Most Recent') }}</a></li>
     {% else -%}

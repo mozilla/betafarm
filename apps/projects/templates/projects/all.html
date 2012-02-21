@@ -22,11 +22,6 @@
     {% else -%}
       <li><a href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
     {% endif -%}
-    {% if view == 'active' %}
-      <li class="selected"><a class="brandColor" href="{{ url('projects_active') }}">{{ _('Most Active') }}</a></li>
-    {% else -%}
-      <li><a href="{{ url('projects_active') }}">{{ _('Most Active') }}</a></li>
-    {% endif %}
     {% if view == 'recent' %}
       <li class="selected"><a class="brandColor" href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a></li>
     {% else -%}
