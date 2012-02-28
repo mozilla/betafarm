@@ -9,8 +9,7 @@ def active(request, url):
     if url.endswith(reverse('projects_all')):
         try:
             match = resolve(path)
-            if match.url_name in (
-                'projects_all', 'projects_show', 'projects_programs'):
+            if match.url_name in ('projects_all', 'projects_show'):
                 return ' selected'
         except Http404:
             return ''
