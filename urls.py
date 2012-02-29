@@ -7,7 +7,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^browserid/', include('django_browserid.urls')),
-    (r'^events', include('events.urls')),
     (r'^topics', include('topics.urls')),
     (r'^push/subscriber/', include('django_push.subscriber.urls')),
     (r'', include('innovate.urls')),

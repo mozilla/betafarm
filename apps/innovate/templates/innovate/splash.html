@@ -48,21 +48,6 @@
         </article>
         {% endif %}
     </section>
-    <section class="events c2">
-        <h2><a href="{{ url('events_all') }}">{{ _('Events') }}</a></h2>
-        <p>{% trans %}Find and participate in events happening in your area or engage in one of our online contests.{% endtrans %}</p>
-        {% if featured_event %}
-        <article class="paper">
-            <div class="arrow"></div>
-            <h3>{{ _('Featured Event') }}</h3>
-            <a href="{{ url('events_show', slug=featured_event.slug) }}">
-            <img class="block thick" src="{{ MEDIA_URL }}{{ featured_event.featured_image_or_default }}" width="260" height="125">
-            <h4>{{ featured_event.name }}</h4>
-            </a>
-            <p>{{ featured_event.description|striptags|truncate(43) }}</p>
-        </article>
-        {% endif %}
-    </section>
     <section class="people c2">
         <h2><a href="{{ url('users_all') }}">{{ _('People') }}</a></h2>
         <p>{% trans %}The open web is made up of awesome people, connect and communicate with some of them here.{% endtrans %}</p>
