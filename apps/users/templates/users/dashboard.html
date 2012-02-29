@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import sectiontitle, subnav with context %}
-{% from "activity/helpers.html" import activity with context %}
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Labs') }}{% endblock -%}
 
@@ -20,20 +19,5 @@
     (url('users_dashboard'), _('Dashboard'), True),
     (url('users_profile', username=profile.user.username), _('View your Profile'), False)
    ), (), False) }}
-
-<section id="activity" class="clearfix">
-  <ul class="activityStream" data-total-entries="{{ total }}">
-    {% set show_meta = True %}
-    {% include "activity/activity.html" %}
-  </ul>
-
-  {% if has_more -%}
-  <div class="c1"></div>
-  <div class="c4">
-    <a class="button fetchActivity sans" href="{{ url('users_dashboard') }}{{ next_page }}/">{{ _('load older') }}</a>
-  </div>
-  {% endif -%}
-
-</section>
 
 {% endblock -%}
