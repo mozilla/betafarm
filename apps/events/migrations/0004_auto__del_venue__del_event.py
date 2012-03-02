@@ -7,15 +7,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
-        # Deleting model 'Venue'
-        db.delete_table('events_venue')
-
-        # Deleting model 'Event'
-        db.delete_table('events_event')
 
         # Removing M2M table for field attendees on 'Event'
         db.delete_table('events_event_attendees')
+
+        # Deleting model 'Event'
+        db.delete_table('events_event')
+        
+        # Deleting model 'Venue'
+        db.delete_table('events_venue')
 
 
     def backwards(self, orm):
