@@ -28,5 +28,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
 DEBUG = TEMPLATE_DEBUG = True
+
+PROTOCOL = 'http://'
+DOMAIN = 'localhost'
+PORT = 8000

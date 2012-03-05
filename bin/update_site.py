@@ -23,8 +23,8 @@ VENDOR  = 1
 
 ENV_BRANCH = {
     # 'environment': [PROJECT_BRANCH, VENDOR_BRANCH],
-    'dev':   ['base',   'master'],
-    'stage': ['master', 'master'],
+    'dev':   ['master',   'master'],
+    'stage': ['stage', 'master'],
     'prod':  ['prod',   'master'],
 }
 

@@ -302,6 +302,8 @@ BROWSERID_VERIFICATION_URL = 'https://browserid.org/verify'
 BROWSERID_CREATE_USER = True
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL_FAILURE = '/'
+PROTOCOL = 'https://'
+DOMAIN = 'mozillalabs.com'
 
 PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
 PUSH_DEFAULT_HUB_USERNAME = ''
