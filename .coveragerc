@@ -1,0 +1,6 @@
+[report]
+include:
+    apps/*
+
+[html]
+directory = _coverage

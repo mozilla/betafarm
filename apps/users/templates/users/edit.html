@@ -18,7 +18,7 @@
     <h2 class="light">{{ _('Your Profile') }}</h2>
     {{ errorlist(form) }}
     <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
-      {{ csrf()|safe }}
+      {{ csrf() }}
       <ul>
         <li class="picture">
           <label for="id_avatar">{{ _('Picture') }}</label>

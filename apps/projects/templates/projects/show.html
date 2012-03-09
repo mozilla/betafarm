@@ -16,8 +16,6 @@
      last=project.name) }}
 {% endblock -%}
 
-{% set navlinks = ((url('projects_show', slug=project.slug), _('Info'), True),) %}
-
 {% if user.is_authenticated() %}
     {% if user.get_profile() in project.followers.all() -%}
     {% set buttons = ((url('projects_unfollow', slug=project.slug), _('Unfollow'), 'unsubmit'),) %}
@@ -47,7 +45,7 @@
       <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
     </div>
     <ul class="peopleList clearfix c3">
-      {% for person in project.team_members.all() -%}
+      {% for person in proj_people -%}
         <li>
           <a href="{{ url('users_profile', username=person.user.username) }}">
             <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" width="32" height="32">

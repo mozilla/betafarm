@@ -8,7 +8,7 @@ from innovate.models import BaseModel
 
 class Entry(BaseModel):
     title = models.CharField(max_length=100)
-    published = models.DateTimeField(default=datetime.datetime.now())
+    published = models.DateTimeField(default=datetime.datetime.now)
     url = models.URLField()
     body = models.TextField()
     link = models.ForeignKey('projects.Link')

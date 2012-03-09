@@ -1,15 +1,12 @@
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import post_save, pre_delete
 
 from django_push.subscriber.models import Subscription
-from django_push.subscriber.signals import updated
 
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from innovate.models import BaseModel
-from projects import tasks
 from users.models import Profile
 
 
@@ -26,6 +23,9 @@ class Project(BaseModel):
     featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
                                        blank=True, null=True,
                                        upload_to=settings.PROJECT_IMAGE_PATH)
+    owners = models.ManyToManyField(Profile,
+                                    verbose_name=_(u'Project Owners'),
+                                    related_name=u'projects_owned')
     team_members = models.ManyToManyField(Profile,
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
@@ -39,6 +39,12 @@ class Project(BaseModel):
     @models.permalink
     def get_absolute_url(self):
         return ('projects_show', (), {
+            'slug': self.slug
+        })
+
+    @models.permalink
+    def get_edit_url(self):
+        return ('projects_edit', (), {
             'slug': self.slug
         })
 
@@ -86,30 +92,3 @@ class Link(BaseModel):
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)
-
-
-def link_subscriber(sender, instance, created, **kwargs):
-    """Subscribe to link RSS/Atom feed."""
-    if not isinstance(instance, Link) or not instance.subscribe:
-        return
-    if instance.subscription:
-        return
-    tasks.PushSubscriber.apply_async(args=(instance,))
-post_save.connect(link_subscriber, sender=Link)
-
-
-def link_delete_handler(sender, instance, **kwargs):
-    """Send unsubscribe request to link hub."""
-    if not isinstance(instance, Link):
-        return
-    tasks.PushUnsubscriber.apply_async(args=(instance,))
-pre_delete.connect(link_delete_handler, sender=Link)
-
-
-def notification_listener(notification, **kwargs):
-    """Create entries for notification."""
-    sender = kwargs.get('sender', None)
-    if not sender:
-        return
-    tasks.PushNotificationHandler.apply_async(args=(notification, sender))
-updated.connect(notification_listener)

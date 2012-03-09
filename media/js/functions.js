@@ -37,8 +37,18 @@ betafarm.project_links = function() {
             name_val = name.val(),
             url = parent.find('input[name=link_url]'),
             url_val = url.val(),
+            blog = parent.find('input[name=link_blog]'),
+            blog_on = blog.prop('checked'),
+            post_data = {
+                'name': name_val,
+                'url': url_val,
+                'csrfmiddlewaretoken': csrf
+            },
             message = false,
             loading;
+        if (blog_on) {
+            post_data.blog = 'on';
+        }
         if (!message) {
             message = $('<div class="message">Adding link...</div>').prependTo(grand_parent);
         }
@@ -48,23 +58,19 @@ betafarm.project_links = function() {
             message.css('display','block');
             parent.css('display','none');
             grand_parent.css('visibility','visible');
-        }, 500); 
+        }, 500);
         $.ajax({
             type:'POST',
             url:el.attr('href'),
-            data: {
-                'name':name_val,
-                'url':url_val,
-                'csrfmiddlewaretoken':csrf
-            },
+            data: post_data,
             success: function() {
                 if (!loading) {
                     message.css('display','none');
                     parent.css('display','block');
-                    grand_parent.css('visibility','visible'); 
+                    grand_parent.css('visibility','visible');
                 } else {
                     window.clearTimeout(loading);
-                }             
+                }
                 $.ajax({
                     type:'GET',
                     url:parent.attr('data-list-links'),
@@ -72,6 +78,7 @@ betafarm.project_links = function() {
                         $('ul.yourLinks').replaceWith(data);
                         name.val('');
                         url.val('');
+                        blog.prop('checked', false);
                     }
                 });
             },
@@ -99,7 +106,7 @@ betafarm.project_links = function() {
                         'msg': response.name,
                         'href': '#id_title'
                     });
-                } 
+                }
                 $.each(errors, function(i, e) {
                     var $link = $('<a class="error"></a>').attr('href', e.href)
                         .append(e.label + ": " + e.msg.toString());
@@ -145,7 +152,7 @@ betafarm.project_links = function() {
             }
          });
     };
-        
+
     return {
         'init': init
     };
@@ -199,7 +206,7 @@ betafarm.streams = function() {
             return false;
         });
     };
-    
+
     return {
         'init': init
     };
@@ -207,7 +214,7 @@ betafarm.streams = function() {
 }();
 
 betafarm.filtering = function() {
-    
+
     var init, filter, display,
         filtered = $('#projectList'),
         holder = $('#projects'),
@@ -221,7 +228,7 @@ betafarm.filtering = function() {
             filter: '.' + topic
         });
     };
-   
+
     display = function(topic, data) {
         var topic_info = $('#' + topic),
             loading;
@@ -252,17 +259,17 @@ betafarm.filtering = function() {
     };
 
     init = function() {
-        
+
         if ($('#all_projects').length) {
             var area = $('section[role=main]');
 
             info = $('<div id="meta" class="w2"><div class="c2 close ajax_content"><a class="close" href="#">Show all topics</a></div></div>').prependTo(holder);
-                        
+
             filtered.isotope({
                 itemSelector : '.project',
                 layoutMode : 'fitRows'
             });
-        
+
             area.bind('click', function(e) {
                 var target = $(e.target);
                 if (target.is('a.tag')) {
@@ -281,7 +288,7 @@ betafarm.filtering = function() {
             });
         }
     };
-    
+
     return {
         'init': init
     };

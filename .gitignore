@@ -3,6 +3,7 @@ settings_local.py
 *.sw[po]
 *.komodoproject
 .coverage
+_coverage/*
 pip-log.txt
 docs/_gh-pages
 build.py
@@ -17,3 +18,4 @@ tmp/*
 *~
 locale/*
 media/img/uploads/*
+media/uploads/*

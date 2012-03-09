@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "layout/errorlist.html" import errorlist %}
+
+{% block page_title -%}
+  {{ _('{project} : Projects : Mozilla Labs')|f(project=project.name) }}
+{% endblock -%}
+
+{% block page_id %}project_detail{% endblock %}
+{% block section_class %}projects{% endblock %}
+
+{% block breadcrumbs -%}
+  {{ breadcrumbs(
+      (url('innovate_splash'), _('Mozilla Labs Home')),
+      (url('projects_all'), _('Projects')),
+      last=project.name) }}
+{% endblock -%}
+
+{% block content -%}
+  {{ sectiontitle(project.name) }}
+  {{ subnav(MEDIA_URL, project.image_or_default, navlinks, None, False) }}
+
+  <section id="project_edit" class="w3 clearfix">
+    <div class="row clearfix">
+      <div class="c3 paper">
+        <h2 class="sans light">{{ _('Edit Project') }}</h2>
+        {{ errorlist(form) }}
+        <form action="{{ request.get_full_path() }}" method="post" enctype="multipart/form-data">
+          {{ csrf() }}
+          <ul>
+            {{ form_input(form.name) }}
+            {{ form_input(form.slug) }}
+            {{ form_input(form.description) }}
+            {{ form_input(form.long_description) }}
+            {{ form_input_image(form.image) }}
+            {{ form_input_image(form.featured_image) }}
+            {{ form_input(form.owners) }}
+            {{ form_input(form.team_members) }}
+            <li class="links">
+              <label>{{ _('Project Links') }}</label>
+              {% include 'projects/links.html' %}
+              <fieldset id="add_links">
+                <legend><span>{{ _('Add a link') }}</span></legend>
+                <div class="clearfix addLink"
+                     data-list-links="{{ url('projects_links_list', project.slug) }}">
+                  <div>
+                    <label for="id_title">{{ _('Title') }}</label>
+                    <input id="id_title" name="link_name" type="text">
+                  </div>
+                  <div>
+                    <label for="id_url">{{ _('URL') }}</label>
+                    <input id="id_url" name="link_url" type="text">
+                  </div>
+                  <div>
+                    <label for="id_blog">{{ _('Blog') }}</label>
+                    <input id="id_blog" type="checkbox" name="link_blog">
+                  </div>
+                  <a class="button add sans"
+                     href="{{ url('projects_links_add', project.slug) }}">{{ _('Add Link') }}</a>
+                </div>
+              </fieldset>
+            </li>
+            {{ form_input(form.topics) }}
+            {{ form_input(form.tags) }}
+          </ul>
+          <button class="submit sans" type="submit">{{ _('save!') }}</button>
+        </form>
+      </div>
+    </div>
+
+    <hr>
+  </section>
+{% endblock -%}
+
+{% macro form_input(field, label=None) -%}
+  <li>
+    <label for="id_{{ field.name }}">{{ label|d(field.label, true) }}</label>
+    {{ field }}
+    {% if field.help_text %}
+      <div class="helptext clear">{{ field.help_text }}</div>
+    {% endif %}
+  </li>
+{%- endmacro %}
+
+{% macro form_input_image(field, label=None) -%}
+  <li class="picture">
+    <label for="id_{{ field.html_name }}">{{ label|d(field.label, true) }}</label>
+    {% if field.value() %}
+      <img src="{{ MEDIA_URL }}{{ field.value() }}" alt="{{ _('Current Image') }}">
+    {% endif %}
+    <div class="avatarWrap clearfix">
+      {{ field }}
+    </div>
+  </li>
+{%- endmacro %}

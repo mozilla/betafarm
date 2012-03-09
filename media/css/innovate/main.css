@@ -11,7 +11,7 @@ a img {
 .inline li:last-child {
     margin-right: 0;
 }
-/* 
+/*
     homepage specific styles
 */
 section#promoted {
@@ -131,7 +131,7 @@ aside#site_meta {
 #site_meta .actions li img {
   vertical-align: text-top;
 }
-/* 
+/*
     topic list page styles
 */
 section#topics ul {
@@ -204,6 +204,9 @@ section#projectList li p {
 /*
     program / project page and blog styles
 */
+#project_edit li.picture img {
+  border: 4px solid #aaa;
+}
 #projectContent, #topicContent {
   margin: 0 160px;
 }
@@ -463,7 +466,7 @@ ul.yourLinks li {
 }
 ul.yourLinks .linkName {
   width: 160px;
-  float: left;  
+  float: left;
   display: inline-block;
   font-weight: bold;
 }
@@ -486,7 +489,7 @@ li.links .button {
     padding: 10px 26px;
     display: none;
     background: transparent url('/media/img/ajax-loader.gif') no-repeat right center;
-    text-align: right; 
+    text-align: right;
     color: #74726A;
     font-weight: bold;
 }
@@ -526,6 +529,12 @@ form .addLink input {
   width: 168px;
   float: left;
   margin: 0 5px 0 0;
+}
+#project_edit form .addLink input {
+    width: 150px;
+}
+#project_edit form .addLink #id_blog {
+    width: auto;
 }
 form .addLink button {
   padding: 4px 0px;
@@ -1397,7 +1406,7 @@ section img.thick, .avatarWrap img {
   transition: all 0.2s ease;
 }
 a img.thick:hover {
-  border: 2px solid rgba(0, 0, 0, 0.2);  
+  border: 2px solid rgba(0, 0, 0, 0.2);
 }
 .sup img.thick {
   border-bottom: 0 none;
@@ -1806,5 +1815,10 @@ section#activity ul .updateBody.blogged p {
 .isotope .isotope-item {
     -webkit-transition-property: -webkit-transform, opacity;
     -moz-transition-property: -moz-transform, opacity;
-    transition-property: ransform, opacity;
+    transition-property: transform, opacity;
+}
+
+.helptext {
+    color: #999;
+    font-size: 11px;
 }

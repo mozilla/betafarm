@@ -94,6 +94,7 @@ SECRET_KEY = '1iz#v0m55@h26^m6hxk3a7at*h$qj_2a$juu1#nv50548j(x1v'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
+    'jingo.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
@@ -184,7 +185,6 @@ INSTALLED_APPS = (
     # Third-party apps
     'commonware.response.cookies',
     'djcelery',
-    'django_nose',
 
     # Django contrib apps
     'django.contrib.admin',
@@ -201,6 +201,9 @@ INSTALLED_APPS = (
 
     # Database migrations
     'south',
+
+    # Gooder tests. Has to come after south.
+    'django_nose',
 
     # BrowserID support
     'django_browserid',
@@ -302,6 +305,7 @@ BROWSERID_VERIFICATION_URL = 'https://browserid.org/verify'
 BROWSERID_CREATE_USER = True
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL_FAILURE = '/'
+LOGIN_URL = LOGIN_REDIRECT_URL
 PROTOCOL = 'https://'
 DOMAIN = 'mozillalabs.com'
 

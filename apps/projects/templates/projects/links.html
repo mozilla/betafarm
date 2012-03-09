@@ -1,0 +1,9 @@
+<ul class="yourLinks">
+  {% for link in project.link_set.all() -%}
+    <li class="clearfix">
+      <div class="linkName overflow">{{ link.name }}</div>
+      <div class="linkUrl overflow"><a class="brandColor" href="{{ link.url }}">{{ link.url }}</a></div>
+      <a href="{{ url('projects_links_delete', link.pk) }}" class="button delete sans">{{ _('delete') }}</a>
+    </li>
+  {% endfor -%}
+</ul>

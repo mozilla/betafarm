@@ -57,6 +57,9 @@ class Profile(BaseModel):
                                        blank=True, null=True,
                                        upload_to=settings.USER_AVATAR_PATH)
 
+    def owns_project(self, project):
+        return self.user.is_superuser or (project in self.projects_owned.all())
+
     @property
     def avatar_or_default(self):
         """Return user provided avatar, or default if none exists."""

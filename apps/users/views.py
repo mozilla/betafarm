@@ -71,6 +71,8 @@ def add_link(request):
             link = form.save(commit=False)
             link.profile = profile
             link.save()
+            if request.is_ajax():
+                return HttpResponse(status=204)
             return HttpResponseRedirect(reverse('users_edit'))
         else:
             if request.is_ajax():
