@@ -218,6 +218,9 @@ INSTALLED_APPS = (
     # Feature flipping
     'waffle',
 
+    # Command running
+    'cronjobs',
+
     # Betafarm specific
     'innovate',
     'users',

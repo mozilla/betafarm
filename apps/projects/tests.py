@@ -1,11 +1,28 @@
+import os
+
 from django.contrib.auth.models import User
 
-from test_utils import TestCase
+import requests
+from test_utils import TestCase, SkipTest
 
 from commons.urlresolvers import reverse
+from projects import cron
 from projects.models import Project, Link
 from topics.models import Topic
 from users.models import Profile
+
+
+class TestCron(TestCase):
+    def test_get_isotope(self):
+        try:
+            requests.get('https://github.com/')
+        except requests.ConnectionError:
+            raise SkipTest('Could not connect to Github.')
+        if os.path.exists(cron.ISOTOPE_PATH):
+            os.remove(cron.ISOTOPE_PATH)
+        self.assertFalse(os.path.exists(cron.ISOTOPE_PATH))
+        cron.get_isotope()
+        self.assertTrue(os.path.exists(cron.ISOTOPE_PATH))
 
 
 class TestViews(TestCase):
