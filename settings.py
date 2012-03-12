@@ -19,10 +19,6 @@ MANAGERS = ADMINS
 
 DATABASES = {}  # See settings_local.
 
-# Site ID is used by Django's Sites framework.
-SITE_ID = 1
-
-
 ## Internationalization.
 
 # Local time zone for this installation. Choices can be found here:
@@ -137,6 +133,11 @@ def JINJA_CONFIG():
 #        config['bytecode_cache'] = bc
     return config
 
+JINGO_EXCLUDE_APPS = (
+    'debug_toolbar',
+    'admin',
+)
+
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
@@ -193,7 +194,6 @@ INSTALLED_APPS = (
 
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
 
     # L10n
