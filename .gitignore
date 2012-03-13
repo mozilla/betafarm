@@ -19,3 +19,4 @@ tmp/*
 locale/*
 media/img/uploads/*
 media/uploads/*
+media/js/libs/jquery.isotope.min.js
