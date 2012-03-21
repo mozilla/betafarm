@@ -4,6 +4,10 @@ from django.contrib import admin
 
 admin.autodiscover()
 
+# Handle 404 and 500 errors
+handler404 = 'innovate.views.handle404'
+handler500 = 'innovate.views.handle500'
+
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^browserid/', include('django_browserid.urls')),
@@ -13,10 +17,6 @@ urlpatterns = patterns('',
     (r'', include('users.urls')),
     (r'', include('projects.urls')),
 )
-
-# Handle 404 and 500 errors
-handler404 = 'innovate.views.handle404'
-handler500 = 'innovate.views.handle500'
 
 ## In DEBUG mode, serve media files through Django.
 if settings.DEBUG:

@@ -3,9 +3,8 @@ import json
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, redirect
 
 from users.models import Profile, Link
 from users.forms import ProfileForm, ProfileLinksForm
@@ -22,17 +21,18 @@ def dashboard(request):
 def signout(request):
     """Sign the user out, destroying their session."""
     auth.logout(request)
-    return HttpResponseRedirect(reverse('innovate_splash'))
+    return redirect('innovate_splash')
 
 
 def profile(request, username):
     """Display profile page for user specified by ``username``."""
     user = get_object_or_404(auth.models.User, username=username)
     profile = get_object_or_404(Profile, user=user)
+    projects = profile.project_set.exists() or profile.projects_owned.exists()
     return jingo.render(request, 'users/profile.html', {
         'profile': profile,
-        'social_links': profile.link_set.all() or False,
-        'projects': profile.project_set.all() or False
+        'social_links': profile.link_set.all(),
+        'projects': projects,
     })
 
 
@@ -56,7 +56,7 @@ def delete_link(request, id):
         link.delete()
         if request.is_ajax():
             return HttpResponse(status=204)
-        return HttpResponseRedirect(reverse('users_edit'))
+        return redirect('users_edit')
     return jingo.render(request, 'users/profile_link_delete.html', {
         'link': link
     })
@@ -73,7 +73,7 @@ def add_link(request):
             link.save()
             if request.is_ajax():
                 return HttpResponse(status=204)
-            return HttpResponseRedirect(reverse('users_edit'))
+            return redirect('users_edit')
         else:
             if request.is_ajax():
                 return HttpResponse(json.dumps(form.errors), status=400)
@@ -107,14 +107,13 @@ def edit(request):
                 link = links_form.save(commit=False)
                 link.profile = profile
                 link.save()
-            return HttpResponseRedirect(reverse('users_profile', kwargs={
-                'username': request.user.username
-            }))
+            return redirect(profile)
     form = ProfileForm(instance=profile)
     links = profile.link_set.all()
     return jingo.render(request, 'users/edit.html', {
         'form': form,
-        'links': links
+        'links': links,
+        'profile': profile,
     })
 
 

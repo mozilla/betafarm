@@ -1,10 +1,9 @@
 {% macro breadcrumbs() -%}
-<nav id="secondaryMenu" class="clearfix">
-  <ul id="breadcrumbs" class="c6 clearfix">
-  {% for crumb in varargs -%}
-    <li class="crumb"><a href="{{ crumb[0] }}">{{ crumb[1] }}</a></li>
-  {% endfor -%}
-  <li>{{ kwargs.last }}</li>
-  </ul>
-</nav>
+  <nav class="breadcrumbs">
+    <a href="{{ url('innovate_splash') }}">{{ _('Home') }}</a> >
+    {% for crumb in varargs -%}
+      <a href="{{ crumb[0] }}">{{ crumb[1] }}</a> >
+    {% endfor %}
+    <span>{{ kwargs.last }}</span>
+  </nav>
 {%- endmacro %}

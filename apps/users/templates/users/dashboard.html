@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "layout/helpers.html" import search with context %}
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Labs') }}{% endblock -%}
 
@@ -8,16 +8,38 @@
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
-{{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
-     last=profile.display_name) }}
+  {{ breadcrumbs(last=profile.display_name) }}
 {% endblock -%}
 
 {% block content -%}
-{{ sectiontitle(profile.display_name) }}
-{{ subnav(MEDIA_URL, profile.avatar_or_default, (
-    (url('users_dashboard'), _('Dashboard'), True),
-    (url('users_profile', username=profile.user.username), _('View your Profile'), False)
-   ), (), False) }}
-
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ profile.display_name }}</h1>
+      </div>
+    </div>
+    <div class="row" id="body-content">
+      <div class="logo-links span2">
+        <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" alt="{{ profile.display_name }}">
+        <a href="{{ url('users_profile', username=profile.user.username) }}">{{ _('View your Profile') }}</a>
+      </div>
+      <div class="description span6 offset1">
+        {{ projects_list(_('Your Projects'), profile.projects_owned.all()) }}
+        {{ projects_list(_("You're a Member"), profile.project_set.all()) }}
+        {{ projects_list(_('Projects You Follow'), profile.projects_following.all()) }}
+      </div>
+    </div>
+  </div>
 {% endblock -%}
+
+{% macro projects_list(title, projects) %}
+  {% if projects %}
+    <h2>{{ title }}</h2>
+    <ul>
+      {% for project in projects %}
+        <li><a href="{{ project.get_absolute_url() }}">{{ project.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

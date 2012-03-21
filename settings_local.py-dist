@@ -33,3 +33,5 @@ DEBUG = TEMPLATE_DEBUG = True
 PROTOCOL = 'http://'
 DOMAIN = 'localhost'
 PORT = 8000
+
+LESS_PREPROCESS = True

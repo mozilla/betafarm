@@ -57,8 +57,17 @@ class Profile(BaseModel):
                                        blank=True, null=True,
                                        upload_to=settings.USER_AVATAR_PATH)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('users_profile', (), {
+            'username': self.user.username,
+        })
+
     def owns_project(self, project):
         return self.user.is_superuser or (project in self.projects_owned.all())
+
+    def follows_project(self, project):
+        return project in self.projects_following.all()
 
     @property
     def avatar_or_default(self):

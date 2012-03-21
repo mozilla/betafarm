@@ -5,14 +5,17 @@
 {% block section_class %}error{% endblock %}
 
 {% block content %}
-<section id="ohnoes" class="clearfix">
-  <div class="c1"></div>
-  <div class="c4 paper">
-    <h2>{{ _('An Error Occurred &#x2639;') }}</h2>
-    <p class="serif">{% trans %}<em>Oh, no!</em> It looks like an unexpected error
-    occurrred. We've already notified the site administrators. Please try again now,
-    or in a few minutes.{% endtrans %}</p>
-    <p class="serif right">{{ _('&mdash;&hearts;, the Message Bot') }}</p>
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <section id="ohnoes" class="clearfix">
+          <h2>{{ _('An Error Occurred &#x2639;') }}</h2>
+          <p class="serif">{% trans %}<em>Oh, no!</em> It looks like an unexpected error
+          occurrred. We've already notified the site administrators. Please try again now,
+          or in a few minutes.{% endtrans %}</p>
+          <p class="serif right">{{ _('&mdash;&hearts;, the Message Bot') }}</p>
+        </section>
+      </div>
+    </div>
   </div>
-</section>
 {% endblock %}

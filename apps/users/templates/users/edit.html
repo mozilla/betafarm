@@ -1,64 +1,73 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/errorlist.html" import errorlist %}
+{% from "layout/helpers.html" import search %}
 
 {% block page_id %}edit_user{% endblock %}
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
-{{ breadcrumbs(
-    (url('innovate_splash'), _('Mozilla Labs Home')),
-    last=_('Edit Profile')) }}
+  {{ breadcrumbs((profile.get_absolute_url(), profile.display_name),
+      last=_('Edit')) }}
 {% endblock -%}
 
 {% block content -%}
-<h1 class="c6 light">Edit profile</h1>
-<section id="profile_edit" class="clearfix">
-  <div class="c3 paper">
-    <h2 class="light">{{ _('Your Profile') }}</h2>
-    {{ errorlist(form) }}
-    <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
-      {{ csrf() }}
-      <ul>
-        <li class="picture">
-          <label for="id_avatar">{{ _('Picture') }}</label>
-            <div class="avatarWrap clearfix">
-              {{ form.avatar }}
-            </div>
-        </li>
-        <li>
-          <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
-          {{ form.name }}
-        </li>
-        <li>
-          <label for="id_website">{{ _('Your Website') }}</label>
-          {{ form.website }}
-        </li>
-        <li class="links">
-          <label>{{ _('Your Links') }}</label>
-          {% include "users/links.html" %}
-          <fieldset id="add_links">
-            <legend><span>Add a link</span></legend>
-            <div class="clearfix addLink" data-list-links="{{ url('users_profile_links') }}">
-            <div>
-            <label for="id_title">Title</label>
-            <input id="id_title" name="link_name" type="text">
-            </div>
-            <div>
-            <label for="id_url">URL</label>
-            <input id="id_url" name="link_url" type="text">
-            </div>
-            <a class="button add sans" href="{{ url('users_profile_add_link') }}">Add Link</a>
-            </div>
-          </fieldset>
-        </li>
-        <li>
-          <label for="id_bio">{{ _('Bio') }}</label>
-          {{ form.bio }}
-        </li>
-      </ul>
-      <button class="submit sans" type="submit">{{ _('save!') }}</button>
-    </form>
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ profile.display_name }}</h1>
+      </div>
+    </div>
+    <div class="row" id="body-content">
+      <div class="logo-links span2">
+        <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" alt="{{ profile.display_name }}">
+      </div>
+      <div class="description span6 offset1">
+        {{ errorlist(form) }}
+        <form action="{{ url('users_edit') }}" method="post" enctype="multipart/form-data">
+          {{ csrf() }}
+          <ul>
+            <li class="picture">
+              <label for="id_avatar">{{ _('Picture') }}</label>
+              <div class="avatarWrap clearfix">
+                {{ form.avatar }}
+              </div>
+            </li>
+            <li>
+              <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
+              {{ form.name }}
+            </li>
+            <li>
+              <label for="id_website">{{ _('Your Website') }}</label>
+              {{ form.website }}
+            </li>
+            <li class="links">
+              <label>{{ _('Your Links') }}</label>
+              {% include "users/links.html" %}
+              <fieldset id="add_links">
+                <legend><span>Add a link</span></legend>
+                <div class="clearfix addLink" data-list-links="{{ url('users_profile_links') }}">
+                  <div>
+                    <label for="id_title">Title</label>
+                    <input id="id_title" name="link_name" type="text">
+                  </div>
+                  <div>
+                    <label for="id_url">URL</label>
+                    <input id="id_url" name="link_url" type="text">
+                  </div>
+                  <a class="button add sans" href="{{ url('users_profile_add_link') }}">Add Link</a>
+                </div>
+              </fieldset>
+            </li>
+            <li>
+              <label for="id_bio">{{ _('Bio') }}</label>
+              {{ form.bio }}
+            </li>
+          </ul>
+          <button class="submit sans" type="submit">{{ _('Save') }}</button>
+        </form>
+      </div>
+    </div>
   </div>
-</section>
 {% endblock -%}

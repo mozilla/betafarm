@@ -1,19 +1,101 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import search %}
 
 {% block page_title %}{{ _('Projects : Mozilla Labs') }}{% endblock %}
 
-{% block page_id %}all_projects{% endblock %}
+{% block page_id %}{{ 'all_' if not current_topic }}projects{% endblock %}
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs -%}
-{{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
-     last=_('Projects')) }}
+  {{ breadcrumbs(last=_('Projects')) }}
 {% endblock -%}
 
 {% block content -%}
-<h1 class="light c6">{{ _('Projects') }}</h1>
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ _('Projects') }}</h1>
+      </div>
+    </div>
+    <div class="row" id="body-content">
+      <section class="sidebar span2">
+        <nav>
+          <ul>
+            <li>{{ _('Projects') }}</li>
+            {% if view == 'all' %}
+              <li><b>{{ _('All (A-Z)') }}</b></li>
+            {% else %}
+              <li><a href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
+            {% endif %}
+            {% if view == 'recent' %}
+              <li><b>{{ _('Most Recent') }}</b></li>
+            {% else %}
+              <li><a href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+        <nav>
+          <ul>
+            <li>{{ _('View by Topic') }}</li>
+            <li>
+              <ul class="tags">
+                {% for topic in topics -%}
+                  <li><a class="tag {{ topic.slug }}" href="{{ url('projects_topic', slug=topic.slug) }}">{{ topic.name }}</a></li>
+                {% endfor -%}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section class="span8" id="projects">
+        <div class="row{{ ' shift' if current_topic }}" id="projects-holder">
+          <div id="meta" class="span3 ajax_wrap">
+            {% if current_topic %}
+              {% set topic = current_topic %}
+              {% include "projects/includes/about.html" %}
+            {% else %}
+              {% for topic in topics -%}
+                {% include "projects/includes/about.html" %}
+              {%- endfor %}
+            {% endif %}
+            <div class="close ajax_content">
+              <a class="close" href="{{ url('projects_all') }}">Show all topics &raquo;</a>
+            </div>
+          </div>
+          <div class="span5" id="objects">
+            <ul id="projects-list">
+              {% for project in projects -%}
+                <li class="project clearfix {{ project.active_topic_slugs }}">
+                  <h3><a href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
+                  <p>{{ project.description|striptags }}</p>
+                  <div class="projectTopic">
+                    <ul class="tags inline clearfix">
+                      {% for topic in project.active_topics -%}
+                        <li>
+                          <a class="tag {{ topic.slug }}" href="{{ url('projects_topic', slug=topic.slug) }}">{{ topic.name }}</a>
+                        </li>
+                      {% endfor -%}
+                    </ul>
+                  </div>
+                </li>
+              {% endfor -%}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+{#<h1 class="light c6">{{ _('Projects') }}</h1>
 
 <section class="w1 clearfix sup">
   <ul class="c1 nav">
@@ -41,8 +123,7 @@
     <div id="objects" class="w3 clearfix">
     <ul id="projectList">
     {% for project in projects -%}
-        {% if not project.active_topics.count() == 0 %}
-        <li class="project clearfix {% for t in project.active_topics %}{{ t.slug }} {% endfor %}">
+        <li class="project clearfix {{ project.active_topic_slugs }}">
           <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
           <p class="serif">{{ project.description|striptags }}</p>
           <div class="projectTopic">
@@ -55,10 +136,9 @@
             </ul>
           </div>
         </li>
-        {% endif %}
     {% endfor -%}
     </ul>
     </div>
-</section>
+</section>#}
 
 {% endblock %}

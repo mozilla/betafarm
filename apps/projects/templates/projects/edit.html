@@ -1,30 +1,43 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "layout/helpers.html" import search with context %}
 {% from "layout/errorlist.html" import errorlist %}
 
 {% block page_title -%}
   {{ _('{project} : Projects : Mozilla Labs')|f(project=project.name) }}
 {% endblock -%}
 
-{% block page_id %}project_detail{% endblock %}
+{% block page_id %}project_edit{% endblock %}
 {% block section_class %}projects{% endblock %}
 
 {% block breadcrumbs -%}
   {{ breadcrumbs(
-      (url('innovate_splash'), _('Mozilla Labs Home')),
       (url('projects_all'), _('Projects')),
-      last=project.name) }}
+      (project.get_absolute_url(), project.name),
+      last=_('Edit')) }}
 {% endblock -%}
 
 {% block content -%}
-  {{ sectiontitle(project.name) }}
-  {{ subnav(MEDIA_URL, project.image_or_default, navlinks, None, False) }}
-
-  <section id="project_edit" class="w3 clearfix">
-    <div class="row clearfix">
-      <div class="c3 paper">
-        <h2 class="sans light">{{ _('Edit Project') }}</h2>
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ project.name }}</h1>
+      </div>
+    </div>
+    <div class="row" id="body-content">
+      <div class="logo-links span2">
+        <img src="{{ MEDIA_URL }}{{ project.image_or_default }}" alt="{{ project.name }}">
+        {% if project.other_links -%}
+          <ul>
+            {% for link in project.other_links -%}
+              <li><a class="icon {{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
+            {% endfor -%}
+          </ul>
+        {%- endif %}
+      </div>
+      <div class="description span6 offset1">
+        <h2>{{ _('Edit Project') }}</h2>
         {{ errorlist(form) }}
         <form action="{{ request.get_full_path() }}" method="post" enctype="multipart/form-data">
           {{ csrf() }}
@@ -34,7 +47,6 @@
             {{ form_input(form.description) }}
             {{ form_input(form.long_description) }}
             {{ form_input_image(form.image) }}
-            {{ form_input_image(form.featured_image) }}
             {{ form_input(form.owners) }}
             {{ form_input(form.team_members) }}
             <li class="links">
@@ -64,13 +76,12 @@
             {{ form_input(form.topics) }}
             {{ form_input(form.tags) }}
           </ul>
-          <button class="submit sans" type="submit">{{ _('save!') }}</button>
+          <button class="submit" type="submit">{{ _('Save') }}</button>
+          <a class="cancel" href="{{ project.get_absolute_url() }}">{{ _('Cancel') }}</a>
         </form>
       </div>
     </div>
-
-    <hr>
-  </section>
+  </div>
 {% endblock -%}
 
 {% macro form_input(field, label=None) -%}

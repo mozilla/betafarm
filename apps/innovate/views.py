@@ -1,21 +1,13 @@
-import random
-
 import jingo
 
-from users.models import Profile
 from projects.models import Project
-from feeds.models import Entry
 
 
 def splash(request):
-    """Display splash page. With featured project, person, blog post."""
-    def get_random(cls, **kwargs):
-        choices = cls.objects.filter(**kwargs)
-        return choices and random.choice(choices) or None
+    """Display splash page. With featured projects and news feed."""
+    projects = Project.objects.filter(featured=True)[:4]
     return jingo.render(request, 'innovate/splash.html', {
-        'featured_project': get_random(Project, featured=True),
-        'featured_user': get_random(Profile, featured=True),
-        'entry': get_random(Entry, link__featured=True)
+        'featured_projects': projects,
     })
 
 
