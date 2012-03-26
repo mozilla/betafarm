@@ -1,10 +1,10 @@
 //consolidated - 10/18/2011
 function WebTrends(options){
 var that=this;
-this.dcsid="dcsis0ifv10000gg3ag82u4rf_7b1e";
+this.dcsid="dcs2llglp00000k3wqbsoinmj_7u8n";
 this.rate=100;
-this.fpcdom=".mozilla.org";
-this.trackevents=false;
+this.fpcdom=".mozillalabs.com";
+this.trackevents=true;
 
 if(typeof(options)!="undefined")
 {
@@ -18,6 +18,7 @@ if(typeof(options)!="undefined")
 this.domain="statse.webtrendslive.com";
 this.timezone=0;
 this.onsitedoms="";
+this.trimoffsiteparams=true;
 this.downloadtypes="xls,doc,pdf,txt,csv,zip,dmg,exe";
 this.navigationtag="div,table";
 this.enabled=true;
@@ -166,7 +167,7 @@ WebTrends.prototype.dcsLinkTrack=function(evt)
                     ti=e.title||e.text||e.innerHTML||"";
                 }
             }
-            
+
             hn=this.DCS.setvar_dcssip||hn;
             pth=this.DCS.setvar_dcsuri||pth;
             qry=this.DCS.setvar_dcsqry||qry;
@@ -184,13 +185,13 @@ WebTrends.prototype.dcsLinkTrack=function(evt)
 //dcsTrim
 //
 //Last modified by WT on 4/27/2011
-WebTrends.prototype.dcsTrim=function(sString) 
+WebTrends.prototype.dcsTrim=function(sString)
 {
-        while (sString.substring(0,1) == ' ') 
+        while (sString.substring(0,1) == ' ')
         {
             sString = sString.substring(1, sString.length);
         }
-        while (sString.substring(sString.length-1, sString.length) == ' ') 
+        while (sString.substring(sString.length-1, sString.length) == ' ')
         {
             sString = sString.substring(0,sString.length-1);
         }
@@ -282,7 +283,7 @@ WebTrends.prototype.dcsSetVarValidate=function(validate)
     {
         if(wtParamList[i]==validate)
         {
-            return 1;       
+            return 1;
         }
     }
     return 0;
@@ -292,7 +293,7 @@ WebTrends.prototype.dcsSetVarValidate=function(validate)
 //dcsSetVar
 //
 //Last modified by WT on 4/27/2011
-WebTrends.prototype.dcsSetVar=function() 
+WebTrends.prototype.dcsSetVar=function()
 {
     var args=dcsSetVar.arguments?dcsSetVar.arguments:arguments;
     if ((args.length%2==0)&&(navigator.appVersion.indexOf("MSIE")!=-1)){
@@ -333,27 +334,27 @@ WebTrends.prototype.dcsSetVar=function()
 //Last modified by WT on 4/27/2011
 WebTrends.prototype.dcsLinkTrackException=function(n)
 {
-    try 
+    try
     {
         var b = 0;
-        if (this.DCSdir.gTrackExceptions) 
+        if (this.DCSdir.gTrackExceptions)
         {
             var e = this.DCSdir.gTrackExceptions.split(",");
-            while (b != 1) 
+            while (b != 1)
             {
-                if (n.tagName&&n.tagName=="body") 
+                if (n.tagName&&n.tagName=="body")
                 {
                     b = 1;
                     return false
-                } 
-                else 
+                }
+                else
                 {
-                    if (n.className) 
+                    if (n.className)
                     {
                         var f = String(n.className).split(" ");
-                        for (var c = 0; c < e.length; c++) for (var d = 0; d < f.length; d++) 
+                        for (var c = 0; c < e.length; c++) for (var d = 0; d < f.length; d++)
                         {
-                            if (f[d] == e[c]) 
+                            if (f[d] == e[c])
                             {
                                 b = 1;
                                 return true
@@ -363,12 +364,12 @@ WebTrends.prototype.dcsLinkTrackException=function(n)
                 }
                 n = n.parentNode
             }
-        } 
-        else 
+        }
+        else
         {
             return false;
         }
-    } 
+    }
     catch(g){}
 }
 WebTrends.prototype.dcsCleanUp=function(){this.DCS={};this.WT={};this.DCSext={};if(arguments.length%2==0){this.dcsSetProps(arguments);}}
