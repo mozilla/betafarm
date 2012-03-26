@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% from "layout/helpers.html" import search %}
+
 {% block page_id %}home{% endblock %}
 {% block section_class %}home{% endblock %}
 
@@ -7,61 +9,47 @@
 {% endblock %}
 
 {% block content %}
+  <hgroup id="main-feature" class="splash center">
+    <h1>{{ _('Welcome to the edge of the Web.') }}</h1>
+    <h2>{{ _('Discover new ways to explore, experiment and innovate.') }}</h2>
+  </hgroup>
 
-<section id="promoted" class="clearfix">
-  <div class="c6">
-    <a href="{{ url('innovate_about') }}"><img class="block" src="{{ MEDIA_URL }}img/splash.jpg" width=940" height="350"></a>
+  <div id="main-content">
+    <div class="row">
+      <section class="span6" id="featured-projects">
+        <a class="all-projects" href="{{ url('projects_all') }}">{{ _('See all Projects') }} &raquo;</a>
+        <h1>{{ _('Featured Projects') }}</h1>
+        {% for project in featured_projects %}
+          <article class="row">
+            <div class="logo-links">
+              <img src="{{ MEDIA_URL }}{{ project.image_or_default }}" alt="{{ project.name }}">
+              {% if project.other_links -%}
+                <ul>
+                  {% for link in project.other_links -%}
+                    <li><a class="icon {{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
+                  {% endfor -%}
+                </ul>
+              {%- endif %}
+            </div>
+            <div class="description">
+              <h2><a href="{{ project.get_absolute_url() }}">{{ project.name }}</a></h2>
+              {{ project.description }}
+              <p><a href="{{ project.get_absolute_url() }}">{{ _('Learn more') }} &raquo;</a></p>
+            </div>
+          </article>
+        {% endfor %}
+        <a class="all-projects" href="{{ url('projects_all') }}">{{ _('See all Projects') }} &raquo;</a>
+      </section>
+
+      <div class="sidebar span3 offset1">
+        <section>
+          <h3>{{ _('Search Labs') }}</h3>
+          {{ search() }}
+        </section>
+        <section>
+          <h3>{{ _('Latest News') }}</h3>
+        </section>
+      </div>
+    </div>
   </div>
-</section>
-
-<hr>
-
-{% if entry -%}
-<section id="headlines" class="clearfix table_group">
-  <div class="c2 headlineLabel cell">
-        <h2 class="icon rss">{{ _('latest news') }}</h2>
-  </div>
-  <div class="c4 headline cell">
-        <h3 class="serif"><a class="brandColor" href="{{ entry.url }}">{{ entry.title }}</a></h3>
-        {% if entry.body -%}
-          <p class="serif">&raquo; {{ entry.body|striptags|truncatewords(5) }}</p>
-        {% endif -%}
-  </div>
-</section>
-<hr>
-{% endif -%}
-
-
-<div class="dive-in clearfix">
-    <section class="projects c2">
-        <h2><a href="{{ url('projects_all') }}">{{ _('Projects') }}</a></h2>       
-        <p>{% trans %}Check out the areas of focus on the open web that we're thinking about; projects, research, and contests!{% endtrans %}</p>
-        {% if featured_project %}
-        <article class="paper">
-            <div class="arrow"></div>
-            <h3>{{ _('Featured Project') }}</h3>
-            <a href="{{ url('projects_show', slug=featured_project.slug) }}">
-            <img class="block thick" src="{{ MEDIA_URL }}{{ featured_project.featured_image_or_default }}" width="260" height="125">
-            <h4>{{ featured_project.name }}</h4>
-            </a>
-            <p>{{ featured_project.description|striptags|truncate(43) }}</p>
-        </article>
-        {% endif %}
-    </section>
-    <section class="people c2">
-        <h2><a href="{{ url('users_all') }}">{{ _('People') }}</a></h2>
-        <p>{% trans %}The open web is made up of awesome people, connect and communicate with some of them here.{% endtrans %}</p>
-        {% if featured_user %}
-        <article class="paper">
-            <div class="arrow"></div>
-            <h3>{{ _('Featured Mozillian') }}</h3>
-            <a href="{{ url('users_profile', username=featured_user.user.username) }}">
-            <img class="block thick" src="{{ MEDIA_URL }}{{ featured_user.featured_image_or_default }}" width="260" height="125">
-            <h4>{{ featured_user.display_name }}</h4>
-            </a>
-            <p>{{ featured_user.bio|striptags|truncate(45) }}</p>
-        </article>
-        {% endif %}
-    </section>
-</div>
 {% endblock %}

@@ -12,6 +12,7 @@ build.py
 *-all.css
 *-min.js
 *-all.js
+.less.css
 vendor
 .noseids
 tmp/*

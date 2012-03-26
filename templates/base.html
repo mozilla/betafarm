@@ -1,130 +1,95 @@
-<!DOCTYPE html>
-<html LANG="{{ LANG }}" dir="{{ DIR }}" class="no-js">
-<head>
-    <title>{% block page_title %}Mozilla Labs{% endblock %}</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ MEDIA_URL }}img/favicon.png" />
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ LANG }}" dir="{{ DIR }}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+
+    <title>{% block page_title_prefix %}Mozilla — {% endblock %}{% block page_title %}{% endblock %}{% block page_title_suffix %} — mozilla.org{% endblock %}</title>
+
+    <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+
+    <script src="{{ MEDIA_URL }}js/libs/modernizr-2.5.0.min.js"></script>
+    <script type="text/javascript">var betafarm = window.betafarm || {};</script>
+
+    <meta name="viewport" content="width=device-width">
+
     {% block site_css %}
-        {{ css('innovate_css') }}
+      {{ css('common') }}
     {% endblock %}
     <script src="https://browserid.org/include.js" type="text/javascript"></script>
-</head>
-<body id="{% block page_id %}{% endblock %}" class="{% block section_class %}{% endblock %}">
-    <script type="text/javascript">
-        document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, '');
-        var betafarm = window.betafarm || {};
-    </script>
-    <div id="grid"></div>
-    <div class="wrapper clearfix">
-        <header id="universalHeader" class="clearfix">
-            <nav id="topNav" class="c6" role="navigation">
-            <ul class="clearfix">
-                <li class="mainItem">
-                  <a class="about{{ active(request, url('innovate.views.splash')) }}" href="{{ url('innovate.views.splash') }}">{{ _('Home') }}</a>
-                </li>
-                <li class="projects">
-                    <a class="topic{{ active(request, url('projects_all')) }}" href="{{ url('projects_all') }}">{{ _('Projects') }}</a>
-                </li>
-                <li class="users">
-                    <a class="users{{ active(request, url('users_all')) }}" href="{{ url('users_all') }}">{{ _('People') }}</a>
-                </li>
-                <li class="about">
-                    <a class="about{{ active(request, url('innovate_about')) }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a>
-                </li>
+
+    {% block extrahead %}{% endblock %}
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ MEDIA_URL }}img/favicon.png" />
+  </head>
+
+  <!-- Note the "windows" class, without javascript platform-specific
+       assets default to windows -->
+  <body id="{% block page_id %}{% endblock %}" class="html-{{ DIR }} windows {% block section_class %}{% endblock %}">
+    <div id="outer-wrapper">
+    <div id="wrapper">
+
+        {% block site_header %}
+          {# start #header #}
+          <header id="masthead">
+            <a href="http://www.mozilla.org/" id="tabzilla">{{ _('Mozilla') }}</a>
+
+            {% block site_header_nav %}
+            {# start menu #nav-main #}
+            <nav id="nav-main" role="navigation">
+              <ul>
+                {% set active = active_name(request) %}
+                <li><a class="{{ 'current' if active == 'home' }}" href="{{ url('innovate_splash') }}">{{ _('Home') }}</a></li>
+                <li><a class="{{ 'current' if active == 'about' }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a></li>
+                <li><a class="{{ 'current' if active == 'projects' }}" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
+                <li><a href="#">{{ _('Blog') }}</a></li>
                 {% if user.is_authenticated() -%}
-                <li class="username">
-                    <a class="account dropdown" href="{{ url('users_dashboard') }}">{{ user.get_profile().display_name }}</a>
-                    <ul class="dropdown">
-                        <li><a class="account" href="{{ url('users_dashboard') }}">{{ _('Dashboard') }}</a></li>
-                        <li><a class="account" href="{{ url('users_edit') }}">{{ _('Edit Profile') }}</a></li>
-                        <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
-                    </ul>
-                </li>
+                  <li class="username">
+                    <a class="{{ 'current' if active == 'users' }}" href="{{ url('users_dashboard') }}">{{ user.get_profile().display_name }}</a>
+                  </li>
                 {% endif -%}
             </ul>
             </nav>
-            <a id="tab" href="http://mozilla.com">mozilla.com</a>
-        </header>
-        <section role="main">
-        {% block breadcrumbs %}{% endblock %}
-        {% if messages -%}
-            {% for message in messages -%}
-            <div class="notification clearfix{% if message.tags %} {{ message.tags }}{% endif %}">
-                <div class="c6">
-                    {{ message|safe }}
-                    <a id="notification_close" class="brandColor" href="">&times; close</a>
-                </div>
-            </div>
-            {% endfor -%}
-        {% endif -%}
+            {# end menu #nav-main #}
+            {% endblock %}
+
+            {% block site_header_logo %}
+            <h1><a href="{{ url('innovate_splash') }}"><img src="{{ MEDIA_URL }}img/innovate/logo.png" alt="mozilla labs"></a></h1>
+            {% endblock %}
+
+            {% if messages %}
+              <div class="row">
+                {% for message in messages -%}
+                  <div class="span8 offset1 notification clearfix{% if message.tags %} {{ message.tags }}{% endif %}">
+                    <div>
+                      {{ message|safe }}
+                      <a id="notification_close" class="brandColor" href="">&times; close</a>
+                    </div>
+                  </div>
+                {% endfor -%}
+              </div>
+            {% endif %}
+
+            {% block breadcrumbs %}{% endblock %}
+          </header>
+          {# end #header #}
+        {% endblock %}
 
         {% block content %}{% endblock %}
-        </section>
-    </div>
-    <aside id="site_meta">
-        <div class="wrapper clearfix">
-            <div class="c6">
-                <p><strong>Mozilla Labs</strong> embraces the spirit of open innovation and experimentation on the web. Curious? Find out  <a class="brandColor" href="{{ url('innovate_about') }}">more about us &rarr;</a></p>
-                <div class="actions">
-                  <p>Follow us!</p>
-                  <ul>
-                    <li><a class="icon twitter" href="https://twitter.com/#!/mozlabs">Twitter</a></li>
-                    <li><a class="icon facebook" href="http://www.facebook.com/mozlabs">Facebook</a></li>
-                  </ul>
-                </div>
-            </div>
-        </div>
-    </aside>
-    <footer>
-        <div class="wrapper clearfix">
-            <div class="c2">
-                <strong>{{ _('Mozilla Labs 2011') }}</strong>
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="{{ MEDIA_URL }}img/cc.png" alt="{{ ('Creative Commons - Attribution ShareAlike 3.0') }}" width="80" height="15"></a>
-            </div>
-            <div class="c1" role="contentinfo">
-                <strong>{{ _('Info') }}</strong>
-                <ul>
-                    <li><a href="http://www.mozilla.org/contact/">{{ _('contact us') }}</a></li>
-                    <li><a href="{{ url('innovate_about') }}">{{ _('about us') }}</a></li>
-                    <li><a href="http://www.mozilla.org/about/policies/privacy-policy.html">{{ _('privacy policy') }}</a></li>
-                    <li><a href="http://www.mozilla.com/en-US/about/legal.html">{{ _('legal') }}</a></li>
-                    {% if not user.is_authenticated() -%}
-                    <li>
-                        <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
-                            {{ csrf()|safe }}
-                            <input type="hidden" name="assertion" id="id_assertion" />
-                            <a id="browserid" class="login" href="#">{{ _('sign In') }}</a>
-                        </form>
-                    </li>
-                    {% endif -%}
-                </ul>
-            </div>
-            <div class="c1">
-                <strong>{{ _('Topics') }}</strong>
-                <ul>
-                    {% for topic in topics -%}
-                    <li><a href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name|lower }}</a></li>
-                    {% endfor -%}
-                </ul>
-            </div>
-            <div class="c1">
-                <strong>{{ _('People') }}</strong>
-                <ul>
-                    <li><a href="{{ url('users_all') }}">{{ _('all members') }}</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    {% block site_js %}
-      {{ js('innovate_js') }}
+
+    {% block site_footer %}
+      {% include "includes/footer.html" %}
     {% endblock %}
-    <script type="text/javascript">
-        var uvOptions = {};
-        (function() {
-            var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-             uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/CMh6pgazkneWI6Atv0sLpg.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-        })();
-    </script>
-</body>
+
+    {% block site_js %}
+      {{ js('common') }}
+    {% endblock %}
+    {% block js %}{% endblock %}
+
+    {% block webtrends %}
+     {% include "includes/webtrends.html" %}
+    {% endblock %}
+  </body>
 </html>

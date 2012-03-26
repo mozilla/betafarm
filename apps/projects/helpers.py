@@ -11,14 +11,17 @@ favicons = (
     'tumblr',
     'vimeo',
     'youtube',
-    'addons'
+    'addons',
+    'rss',
+    'atom',
+    'feed',
 )
 
 
 @jingo.register.function
 def favicon(url):
-    cls = (u' %s' % (icon,) for icon in favicons if icon in url)
+    cls = (u' icon-%s' % (icon,) for icon in favicons if icon in url)
     try:
         return cls.next()
     except StopIteration:
-        return u' default'
+        return u' icon-link'

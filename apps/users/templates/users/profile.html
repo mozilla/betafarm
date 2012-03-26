@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav %}
+{% from "layout/helpers.html" import search %}
 
 {% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Labs') }}{% endblock -%}
 
@@ -8,60 +8,52 @@
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
-{{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
-     (url('users_all'), _('People')),
-     last=profile.display_name) }}
+  {{ breadcrumbs(last=profile.display_name) }}
 {% endblock -%}
-
-{% if user.is_authenticated() and user.get_profile() == profile -%}
-{% set navlinks = (
-   (url('users_profile', username=profile.user.username), profile.display_name, True),
-   (url('users_edit'), _('Edit Profile'), False)
-) %}
-{% else -%}
-{% set navlinks = (
-   (url('users_profile', username=profile.user.username), profile.display_name, True),
-) %}
-{% endif -%}
 
 {% block content -%}
-{{ sectiontitle(profile.display_name) }}
-{{ subnav(MEDIA_URL, profile.avatar_or_default, navlinks, (), False) }}
-
-<section id="userProfile" class="w5 clearfix">
-
-  <div class="row clearfix">
-    <div class="c3 researchDescription">
-      {# TODO - Implement #}
-      Recent Activity ...
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ profile.display_name }}</h1>
+      </div>
     </div>
-
-    <aside class="c2 paper researchSidebar">
-      {% if social_links %}
-      <h3 class="light">{{ _('Social') }}</h3>
-      <ul>
-        {% for link in profile.link_set.all() -%}
-        <li><a class="icon brandColor{{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
-        {% endfor -%}
-      </ul>
-      {% endif %}
-      {% if projects %}
-      <h3 class="light">{{ _('Projects') }}</h3>
-      <ul>
-        {% for project in profile.project_set.all() -%}
-            {% if not project.active_topics.count() == 0 %}
-          <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></li>
-            {% endif %}
-        {% endfor -%}
-      </ul>
-      {% endif %}
-      {% if profile.bio -%}
-      <h3 class="light">{{ _('About') }}</h3>
-      <p>{{ profile.bio }}</p>
-      {% endif -%}
-    </aside>
+    <div class="row" id="body-content">
+      <div class="logo-links span2">
+        <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" alt="{{ profile.display_name }}">
+        {% if user.is_authenticated() and user.get_profile() == profile -%}
+          <a href="{{ url('users_edit') }}">{{ _('Edit your Profile') }}</a>
+        {% endif %}
+        {% if social_links %}
+          <ul>
+            {% for link in social_links -%}
+              <li><a class="icon {{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
+            {% endfor -%}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="description span6 offset1">
+        {% if projects %}
+          <h2 class="light">{{ _('Projects') }}</h2>
+          <ul>
+            {{ project_list(profile.projects_owned.all()) }}
+            {{ project_list(profile.project_set.all()) }}
+          </ul>
+        {% endif %}
+        {% if profile.bio -%}
+          <h2 class="light">{{ _('About') }}</h2>
+          <p>{{ profile.bio }}</p>
+        {% endif -%}
+      </div>
+    </div>
   </div>
-</section>
-
 {% endblock -%}
+
+{% macro project_list(projects) %}
+  {% for project in projects -%}
+    {% if not project.active_topics.count() == 0 %}
+      <li><a class="brandColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></li>
+    {% endif %}
+  {% endfor -%}
+{% endmacro %}

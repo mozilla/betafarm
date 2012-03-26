@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import sectiontitle, subnav with context %}
+{% from "layout/helpers.html" import search with context %}
 
 {% block page_title -%}
  {{ _('{project} : Projects : Mozilla Labs')|f(project=project.name) }}
@@ -11,48 +11,71 @@
 
 {% block breadcrumbs -%}
 {{ breadcrumbs(
-     (url('innovate_splash'), _('Mozilla Labs Home')),
      (url('projects_all'), _('Projects')),
      last=project.name) }}
 {% endblock -%}
 
 {% if user.is_authenticated() %}
-    {% if user.get_profile() in project.followers.all() -%}
+  {% if user_is_follower -%}
     {% set buttons = ((url('projects_unfollow', slug=project.slug), _('Unfollow'), 'unsubmit'),) %}
-    {% else -%}
+  {% else -%}
     {% set buttons = ((url('projects_follow', slug=project.slug), _('Follow'), 'submit'),) %}
-    {% endif -%}
+  {% endif -%}
 {% endif %}
 
 
 {% block content -%}
-{{ sectiontitle(project.name) }}
-{{ subnav(MEDIA_URL, project.image_or_default, navlinks, project.other_links, True, buttons) }}
-
-<section id="projectContent" class="w3 clearfix">
-  <div class="row clearfix">
-    <div class="c3 content serif">
-      <h2 class="sans light">{{ _('About {project}')|f(project=project.name) }}</h2>
-      {# only admins can edit project descriptions, so it's okay to use safe here. #}
-      {{ project.long_description|safe }}
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ project.name }}</h1>
+      </div>
+    </div>
+    <div class="row" id="body-content">
+      <div class="logo-links span2">
+        <img src="{{ MEDIA_URL }}{{ project.image_or_default }}"
+             alt="{{ project.name }}">
+        {% if user_is_owner %}
+          <a class="edit"
+             href="{{ project.get_edit_url() }}">{{ _('Edit Project') }}</a>
+        {% endif %}
+        <div class="related">
+          {% for button in buttons -%}
+            <form action="{{ button[0] }}" method="post">
+              {{ csrf() }}
+              <button class="{{ button[2] }}">{{ button[1] }}</button>
+            </form>
+          {% endfor -%}
+        </div>
+        {% if project.other_links -%}
+          <ul>
+            {% for link in project.other_links -%}
+              <li><a class="icon {{ favicon(link.url) }}"
+                     href="{{ link.url }}">{{ link.name }}</a></li>
+            {% endfor -%}
+          </ul>
+        {%- endif %}
+      </div>
+      <div class="description span6 offset1">
+        <h2>{{ _('About') }} {{ project.name }}</h2>
+        {{ project.long_description|safe }}
+        <section class="people">
+          <h2>{{ _('Project Team') }}</h2>
+          <ul class="peopleList clearfix">
+            {% for person in proj_people -%}
+              <li>
+                <a href="{{ person.get_absolute_url() }}" title="{{ person }}">
+                  <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}"
+                       width="32"
+                       height="32"
+                       alt="{{ person }}">
+                </a>
+              </li>
+            {% endfor -%}
+          </ul>
+        </section>
+      </div>
     </div>
   </div>
-
-  <hr>
-
-  <div class="people clearfix">
-    <div class="c3">
-      <h2 class="light">{{ _('{project} Team')|f(project=project.name) }}</h2>
-    </div>
-    <ul class="peopleList clearfix c3">
-      {% for person in proj_people -%}
-        <li>
-          <a href="{{ url('users_profile', username=person.user.username) }}">
-            <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" width="32" height="32">
-          </a>
-        </li>
-      {% endfor -%}
-    </ul>
-  </div>
-</section>
 {% endblock -%}

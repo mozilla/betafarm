@@ -142,18 +142,24 @@ JINGO_EXCLUDE_APPS = (
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        'innovate_css': (
-            'css/innovate/main.css',
+        'common': (
+            'css/main.less',
+            #'css/innovate/main.css',
         ),
     },
     'js': {
-        'innovate_js': (
+        'common': (
             'js/libs/jquery-1.6.1.min.js',
             'js/functions.js',
             'js/libs/jquery.isotope.min.js',
         ),
     }
 }
+
+# Dynamically process LESS server-side? (usually true to local
+# development)
+LESS_PREPROCESS = False
+LESS_BIN = 'lessc'
 
 ## Middlewares, apps, URL configs.
 

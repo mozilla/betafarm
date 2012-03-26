@@ -2,6 +2,7 @@ import json
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.http import HttpResponseForbidden, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
@@ -10,6 +11,7 @@ from django.views.generic import DetailView, UpdateView, View
 from django.views.generic.edit import BaseCreateView
 
 import jingo
+from topics.models import Topic
 
 from tower import ugettext as _
 
@@ -19,10 +21,20 @@ from projects.models import Project, Link
 
 def all(request):
     """Display a list of all projects."""
-    projects = Project.objects.order_by('name')
+    projects = Project.objects.haz_topic().order_by('name')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
         'view': 'all'
+    })
+
+
+def topic(request, slug):
+    """Show a specific topic. Should be only for non-js users."""
+    topic = get_object_or_404(Topic, slug=slug)
+    projects = Project.objects.filter(topics=topic).order_by('name')
+    return jingo.render(request, 'projects/all.html', {
+        'current_topic': topic,
+        'projects': projects
     })
 
 
@@ -30,19 +42,19 @@ def show(request, slug):
     """Display information about a single project, specified by ``slug``."""
     project = get_object_or_404(Project, slug=slug)
     is_owner = False
+    is_follower = False
     if request.user.is_authenticated():
-        is_owner = request.user.get_profile().owns_project(project)
+        profile = request.user.get_profile()
+        is_owner = profile.owns_project(project)
+        is_follower = profile.follows_project(project)
     topic = request.session.get('topic', None) or project.topics.all()[0].name
-    navlinks = [(project.get_absolute_url(), _(u'Info'), True)]
-    if is_owner:
-        navlinks.append((project.get_edit_url(), _(u'Edit'), False))
     proj_people = list(project.owners.all())
     proj_people += list(project.team_members.all())
     return jingo.render(request, 'projects/show.html', {
         'project': project,
         'topic': topic,
         'user_is_owner': is_owner,
-        'navlinks': navlinks,
+        'user_is_follower': is_follower,
         'proj_people': proj_people,
     })
 
@@ -54,11 +66,12 @@ def follow(request, slug):
     Add the currently logged in user as a follower of the project specified
     by ``slug``.
     """
+    profile = request.user.get_profile()
     project = get_object_or_404(Project, slug=slug)
-    project.followers.add(request.user.get_profile())
-    project.save()
-    msg = _('Updates from <em>%s</em> will now appear in your dashboard.' % (
-        project.name,))
+    project.followers.add(profile)
+    cache.delete_many([project.cache_key, profile.cache_key])
+    cxt = {'project_name': project.name}
+    msg = _('You are now following <em>%(project_name)s</em>.') % cxt
     messages.success(request, msg)
     return redirect(project)
 
@@ -70,18 +83,19 @@ def unfollow(request, slug):
     Remove the currently logged in user from the list of followers for
     the project specified by ``slug``.
     """
+    profile = request.user.get_profile()
     project = get_object_or_404(Project, slug=slug)
-    project.followers.remove(request.user.get_profile())
-    project.save()
-    msg = _('''Updates from <em>%s</em> will no longer appear in your
-               dashboard''' % (project.name,))
+    project.followers.remove(profile)
+    cache.delete_many([project.cache_key, profile.cache_key])
+    cxt = {'project_name': project.name}
+    msg = _('You are no longer following <em>%(project_name)s</em>.') % cxt
     messages.success(request, msg)
     return redirect(project)
 
 
 def recent(request):
     """Display a list of the most recent projects."""
-    projects = Project.objects.order_by('-id')
+    projects = Project.objects.haz_topic().order_by('-id')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
         'view': 'recent'

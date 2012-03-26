@@ -1,32 +1,3 @@
-betafarm.navigation = function() {
-    var init;
-    init = function() {
-        var mainNav = $('#topNav');
-        mainNav.delegate('a.dropdown','mouseover focus',function() {
-            $(this).parent().addClass('hover');
-        });
-        mainNav.delegate('li','mouseleave', function() {
-            var current = $(this);
-            if (current.hasClass('hover')) {
-                current.removeClass('hover');
-            }
-        });
-        mainNav.delegate('a','blur',  function() {
-            var current = $(this),
-                parent = current.parent(),
-                grand = parent.parent();
-            if (grand.is('ul.dropdown') && parent.is(':last-child')) {
-                grand.parent().removeClass('hover');
-            }
-        });
-    };
-
-    return {
-        'init': init
-    };
-
-}();
-
 betafarm.project_links = function() {
     var add, bin, init;
     add = function(el, csrf) {
@@ -216,9 +187,9 @@ betafarm.streams = function() {
 betafarm.filtering = function() {
 
     var init, filter, display,
-        filtered = $('#projectList'),
-        holder = $('#projects'),
-        info,
+        filtered = $('#projects-list'),
+        holder = $('#projects-holder'),
+        info = $('#meta'),
         loader = false;
 
     filter = function(topic, aside) {
@@ -232,12 +203,13 @@ betafarm.filtering = function() {
     display = function(topic, data) {
         var topic_info = $('#' + topic),
             loading;
-        if (!loader) {
-            loader = $('<div class="message c2">Loading topic data</div>').appendTo(info);
-        }
         if (topic_info.length) {
             filter(topic, topic_info);
         } else {
+            if (!loader) {
+                loader = $('<div class="message span2">Loading topic data</div>')
+                    .appendTo(info);
+            }
             loading = window.setTimeout(function() {
                 loading = false;
                 info.addClass('loading');
@@ -261,9 +233,7 @@ betafarm.filtering = function() {
     init = function() {
 
         if ($('#all_projects').length) {
-            var area = $('section[role=main]');
-
-            info = $('<div id="meta" class="w2"><div class="c2 close ajax_content"><a class="close" href="#">Show all topics</a></div></div>').prependTo(holder);
+            var area = $('#main-content');
 
             filtered.isotope({
                 itemSelector : '.project',
@@ -300,7 +270,7 @@ $(function($) {
         var h = $(window).height(),
             a = $('#site_meta').outerHeight();
         $('.wrapper:first').css({ 'min-height' : (h-a) });
-        $('#ohnoes').css({'height': (h-a-71) });
+        //$('#ohnoes').css({'height': (h-a-71) });
     });
     // browserid
     $('#browserid').bind('click', function(e) {
@@ -317,7 +287,6 @@ $(function($) {
         e.preventDefault();
         $(this).parents('.notification').fadeOut();
     });
-    betafarm.navigation.init();
     betafarm.project_links.init();
     betafarm.streams.init();
     betafarm.filtering.init();

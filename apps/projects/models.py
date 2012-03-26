@@ -1,13 +1,26 @@
 from django.conf import settings
 from django.db import models
 
+from caching.base import CachingManager, CachingQuerySet
 from django_push.subscriber.models import Subscription
-
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from innovate.models import BaseModel
 from users.models import Profile
+
+
+class ProjectQuerySet(CachingQuerySet):
+    def haz_topic(self):
+        return self._clone().filter(topics__isnull=False).distinct()
+
+
+class ProjectManager(CachingManager):
+    def get_query_set(self):
+        return ProjectQuerySet(self.model)
+
+    def haz_topic(self):
+        return self.get_query_set().haz_topic()
 
 
 class Project(BaseModel):
@@ -34,6 +47,7 @@ class Project(BaseModel):
                                        verbose_name=_(u'Followers'),
                                        related_name=u'projects_following')
 
+    objects = ProjectManager()
     tags = TaggableManager(blank=True)
 
     @models.permalink
@@ -59,6 +73,10 @@ class Project(BaseModel):
     @property
     def active_topics(self):
         return self.topics.filter(draft=False)
+
+    @property
+    def active_topic_slugs(self):
+        return ' '.join(t.slug for t in self.active_topics)
 
     @property
     def blog(self):
