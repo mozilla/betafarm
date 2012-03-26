@@ -10,18 +10,19 @@
 
     <div class="span3">
         <p>
-          Portions of this content are ©1998–2012 by individual
-          mozilla.org contributors. Content available under
-          a <a href="{{ moz_url('/foundation/licensing/website-content.html') }}">Creative
-          Commons license</a>.
+          {% trans license_url=moz_url('/foundation/licensing/website-content.html') %}
+            Portions of this content are ©1998–2012 by individual
+            mozilla.org contributors. Content available under
+            a <a href="{{ license_url }}">Creative Commons license</a>.
+          {% endtrans %}
         </p>
     </div>
     <nav class="span3">
         <ul>
-            <li><a href="{{ moz_url('/about/contact.html#map-mountain_view') }}">Contact Us</a></li>
-            <li><a href="{{ moz_url('/privacy-policy.html') }}">Privacy Policy</a></li>
-            <li><a href="{{ moz_url('/about/legal.html') }}">Legal Notices</a></li>
-            <li><a href="{{ moz_url('/legal/fraud-report/index.html') }}">Report Trademark Abuse</a></li>
+            <li><a href="{{ moz_url('/about/contact.html#map-mountain_view') }}">{{ _('Contact Us') }}</a></li>
+            <li><a href="{{ moz_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
+            <li><a href="{{ moz_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
+            <li><a href="{{ moz_url('/legal/fraud-report/index.html') }}">{{ _('Report Trademark Abuse') }}</a></li>
             {% if user.is_authenticated() -%}
               <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
             {% else %}

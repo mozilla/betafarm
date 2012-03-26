@@ -34,9 +34,11 @@
     </div>
     <div class="row" id="body-content">
       <div class="logo-links span2">
-        <img src="{{ MEDIA_URL }}{{ project.image_or_default }}" alt="{{ project.name }}">
+        <img src="{{ MEDIA_URL }}{{ project.image_or_default }}"
+             alt="{{ project.name }}">
         {% if user_is_owner %}
-          <a class="edit" href="{{ project.get_edit_url() }}">{{ _('Edit Project') }}</a>
+          <a class="edit"
+             href="{{ project.get_edit_url() }}">{{ _('Edit Project') }}</a>
         {% endif %}
         <div class="related">
           {% for button in buttons -%}
@@ -49,7 +51,8 @@
         {% if project.other_links -%}
           <ul>
             {% for link in project.other_links -%}
-              <li><a class="icon {{ favicon(link.url) }}" href="{{ link.url }}">{{ link.name }}</a></li>
+              <li><a class="icon {{ favicon(link.url) }}"
+                     href="{{ link.url }}">{{ link.name }}</a></li>
             {% endfor -%}
           </ul>
         {%- endif %}
@@ -63,7 +66,10 @@
             {% for person in proj_people -%}
               <li>
                 <a href="{{ person.get_absolute_url() }}" title="{{ person }}">
-                  <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}" width="32" height="32" alt="{{ person }}">
+                  <img src="{{ MEDIA_URL }}{{ person.avatar_or_default }}"
+                       width="32"
+                       height="32"
+                       alt="{{ person }}">
                 </a>
               </li>
             {% endfor -%}

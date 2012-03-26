@@ -42,7 +42,12 @@
             <li>
               <ul class="tags">
                 {% for topic in topics -%}
-                  <li><a class="tag {{ topic.slug }}" href="{{ url('projects_topic', slug=topic.slug) }}">{{ topic.name }}</a></li>
+                  <li>
+                    <a class="tag {{ topic.slug }}"
+                       href="{{ url('projects_topic', slug=topic.slug) }}">
+                      {{ topic.name }}
+                    </a>
+                  </li>
                 {% endfor -%}
               </ul>
             </li>
@@ -74,7 +79,10 @@
                     <ul class="tags inline clearfix">
                       {% for topic in project.active_topics -%}
                         <li>
-                          <a class="tag {{ topic.slug }}" href="{{ url('projects_topic', slug=topic.slug) }}">{{ topic.name }}</a>
+                          <a class="tag {{ topic.slug }}"
+                             href="{{ url('projects_topic', slug=topic.slug) }}">
+                            {{ topic.name }}
+                          </a>
                         </li>
                       {% endfor -%}
                     </ul>
@@ -87,58 +95,4 @@
       </section>
     </div>
   </div>
-
-
-
-
-
-
-
-
-{#<h1 class="light c6">{{ _('Projects') }}</h1>
-
-<section class="w1 clearfix sup">
-  <ul class="c1 nav">
-    {% if view == 'all' -%}
-      <li class="selected"><a class="brandColor" href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
-    {% else -%}
-      <li><a href="{{ url('projects_all') }}">{{ _('All (A-Z)') }}</a></li>
-    {% endif -%}
-    {% if view == 'recent' %}
-      <li class="selected"><a class="brandColor" href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a></li>
-    {% else -%}
-      <li><a href="{{ url('projects_recent') }}">{{ _('Most Recent') }}</a></li>
-    {% endif %}
-  </ul>
-
-  <h3 class="light c1">{{ _('View by Topic') }}</h3>
-  <ul class="c1 tags">
-  {% for topic in topics -%}
-    <li><a class="tag {{ topic.slug }}" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a></li>
-  {% endfor -%}
-  </ul>
-</section>
-
-<section id="projects" class="w5 clearfix">
-    <div id="objects" class="w3 clearfix">
-    <ul id="projectList">
-    {% for project in projects -%}
-        <li class="project clearfix {{ project.active_topic_slugs }}">
-          <h3 class="normal"><a class="topicColor" href="{{ url('projects_show', slug=project.slug) }}">{{ project.name }}</a></h3>
-          <p class="serif">{{ project.description|striptags }}</p>
-          <div class="projectTopic">
-            <ul class="tags inline clearfix">
-              {% for topic in project.active_topics -%}
-                <li>
-                  <a class="tag {{ topic.slug }}" href="{{ url('topics_show', slug=topic.slug) }}">{{ topic.name }}</a>
-                </li>
-              {% endfor -%}
-            </ul>
-          </div>
-        </li>
-    {% endfor -%}
-    </ul>
-    </div>
-</section>#}
-
 {% endblock %}
