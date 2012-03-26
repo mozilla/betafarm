@@ -29,7 +29,7 @@ def test_featured():
     c = Client()
     response = c.get('/en-US/')
     assert response.status_code == 200
-    assert project.name in response.content
+    assert project.name in response.content.decode('utf8')
 
 
 def test_404_handler():

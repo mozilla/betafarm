@@ -21,7 +21,7 @@ class ProfileData(TestCase):
     def test_social_links(self):
         user_slug = '/en-US/profile/%s/' % self.profile.user.username
         response = self.client.get(user_slug)
-        self.assertEqual(response.context['social_links'], False)
+        self.assertEqual(len(response.context['social_links']), 0)
 
         Link.objects.create(
             name=u'Test',
@@ -30,7 +30,7 @@ class ProfileData(TestCase):
         )
 
         response = self.client.get(user_slug)
-        self.assertNotEqual(response.context['social_links'], False)
+        self.assertEqual(len(response.context['social_links']), 1)
 
     def test_project_links(self):
         user_slug = '/en-US/profile/%s/' % self.profile.user.username

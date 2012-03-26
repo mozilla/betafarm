@@ -64,6 +64,7 @@ class TestViews(TestCase):
 
         # make sure only projects with at least one topic are shown
         self.project.topics.remove(self.topic)
+        self.project.save()
         resp = self.client.get(reverse('projects_all'), follow=True)
         self.assertNotContains(resp, self.project.name)
 
