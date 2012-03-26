@@ -90,12 +90,13 @@ def add_link(request):
 def edit(request):
     """Edit the currently logged in users profile."""
     profile = request.user.get_profile()
-    FormClass = (ProfileForm if profile.has_chosen_identifier else
-                 ProfileCreateForm)
+    form_class = ProfileForm
+    if not profile.has_chosen_identifier:
+         form_class = ProfileCreateForm
     if request.method == 'POST':
-        form = FormClass(data=request.POST,
-                         files=request.FILES,
-                         instance=profile)
+        form = form_class(data=request.POST,
+                          files=request.FILES,
+                          instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
@@ -111,7 +112,7 @@ def edit(request):
                 link.save()
             return redirect(profile)
     else:
-        form = FormClass(instance=profile)
+        form = form_class(instance=profile)
     links = profile.link_set.all()
     return jingo.render(request, 'users/edit.html', {
         'form': form,
