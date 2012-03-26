@@ -7,7 +7,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, redirect
 
 from users.models import Profile, Link
-from users.forms import ProfileForm, ProfileLinksForm
+from users.forms import ProfileCreateForm, ProfileForm, ProfileLinksForm
 
 import jingo
 
@@ -90,10 +90,12 @@ def add_link(request):
 def edit(request):
     """Edit the currently logged in users profile."""
     profile = request.user.get_profile()
+    FormClass = (ProfileForm if profile.has_chosen_identifier else
+                 ProfileCreateForm)
     if request.method == 'POST':
-        form = ProfileForm(data=request.POST,
-                           files=request.FILES,
-                           instance=profile)
+        form = FormClass(data=request.POST,
+                         files=request.FILES,
+                         instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
@@ -108,7 +110,8 @@ def edit(request):
                 link.profile = profile
                 link.save()
             return redirect(profile)
-    form = ProfileForm(instance=profile)
+    else:
+        form = FormClass(instance=profile)
     links = profile.link_set.all()
     return jingo.render(request, 'users/edit.html', {
         'form': form,
