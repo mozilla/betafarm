@@ -64,6 +64,13 @@
               <label for="id_bio">{{ _('Bio') }}</label>
               {{ form.bio }}
             </li>
+            {% if form.agreement %}
+              <li>
+                <label for="id_agreement">
+                  {{ form.agreement }} {{ form.agreement.label }}
+                </label>
+              </li>
+            {% endif %}
           </ul>
           <button class="submit sans" type="submit">{{ _('Save') }}</button>
         </form>
