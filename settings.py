@@ -326,3 +326,5 @@ PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
 SOUTH_TESTS_MIGRATE = False
 CACHE_BACKEND = 'caching.backends.locmem://'
 CACHE_COUNT_TIMEOUT = 60
+
+BLOG_FEED_URL = 'http://blog.mozilla.com/labs/rss'

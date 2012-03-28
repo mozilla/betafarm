@@ -72,6 +72,23 @@ html[xmlns] .clearfix {
 .sidebar {
     .open-sans;
     margin-left: @gridGutterWidth;
+    .blog-post {
+        border-bottom: 1px dotted darken(@borderColor, 10%);
+        padding: @gridGutterWidth/2 0;
+        a.read-more {
+            white-space: nowrap;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        p {
+            font-size: 12px;
+            margin: 0;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
     section {
         .span(3);
         background-color: #E8EAED;
