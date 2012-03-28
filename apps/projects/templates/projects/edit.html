@@ -75,6 +75,7 @@
             </li>
             {{ form_input(form.topics) }}
             {{ form_input(form.tags) }}
+            {{ form_input(form.inactive) }}
           </ul>
           <button class="submit" type="submit">{{ _('Save') }}</button>
           <a class="cancel" href="{{ project.get_absolute_url() }}">{{ _('Cancel') }}</a>

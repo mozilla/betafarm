@@ -21,7 +21,7 @@ from projects.models import Project, Link
 
 def all(request):
     """Display a list of all projects."""
-    projects = Project.objects.haz_topic().order_by('name')
+    projects = Project.objects.haz_topic().order_by('inactive', 'name')
     return jingo.render(request, 'projects/all.html', {
         'projects': projects,
         'view': 'all'
@@ -31,7 +31,8 @@ def all(request):
 def topic(request, slug):
     """Show a specific topic. Should be only for non-js users."""
     topic = get_object_or_404(Topic, slug=slug)
-    projects = Project.objects.filter(topics=topic).order_by('name')
+    projects = Project.objects.filter(topics=topic).order_by('inactive',
+                                                             'name')
     return jingo.render(request, 'projects/all.html', {
         'current_topic': topic,
         'projects': projects

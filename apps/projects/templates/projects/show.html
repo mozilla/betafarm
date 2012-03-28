@@ -34,8 +34,7 @@
     </div>
     <div class="row" id="body-content">
       <div class="logo-links span2">
-        <img src="{{ MEDIA_URL }}{{ project.image_or_default }}"
-             alt="{{ project.name }}">
+        {% include "projects/includes/project_image.html" %}
         {% if user_is_owner %}
           <a class="edit"
              href="{{ project.get_edit_url() }}">{{ _('Edit Project') }}</a>
@@ -59,6 +58,9 @@
       </div>
       <div class="description span6 offset1">
         <h2>{{ _('About') }} {{ project.name }}</h2>
+        {% if project.inactive %}
+          <p class="inactive">{{ _('This project is considered inactive.') }}</p>
+        {% endif %}
         {{ project.long_description|safe }}
         <section class="people">
           <h2>{{ _('Project Team') }}</h2>
