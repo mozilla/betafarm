@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import search %}
+
+{% block page_title -%}{{ profile.display_name }} : {{ _('Mozilla Labs') }}{% endblock -%}
+
+{% block page_id %}user_profile{% endblock %}
+{% block section_class %}profile{% endblock %}
+
+{% block breadcrumbs -%}
+  {{ breadcrumbs(last=profile.display_name) }}
+{% endblock -%}
+
+{% block content -%}
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ profile.display_name }}</h1>
+      </div>
+    </div>
+    <div class="row" id="body-content">
+      <div class="description span6 offset3">
+        <h2>{{ _('Delete Profile') }}</h2>
+        <p>{{ _('Are you sure you want to delete your account?') }}</p>
+        <form action="{{ request.get_full_path() }}" method="POST">
+          {{ csrf() }}
+          <button class="button-red" type="submit">{{ _('Delete') }}</button>
+          <a href="{{ profile.get_absolute_url() }}">{{ _('cancel') }}</a>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock -%}

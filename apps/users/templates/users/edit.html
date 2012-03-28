@@ -7,8 +7,12 @@
 {% block section_class %}profile{% endblock %}
 
 {% block breadcrumbs -%}
-  {{ breadcrumbs((profile.get_absolute_url(), profile.display_name),
-      last=_('Edit')) }}
+  {% if page_mode == 'create' %}
+    {{ breadcrumbs(last=_('Create Profile')) }}
+  {% else %}
+    {{ breadcrumbs((profile.get_absolute_url(), profile.display_name),
+                   last=_('Edit')) }}
+  {% endif %}
 {% endblock -%}
 
 {% block content -%}
@@ -16,7 +20,13 @@
     <div class="row">
       <div class="span10">
         <div class="pull-right">{{ search() }}</div>
-        <h1>{{ profile.display_name }}</h1>
+        <h1>
+          {% if page_mode == 'create' %}
+            {{ _('Create Profile') }}
+          {% else %}
+            {{ profile.display_name }}
+          {% endif %}
+        </h1>
       </div>
     </div>
     <div class="row" id="body-content">
@@ -72,7 +82,10 @@
               </li>
             {% endif %}
           </ul>
-          <button class="submit sans" type="submit">{{ _('Save') }}</button>
+          {% if page_mode == 'edit' %}
+            <a class="button-red pull-right" href="{{ url('users_delete') }}">{{ _('Delete') }}</a>
+          {% endif %}
+          <button class="button-blue" type="submit">{{ _('Save') }}</button>
         </form>
       </div>
     </div>

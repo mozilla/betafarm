@@ -12,8 +12,8 @@
     text-align: center;
     font-size: 14px;
     padding: 0 @baseLine;
-    height: @baseLine * 2;
-    line-height: @baseLine * 2;
+    height: @baseLine * 1.5;
+    line-height: @baseLine * 1.5;
     text-decoration: none;
     border: 0;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
@@ -44,6 +44,18 @@
 
     &:hover {
         .box-shadow(@buttonBlueShadowHover);
+    }
+}
+
+.button-red,
+.button-red:link,
+.button-red:visited {
+    .button;
+    background-color: @buttonRed;
+    #gradient > .vertical(@buttonRed, @buttonRedDark);
+
+    &:hover {
+        .box-shadow(@buttonRedShadowHover);
     }
 }
 
@@ -80,6 +92,7 @@
 
 .button,
 .button-blue,
+.button-red,
 .button-white {
 
     small {

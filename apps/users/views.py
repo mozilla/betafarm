@@ -1,15 +1,20 @@
 import json
 
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.decorators import method_decorator
+from django.views.generic import DeleteView
+
+import jingo
+
+from commons.urlresolvers import reverse
+from tower import ugettext as _
 
 from users.models import Profile, Link
 from users.forms import ProfileCreateForm, ProfileForm, ProfileLinksForm
-
-import jingo
 
 
 def dashboard(request):
@@ -91,8 +96,10 @@ def edit(request):
     """Edit the currently logged in users profile."""
     profile = request.user.get_profile()
     form_class = ProfileForm
+    mode = 'edit'
     if not profile.has_chosen_identifier:
-         form_class = ProfileCreateForm
+        mode = 'create'
+        form_class = ProfileCreateForm
     if request.method == 'POST':
         form = form_class(data=request.POST,
                           files=request.FILES,
@@ -118,7 +125,30 @@ def edit(request):
         'form': form,
         'links': links,
         'profile': profile,
+        'page_mode': mode,
     })
+
+
+class DeleteProfileView(DeleteView):
+    template_name = 'users/profile_confirm_delete.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(DeleteProfileView, self).dispatch(request, *args,
+                                                       **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        kwargs['profile'] = self.request.user.get_profile()
+        return super(DeleteProfileView, self).get_context_data(**kwargs)
+
+    def get_success_url(self):
+        auth.logout(self.request)
+        messages.success(self.request,
+                         _(u'Your profile was successfully deleted.'))
+        return reverse('innovate_splash')
 
 
 def all(request, page=1):
