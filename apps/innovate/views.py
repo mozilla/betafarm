@@ -1,5 +1,6 @@
 import jingo
 
+from innovate.utils import get_blog_feed_entries
 from projects.models import Project
 
 
@@ -8,6 +9,7 @@ def splash(request):
     projects = Project.objects.filter(featured=True)[:4]
     return jingo.render(request, 'innovate/splash.html', {
         'featured_projects': projects,
+        'blog_entries': get_blog_feed_entries(),
     })
 
 

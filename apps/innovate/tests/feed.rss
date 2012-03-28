@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Mozilla Web Development</title>
+	<atom:link href="http://blog.mozilla.com/webdev/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.mozilla.com/webdev</link>
+	<description>Everybody Likes Ninjas</description>
+	<lastBuildDate>Wed, 28 Mar 2012 13:19:26 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.3.1</generator>
+		<item>
+		<title>Scrum and Bugzilla - TEST</title>
+		<link>http://blog.mozilla.com/webdev/2012/03/27/scrum-and-bugzilla/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/03/27/scrum-and-bugzilla/#comments</comments>
+		<pubDate>Tue, 27 Mar 2012 16:34:11 +0000</pubDate>
+		<dc:creator>Paul McLanahan</dc:creator>
+				<category><![CDATA[Mozilla]]></category>
+		<category><![CDATA[Scrum]]></category>
+		<category><![CDATA[Web Development]]></category>
+		<category><![CDATA[bootstrap]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[flot]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[scrum]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2512</guid>
+		<description><![CDATA[Not all teams at Mozilla follow the same software development methodology. We&#8217;re free to design our own workflows, use whatever tools we want, and just generally work in whatever way is best for us. The one component that almost every project uses is Bugzilla for issue and feature tracking. If you&#8217;ve ever worked for, or [...]]]></description>
+			<content:encoded><![CDATA[<p>Not all teams at Mozilla follow the same software development methodology. We&#8217;re free to design our own workflows, use whatever tools we want, and just generally work in whatever way is best for us. The one component that almost every project uses is <a href="https://bugzilla.mozilla.org/">Bugzilla</a> for issue and feature tracking. If you&#8217;ve ever worked for, or contributed to Mozilla, you have a Bugzilla account. Apart from being a very powerful and configurable tool, this level of participation is a large part of what keeps projects using and wanting to use Bugzilla.</p>
+<h2>Enter Scrum</h2>
+<p>Being software developers, many of us know and like <a href="http://en.wikipedia.org/wiki/Scrum_%28development%29">Scrum</a>. I&#8217;ve personally found it to be a great method of answering the old questions of &#8220;How long will this take?&#8221;, and &#8220;How much can we get done?&#8221;. I won&#8217;t go into great detail on how Scrum works here, but the main points are as follows:</p>
+<ul>
+<li>Work units are scored by the team based on difficulty or expected time consumption.</li>
+<li>Those work units are included in a &#8220;Sprint&#8221; usually lasting 2 weeks.</li>
+<li>Lots of interesting data is generated around team performance.</li>
+</ul>
+<p>That last point is key. In order to be able to use and appreciate these data, we need to be able to collect and visualize them in a useful way. This normally means awesome charts and graphs. As nice as Bugzilla is for coordination and issue tracking, it has an unfortunate lack of awesome data visualization tools. It does however, have an API.</p>
+<h2>The Birth of <a href="http://scrumbu.gs/">Scrumbu.gs</a></h2>
+<p>There have been some valiant efforts at improving the interface of Bugzilla. One of these, <a href="https://addons.mozilla.org/en-US/firefox/addon/bugzillajs/">BugzillaJS</a>, even adds some pie charts for Scrum data in a bug-list. But what I really wanted was a <a href="http://en.wikipedia.org/wiki/Scrum_%28development%29#Burn_down">burndown</a>.</p>
+<p>The data you need to associate with a bug (or story in Scrum parlance) are the user who will benefit from the work, the component of the product to be affected, and a score (points) representing the perceived difficulty of the work. Bugzilla has no fields for these out of the box, but a catchall field called the &#8220;whiteboard&#8221; can be formatted in such a way as to allow tools like BugzillaJS and Scrumbu.gs to easily find it (see below). This is obviously not optimal, but it&#8217;s what we have for the moment. And when you combine that with the bug history data from the Bugzilla API, you have all you need to calculate burndowns, team and developer velocities, and all sorts of even awesomer things.</p>
+<aside style="margin-left:2em;padding:10px;background-color:#eee"><strong>NOTE:</strong> The whiteboard Bugzilla field is overridden to provide formatted data for our scrum tools. If you had the following story: &#8220;As a contributor, I can haz bacon.&#8221;, and your team agreed to give it 2 points, your whiteboard for this bug would be: &#8220;u=contributor c=noms p=2&#8243;, where &#8220;u&#8221; is &#8220;user&#8221;, &#8220;c&#8221; is &#8220;component&#8221;, and &#8220;p&#8221; is &#8220;points&#8221;.</aside>
+<p>The result of this need, my excellent bosses allowing me the time to experiment with cool stuff, and the existence of <a href="http://python.org/">Python</a>, <a href="http://djangoproject.com/">Django</a>, <a href="http://slumber.in/">Slumber</a> (REST client), <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>, <a href="http://jquery.com/">jQuery</a>, <a href="http://code.google.com/p/flot/">Flot</a>, and <a href="http://ep.io/">Epio</a> (python/django hosting), is <a href="http://scrumbu.gs/">Scrumbu.gs</a>. It&#8217;s still a work in progress, but you can click through some existing projects and sprints to see how it&#8217;s working so far. The <a href="https://github.com/pmclanahan/scrumbugz">code and issue tracker</a> are on github, so feel free to poke around and see how it works. If you see a problem or have an idea for a feature, please file an issue, and if you have the ability and/or desire, send a pull-request <img src='http://blog.mozilla.com/webdev/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> .</p>
+<p>I recently gave a lightning talk about the project for my team at Mozilla and I&#8217;ve included it below if you&#8217;re interested. My hope with this project was to spread the use of Scrum around Mozilla and other teams who use Bugzilla, and to improve the tools for those who already do. If your team is interested in tracking your sprints using this tool, participating in its development, or just chatting about Scrum, please join us in the #scrum channel on <a href="irc://irc.mozilla.org/">IRC</a>.</p>
+<p><video id="movie" width="640" height="360" preload="none" controls poster="http://blog.mozilla.com/webdev/files/2011/07/mozilla_wht.png"><br />
+  <source src="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.webm" type='video/webm; codecs="vp8, vorbis"' /><br />
+  <source src="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.ogv" type='video/ogg; codecs="theora, vorbis"' /><br />
+  <source src="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.mp4" /></p>
+<p>Download video as <a href="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.mp4">MP4</a>, <a href="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.webm">WebM</a>, or <a href="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.ogv">Ogg</a>.</p>
+<p></video></p>
+<p><strong>Edit 3/28</strong>: Added links to Slumber, Epio, and jQuery.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/03/27/scrum-and-bugzilla/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+<enclosure url="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.webm" length="32449140" type="video/webm" />
+<enclosure url="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.ogv" length="38426688" type="video/ogg" />
+<enclosure url="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/1-pmac-scrumbugs.mp4" length="67574309" type="video/mp4" />
+		</item>
+		<item>
+		<title>Rapid Prototyping</title>
+		<link>http://blog.mozilla.com/webdev/2012/03/21/rapid-prototyping/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/03/21/rapid-prototyping/#comments</comments>
+		<pubDate>Wed, 21 Mar 2012 20:35:04 +0000</pubDate>
+		<dc:creator>Jennifer Fong</dc:creator>
+				<category><![CDATA[Web Development]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2498</guid>
+		<description><![CDATA[If you’re like me, you enjoy doing lots of quick CRUD (create/read/update/delete) applications that are highly experimental, highly volatile and require low commitment until you know where you want to go with it. Having worked with various web frameworks (Django, Rails, Sinatra, webpy, Struts, Express, Flask, and probably some other ones I’ve missed), I find [...]]]></description>
+			<content:encoded><![CDATA[<p>If you’re like me, you enjoy doing lots of quick CRUD (create/read/update/delete) applications that are highly experimental, highly volatile and require low commitment until you know where you want to go with it.</p>
+<p>Having worked with various web frameworks (Django, Rails, Sinatra, webpy, Struts, Express, Flask, and probably some other ones I’ve missed), I find that as a coder, one needs a nice balance of getting code up and running on a local machine and not having to organize and plan too much when in “play mode”. By “play mode”, I mean MTAWGSBWATL a.k.a. “Maybe This App Will Go Somewhere But Worry About That Later”.</p>
+<p>This kind of mentality is very useful for both beginners and those who are more advanced in their programming career. Think of it as taking a bunch of clay and molding it until you feel that you have the right fit. The last thing the experimental coder needs is to think about is the “ideal organization” of their code and more about getting it running on a local webserver as soon as possible.</p>
+<p>I find two frameworks quite efficient at getting this done &#8211; Sinatra and Flask. In this post, I’ll be specifically talking about <a href="http://flask.pocoo.org">Flask</a>, <a href="http://browserid.org">BrowserID</a> and <a href="http://www.mongodb.org">MongoDB</a>.</p>
+<p>Now a quick summary of these three things:</p>
+<ol>
+<li>Flask is a lightweight Python framework</li>
+<li>BrowserID is a secure authentication service</li>
+<li>MongoDB is a nosql database</li>
+</ol>
+<p>Why would one use these for an application, especially one that is prototypical? First, because we don’t want to over-engineer our code right now. Second, because we don’t want to write our own or maintain an authentication platform that requires us to either handle anything beyond a user’s session, uses a third-party service (such as <a href="http://twitter.com">Twitter</a> or <a href="http://facebook.com">Facebook</a>) which some people may not feel comfortable in signing in with and we want to get things done as fast as possible. Finally, because there’s no point in planning a relational database with something like MySQL or PostgreSQL when you may not even know what you are designing. You may not even know what you’re doing! So keep it simple and to the point.</p>
+<p>For my examples, I started with <a href="http://lexicrypt.com">Lexicrypt</a>. Lexicrypt is a fun, small project that generates encrypted messages as images. It took me about a week to get the first iteration up and running on a publicly accessible server. Your mileage may vary &#8211; if you’re experienced in Python, this may take you about the same amount of time or less. If this is your first time, don’t worry about taking longer &#8211; you’ll eventually find your comfort zone and your modus operandi for developing personal scaffolds of your projects.</p>
+<p>Shortly after I created Lexicrypt, I decided to make a small photo service that enables you to sign in, upload photos, tag and favourite them. Instead of starting from scratch I took the scaffold of Lexicrypt, popped out the encryption functionality and replaced it with the photo functionality. This enabled me to go from idea to deployment for the first iteration within a weekend!</p>
+<p>To view the source for these projects and get an idea of their similarities and differences you can check out the Github repositories at <a href="https://github.com/ednapiranha/lexicrypt">https://github.com/ednapiranha/lexicrypt</a> and <a href="https://github.com/ednapiranha/snapshots-from-here">https://github.com/ednapiranha/snapshots-from-here</a>.</p>
+<p>As for your rapid prototyping endeavours, good luck and continue to code and code some more. Remember, the process is not only a way for you to learn how to code more efficiently and collaborate with others as you gain more experience, but it is also a way for you to learn more about yourself in the development of your application.</p>
+<p>Here is a video of me giving a lightning talk on the subject:</p>
+<p><video id="movie" width="640" height="360" controls="controls" poster="http://blog.mozilla.com/webdev/files/2011/07/mozilla_wht.png" preload="none"><source src="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/6-edna-rapid-prototyping.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;" /><source src="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/6-edna-rapid-prototyping.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;" /><source src="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/6-edna-rapid-prototyping.mp4" /></video></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/03/21/rapid-prototyping/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+<enclosure url="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/6-edna-rapid-prototyping.webm" length="18196065" type="video/webm" />
+<enclosure url="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/6-edna-rapid-prototyping.ogv" length="20090284" type="video/ogg" />
+<enclosure url="http://videos-cdn.mozilla.net/serv/flux/lightningtalks-q1-2012/6-edna-rapid-prototyping.mp4" length="32049358" type="video/mp4" />
+		</item>
+		<item>
+		<title>Better Know a WebDev: Luke Crouch (aka groovecoder)</title>
+		<link>http://blog.mozilla.com/webdev/2012/03/09/better-know-a-webdev-luke-crouch-aka-groovecoder/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/03/09/better-know-a-webdev-luke-crouch-aka-groovecoder/#comments</comments>
+		<pubDate>Fri, 09 Mar 2012 16:20:49 +0000</pubDate>
+		<dc:creator>James Socol</dc:creator>
+				<category><![CDATA[Better Know a WebDev]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2483</guid>
+		<description><![CDATA[It&#8217;s Friday, Friday, gotta write a blog post on Friday! Hitting memes at the height of their popularity is easy. Dredging up memories weeks or months later is more fun. Now, on to today&#8217;s Better Know a WebDev! In this corner, the Terror of Tulsa, the Oracle of Oklahoma, Luuuuuke Croooouch! What do you do [...]]]></description>
+			<content:encoded><![CDATA[<p>It&#8217;s Friday, Friday, gotta write a blog post on Friday!</p>
+<p>Hitting memes at the height of their popularity is easy. Dredging up memories weeks or months later is more fun.</p>
+<p>Now, on to today&#8217;s <a href="http://blog.mozilla.com/webdev/category/better-know-a-webdev/">Better Know a WebDev</a>! In this corner, the Terror of Tulsa, the Oracle of Oklahoma, <a href="https://twitter.com/groovecoder">Luuuuuke Croooouch</a>!</p>
+<p style="text-align: center;"><img class="size-full wp-image-2484 aligncenter" title="luke_sitting_laptop" src="http://blog.mozilla.com/webdev/files/2012/03/luke_sitting_laptop.png" alt="" width="500" height="703" /></p>
+<h3>What do you do at Mozilla?</h3>
+<p>I learn a ton from other Mozillians while I work on the <a href="https://developer.mozilla.org">Mozilla Developer Network (MDN)</a> site. MDN hosts awesome <a href="https://developer.mozilla.org/docs">web documentation</a> and we&#8217;re expanding to host <a href="https://developer.mozilla.org/demos">demos</a>, <a href="https://developer.mozilla.org/events">events</a>, profiles, and more. We&#8217;re migrating the wiki from MindTouch to our own Django-powered <a href="https://github.com/mozilla/kuma">Kuma</a> code &#8211; a clone of the <a href="https://github.com/jsocol/kitsune">Kitsune</a> code that powers <a href="http://support.mozilla.com">Support</a>. Along the way we&#8217;re still adding features like BrowserID and fixing as many bugs as we can. I also organize <a href="http://scrumbu.gs/projects/mdn/">our sprints</a> and do a little product management until we <a href="http://careers.mozilla.org/en-US/position/orU8Vfw8">hire an official MDN product manager</a>. BTW, we&#8217;re hiring! <img src='http://blog.mozilla.com/webdev/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+<h3>Any fun side projects you&#8217;re working on?</h3>
+<p>Most of my side projects are caught up in <a href="http://tulsawebdevs.org">http://tulsawebdevs.org</a>, of which I&#8217;m the Chief Sanitation Officer. Specifically, I&#8217;m <a href="https://github.com/tulsawebdevs/python-scrapers">scraping some local public data</a> and preparing for <a href="http://tulsahackathon.com">http://tulsahackathon.com</a>.</p>
+<p>I also brew my own beer as often as I can. Once a month I retreat to a Benedictine Abbey here in Oklahoma to brew beer with them.</p>
+<h3>How did you get started in web development or programming?</h3>
+<p>I picked up an HTML book around &#8217;93, kicked around in Flash while, took the Pascal, C, and Java classes in high school and took a webmaster vocational tech class. But I really decided to stick with web development when I hacked out my first database-powered HTML page one night in college &#8211; a table with 2 rows of dynamically-generated content using SQL Server and ASP on IIS!</p>
+<h3>How did you get involved with Mozilla?</h3>
+<p>I&#8217;ve used Firefox since I switched from Netscape Navigator. But I had only ever skirted around the contribution path (a behavior I&#8217;m also trying to address with our WebDev Stewards stuff).</p>
+<p>As for working here, that&#8217;s a little complicated and involved a lot of luck! I built <a href="http://sourceforge.net/projects/ajaxmytop/">ajaxMyTop</a> while doing &#8220;enterprise&#8221; development. When I got <a href="http://sourceforge.net/tracker/?func=detail&amp;aid=1422853&amp;group_id=156708&amp;atid=800870">an unsolicited patch for it</a>, I was hooked forever on the open-source model. So when I saw an online job posting for SourceForge.net, I jumped on it, <a href="http://groovecoder.com/2006/08/10/software-engineer-sourceforge-net/">got in</a>, and learned a ton about open-source and web development. Four years later I saw an online job posting at Mozilla and <a href="http://groovecoder.com/2011/02/10/init/">I jumped again</a>!</p>
+<h3>What&#8217;s a funny fail story or mistake you can share?</h3>
+<p>Don&#8217;t push big code changes while you&#8217;re at a conference!</p>
+<p>We pushed <a href="http://sourceforge.net/apps/wordpress/sourceforge/2009/07/22/file-release-system-frs-update-complete-2009-07-22/"> changes to the SourceForge.net File Release System and corresponding download redirector while at OSCON &#8217;09</a>. It caused recursive redirects which broke all SourceForge.net downloads for over an hour! (Millions of downloads) The conference WiFi broke so a dozen of us had to share a single 2G cell phone &#8216;net connection to fix it.</p>
+<h3>What&#8217;s something you&#8217;re particularly proud of?</h3>
+<p>I was honored to give the keynote talk at <a href="http://www.phpconf.com.br/">PHP Conference Brasil</a> in 2008, where I showed how SourceForge.net used PHP. I&#8217;m proud of all the <a href="http://tulsawebdevs.org">Tulsa Web Devs</a> &#8211; doing stuff every bit as cool as the web scenes in other towns. I&#8217;m proud of my wife for putting up with all my quirks and my nearly mono-maniacal focus on web development.</p>
+<h3>What&#8217;s coming up that you&#8217;re excited about?</h3>
+<p>All of Mozilla&#8217;s new stuff &#8211; <a href="http://www.mozilla.org/en-US/b2g/">Boot to Gecko</a>, <a href="https://www.mozilla.org/en-US/apps/">Apps</a>, and <a href="http://identity.mozilla.com/post/18038609895/introducing-mozilla-persona">Persona</a> are extremely important projects for the internet. <a href="https://github.com/groovecoder/instacss">I&#8217;m trying to patch dochub</a> so it could serve as MDN&#8217;s Open Web App, and I think we could try some cool things like MDN <a href="http://www.openbadges.org">Open Web Badges</a>. I also like the idea of using a <a href="http://wardcunningham.github.com/">federated wiki protocol</a> for web documentation, and hosting web developer html5 ebooks on MDN.</p>
+<h3>What question do you wish you&#8217;d been asked?</h3>
+<p>What&#8217;s with the name &#8216;groovecoder&#8217;? It actually started as &#8216;groovepapa&#8217; &#8211; a silly gaming handle I used for <a href="http://www.bungie.net/Projects/MarathonUniverse.aspx">Marathon</a> LAN parties because I always danced to techno music in my chair while playing. As I coded more, it turned into &#8216;groovecoder&#8217; but it was still just a silly name. After reading <a href="http://amzn.com/0596519788">The Productive Programmer</a>, I find it describes me well &#8211; I want to be &#8220;in the groove&#8221; when I code.</p>
+<h3>If you operated a food truck, what would be your specialty?</h3>
+<p>My truck would be &#8220;Stews and Brews&#8221; &#8211; it would serve a bowl of soup with a pint of beer.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/03/09/better-know-a-webdev-luke-crouch-aka-groovecoder/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Better Know a WebDev: Kumar McMillan (aka kumar303)</title>
+		<link>http://blog.mozilla.com/webdev/2012/03/02/better-know-a-webdev-kumar-mcmillan-aka-kumar303/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/03/02/better-know-a-webdev-kumar-mcmillan-aka-kumar303/#comments</comments>
+		<pubDate>Fri, 02 Mar 2012 18:00:54 +0000</pubDate>
+		<dc:creator>James Socol</dc:creator>
+				<category><![CDATA[Better Know a WebDev]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2464</guid>
+		<description><![CDATA[Welcome back! No, we didn&#8217;t forget about our blog profiles, but your humble chronicler was away and neglected to get a substitute. So we return from our brief hiatus with the powerhouse engineer, Kumar McMillan. In his own words&#8230; What do you do at Mozilla? I work on addons.mozilla.org, a large Django app that hosts Firefox add-ons. We [...]]]></description>
+			<content:encoded><![CDATA[<p>Welcome back! No, we didn&#8217;t forget about <a href="http://blog.mozilla.com/webdev/category/better-know-a-webdev/">our blog profiles</a>, but your humble chronicler was away and neglected to get a substitute.</p>
+<p>So we return from our brief hiatus with the powerhouse engineer, <strong>Kumar McMillan</strong>. In his own words&#8230;</p>
+<p style="text-align: center;"><a href="http://blog.mozilla.com/webdev/files/2012/02/kumar-records-rio.png"><img class="size-full wp-image-2465 aligncenter" title="kumar-records-rio" src="http://blog.mozilla.com/webdev/files/2012/02/kumar-records-rio.png" alt="Kumar in his element" width="500" height="375" /></a></p>
+<h3>What do you do at Mozilla?</h3>
+<p>I work on <a href="https://addons.mozilla.org/">addons.mozilla.org</a>, a large <a href="https://github.com/mozilla/zamboni">Django app</a> that hosts Firefox add-ons. We just launched <a href="https://marketplace.mozilla.org/">marketplace.mozilla.org</a> for apps which is an exciting new take on <a href="http://hacks.mozilla.org/2012/02/mozillamarketplace-open-for-app-submissions/">what an app store can be</a>; it runs on the same codebase as the add-ons site. <a href="https://developer.mozilla.org/en/Apps/">Open web apps</a> can run on any device that supports modern web standards and <a href="https://wiki.mozilla.org/Apps/WebRT">WebRT</a>, our web runtime. If you buy an app through Mozilla&#8217;s marketplace you can use it in any environment that we support (currently: Mac OS X, Windows, Android). If we don&#8217;t yet support it, you can roll your own by hooking into our <a href="https://developer.mozilla.org/en/Apps/Validating_a_receipt">receipt verification service</a>. Open web apps offer a compelling promise: write your &#8220;native feeling&#8221; app once using web standards and deploy everywhere. Ours is the first app store that doesn&#8217;t lock you into a device and a vertical development silo. It&#8217;s currently not that straight forward to use HTML5, CSS3, and JS to make an app feel &#8220;native&#8221; but the incentives are pretty huge for the community to improve on this so I think we&#8217;ll see it happen (e.g. Twitter&#8217;s <a href="http://twitter.github.com/bootstrap/">bootstrap</a>, <a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/">Application Cache</a>, etc). There are some other interesting parts of the marketplace that I&#8217;m working on specifically like <a href="https://developer.mozilla.org/en/Apps/In-app_payments">in-app payments</a>.</p>
+<h3>Any fun side projects you&#8217;re working on?</h3>
+<p>I spend a lot of my free time working on a volunteer-run Internet radio station in Chicago called <a href="http://chirpradio.org/">CHIRP Radio</a>. I head up their Tech Dept. and help build apps for listening to CHIRP and tools for DJs to use while operating the station. CHIRP Radio is non profit and, it&#8217;s funny, there are a lot of similarities with Mozilla albeit on a much smaller scale. We develop everything in the <a href="http://code.google.com/p/chirpradio/">open</a> and engage with the open source community, for example.</p>
+<p>I also host a radio show Tuesday mornings as DJ Bylamplight and that&#8217;s something else I spend a lot of time on: music. I like to balance my cerebral world of hacking on code with music. It&#8217;s emotional. I love to DJ songs for people because it affects their mood. I also dabble in a recording studio that I share with several engineers and bands. I just finished producing an album for <a href="http://www.facebook.com/summergirlfriends?sk=app_178091127385">Summer Girlfriends</a> which was a lot of fun. Oh yeah, and I help run a vinyl label called <a href="http://www.addendarecords.com/">Addenda</a> and a cassette label called <a href="http://www.plustapes.com/">Plustapes</a>. People love cassette tapes. It is true.</p>
+<h3>How did you get started in web development or programming?</h3>
+<p>I went to The School of the Art Institute of Chicago because they had a Sound Department which I thought was a neat idea. As part of my degree I did a lot of different things though: Film, Performance, Art &amp; Technology. In the latter, I took a class where the <a href="http://salavon.com/">instructor</a> bravely had us write C code to process images (even though no one had any programming experience). We literally just made X and Y loops of pixels and wrote programs to distort images. It was super fun and from that moment I was hooked. However, art school made me realize I didn&#8217;t want to be in the art scene. The Web was exploding at the time and it felt like the place to be so I taught myself web programming (initially in PHP). The creative process of writing code isn&#8217;t very different than that of building sculptures or painting. There&#8217;s just more typing involved.</p>
+<h3>How did you get involved with Mozilla?</h3>
+<p>I&#8217;ve used the same online bookmark system since 2002 (don&#8217;t ask) and long before I joined Mozilla I had a folder of bookmarks called Mozilla. I looked up the first thing I ever bookmarked in that folder and it was this link back in 2005: http://www.mozilla.org/quality/smoketests (gone now), which was about the extensive automated test suite for Firefox. I was totally fascinated by this test suite and how they had heat map regression tests for when CSS implementations broke visual layouts. I was very inspired by this when I started to do automated testing. Mozilla felt like a pioneer in this area and many other areas.</p>
+<p>Several years after that, Mozilla started doing a lot of work in Python and several people I knew from the open source community started working there. I liked what they were doing with Python and since they were already using some open source libraries I was working on, it was a natural fit. Actually, most of the people we hire in webdev are authors of libraries I&#8217;ve used or are authors of blog posts that turn up regularly when I search for tech help.</p>
+<h3>What&#8217;s a funny fail story or mistake you can share?</h3>
+<p>I once deployed a bad change to <a href="http://addon.mozilla.org">addon.mozilla.org</a>&#8216;s web service used by Firefox clients that triggered an unexpected traceback on every request. Since these service URLs serve about 8,000 requests a second it killed the cache and basically started to melt down the server cluster (the graphs were ominous). Luckily my new code was behind a feature flag so we could turn it off immediately without having to re-deploy. There ya go kids, always use <a href="http://code.flickr.com/blog/2009/12/02/flipping-out/">feature flags</a>. It was indeed a reminder that our flag based strategy was a good one.</p>
+<h3>What&#8217;s something you&#8217;re particularly proud of?</h3>
+<p>It still needs some work but I wrote <a href="https://github.com/kumar303/jstestnet">JS TestNet</a> to allow <a href="http://addons.mozilla.org">addons.mozilla.org</a> to run small integration tests for our JavaScript functionality. <a href="http://support.mozilla.org">support.mozilla.org</a> is using it now as well. Providing a continuous integration framework for JS testing only solves half of the problem though. There is a huge gap in the JS web dev community where barely anyone writes automated tests. All the popular patterns around jQuery and jQuery plugins do not encourage you to write testable code and it&#8217;s hard to retro fit tests into code like that.</p>
+<h3>What&#8217;s coming up that you&#8217;re excited about?</h3>
+<p>I&#8217;m excited about the <a href="https://developer.mozilla.org/en/Apps">Mozilla apps</a> project and how our <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments/">payment systems</a> might instigate new online business models. I&#8217;m excited about apps in general. I can&#8217;t wait to build <a href="http://www.ford.com/technology/sync/features/sync-app-link/">apps for cars</a>. I love my iPad, my Android tablet, and my Android phone. If we stand by and do nothing, the web is going to become a second class citizen in these apps-centric devices. Mozilla can change that. I think we might even get some major players like Facebook or Google to join in our crusade to appify the the web in an open and egalitarian way if we prove that <a href="https://www.mozilla.org/en-US/apps/">our concepts</a> will work.</p>
+<p>I&#8217;m also excited about <a href="https://wiki.mozilla.org/Services/Sagrada">Sagrada</a> and <a href="https://wiki.mozilla.org/Petri">Petri</a>, two projects that aim to build a scalable platform for hosting web applications. One day Mozilla may be able host community apps on these platforms and further our <a href="http://www.mozilla.org/about/mission.html">mission</a> to keep the web open and accessible to all.</p>
+<h3>What question do you wish you&#8217;d been asked?</h3>
+<p>How do today&#8217;s open source communities relate to ancient hunter / gatherer tribes where shared resources and equality were key components?</p>
+<h3>What do you listen to while you work/program?</h3>
+<p>I listen to <a href="http://chirpradio.org/">CHIRP Radio</a>, <a href="http://www.wbez.org/">WBEZ</a>, <a href="http://www.kcrw.com/">KCRW</a>, <a href="http://wfmu.org/">WFMU</a>, <a href="http://thisismyjam.com/">This Is My Jam</a>, <a href="http://soundcloud.com/dashboard">Soundcloud</a>, my record collection, and my mp3 collection. Thanks for asking.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/03/02/better-know-a-webdev-kumar-mcmillan-aka-kumar303/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Better Know a WebDev: Greg Koberger aka gkoberger</title>
+		<link>http://blog.mozilla.com/webdev/2012/01/27/better-know-a-webdev-greg-koberger-aka-gkoberger/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/01/27/better-know-a-webdev-greg-koberger-aka-gkoberger/#comments</comments>
+		<pubDate>Fri, 27 Jan 2012 17:49:16 +0000</pubDate>
+		<dc:creator>James Socol</dc:creator>
+				<category><![CDATA[Better Know a WebDev]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2451</guid>
+		<description><![CDATA[Welcome to another thrilling installment of your favorite, and only, recurring series on this blog: Better Know a WebDev! This is a special week, as we&#8217;re featuring someone who just moved from web development into a product role with our Add-ons team. Give a big welcome and congratulations to Greg Koberger! What do you do [...]]]></description>
+			<content:encoded><![CDATA[<p>Welcome to another thrilling installment of your favorite, and only, recurring series on this blog: <a href="http://blog.mozilla.com/webdev/category/better-know-a-webdev/">Better Know a WebDev</a>!</p>
+<p>This is a special week, as we&#8217;re featuring someone who just moved from web development into a product role with our Add-ons team. Give a big welcome and congratulations to <strong>Greg Koberger!</strong></p>
+<p style="text-align: center;"><img class="aligncenter size-full wp-image-2452" title="Greg" src="http://blog.mozilla.com/webdev/files/2012/01/greg1.png" alt="" width="437" height="477" /></p>
+<h3>What do you do at Mozilla?</h3>
+<p>For the past year and a half, I&#8217;ve been a web developer working on the <a href="https://addons.mozilla.org/">Mozilla Add-ons</a> site. I wrote both front- and back-end code, and every once in a while I managed to sneak in a little bit of design work. I recently traded in vim for Google Docs, however, and made the switch to a more product-centric role. I still get to work with the same people on the same projects, however I&#8217;ll be writing specs and designing flows rather than writing code.</p>
+<h3>Any fun side projects you&#8217;re working on?</h3>
+<p>One of most recent (and relevant) mini side projects is a <a href="http://www.p.gkoberger.net/firefox">Firefox Quine</a>. It&#8217;s not a true quine, since it loads some external assets (like jQuery). However, the concept is the same: if you were to copy and paste the code that makes up the logo, it would output itself. We&#8217;re currently getting the design printed on t-shirts.</p>
+<h3>How did you get started in web development or programming?</h3>
+<p>I was lucky—my parents always made sure I had a good computer. I started by tinkering with HyperCard, and eventually decided to try making websites. I still remember how asking my parents for my first hosting account went: &#8220;Why do you need other people to see it? Can&#8217;t you just play with it yourself on your computer?&#8221; Luckily they finally agreed, and I started teaching myself PHP and JavaScript.</p>
+<h3>How did you get involved with Mozilla?</h3>
+<p>While in college, there was an alumni talk about working at Mozilla. I missed the talk, however I emailed the guy after since I was curious. He encouraged me to apply, and I flew out to California to interview. I fell in love with the company. The people I interviewed with were awesome, and I was amazed by the company culture. Everyone just wanted to make the web a better place.</p>
+<h3>What&#8217;s a funny fail story or mistake you can share?</h3>
+<p>Back when I first started at Mozilla, I managed to delete all my private keys. So, some of the other webdevs set up a tissue-box-based &#8220;Computer School Fund&#8221; for me. I made $20 for deleting my private keys, so I like to think I got the last laugh.</p>
+<p style="text-align: center;"><img class="aligncenter size-full wp-image-2454" title="Greg's Computer School" src="http://blog.mozilla.com/webdev/files/2012/01/greg3.png" alt="" width="400" height="237" /></p>
+<h3>What&#8217;s something you&#8217;re particularly proud of?</h3>
+<p>Back in November, awareness of SOPA was just starting to pick up. The day before the initial hearing, a bunch of us decided to try to raise awareness. It was incredibly last minute, but we knew we had to do something. We could get the message out via the snippet on about:home, which serves about 300MM requests a day. However, we had nowhere to link to. SOPA was new, and there wasn&#8217;t a definitive source with a few easy-to-digest bullet points. Plus, we couldn&#8217;t really send millions of hits to a website without giving them fair notice. So, <a href="http://mozilla.org/sopa">we made our own</a>. I sketched it out on paper and wrote out the copy. Then, as I designed it in Photoshop, my fellow webdev Potch sat next to me and wrote the code. We didn&#8217;t even have time to share files; he just watched what I was doing and wrote the code. It took us about an hour—which is all we had, since it still had to be deployed and tested. We couldn&#8217;t have gotten it out without help from all the different teams at Mozilla—everyone from legal to QA to IT to webdev worked late to make it happen. It was a huge success. We got the word about SOPA out to millions of Firefox users within 24 hours. We were able to use the same site a few months later for the SOPA blackout.</p>
+<h3>What&#8217;s coming up that you&#8217;re excited about?</h3>
+<p>I&#8217;m really excited about my new product management role. I love new challenges. It&#8217;s a great time to start this job, since a lot is going on with AMO right now. &#8220;Marketplace&#8221; (apps and add-ons combined, with the ability to charge) is going to be a huge project in the upcoming months. I can&#8217;t wait to see what our team can make in the upcoming months.</p>
+<h3>What software do you use day-to-day for the work you do?</h3>
+<p>My main machine is a 13&#8243; Macbook Air running OS X Lion. I use vim for writing code, which all ends up on GitHub. I rely heavily on Firefox and Firebug for testing and debugging. I spend a good amount of time in Photoshop, mocking things up before I start coding. I couldn&#8217;t survive without either Rdio or Pandora playing in the background.</p>
+<p style="text-align: center;"><a href="http://www.flickr.com/photos/morgamic/5856162206/in/photostream/"><img class="aligncenter size-full" src="http://farm4.staticflickr.com/3168/5856162206_a0a1d2c031_z.jpg" alt="Mozilla WebDev: April 2011" width="640" height="204" /></a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/01/27/better-know-a-webdev-greg-koberger-aka-gkoberger/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Better Know a WebDev: Will Kahn-Greene aka willkg</title>
+		<link>http://blog.mozilla.com/webdev/2012/01/20/better-know-a-webdev-will-kahn-greene-aka-willkg/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/01/20/better-know-a-webdev-will-kahn-greene-aka-willkg/#comments</comments>
+		<pubDate>Fri, 20 Jan 2012 21:26:45 +0000</pubDate>
+		<dc:creator>James Socol</dc:creator>
+				<category><![CDATA[Better Know a WebDev]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2445</guid>
+		<description><![CDATA[Welcome back to the third epic installment of Better Know a WebDev! We started with our illustrious director, Mike Morgan, and then someone volunteered that the chronicler, yours truly, should be up next. But now we&#8217;re just going to randomly hop around through our entire web dev family. And there&#8217;s a lot of us! Up [...]]]></description>
+			<content:encoded><![CDATA[<p>Welcome back to the <em>third</em> epic installment of <a href="http://blog.mozilla.com/webdev/category/better-know-a-webdev/">Better Know a WebDev</a>!</p>
+<p>We started with our illustrious director, <a href="http://blog.mozilla.com/webdev/2012/01/06/better-know-a-webdev-mike-morgan-a-k-a-morgamic/">Mike Morgan</a>, and then someone volunteered that the chronicler, <a href="http://blog.mozilla.com/webdev/2012/01/13/better-know-a-webdev-james-socol/">yours truly</a>, should be up next. But now we&#8217;re just going to randomly hop around through our entire web dev family. And there&#8217;s a lot of us!</p>
+<p>Up this week, put your internet hands together for <strong>Will Kahn-Greene</strong>!</p>
+<p style="text-align: center;"><a href="http://www.flickr.com/photos/lhirlimann/6161853921/in/pool-1032644@N20/"><img class="aligncenter" src="http://farm7.staticflickr.com/6068/6161853921_bb8589cac7.jpg" alt="WillKG" width="333" height="500" /></a></p>
+<h3>What do you do at Mozilla?</h3>
+<p>I&#8217;m a software engineer in the webdev group that works on the software that runs support.mozilla.org. That entails working directly on kitsune—the software that runs support.mozilla.org—and its dependencies. I also spend some time working on making development life easier.</p>
+<h3>Any fun side projects you&#8217;re working on?</h3>
+<p>I have too many side projects, so I sort of bounce between them month-to-month. I&#8217;m the current maintainer of <a href="http://pyblosxom.bluesock.org/">Pyblosxom</a>—a file-based weblog system. I&#8217;m a cofounder of <a href="http://mediagoblin.org/">MediaGoblin</a> and help maintain project infrastructure. I run <a href="http://python.mirocommunity.org/">Python Miro Community</a>. I also work on <a href="http://getmiro.com/">Miro</a> and <a href="http://mirocommunity.org/">Miro Community</a>, though in a diminished capacity since I left PCF to work at Mozilla.</p>
+<h3>How did you get started in web development?</h3>
+<p>Long story short, I started writing web pages and CGI programs in C, then Perl, in undergrad. I learned enough to become an &#8220;authority&#8221; and taught a class on web-design and authoring in Microsoft Online Institute. The version of MOLI that I used was a web-based chat system. I thought it was pretty lacking, so I did my senior undergrad thesis studying web-based instruction and building a better system. From there, I did a bunch of consulting on large web-sites using IIS/ASP then Java EJBs/JSP/Servlets. After consulting, I switched sides (producer → consumer of web apps) and worked for a company writing a scraper for financial data.</p>
+<h3>How did you get involved with Mozilla?</h3>
+<p>In undergrad, we had Mosaic installed on the computers in the lab and I used that until I switched to Netscape. I used that for a few versions, then got really excited when Mozilla formed and started doing M releases. I&#8217;ve been using a Mozilla browser ever since.</p>
+<p>I worked for <a href="http://pculture.org/">Participatory Culture Foundation</a> on the <a href="http://getmiro.com/">Miro media player</a>, but while there worked on a variety of side projects including Firefox extensions, scripts that augmented the PCF Bugzilla instance, Universal Subtitles, and also I wrote the code that showed enclosure information in the feed preview page for Firefox 3 (or 3.5—I forget when it landed).</p>
+<p>When a Mozilla recruiter asked if I&#8217;d be interested in working for Mozilla as an employee, I jumped at the chance.</p>
+<h3>What&#8217;s a funny fail story or mistake you can share?</h3>
+<p>Seems like everyone&#8217;s done the &#8220;rm -rf /&#8221; thing. Me, too. Though it was less funny and more of that &#8220;oh, what have I done!&#8221; sinking feeling of despair.</p>
+<p>The fail story I often tell people who seem apprehensive about computers and doing things with them happened when I was in undergrad. I had been programming since like 4th grade in a bunch of environments and knew my way around PC computers, Windows&#8230; but I hadn&#8217;t had much experience with Macs. In college, we had a Mac lab. So I trot into the Mac lab to work on my first homework assignment for CS 1 and I sit down and I look at the Mac and it had no visible on/off switch. I looked on the sides and the back. Nothing—no switches or anything on/off-related. I looked for instructions nearby. Nothing. I was so embarrassed that I couldn&#8217;t figure out how to turn the computer on that I left and got a 0 on that homework. Turns out that the &#8220;on&#8221; key was on the keyboard in the upper right hand corner and had a triangle on it. For this particular Mac, there was no &#8220;off&#8221; switch. I never would have guessed that. The moral of the story being that computers are mysterious and a total pain in the ass even for people who have lots of experience with them.</p>
+<h3>What&#8217;s coming up that you&#8217;re excited about?</h3>
+<p>I started at Mozilla in September 2011, so I&#8217;ve only been here a short while and it&#8217;s hard not to be excited about everything. Seems like every day I hang out with the Mozilla folks, I learn something new and about the existence of ten things I wasn&#8217;t previously aware of.</p>
+<p>A less hand-wavey answer might go along these lines: I&#8217;m excited about the momentum towards open web apps and reducing the barriers to web development. Literacy with web development is a powerful thing. Being able to run apps everywhere is also a powerful thing.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/01/20/better-know-a-webdev-will-kahn-greene-aka-willkg/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Today! Mozilla Webdev &#8220;Ask Me Anything&#8221; (AMA) on Reddit!</title>
+		<link>http://blog.mozilla.com/webdev/2012/01/20/today-mozilla-webdev-ask-me-anything-ama-on-reddit/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/01/20/today-mozilla-webdev-ask-me-anything-ama-on-reddit/#comments</comments>
+		<pubDate>Fri, 20 Jan 2012 09:00:23 +0000</pubDate>
+		<dc:creator>Fred Wenzel</dc:creator>
+				<category><![CDATA[Community]]></category>
+		<category><![CDATA[Web Development]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2437</guid>
+		<description><![CDATA[As promised, today, a bunch of Mozilla Webdevs are on reddit to answer your questions! For more information, check out the announcement. Click here to get to the Mozilla Webdev &#8220;Ask Me Anything&#8221; on Reddit. We will be there from 10am Central European Time to the evening, Pacific time, so in total about 18 hours. [...]]]></description>
+			<content:encoded><![CDATA[<p><a href="http://blog.mozilla.com/webdev/2012/01/05/coming-up-webdev-ask-me-anything-ama-on-reddit/">As promised</a>, today, a bunch of Mozilla Webdevs are on reddit to answer your questions! For more information, check out the <a href="http://blog.mozilla.com/webdev/2012/01/05/coming-up-webdev-ask-me-anything-ama-on-reddit/">announcement</a>.</p>
+<p><a href="http://www.reddit.com/r/IAmA/comments/oonrg/iama_member_of_the_mozilla_webdev_team_ama/"><strong>Click here to get to the Mozilla Webdev &#8220;Ask Me Anything&#8221; on Reddit.</strong></a></p>
+<p>We will be there from 10am Central European Time to the evening, Pacific time, so in total about 18 hours. We hope this way people in most time zones will get the chance to get their questions answered.</p>
+<p>Come by and ask us all you never dared to ask but always wanted to know!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/01/20/today-mozilla-webdev-ask-me-anything-ama-on-reddit/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Better Know a WebDev: James Socol</title>
+		<link>http://blog.mozilla.com/webdev/2012/01/13/better-know-a-webdev-james-socol/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/01/13/better-know-a-webdev-james-socol/#comments</comments>
+		<pubDate>Fri, 13 Jan 2012 21:46:32 +0000</pubDate>
+		<dc:creator>James Socol</dc:creator>
+				<category><![CDATA[Better Know a WebDev]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2432</guid>
+		<description><![CDATA[Welcome back to our Better Know a WebDev series! This week, we&#8217;re looking at, well, me! What do you do at Mozilla? I&#8217;m the Community Platforms Manager. I&#8217;m here to help the people on the Support, MDN, and Community Tools engineering teams turn out great products and grow as engineers. Since I get to work [...]]]></description>
+			<content:encoded><![CDATA[<p>Welcome back to our <a href="http://blog.mozilla.com/webdev/category/better-know-a-webdev/">Better Know a WebDev</a> series! This week, we&#8217;re looking at, well, me!</p>
+<p style="text-align: center;"><a href="http://www.flickr.com/photos/morgamic/4782013984/"><img class="aligncenter" title="James approves! by Morgamic" src="http://farm5.staticflickr.com/4136/4782013984_f47a420159.jpg" alt="" width="500" height="332" /></a></p>
+<h3>What do you do at Mozilla?</h3>
+<p>I&#8217;m the Community Platforms Manager. I&#8217;m here to help the people on the Support, MDN, and Community Tools engineering teams turn out great products and grow as engineers. Since I get to work with a number of different projects, I have the opportunity to look for ways these applications can work together and create a better experience for our users and better data for our engineers.</p>
+<h3>Any fun side projects you&#8217;re working on?</h3>
+<p>Lately I&#8217;ve been working with <a href="https://www.djangoproject.com/">Django</a> and <a href="http://www.mongodb.org/">MongoDB</a> for fun, and trying to help out in that part of the Django ecosystem where I can. I also maintain a few libraries, like <a href="https://github.com/jsocol/bleach">Bleach</a>, and write <a href="https://github.com/jsocol/jig">useful</a>—or <a href="https://github.com/jsocol/xkcdbot">useless</a>—IRC bots from time to time.</p>
+<p style="text-align: center;"><a href="http://www.flickr.com/photos/morgamic/5855608701/"><img class="aligncenter" src="http://farm3.staticflickr.com/2588/5855608701_6c44a026f6.jpg" alt="James' favorite topic." width="500" height="331" /></a></p>
+<p>As a proud resident of <a href="http://coffeeonthekeyboard.com/moving-to-new-york-452/">New York City</a>, I&#8217;ve been spending a lot of time trying to push Mozilla further into the New York tech scene, mostly by giving talks on things like continuous deployment, building really large scale web apps, and even why Open Source Software is so great.</p>
+<h3>How did you get started in web development?</h3>
+<p>A friend of mine showed me his Geocities page, back when you still had neighbors on Geocities. I jumped in, found a tutorial and went from there. In college, I got a job doing some app development and maintenance that exposed me to a bunch of languages and working with a team, where I quickly learned the phrase &#8220;best practices.&#8221;</p>
+<h3>How did you get involved with Mozilla?</h3>
+<p>I started using Firefox when it was still Phoenix, and being a user was about the limit of my involvement until 2009, when I applied for a job here.</p>
+<p>One of the things that initially surprised me was that all of our websites are Open Source, but then I realized there was no other way for web development at Mozilla to operate. In the past couple years, I think we&#8217;ve improved a lot here by being more outgoing members of the Django and Python communities, and we have some <a href="http://blog.mozilla.com/webdev/2011/11/24/guest-post-i-want-to-contribute-how-do-i-start/">regular contributors</a> now.</p>
+<h3>What&#8217;s a funny fail or mistake you&#8217;re willing to share?</h3>
+<p>Well, there was that one time I ran an <code>UPDATE</code> statement without a <code>WHERE</code> clause on a production database. I think we all have one like that.</p>
+<p>At Mozilla, the most epic was probably the SUMO 2.0 release, which took a solid 12 hours, took down a cluster serving over a dozens sites, and—at around 4am, a few hours after we thought we were in the clear and had all gone to bed—fell over, requiring a roll back and for us to do it again a week later.</p>
+<p>I learned a lot in that week. And now whenever someone in our IT group calls me, the ringtone <a href="http://www.youtube.com/watch?v=Ewuh7FGVuaI">sounds pretty urgent</a>.</p>
+<h3>What&#8217;s one thing coming up that you&#8217;re excited about? What makes it exciting?</h3>
+<p>2012! Community Platforms is a new group, and Community Tools in particular is a new team, and I am really looking forward to seeing what we accomplish in 2012. Growing the Support and MDN teams and building the Tools team are going to be fun challenges. One of my goals is to start turning our siloed applications into platforms to empower our users and developers, and I can&#8217;t wait to see what new, innovative ideas our community builds on them.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/01/13/better-know-a-webdev-james-socol/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Timing AMO user experience</title>
+		<link>http://blog.mozilla.com/webdev/2012/01/06/timing-amo-user-experience/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/01/06/timing-amo-user-experience/#comments</comments>
+		<pubDate>Fri, 06 Jan 2012 23:09:28 +0000</pubDate>
+		<dc:creator>Andy McKay</dc:creator>
+				<category><![CDATA[Web Development]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[statsd]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2410</guid>
+		<description><![CDATA[There are lots of ways to measure the performance of a site. On addons.mozilla.org we measure a few of them: how long it takes to render pages, the cache performance and responsiveness for content delivery networks globally. But with the advent of the navigation timing API in Firefox 7 we&#8217;ve been able to add the [...]]]></description>
+			<content:encoded><![CDATA[<p>There are lots of ways to measure the performance of a site. On <a href="http://addons.mozilla.org">addons.mozilla.org</a> we measure a few of them: how long it takes to render pages, the cache performance and responsiveness for content delivery networks globally. But with the advent of the <a href="http://www.w3.org/TR/navigation-timing/">navigation timing API</a> in <a href="http://hacks.mozilla.org/2011/09/whats-new-for-web-developers-in-firefox-7/">Firefox 7</a> we&#8217;ve been able to add the most important measurement of all &#8211; the actual performance in the browser.</p>
+<p>Along with a few other Mozilla sites, we&#8217;ve been using <a href="https://github.com/jsocol/pystatsd">pystatsd</a> and Graphite for a while. This produces useful graphs of the site health and performance. For example, this graph plots HTTP responses we serve out from Python (this is not the amount of traffic to our site which is much larger).</p>
+<p><a href="http://blog.mozilla.com/webdev/files/2012/01/Screen-Shot-2012-01-06-at-2.10.46-PM.png"><img class="alignnone size-full wp-image-2415" title="Traffic to addon.mozilla.org" src="http://blog.mozilla.com/webdev/files/2012/01/Screen-Shot-2012-01-06-at-2.10.46-PM.png" alt="" width="585" height="307" /></a></p>
+<p>To facilitate using the timing API we wrote a module between statsd and Django called <a href="https://github.com/andymckay/django-statsd">django-statsd</a> that, amongst other things, provides a way to interface between the browser and Python backend. The library has support for <a href="https://github.com/yahoo/boomerang">boomerang</a>, a great front end timing library. I quickly wrote a much simpler service called <a href="https://github.com/andymckay/django-statsd/blob/master/django_statsd/static/stick.js">stick</a>, which sends a small subset of timings that we want.</p>
+<p>Using stick is straightforward &#8211; once you&#8217;ve setup your Python backed and included your JavaScript, you call it in your page. For example:</p>
+<pre>stick.send('https://to.your.site/record')</pre>
+<p>The API returns with timestamps for each of the events. To give us meaningful numbers, we then subtract the timestamp for each of the events from <code>navigationStart</code> so we can tell the timings relative to that start point. And here&#8217;s the end result in our Graphite server:</p>
+<p><a href="http://blog.mozilla.com/webdev/files/2012/01/Screen-Shot-2012-01-06-at-2.10.33-PM.png"><img class="alignnone size-full wp-image-2416" title="Navigation Timing" src="http://blog.mozilla.com/webdev/files/2012/01/Screen-Shot-2012-01-06-at-2.10.33-PM.png" alt="" width="585" height="309" /></a></p>
+<p>For internal sites we collect 100% of the data. However, on our live site we get quite a lot of traffic, so we&#8217;ve rolled this out by collecting only 1% of traffic. We&#8217;ll start increasing this percentage once we are confident this won&#8217;t be causing problems. We&#8217;ll also be adding it to the about:addons page which gets quite a bit of traffic.</p>
+<p>We&#8217;ll be tweaking things to ensure we pass through the right numbers and interpret them correctly. The amount of data is probably too low to be useful, right now, but I can&#8217;t help but wonder what the peak around 12.30pm today was&#8230;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/01/06/timing-amo-user-experience/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Better Know a WebDev: Mike Morgan (a.k.a. Morgamic)</title>
+		<link>http://blog.mozilla.com/webdev/2012/01/06/better-know-a-webdev-mike-morgan-a-k-a-morgamic/</link>
+		<comments>http://blog.mozilla.com/webdev/2012/01/06/better-know-a-webdev-mike-morgan-a-k-a-morgamic/#comments</comments>
+		<pubDate>Fri, 06 Jan 2012 19:49:11 +0000</pubDate>
+		<dc:creator>James Socol</dc:creator>
+				<category><![CDATA[Better Know a WebDev]]></category>
+
+		<guid isPermaLink="false">http://blog.mozilla.com/webdev/?p=2398</guid>
+		<description><![CDATA[Our group has grown a lot over the past few years, as we&#8217;ve taken on new projects and done a whole lot of amazing new things. Naturally, as we&#8217;ve grown we&#8217;ve become a group of more diverse backgrounds, skills and interests—everything from awesome JavaScript developers to our growing Hadoop expertise. So this is the first [...]]]></description>
+			<content:encoded><![CDATA[<p>Our group has <a href="http://blog.mozilla.com/webdev/2011/08/08/pragmatic-growth-from-2-to-40-in-4-years/">grown a lot</a> over the past few years, as we&#8217;ve taken on new projects and done a whole lot of amazing new things. Naturally, as we&#8217;ve grown we&#8217;ve become a group of more diverse backgrounds, skills and interests—everything from awesome JavaScript developers to our growing Hadoop expertise.</p>
+<p>So this is the first post in a new series, <a href="http://blog.mozilla.com/webdev/category/better-know-a-webdev/">Better Know a WebDev</a>, where we&#8217;ll introduce everyone, and hopefully get to know each other a little better!</p>
+<p>We&#8217;ll start with the big man, the head honcho, Mike Morgan, a.k.a. morgamic, one of the original Mozilla web developers and now Director of Web Development.</p>
+<p style="text-align: center;"><a title="Morgamic and Lars by Fred​, on Flickr" href="http://www.flickr.com/photos/freeed/4783716952/"><img class="aligncenter" title="Morgamic and Lars" src="http://farm5.staticflickr.com/4073/4783716952_5da9dc3abf.jpg" alt="Morgamic and Lars" width="500" height="333" /></a></p>
+<h3>What do you do at Mozilla?</h3>
+<p>I&#8217;m the Director of Web Development. My job is to help people in webdev achieve great things and grow as engineers—and hopefully as people. I spend a lot of time on recruiting, but one of my unwritten jobs is serving as the &#8220;glue&#8221; between strategy and operations. I help everyone understand why projects are important and how strategic goals break down into day-to-day tasks. Mostly, I try to maintain a <a href="http://blog.mozilla.com/webdev/2011/08/08/pragmatic-growth-from-2-to-40-in-4-years/">great culture for our team</a>.</p>
+<h3>Any fun side projects you&#8217;re working on?</h3>
+<p>I spend most of my free time playing basketball or dabbling in photography. I&#8217;m pretty notorious for taking way too many <a href="http://www.flickr.com/photos/morgamic/tags/fisheye/">fisheye photos</a>.</p>
+<h3>How did you get started in web development?</h3>
+<p>In March of 2001 I taught myself HTML, CSS and PHP because I was bored during Spring Break and didn&#8217;t have any money to go anywhere. In 5 days I created a blog, picked up HTML and CSS. My first blog didn&#8217;t have tables, which was pretty frustrating because I quickly discovered all the crazy bugs with IE 5.5 and IE 5.1 (Mac). From there I started working part time on websites and just fell into web development.</p>
+<h3>How did you get involved with Mozilla?</h3>
+<p>My first Mozilla project was redoing <a href="http://bugzilla.org">bugzilla.org</a>, which is why I&#8217;m still on the <a href="http://www.bugzilla.org/developers/profiles.html">developers page</a>. The bulk of my work came later in 2004 and 2005 when I got involved with <a href="http://addons.mozilla.org">addons.mozilla.org</a>, <a href="https://github.com/fwenzel/tuxedo">Bouncer (download.mozilla.org)</a> and <a href="https://wiki.mozilla.org/AUS">aus2.mozilla.org</a>.</p>
+<p>One of my most exciting times at Mozilla was the Firefox 1.0 launch. I <a href="http://morgamic.com/2004/11/09/dmo/">wrote a blog post about it back in 2004</a>. From there I just kept working on web services and sites for Firefox, going on to build and scale a lot of the original Firefox services. Since I was pretty busy, I usually looked <a href="http://www.flickr.com/photos/morgamic/4091438245/">like this</a>:</p>
+<p style="text-align: center;"><a title="morgamic, 2006 by morgamic, on Flickr" href="http://www.flickr.com/photos/morgamic/4091438245/"><img class="aligncenter" title="morgamic, 2006" src="http://farm3.staticflickr.com/2614/4091438245_b412617254.jpg" alt="morgamic, 2006" width="500" height="375" /></a></p>
+<h3>What&#8217;s one mistake or funny fail story you&#8217;re willing to share?</h3>
+<p>Honestly, I can&#8217;t share the best fail stories publicly. But I&#8217;d say that accidentally wiping a production database with a bad DELETE statement is probably my biggest screw up. Don&#8217;t do that. Ever. There is no excuse and it&#8217;s embarrassing. Though if you do it once I hope you&#8217;re smart enough to never do it again. Just do it with a stage database.</p>
+<h3>What&#8217;s one thing coming up that you&#8217;re excited about? What&#8217;s exciting about it?</h3>
+<p>I want to play with camera and sound APIs in JavaScript. To have this all freed from Flash is a liberating and exciting concept. We are stepping into a time in our history where the web can literally do anything we can imagine. It&#8217;s so damn exciting—it&#8217;s just a wonderful time to be alive.</p>
+<p>Mozilla is taking on proprietary app stores, identity and the mobile market. What a year 2012 will be. Tackling apps—freeing so much great content and capabilities currently locked down by one or two companies—it&#8217;s very exciting. When Mozilla gets this right, and I believe we will, it will be a great thing for everyone who uses the web on a desktop, phone, tablet, car, plane, refrigerator, etc.</p>
+<h3>What&#8217;s one question you&#8217;d like to be asked but haven&#8217;t been?</h3>
+<p>I guess I&#8217;d ask what I was most proud of, or what motivates me. Honestly, it&#8217;s pretty simple: my teammates. I&#8217;m surrounded by brilliant people who teach me something just about every day. The favorite part of my job is seeing them reach their goals and knowing I had a small part in it.</p>
+<p style="text-align: center;"><a title="Webdev 2011 by morgamic, on Flickr" href="http://www.flickr.com/photos/morgamic/5856161522/"><img class="aligncenter" title="Webdev 2011" src="http://farm3.staticflickr.com/2509/5856161522_549a96fcb4.jpg" alt="Webdev 2011" width="500" height="331" /></a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.mozilla.com/webdev/2012/01/06/better-know-a-webdev-mike-morgan-a-k-a-morgamic/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>
