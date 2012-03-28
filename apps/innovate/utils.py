@@ -6,8 +6,8 @@ import os
 
 import Image
 
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
 from django.core.files.storage import FileSystemStorage
 
 from projects.utils import FeedEntryParser
@@ -31,6 +31,7 @@ ATTRIBUTES = {
 
 
 def get_blog_feed_entries(force_update=False):
+    """Gets posts from the configured blog feed and caches them."""
     entries = cache.get(BLOG_FEED_CACHE_KEY, [])
     if force_update or not entries:
         entries = _get_blog_entries_nocache()
@@ -40,6 +41,7 @@ def get_blog_feed_entries(force_update=False):
 
 
 def _get_blog_entries_nocache():
+    """Does the real work of getting the posts from the blog."""
     entries = []
     if BLOG_FEED_URL:
         parsed = feedparser.parse(BLOG_FEED_URL)

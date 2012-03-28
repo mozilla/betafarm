@@ -53,7 +53,7 @@
               <h4><a href="{{ entry.url }}">{{ entry.title }}</a></h4>
               <p>
                 {{ entry.body|striptags|truncate(175) }}
-                <a href="{{ entry.url }}">{{ _('read&nbsp;more') }} &raquo;</a>
+                <a class="read-more" href="{{ entry.url }}">{{ _('read more') }} &raquo;</a>
               </p>
             </div>
           {% endfor %}
