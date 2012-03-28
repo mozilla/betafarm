@@ -17,7 +17,7 @@ BLOG_FEED_URL = getattr(settings, 'BLOG_FEED_URL', None)
 BLOG_FEED_NUM_ENTRIES = getattr(settings, 'BLOG_FEED_NUM_ENTRIES', 5)
 BLOG_FEED_CACHE_KEY = 'labs_blog_feed_entries'
 # hours
-BLOG_FEED_CACHE_FOR = getattr(settings, 'BLOG_FEED_CACHE_FOR', 4) * 3600
+BLOG_FEED_CACHE_FOR = getattr(settings, 'BLOG_FEED_CACHE_FOR', 5) * 3600
 # Whitelisted tags and attributes
 TAGS = (
     'h1', 'h2', 'h3', 'h4', 'h5', 'a', 'b', 'em',
@@ -30,9 +30,18 @@ ATTRIBUTES = {
 }
 
 
-def get_blog_feed_entries():
+def get_blog_feed_entries(force_update=False):
     entries = cache.get(BLOG_FEED_CACHE_KEY, [])
-    if not entries and BLOG_FEED_URL:
+    if force_update or not entries:
+        entries = _get_blog_entries_nocache()
+        if entries:
+            cache.set(BLOG_FEED_CACHE_KEY, entries, BLOG_FEED_CACHE_FOR)
+    return entries
+
+
+def _get_blog_entries_nocache():
+    entries = []
+    if BLOG_FEED_URL:
         parsed = feedparser.parse(BLOG_FEED_URL)
         for entry in parsed.entries:
             if len(entries) == BLOG_FEED_NUM_ENTRIES:
@@ -48,8 +57,6 @@ def get_blog_feed_entries():
                 'body': content,
                 'published': parsed_entry.updated,
             })
-        if entries:
-            cache.set(BLOG_FEED_CACHE_KEY, entries, BLOG_FEED_CACHE_FOR)
     return entries
 
 
