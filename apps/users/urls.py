@@ -1,9 +1,13 @@
 from django.conf.urls.defaults import patterns, url
 
+from users.views import DeleteProfileView
+
 
 urlpatterns = patterns('',
     url(r'^dashboard/$', 'users.views.dashboard', name='users_dashboard'),
     url(r'^signout/$', 'users.views.signout', name='users_signout'),
+    url(r'^profile/delete/$', DeleteProfileView.as_view(),
+        name='users_delete'),
     url(r'^profile/edit/$', 'users.views.edit', name='users_edit'),
     url(r'^profile/edit/links/$', 'users.views.links',
         name='users_profile_links'),
