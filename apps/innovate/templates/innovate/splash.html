@@ -22,7 +22,7 @@
         {% for project in featured_projects %}
           <article class="row">
             <div class="logo-links">
-              <img src="{{ MEDIA_URL }}{{ project.image_or_default }}" alt="{{ project.name }}">
+              {% include "projects/includes/project_image.html" %}
               {% if project.other_links -%}
                 <ul>
                   {% for link in project.other_links -%}

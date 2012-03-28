@@ -19,7 +19,8 @@ class ProjectForm(forms.ModelForm):
             'owners',
             'team_members',
             'topics',
-            'tags'
+            'tags',
+            'inactive',
         )
 
 

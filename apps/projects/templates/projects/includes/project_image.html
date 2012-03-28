@@ -1,0 +1,8 @@
+<div id="project_image_wrap">
+  <img src="{{ MEDIA_URL }}{{ project.image_or_default }}"
+       alt="{{ project.name }}" id="project_image">
+  {% if project.inactive %}
+    <img src="{{ MEDIA_URL }}img/innovate/inactive.png"
+         alt="{{ project.name }}" id="project_inactive">
+  {% endif %}
+</div>

@@ -171,11 +171,6 @@ html[xmlns] .clearfix {
     -webkit-box-sizing: content-box;
 }
 .logo-links {
-    img {
-        .border-radius;
-        .box-shadow(0px 2px 2px 0px rgba(0,0,0,0.1));
-        border: 4px solid white;
-    }
     ul {
         margin: @gridGutterWidth/2 0;
         padding: 0;
@@ -660,4 +655,27 @@ button.unsubmit:active {
 }
 .mono {
     font-family: "Monaco",Courier,monospace;
+}
+p.inactive {
+    color: red;
+}
+#project_image_wrap {
+    position: relative;
+    img {
+        .border-radius;
+        border: 4px solid white;
+    }
+    #project_image {
+        .box-shadow(0px 2px 2px 0px rgba(0,0,0,0.1));
+        height: 140px;
+        width: 140px;
+    }
+    #project_inactive {
+        height: 140px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 140px;
+        opacity: 0.9;
+    }
 }

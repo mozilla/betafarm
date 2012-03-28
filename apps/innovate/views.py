@@ -5,7 +5,7 @@ from projects.models import Project
 
 def splash(request):
     """Display splash page. With featured projects and news feed."""
-    projects = Project.objects.filter(featured=True)[:4]
+    projects = Project.objects.filter(featured=True, inactive=False)[:4]
     return jingo.render(request, 'innovate/splash.html', {
         'featured_projects': projects,
     })

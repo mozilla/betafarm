@@ -36,6 +36,7 @@ class Project(BaseModel):
     featured_image = models.ImageField(verbose_name=_(u'Featured Image'),
                                        blank=True, null=True,
                                        upload_to=settings.PROJECT_IMAGE_PATH)
+    inactive = models.BooleanField(default=False)
     owners = models.ManyToManyField(Profile,
                                     verbose_name=_(u'Project Owners'),
                                     related_name=u'projects_owned')
