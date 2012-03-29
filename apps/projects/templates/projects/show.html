@@ -2,9 +2,7 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import search with context %}
 
-{% block page_title -%}
- {{ _('{project} : Projects : Mozilla Labs')|f(project=project.name) }}
-{% endblock -%}
+{% block page_title -%}: {{ project.name }}{% endblock -%}
 
 {% block page_id %}project_detail{% endblock %}
 {% block section_class %}projects{% endblock %}
