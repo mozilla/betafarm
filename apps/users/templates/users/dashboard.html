@@ -2,7 +2,7 @@
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
 {% from "layout/helpers.html" import search with context %}
 
-{% block page_title -%}{{ profile.display_name }} : {{ _('Dashboard : Mozilla Labs') }}{% endblock -%}
+{% block page_title -%}: {{ _('Dashboard') }} : {{ profile.display_name }}{% endblock -%}
 
 {% block page_id %}dashboard{% endblock %}
 {% block section_class %}profile{% endblock %}
