@@ -1,4 +1,4 @@
-settings_local.py
+settings.py
 *.py[co]
 *.sw[po]
 *.komodoproject
