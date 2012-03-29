@@ -343,4 +343,15 @@ SOUTH_TESTS_MIGRATE = False
 CACHE_BACKEND = 'caching.backends.locmem://'
 CACHE_COUNT_TIMEOUT = 60
 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': [
+            'memcache1:11211',
+            'memcache2:11211',
+            ],
+        'KEY_PREFIX': 'mozillalabs_environment'
+    }
+}
 BLOG_FEED_URL = 'http://blog.mozilla.com/labs/rss'
