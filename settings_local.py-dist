@@ -332,6 +332,7 @@ LOGIN_REDIRECT_URL_FAILURE = '/'
 LOGIN_URL = LOGIN_REDIRECT_URL
 PROTOCOL = 'http://'
 DOMAIN = 'mozillalabs.com'
+PORT = 8000
 
 PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
 PUSH_DEFAULT_HUB_USERNAME = ''
@@ -343,7 +344,3 @@ CACHE_BACKEND = 'caching.backends.locmem://'
 CACHE_COUNT_TIMEOUT = 60
 
 BLOG_FEED_URL = 'http://blog.mozilla.com/labs/rss'
-
-PROTOCOL = 'http://'
-DOMAIN = 'localhost'
-PORT = 8000
