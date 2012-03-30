@@ -3,8 +3,9 @@ import feedparser
 import hashlib
 import math
 import os
+import time
 
-import Image
+from PIL import Image
 
 from django.conf import settings
 from django.core.cache import cache
@@ -28,6 +29,8 @@ ATTRIBUTES = {
     'a': ['href', 'title'],
     'img': ['src', 'alt'],
 }
+IMAGE_WIDTH = 140
+IMAGE_HEIGHT = 140
 
 
 def get_blog_feed_entries(force_update=False):
@@ -78,7 +81,7 @@ def safe_filename(filename):
 
 
 class ImageStorage(FileSystemStorage):
-
+    """Image resizing functionality."""
     format_extensions = {
         'PNG': 'png',
         'GIF': 'gif',
@@ -89,9 +92,12 @@ class ImageStorage(FileSystemStorage):
     def _save(self, name, content):
         name, ext = os.path.splitext(name)
         image = Image.open(content)
+        format = image.format
         if image.format not in self.format_extensions:
             raise Exception("Unknown image format: %s" % (image.format,))
-        name = "%s.%s" % (name, self.format_extensions[image.format])
-        name = super(ImageStorage, self)._save(name, content)
-        image.save(self.path(name), image.format)
+        if image.mode not in ('L', 'RGB'):
+            image = image.convert('RGB')
+        image = image.resize((IMAGE_WIDTH, IMAGE_HEIGHT), Image.ANTIALIAS)
+        name = "%s%s.%s" % (name, str(time.time()), self.format_extensions[format])
+        image.save(self.path(name), format)
         return name
