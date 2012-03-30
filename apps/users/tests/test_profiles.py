@@ -59,7 +59,7 @@ class ProfileViewTests(TestCase):
         self.user = User.objects.create_user(
             username='TheDude',
             password=self.password,
-            email='duder@aol.com',
+            email='duder@aol.com'
         )
         self.profile = Profile.objects.create(user=self.user)
         self.owner_password = 'TheBumsLost'

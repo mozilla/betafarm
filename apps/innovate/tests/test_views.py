@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
 from django.test import Client
 from django.test.client import RequestFactory
 
@@ -20,7 +21,7 @@ def test_routes():
 
 
 def test_featured():
-    project = Project.objects.create(
+    project = get_object_or_404(Project,
         name=u'Test Project',
         slug=u'test-project',
         description=u'Blah',
@@ -36,6 +37,7 @@ def test_404_handler():
     """Test that the 404 error handler renders and gives the correct code."""
     response = handle404(RequestFactory().get('/not/a/real/path/'))
     assert response.status_code == 404
+
 
 def test_500_handler():
     """Test that the 500 error handler renders and gives the correct code."""
