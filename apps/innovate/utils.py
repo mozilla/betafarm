@@ -92,12 +92,12 @@ class ImageStorage(FileSystemStorage):
     def _save(self, name, content):
         name, ext = os.path.splitext(name)
         image = Image.open(content)
-        format = image.format
         if image.format not in self.format_extensions:
             raise Exception("Unknown image format: %s" % (image.format,))
+        format = self.format_extensions[image.format]
         if image.mode not in ('L', 'RGB'):
             image = image.convert('RGB')
-        image = image.resize((IMAGE_WIDTH, IMAGE_HEIGHT), Image.ANTIALIAS)
-        name = "%s%s.%s" % (name, str(time.time()), self.format_extensions[format])
-        image.save(self.path(name), format)
+        image.thumbnail((IMAGE_WIDTH, IMAGE_HEIGHT), Image.ANTIALIAS)
+        name = "%s%s.%s" % (name, str(time.time()), format)
+        image.save(self.path(name), image.format)
         return name
