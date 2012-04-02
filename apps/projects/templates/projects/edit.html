@@ -84,7 +84,7 @@
 {% endblock -%}
 
 {% macro form_input(field, label=None) -%}
-  <li>
+  <li class="{{ 'error' if form.errors[field.name] }}">
     <label for="id_{{ field.name }}">{{ label|d(field.label, true) }}</label>
     {{ field }}
     {% if field.help_text %}
