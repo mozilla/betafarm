@@ -64,7 +64,7 @@
                 {% for message in messages -%}
                   <div class="span8 offset1 notification clearfix{% if message.tags %} {{ message.tags }}{% endif %}">
                     <div>
-                      {{ message|safe }}
+                      {{ message }}
                       <a id="notification_close" class="brandColor" href="">&times; close</a>
                     </div>
                   </div>

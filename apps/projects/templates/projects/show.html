@@ -59,7 +59,7 @@
         {% if project.inactive %}
           <p class="inactive">{{ _('This project is considered inactive.') }}</p>
         {% endif %}
-        {{ project.long_description|safe }}
+        {{ project.long_description }}
         <section class="people">
           <h2>{{ _('Project Team') }}</h2>
           <ul class="peopleList clearfix">

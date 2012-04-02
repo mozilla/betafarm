@@ -19,7 +19,7 @@
     <h2 class="light">{{ _('Add a link') }}</h2>
     {{ errorlist(form) }}
     <form action="{{ url('users_profile_add_link') }}" method="post">
-      {{ csrf()|safe }}
+      {{ csrf() }}
       <ul>
         <li class="links">
           <div class="clearfix addLink">
