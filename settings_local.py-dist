@@ -180,6 +180,7 @@ LESS_BIN = '/usr/local/bin/lessc'
 
 MIDDLEWARE_CLASSES = (
     'commons.middleware.LocaleURLMiddleware',
+    'commonware.response.middleware.StrictTransportMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
