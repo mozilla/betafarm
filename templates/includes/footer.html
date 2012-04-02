@@ -19,12 +19,29 @@
     </div>
     <nav class="span3">
         <ul>
-            <li><a href="{{ moz_url('/about/contact.html#map-mountain_view') }}">{{ _('Contact Us') }}</a></li>
-            <li><a href="{{ moz_url('/privacy-policy.html') }}">{{ _('Privacy Policy') }}</a></li>
-            <li><a href="{{ moz_url('/about/legal.html') }}">{{ _('Legal Notices') }}</a></li>
-            <li><a href="{{ moz_url('/legal/fraud-report/index.html') }}">{{ _('Report Trademark Abuse') }}</a></li>
+            <li>
+              <a href="{{ moz_url('/about/contact.html#map-mountain_view', locale=False) }}">
+                {{ _('Contact Us') }}</a>
+            </li>
+            <li>
+              <a href="{{ moz_url('/privacy-policy.html') }}">
+                {{ _('Privacy Policy') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ moz_url('/about/legal.html') }}">
+                {{ _('Legal Notices') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ moz_url('/legal/fraud-report/index.html') }}">
+                {{ _('Report Trademark Abuse') }}</a>
+            </li>
             {% if user.is_authenticated() -%}
-              <li><a class="account" href="{{ url('users.views.signout') }}">{{ _('Sign Out') }}</a></li>
+              <li>
+                <a class="account" href="{{ url('users.views.signout') }}">
+                  {{ _('Sign Out') }}</a>
+              </li>
             {% else %}
               <li>
                 <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">

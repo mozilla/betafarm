@@ -28,10 +28,13 @@ def active_name(request):
 
 @register.function
 @contextfunction
-def moz_url(ctx, url):
+def moz_url(ctx, url, locale=True):
     """Return a link to mozilla.org with the locale."""
     parts = ['http://www.mozilla.org']
-    locale = getattr(ctx['request'], 'locale', None)
+    # Not all Mozilla static pages have a link that is attached to a locale
+    locale = ''
+    if locale:
+        locale = getattr(ctx['request'], 'locale', None)
     url = url.lstrip('/')
 
     if locale:
