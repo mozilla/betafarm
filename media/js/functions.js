@@ -1,3 +1,5 @@
+var betafarm = window.betafarm || {};
+
 betafarm.project_links = function() {
     var add, bin, init;
     add = function(el, csrf) {
