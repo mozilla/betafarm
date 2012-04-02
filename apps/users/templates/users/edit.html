@@ -44,7 +44,7 @@
                 {{ form.avatar }}
               </div>
             </li>
-            <li>
+            <li class="{{ 'error' if form.errors['name'] }}">
               <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
               {{ form.name }}
             </li>
