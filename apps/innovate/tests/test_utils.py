@@ -39,7 +39,7 @@ class UtilitiesData(TestCase):
         mock_image = _save_image()
 
         self.assertEqual(mock_image.format, 'PNG')
-        mock_image.resize.assert_called_with((140, 140), 1)
+        mock_image.thumbnail.assert_called_with((140, 140), 1)
 
 
     def test_file_upload_failure(self):
