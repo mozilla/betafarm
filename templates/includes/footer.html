@@ -45,7 +45,7 @@
             {% else %}
               <li>
                 <form method="POST" action="{{ url('browserid_verify') }}" id="browserid_form">
-                  {{ csrf()|safe }}
+                  {{ csrf() }}
                   <input type="hidden" name="assertion" id="id_assertion" />
                   <a id="browserid" class="login" href="#">
                     {{ _('Sign In (for project members)') }}

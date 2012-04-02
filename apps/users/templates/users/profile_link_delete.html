@@ -17,7 +17,7 @@
   <div class="c3 paper">
     <h2 class="light">{{ _('Link to delete') }}</h2>
     <form action="{{ url('users_profile_delete_link', link.id) }}" method="post">
-      {{ csrf()|safe }}
+      {{ csrf() }}
       <ul class="yourLinks">
         <li class="clearfix">
             <div class="linkName overflow">{{ link.name }}</div>

@@ -22,7 +22,9 @@
     <div class="row" id="body-content">
       <div class="logo-links span2">
         <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" alt="{{ profile.display_name }}">
-        <a href="{{ url('users_profile', username=profile.user.username) }}">{{ _('View your Profile') }}</a>
+        <a href="{{ url('users_profile', username=profile.user.username) }}" class="edit">
+          {{ _('View your Profile') }}
+        </a>
       </div>
       <div class="description span6 offset1">
         {{ projects_list(_('Your Projects'), profile.projects_owned.all()) }}
