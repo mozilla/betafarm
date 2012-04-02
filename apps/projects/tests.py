@@ -53,6 +53,12 @@ class TestViews(TestCase):
             description='This aggression will not stand, man!',
             long_description='Not into the whole, brevity thing.',
         )
+        self.project_xss = Project.objects.create(
+            name='Get Rug Back',
+            slug='rug-back-b',
+            description='This aggression will not stand, man!',
+            long_description="<script>alert('i am evil');</script>",
+        )
         self.project.topics.add(self.topic)
         self.project.team_members.add(self.profile)
         self.project.owners.add(self.owner_profile)
@@ -163,6 +169,20 @@ class TestViews(TestCase):
         proj = Project.objects.get(pk=self.project.pk)
         self.assertEqual(proj.name, new_name)
         self.assertEqual(proj.long_description, new_desc)
+
+    def test_owner_cannot_inject_xss(self):
+        """Test that a user cannot inject xss into fields marked safe."""
+        self.assertTrue(self.client.login(
+            username=self.user.username,
+            password=self.password
+        ))
+        self.client.post('/en-US' + self.project_xss.get_edit_url(), {
+            'topics': [self.topic.id],
+            'team_members': [self.profile.pk],
+            'owners': [self.owner_profile.pk],
+        })
+        proj = Project.objects.get(pk=self.project_xss.pk)
+        self.assertEqual(proj.long_description, "alert('i am evil');")
 
     def test_non_owner_cannot_update_project(self):
         """Test that a normal user cannot update a project"""
