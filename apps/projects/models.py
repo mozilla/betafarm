@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
 
+import bleach
 from caching.base import CachingManager, CachingQuerySet
 from django_push.subscriber.models import Subscription
 from tower import ugettext_lazy as _
@@ -8,6 +10,8 @@ from taggit.managers import TaggableManager
 
 from innovate.models import BaseModel
 from users.models import Profile
+
+BLEACH_FIELDS = ['long_description']
 
 
 class ProjectQuerySet(CachingQuerySet):
@@ -111,3 +115,13 @@ class Link(BaseModel):
 
     def __unicode__(self):
         return u'%s -> %s' % (self.name, self.url)
+
+
+@receiver(models.signals.pre_save, sender=Project)
+def strip_html(sender, instance, **kwargs):
+    """Get rid of any bad HTML tags."""
+    for field in BLEACH_FIELDS:
+        cleaned_content = bleach.clean(str(getattr(instance, field)),
+                                       tags=bleach.ALLOWED_TAGS + ['br'],
+                                       strip=True)
+        setattr(instance, field, cleaned_content)
