@@ -3,3 +3,4 @@ src/django-browserid
 src/django-push/src
 src/fudge
 src/django-waffle
+src/django-csp
