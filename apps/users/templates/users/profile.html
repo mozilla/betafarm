@@ -23,7 +23,7 @@
       <div class="logo-links span2">
         <img src="{{ MEDIA_URL }}{{ profile.avatar_or_default }}" alt="{{ profile.display_name }}">
         {% if user.is_authenticated() and user.get_profile() == profile -%}
-          <a href="{{ url('users_edit') }}">{{ _('Edit your Profile') }}</a>
+          <a href="{{ url('users_edit') }}" class="edit">{{ _('Edit your Profile') }}</a>
         {% endif %}
         {% if social_links %}
           <ul>
