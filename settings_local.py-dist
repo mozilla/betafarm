@@ -364,7 +364,7 @@ CACHES = {
     }
 }
 
-BLOG_FEED_URL = 'http://blog.mozilla.com/labs/rss'
+BLOG_FEED_URL = 'http://blog.mozilla.com/labs/feed/'
 
 PROTOCOL = 'http://'
 DOMAIN = 'localhost'
