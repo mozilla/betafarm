@@ -342,7 +342,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL_FAILURE = '/'
 LOGIN_URL = LOGIN_REDIRECT_URL
 PROTOCOL = 'http://'
-DOMAIN = 'mozillalabs.com'
+DOMAIN = 'localhost'
 PORT = 8000
 
 PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
