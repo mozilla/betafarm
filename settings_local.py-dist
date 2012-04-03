@@ -343,6 +343,7 @@ LOGIN_REDIRECT_URL_FAILURE = '/'
 LOGIN_URL = LOGIN_REDIRECT_URL
 PROTOCOL = 'http://'
 DOMAIN = 'mozillalabs.com'
+PORT = 8000
 
 PUSH_DEFAULT_HUB = 'http://superfeedr.com/hubbub'
 PUSH_DEFAULT_HUB_USERNAME = ''
@@ -365,10 +366,6 @@ CACHES = {
 }
 
 BLOG_FEED_URL = 'http://blog.mozilla.com/labs/feed/'
-
-PROTOCOL = 'http://'
-DOMAIN = 'localhost'
-PORT = 8000
 
 # Secure Cookies
 SESSION_COOKIE_SECURE = True
