@@ -1,4 +1,5 @@
 import json
+import os
 
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
@@ -117,7 +118,12 @@ def edit(request):
                 link = links_form.save(commit=False)
                 link.profile = profile
                 link.save()
-            return redirect(profile)
+            # Need to force a cache update so the changes are displayed.
+            page_update = os.urandom(3).encode('hex')
+            update_url = '%s?%s' % (reverse('users_profile',
+                                    kwargs={ 'username': profile.user.username }),
+                                    page_update)
+            return redirect(update_url)
     else:
         form = form_class(instance=profile)
     links = profile.link_set.all()
