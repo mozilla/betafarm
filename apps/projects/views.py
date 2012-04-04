@@ -1,5 +1,4 @@
 import json
-import os
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -135,9 +134,7 @@ class EditProjectView(UpdateView):
         return super(EditProjectView, self).get_context_data(**kwargs)
 
     def get_success_url(self):
-        """Need to force a cache update so the changes are displayed."""
-        page_update = os.urandom(3).encode('hex')
-        return '%s?%s' % (self.object.get_absolute_url(), page_update)
+        return self.object.get_absolute_url()
 
 
 class DeleteProjectLinkView(View):
