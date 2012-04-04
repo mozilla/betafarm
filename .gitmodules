@@ -16,9 +16,3 @@
 [submodule "vendor-local/src/django-csp"]
 	path = vendor-local/src/django-csp
 	url = git://github.com/mozilla/django-csp.git
-[submodule "vendor-local/src/pystatsd"]
-	path = vendor-local/src/pystatsd
-	url = git://github.com/jsocol/pystatsd.git
-[submodule "vendor-local/src/django-statsd"]
-	path = vendor-local/src/django-statsd
-	url = git://github.com/andymckay/django-statsd.git

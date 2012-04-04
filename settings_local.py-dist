@@ -237,9 +237,6 @@ INSTALLED_APPS = (
     # BrowserID support
     'django_browserid',
 
-    # Statsd
-    'django_statsd',
-
     # Tagging
     'taggit',
 
@@ -378,8 +375,7 @@ ANON_ALWAYS = True
 # Django-CSP
 CSP_IMG_SRC = ("'self'",
                'https://www.mozilla.org',
-               'http://www.mozilla.org',
-               'https://statse.webtrendslive.com',)
+               'http://www.mozilla.org',)
 CSP_STYLE_SRC = ("'self'",
                  'https://www.mozilla.org',
                  'http://www.mozilla.org',)
@@ -388,12 +384,5 @@ CSP_FONT_SRC = ("'self'",
                 'http://www.mozilla.org',)
 CSP_SCRIPT_SRC = ("'self'",
                   'http://browserid.org',
-                  'https://browserid.org',
-                  'https://statse.webtrendslive.com',)
+                  'https://browserid.org',)
 CSP_OPTIONS = ('eval-script',)
-
-# Activate statsd patches to time database and cache hits.
-STATSD_PATCHES = [
-    'django_statsd.patches.db',
-    'django_statsd.patches.cache',
-]
