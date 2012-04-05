@@ -170,6 +170,28 @@ class TestViews(TestCase):
         self.assertEqual(proj.name, new_name)
         self.assertEqual(proj.long_description, new_desc)
 
+    def test_updating_project_members(self):
+        """Test that updating project members works."""
+        self.assertTrue(self.client.login(
+            username=self.owner.username,
+            password=self.owner_password
+        ))
+        self.assertFalse(self.owner_profile in self.project.team_members.all())
+        # warm cache
+        self.client.get('/en-US' + self.project.get_absolute_url())
+        self.client.get('/en-US' + self.project.get_edit_url())
+        self.client.post('/en-US' + self.project.get_edit_url(), {
+            'name': self.project.name,
+            'slug': self.project.slug,
+            'description': self.project.description,
+            'long_description': self.project.long_description,
+            'topics': [self.topic.id],
+            'team_members': [self.profile.pk, self.owner_profile.pk],
+            'owners': [self.owner_profile.pk],
+            })
+        self.assertTrue(self.owner_profile in self.project.team_members.all())
+        self.assertTrue(self.profile in self.project.team_members.all())
+
     def test_owner_cannot_inject_xss(self):
         """Test that a user cannot inject xss into fields marked safe."""
         self.assertTrue(self.client.login(

@@ -3,23 +3,21 @@ from django.db import models
 from django.dispatch import receiver
 
 import bleach
-from caching.base import CachingManager, CachingQuerySet
 from django_push.subscriber.models import Subscription
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
-from innovate.models import BaseModel
 from users.models import Profile
 
 BLEACH_FIELDS = ['long_description']
 
 
-class ProjectQuerySet(CachingQuerySet):
+class ProjectQuerySet(models.query.QuerySet):
     def haz_topic(self):
         return self._clone().filter(topics__isnull=False).distinct()
 
 
-class ProjectManager(CachingManager):
+class ProjectManager(models.Manager):
     def get_query_set(self):
         return ProjectQuerySet(self.model)
 
@@ -27,7 +25,7 @@ class ProjectManager(CachingManager):
         return self.get_query_set().haz_topic()
 
 
-class Project(BaseModel):
+class Project(models.Model):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     slug = models.SlugField(verbose_name=_(u'Slug'), unique=True,
                             max_length=100)
@@ -100,7 +98,7 @@ class Project(BaseModel):
         return self.name
 
 
-class Link(BaseModel):
+class Link(models.Model):
     """
     A link that can be added to a project. Links can be 'subscribed' to, in
     which case, entries from the links RSS/Atom feed will be syndicated.
@@ -121,7 +119,7 @@ class Link(BaseModel):
 def strip_html(sender, instance, **kwargs):
     """Get rid of any bad HTML tags."""
     for field in BLEACH_FIELDS:
-        cleaned_content = bleach.clean(str(getattr(instance, field)),
+        cleaned_content = bleach.clean(unicode(getattr(instance, field)),
                                        tags=bleach.ALLOWED_TAGS + ['br'],
                                        strip=True)
         setattr(instance, field, cleaned_content)
