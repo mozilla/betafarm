@@ -147,6 +147,7 @@ MINIFY_BUNDLES = {
     'js': {
         'common': (
             'js/libs/jquery-1.6.1.min.js',
+            'js/libs/jquery.isotope.min.js',
             'js/functions.js',
         ),
     }
