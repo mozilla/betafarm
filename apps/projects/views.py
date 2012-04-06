@@ -2,7 +2,6 @@ import json
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.cache import cache
 from django.http import HttpResponseForbidden, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
@@ -70,7 +69,6 @@ def follow(request, slug):
     profile = request.user.get_profile()
     project = get_object_or_404(Project, slug=slug)
     project.followers.add(profile)
-    cache.delete_many([project.cache_key, profile.cache_key])
     cxt = {'project_name': project.name}
     msg = _('You are now following <em>%(project_name)s</em>.') % cxt
     messages.success(request, msg)
@@ -87,7 +85,6 @@ def unfollow(request, slug):
     profile = request.user.get_profile()
     project = get_object_or_404(Project, slug=slug)
     project.followers.remove(profile)
-    cache.delete_many([project.cache_key, profile.cache_key])
     cxt = {'project_name': project.name}
     msg = _('You are no longer following <em>%(project_name)s</em>.') % cxt
     messages.success(request, msg)

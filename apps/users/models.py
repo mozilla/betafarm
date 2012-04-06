@@ -7,7 +7,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
-from innovate.models import BaseModel
 from innovate.utils import get_partition_id, safe_filename, ImageStorage
 
 from tower import ugettext_lazy as _
@@ -24,7 +23,7 @@ def determine_upload_path(instance, filename):
     }
 
 
-class Link(BaseModel):
+class Link(models.Model):
     name = models.CharField(max_length=50, verbose_name=_(u'Link Name'))
     url = models.URLField(verbose_name=_(u'URL'), max_length=255)
     profile = models.ForeignKey('users.Profile', blank=True, null=True)
@@ -40,7 +39,7 @@ def get_profile(cls):
 User.get_profile = get_profile
 
 
-class Profile(BaseModel):
+class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True,
                                 verbose_name=_(u'User'))
     name = models.CharField(max_length=255, blank=True,

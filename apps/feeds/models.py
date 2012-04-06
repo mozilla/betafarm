@@ -3,10 +3,8 @@ import datetime
 from django.contrib import admin
 from django.db import models
 
-from innovate.models import BaseModel
 
-
-class Entry(BaseModel):
+class Entry(models.Model):
     title = models.CharField(max_length=100)
     published = models.DateTimeField(default=datetime.datetime.now)
     url = models.URLField()
