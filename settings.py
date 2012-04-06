@@ -353,16 +353,33 @@ SESSION_COOKIE_HTTPONLY = True
 ANON_ALWAYS = True
 
 # Django-CSP
-CSP_IMG_SRC = ("'self'",
-               'https://www.mozilla.org',
-               'http://www.mozilla.org',)
-CSP_STYLE_SRC = ("'self'",
-                 'https://www.mozilla.org',
-                 'http://www.mozilla.org',)
-CSP_FONT_SRC = ("'self'",
-                'https://www.mozilla.org',
-                'http://www.mozilla.org',)
-CSP_SCRIPT_SRC = ("'self'",
-                  'http://browserid.org',
-                  'https://browserid.org',)
-CSP_OPTIONS = ('eval-script',)
+CSP_IMG_SRC = (
+    "'self'",
+    'http://www.mozilla.org',
+    'https://www.mozilla.org',
+    'http://statse.webtrendslive.com',
+    'https://statse.webtrendslive.com',
+    'data:',
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    'http://www.mozilla.org',
+    'https://www.mozilla.org',
+)
+CSP_FONT_SRC = (
+    "'self'",
+    'http://www.mozilla.org',
+    'https://www.mozilla.org',
+)
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'http://browserid.org',
+    'https://browserid.org',
+    'http://www.mozilla.org',
+    'https://www.mozilla.org',
+    'http://statse.webtrendslive.com',
+    'https://statse.webtrendslive.com',
+)
+CSP_OPTIONS = (
+    'eval-script',
+)

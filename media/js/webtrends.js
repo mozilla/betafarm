@@ -471,3 +471,7 @@ WebTrends.prototype.dcsChk=function()
     return((cval%1000)<(this.rate*10));
 }
 
+// Run webtrends code in an external file for CSP
+var _tag=new WebTrends();
+_tag.dcsGetId();
+_tag.dcsCollect();
