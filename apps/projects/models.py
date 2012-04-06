@@ -120,6 +120,6 @@ def strip_html(sender, instance, **kwargs):
     """Get rid of any bad HTML tags."""
     for field in BLEACH_FIELDS:
         cleaned_content = bleach.clean(unicode(getattr(instance, field)),
-                                       tags=bleach.ALLOWED_TAGS + ['br'],
+                                       tags=bleach.ALLOWED_TAGS + ['br', 'p'],
                                        strip=True)
         setattr(instance, field, cleaned_content)
