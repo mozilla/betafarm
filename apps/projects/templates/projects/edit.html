@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/helpers.html" import search with context %}
-{% from "layout/errorlist.html" import errorlist %}
+{% from "layout/helpers.html" import search %}
+{% from "layout/errorlist.html" import errorlist, field_errors %}
 
 {% block page_title -%}: {{ project.name }}{% endblock -%}
 
@@ -25,7 +25,7 @@
     </div>
     <div class="row" id="body-content">
       <div class="logo-links span2">
-        <img src="{{ MEDIA_URL }}{{ project.image_or_default }}" alt="{{ project.name }}">
+        {% include "projects/includes/project_image.html" %}
         {% if project.other_links -%}
           <ul>
             {% for link in project.other_links -%}
@@ -90,6 +90,7 @@
     {% if field.help_text %}
       <div class="helptext clear">{{ field.help_text }}</div>
     {% endif %}
+    {{ field_errors(field) }}
   </li>
 {%- endmacro %}
 
@@ -102,5 +103,6 @@
     <div class="avatarWrap clearfix">
       {{ field }}
     </div>
+    {{ field_errors(field) }}
   </li>
 {%- endmacro %}

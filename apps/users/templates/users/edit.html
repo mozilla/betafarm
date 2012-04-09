@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "layout/breadcrumbs.html" import breadcrumbs %}
-{% from "layout/errorlist.html" import errorlist %}
+{% from "layout/errorlist.html" import errorlist, field_errors %}
 {% from "layout/helpers.html" import search %}
 
 {% block page_id %}edit_user{% endblock %}
@@ -42,15 +42,18 @@
               <label for="id_avatar">{{ _('Picture') }}</label>
               <div class="avatarWrap clearfix">
                 {{ form.avatar }}
+                {{ field_errors(form.avatar) }}
               </div>
             </li>
             <li class="{{ 'error' if form.errors['name'] }}">
               <label for="id_name">{{ _('Display Name (how others will see you)') }}</label>
               {{ form.name }}
+              {{ field_errors(form.name) }}
             </li>
             <li>
               <label for="id_website">{{ _('Your Website') }}</label>
               {{ form.website }}
+              {{ field_errors(form.website) }}
             </li>
             <li class="links">
               <label>{{ _('Your Links') }}</label>
@@ -73,12 +76,14 @@
             <li>
               <label for="id_bio">{{ _('Bio') }}</label>
               {{ form.bio }}
+              {{ field_errors(form.bio) }}
             </li>
             {% if form.agreement %}
               <li>
                 <label for="id_agreement">
                   {{ form.agreement }} {{ form.agreement.label }}
                 </label>
+                {{ field_errors(form.agreement) }}
               </li>
             {% endif %}
           </ul>
