@@ -50,10 +50,12 @@
           <h3>{{ _('Latest News') }}</h3>
           {% for entry in blog_entries %}
             <div class="blog-post">
-              <h4><a href="{{ entry.url }}">{{ entry.title }}</a></h4>
+              <h4><a href="{{ entry.url }}" target="_blank">{{ entry.title }}</a></h4>
               <p>
                 {{ entry.body|striptags|truncate(175) }}
-                <a class="read-more" href="{{ entry.url }}">{{ _('read more') }} &raquo;</a>
+                <a class="read-more"
+                   href="{{ entry.url }}"
+                   target="_blank">{{ _('read more') }} &raquo;</a>
               </p>
             </div>
           {% endfor %}
