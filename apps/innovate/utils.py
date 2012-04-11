@@ -3,6 +3,7 @@ import feedparser
 import hashlib
 import math
 import os
+import logging
 import time
 
 from PIL import Image
@@ -12,6 +13,9 @@ from django.core.cache import cache
 from django.core.files.storage import FileSystemStorage
 
 from projects.utils import FeedEntryParser
+
+
+logger = logging.getLogger(__name__)
 
 
 BLOG_FEED_URL = getattr(settings, 'BLOG_FEED_URL', None)
@@ -101,3 +105,12 @@ class ImageStorage(FileSystemStorage):
         name = "%s%s.%s" % (name, str(time.time()), format)
         image.save(self.path(name), image.format)
         return name
+
+
+def thumbnailify_image(field):
+    """Resize an image from an ImageField to a max height and width"""
+    if field and (field.height > IMAGE_HEIGHT or field.width > IMAGE_WIDTH):
+        logger.debug('Resizing image: %s', field.name)
+        img = Image.open(field.path)
+        img.thumbnail((IMAGE_WIDTH, IMAGE_HEIGHT), Image.ANTIALIAS)
+        img.save(field.path)
