@@ -43,10 +43,12 @@ class Project(models.Model):
                                     verbose_name=_(u'Project Owners'),
                                     related_name=u'projects_owned')
     team_members = models.ManyToManyField(Profile,
+                                          blank=True,
                                           verbose_name=_(u'Team Members'))
     topics = models.ManyToManyField('topics.Topic', verbose_name=_(u'Topics'))
     featured = models.BooleanField(default=False)
     followers = models.ManyToManyField(Profile,
+                                       blank=True,
                                        verbose_name=_(u'Followers'),
                                        related_name=u'projects_following')
 
