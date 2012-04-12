@@ -342,7 +342,7 @@ CACHES = {
     }
 }
 
-BLOG_FEED_URL = 'http://blog.mozilla.com/labs/feed/'
+BLOG_FEED_URL = 'http://blog.mozilla.org/labs/feed/'
 
 # Secure Cookies
 SESSION_COOKIE_SECURE = True
