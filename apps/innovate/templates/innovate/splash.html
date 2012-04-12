@@ -52,10 +52,14 @@
             <div class="blog-post">
               <h4><a href="{{ entry.url }}" target="_blank">{{ entry.title }}</a></h4>
               <p>
-                {{ entry.body|striptags|truncate(175) }}
-                <a class="read-more"
-                   href="{{ entry.url }}"
-                   target="_blank">{{ _('read more') }} &raquo;</a>
+                {% if entry.is_summary %}
+                  {{ entry.body|safe }}
+                {% else %}
+                  {{ entry.body|safe|truncate(175) }}
+                  <a class="read-more"
+                     href="{{ entry.url }}"
+                     target="_blank">{{ _('read more') }} &raquo;</a>
+                {% endif %}
               </p>
             </div>
           {% endfor %}

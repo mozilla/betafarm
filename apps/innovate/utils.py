@@ -55,8 +55,9 @@ def _get_blog_entries_nocache():
         for entry in parsed.entries:
             if len(entries) == BLOG_FEED_NUM_ENTRIES:
                 break
+            summary = getattr(entry, 'summary', None)
             parsed_entry = FeedEntryParser(entry)
-            content = bleach.clean(parsed_entry.content,
+            content = bleach.clean(summary or parsed_entry.content,
                                    tags=TAGS,
                                    attributes=ATTRIBUTES,
                                    strip=True)
@@ -65,6 +66,7 @@ def _get_blog_entries_nocache():
                 'url': parsed_entry.link,
                 'body': content,
                 'published': parsed_entry.updated,
+                'is_summary': bool(summary),
             })
     return entries
 
