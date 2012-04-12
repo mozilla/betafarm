@@ -55,7 +55,7 @@
                 {% if entry.is_summary %}
                   {{ entry.body|safe }}
                 {% else %}
-                  {{ entry.body|safe|truncate(175) }}
+                  {{ entry.body|striptags|truncate(175) }}
                 {% endif %}
                 <a class="read-more"
                    href="{{ entry.url }}"
