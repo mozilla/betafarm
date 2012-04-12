@@ -25,12 +25,11 @@ BLOG_FEED_CACHE_KEY = 'labs_blog_feed_entries'
 BLOG_FEED_CACHE_FOR = getattr(settings, 'BLOG_FEED_CACHE_FOR', 5) * 3600
 # Whitelisted tags and attributes
 TAGS = (
-    'h1', 'h2', 'h3', 'h4', 'h5', 'a', 'b', 'em',
+    'h1', 'h2', 'h3', 'h4', 'h5', 'b', 'em',
     'i', 'strong', 'ol', 'ul', 'li', 'hr', 'blockquote',
     'p', 'span', 'pre', 'code', 'img',
 )
 ATTRIBUTES = {
-    'a': ['href', 'title'],
     'img': ['src', 'alt'],
 }
 IMAGE_WIDTH = 140
@@ -64,7 +63,7 @@ def _get_blog_entries_nocache():
             entries.append({
                 'title': parsed_entry.title,
                 'url': parsed_entry.link,
-                'body': content,
+                'body': content.strip().rstrip('Continue reading'),
                 'published': parsed_entry.updated,
                 'is_summary': bool(summary),
             })

@@ -56,10 +56,10 @@
                   {{ entry.body|safe }}
                 {% else %}
                   {{ entry.body|safe|truncate(175) }}
-                  <a class="read-more"
-                     href="{{ entry.url }}"
-                     target="_blank">{{ _('read more') }} &raquo;</a>
                 {% endif %}
+                <a class="read-more"
+                   href="{{ entry.url }}"
+                   target="_blank">{{ _('read more') }} &raquo;</a>
               </p>
             </div>
           {% endfor %}
