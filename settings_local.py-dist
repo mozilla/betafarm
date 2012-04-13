@@ -1,5 +1,15 @@
 from settings import *
 
+# uncomment for local
+#DEBUG = TEMPLATE_DEBUG = True
+
+# uncomment for local
+#SESSION_COOKIE_SECURE = False
+
+ADMINS = (
+    # ('Your Name', 'your_email@domain.com'),
+)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -28,14 +38,31 @@ CACHES = {
     }
 }
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-PROTOCOL = 'http://'
-DOMAIN = 'localhost'
-PORT = 8000
+# BrowserID
+# uncomment for local
+#PROTOCOL = 'http://'
+#DOMAIN = 'localhost'
+#PORT = 8000
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'secret'
 
-SESSION_COOKIE_SECURE = False
+## Celery
+BROKER_HOST = 'localhost'
+BROKER_PORT = 5672
+BROKER_USER = 'playdoh'
+BROKER_PASSWORD = 'playdoh'
+BROKER_VHOST = 'playdoh'
+
+# Path to Java. Used for compress_assets.
+JAVA_BIN = '/usr/bin/java'
+
+# Dynamically process LESS server-side? (usually true to local
+# development)
+# NOTE: for non-local environments, './manage.py compress_assets' should be
+#       run on every push.
+# uncomment for local
+#LESS_PREPROCESS = True
+
+# uncomment and change if lessc not on path
+#LESS_BIN = 'lessc'

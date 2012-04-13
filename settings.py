@@ -11,8 +11,7 @@ path = lambda *a: os.path.join(ROOT, *a)
 ROOT_PACKAGE = os.path.basename(ROOT)
 
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+DEBUG = TEMPLATE_DEBUG = False
 
 ADMINS = ()
 MANAGERS = ADMINS
@@ -141,7 +140,6 @@ MINIFY_BUNDLES = {
     'css': {
         'common': (
             'css/main.less',
-            #'css/innovate/main.css',
         ),
     },
     'js': {
@@ -155,8 +153,8 @@ MINIFY_BUNDLES = {
 
 # Dynamically process LESS server-side? (usually true to local
 # development)
-LESS_PREPROCESS = True
-LESS_BIN = '/usr/local/bin/lessc'
+LESS_PREPROCESS = False
+LESS_BIN = 'lessc'
 
 ## Middlewares, apps, URL configs.
 
@@ -328,25 +326,12 @@ PUSH_DEFAULT_HUB_PASSWORD = ''
 PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
 
 SOUTH_TESTS_MIGRATE = False
-CACHE_BACKEND = 'caching.backends.locmem://'
 CACHE_COUNT_TIMEOUT = 60
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': [
-            'memcache1:11211',
-            'memcache2:11211',
-            ],
-        'KEY_PREFIX': 'mozillalabs_environment'
-    }
-}
 
 BLOG_FEED_URL = 'http://blog.mozilla.org/labs/feed/'
 
 # Secure Cookies
 SESSION_COOKIE_SECURE = True
-
 SESSION_COOKIE_HTTPONLY = True
 
 # Always generate a CSRF token for anonymous users
