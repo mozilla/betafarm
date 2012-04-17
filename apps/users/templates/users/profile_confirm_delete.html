@@ -22,11 +22,19 @@
     <div class="row" id="body-content">
       <div class="description span6 offset3">
         <h2>{{ _('Delete Profile') }}</h2>
-        <p>{{ _('Are you sure you want to delete your account?') }}</p>
+        {% trans persona_url='https://browserid.org/' -%}
+          <p>Are you sure you want to delete your account?</p>
+          <p>
+            Deleting your account with Mozillalabs will not delete your Persona account.
+            Click here to <a href="{{ persona_url }}"
+                             target="_blank">edit your Persona account</a>.
+          </p>
+        {%- endtrans %}
         <form action="{{ request.get_full_path() }}" method="POST">
           {{ csrf() }}
           <button class="button-red" type="submit">{{ _('Delete') }}</button>
-          <a href="{{ profile.get_absolute_url() }}">{{ _('cancel') }}</a>
+          <a class="form-cancel"
+             href="{{ profile.get_absolute_url() }}">{{ _('cancel') }}</a>
         </form>
       </div>
     </div>
