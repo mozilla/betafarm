@@ -163,8 +163,8 @@ class TestViews(TestCase):
             'description': 'All The Dude ever wanted... was his rug back.',
             'long_description': new_desc,
             'topics': [self.topic.id],
-            'team_members': [self.profile.pk],
-            'owners': [self.owner_profile.pk],
+            'team_members_1': [self.profile.pk],
+            'owners_1': [self.owner_profile.pk],
         })
         proj = Project.objects.get(pk=self.project.pk)
         self.assertEqual(proj.name, new_name)
@@ -186,8 +186,8 @@ class TestViews(TestCase):
             'description': self.project.description,
             'long_description': self.project.long_description,
             'topics': [self.topic.id],
-            'team_members': [self.profile.pk, self.owner_profile.pk],
-            'owners': [self.owner_profile.pk],
+            'team_members_1': [self.profile.pk, self.owner_profile.pk],
+            'owners_1': [self.owner_profile.pk],
             })
         self.assertTrue(self.owner_profile in self.project.team_members.all())
         self.assertTrue(self.profile in self.project.team_members.all())
@@ -201,7 +201,7 @@ class TestViews(TestCase):
         self.client.post('/en-US' + self.project_xss.get_edit_url(), {
             'topics': [self.topic.id],
             'team_members': [self.profile.pk],
-            'owners': [self.owner_profile.pk],
+            'owners_1': [self.owner_profile.pk],
         })
         proj = Project.objects.get(pk=self.project_xss.pk)
         self.assertEqual(proj.long_description, "alert('i am evil');")
@@ -221,8 +221,8 @@ class TestViews(TestCase):
             'description': 'All The Dude ever wanted... was his rug back.',
             'long_description': new_desc,
             'topics': [self.topic.id],
-            'team_members': [self.profile.pk],
-            'owners': [self.owner_profile.pk],
+            'team_members_1': [self.profile.pk],
+            'owners_1': [self.owner_profile.pk],
             })
         proj = Project.objects.get(pk=self.project.pk)
         self.assertEqual(proj.name, self.project.name)

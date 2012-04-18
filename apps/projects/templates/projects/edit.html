@@ -8,6 +8,15 @@
 {% block page_id %}project_edit{% endblock %}
 {% block section_class %}projects{% endblock %}
 
+{% block extrahead %}
+  {{ css('selectable') }}
+  {{ form.media.css }}
+{% endblock %}
+
+{% block js %}
+  {{ js('selectable') }}
+{% endblock %}
+
 {% block breadcrumbs -%}
   {{ breadcrumbs(
       (url('projects_all'), _('Projects')),

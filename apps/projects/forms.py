@@ -2,10 +2,15 @@ from __future__ import absolute_import
 
 from django import forms
 
+from selectable.forms import AutoCompleteSelectMultipleField
+
 from .models import Project, Link
+from users.lookups import ProfileLookup
 
 
 class ProjectForm(forms.ModelForm):
+    owners = AutoCompleteSelectMultipleField(ProfileLookup)
+    team_members = AutoCompleteSelectMultipleField(ProfileLookup)
 
     class Meta:
         model = Project

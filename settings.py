@@ -63,7 +63,7 @@ PROD_DETAILS_DIR = path('lib/product_details_json')
 LANGUAGES = lazy(LazyLangs, dict)()
 
 # Paths that don't require a locale code in the URL.
-SUPPORTED_NONLOCALES = ['media', 'push']
+SUPPORTED_NONLOCALES = ['media', 'push', 'selectable']
 
 
 ## Media and templates.
@@ -141,12 +141,20 @@ MINIFY_BUNDLES = {
         'common': (
             'css/main.less',
         ),
+        'selectable': (
+            'css/jq-ui-smoothness/jquery-ui-1.8.19.custom.css',
+            'selectable/css/dj.selectable.css',
+        ),
     },
     'js': {
         'common': (
             'js/libs/jquery-1.6.1.min.js',
             'js/libs/jquery.isotope.min.js',
             'js/functions.js',
+        ),
+        'selectable': (
+            'js/libs/jquery-ui-1.8.19.custom.min.js',
+            'selectable/js/jquery.dj.selectable.js',
         ),
     }
 }
@@ -227,6 +235,9 @@ INSTALLED_APPS = (
 
     # Command running
     'cronjobs',
+
+    # Autocomplete
+    'selectable',
 
     # Betafarm specific
     'innovate',

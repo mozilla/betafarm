@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     (r'', include('innovate.urls')),
     (r'', include('users.urls')),
     (r'', include('projects.urls')),
+    (r'^selectable/', include('selectable.urls')),
 )
 
 ## In DEBUG mode, serve media files through Django.
@@ -26,10 +27,3 @@ if settings.DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
-
-urlpatterns += patterns('',
-    (r'^mockups/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': 'mockups',
-        'show_indexes': True,
-    })
-)
