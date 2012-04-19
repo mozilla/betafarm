@@ -142,7 +142,7 @@ MINIFY_BUNDLES = {
             'css/main.less',
         ),
         'selectable': (
-            'css/jq-ui-smoothness/jquery-ui-1.8.19.custom.css',
+            'css/jquery-ui-1.8.19.custom.css',
             'selectable/css/dj.selectable.css',
         ),
     },
