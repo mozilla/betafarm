@@ -81,8 +81,7 @@ class TestViews(TestCase):
         self.assertContains(resp, self.project.long_description)
 
     def test_user_owner_and_team_member_shows_once(self):
-        """Test that if a user is added as a member and and owner
-        that they only show up once on the project page"""
+        """Ensure members who are owners don't show up twice on project page"""
         self.project.owners.add(self.profile)
         resp = self.client.get(self.project.get_absolute_url(), follow=True)
         self.assertContains(resp, self.profile.get_absolute_url(), 1)
