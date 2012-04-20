@@ -48,14 +48,12 @@ def show(request, slug):
         is_owner = profile.owns_project(project)
         is_follower = profile.follows_project(project)
     topic = request.session.get('topic', None) or project.topics.all()[0].name
-    proj_people = list(project.owners.all())
-    proj_people += list(project.team_members.all())
     return jingo.render(request, 'projects/show.html', {
         'project': project,
         'topic': topic,
         'user_is_owner': is_owner,
         'user_is_follower': is_follower,
-        'proj_people': proj_people,
+        'proj_people': project.whole_team,
     })
 
 
