@@ -33,7 +33,9 @@
 {%- endmacro %}
 
 {% macro search() -%}
-  <!-- Disable search
-  <input type="text" placeholder="SEARCH" id="searchbox">
-  -->
+<form action="{{ url('innovate_search') }}" method="get" id="searchform">
+  <label for="searchbox">{{ _('Search projects') }}</label>
+  <input type="text" id="searchbox" name="q" placeholder="{{ _('Search projects') }}">
+  <button type="submit">{{ _('Search') }}</button>
+</form>
 {%- endmacro %}

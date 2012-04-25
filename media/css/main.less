@@ -1,4 +1,10 @@
 @import url('sandstone/sandstone.less');
+// TODO support RTL languages if we get those.
+.hidden {
+    left: -9999px;
+    position: absolute;
+    top: 0;
+}
 a:visited {
     color: #9D72C4;
 }
@@ -158,14 +164,16 @@ html[xmlns] .clearfix {
         background-color: #9D59FF;
     }
 }
-.home-search {
-    display: none;
-}
 #searchbox {
     color: #999;
     font-size: 14px;
     padding: 4px 8px;
     width: @gridColumnWidth * 3;
+}
+#searchform {
+    label, button {
+        .hidden;
+    }
 }
 .people, .relatedProjects {
     padding: 40px 0;
