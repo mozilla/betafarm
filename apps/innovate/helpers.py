@@ -24,20 +24,3 @@ def active_name(request):
         if match.url_name.startswith(name):
             return URL_NAV_NAMES[name]
     return ''
-
-
-@register.function
-@contextfunction
-def moz_url(ctx, url, locale=True):
-    """Return a link to mozilla.org with the locale."""
-    parts = ['http://www.mozilla.org']
-    # Not all Mozilla static pages have a link that is attached to a locale
-    locale = ''
-    if locale:
-        locale = getattr(ctx['request'], 'locale', None)
-    url = url.lstrip('/')
-
-    if locale:
-        parts.append(locale)
-    parts.append(url)
-    return '/'.join(parts)
