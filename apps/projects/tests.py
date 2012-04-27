@@ -25,6 +25,48 @@ class TestCron(TestCase):
         self.assertTrue(os.path.exists(cron.ISOTOPE_PATH))
 
 
+class TestModels(TestCase):
+    def setUp(self):
+        """Create user and a project with a topic."""
+        self.owner_password = 'TheBumsLost'
+        self.owner = User.objects.create_user(
+            username='jlebowski',
+            password=self.owner_password,
+            email='jlebowski@aol.com',
+        )
+        self.owner_profile = Profile.objects.create(user=self.owner)
+        self.topic = Topic.objects.create(
+            name='Bowling',
+            slug='bowling',
+            description='League play.',
+        )
+        self.project = Project.objects.create(
+            name='Get Rug Back',
+            slug='rug-back',
+            description='This aggression will not stand, man!',
+            long_description='Not into the whole, brevity thing.',
+        )
+        self.link = Link.objects.create(
+            project=self.project,
+            name='Testing',
+            url='http://example.com',
+        )
+        self.project.topics.add(self.topic)
+        self.project.owners.add(self.owner_profile)
+
+    def test_can_delete_projects(self):
+        """Regression test. Deletes were failing"""
+        # turns out the reason was that the foreign key to Project
+        # from Link was changed to null=True at some point, but no
+        # migration was created. null=True was removed as Links are
+        # meaningless without Projects now.
+        self.project.delete()
+        with self.assertRaises(Project.DoesNotExist):
+            Project.objects.get(pk=self.project.pk)
+        with self.assertRaises(Link.DoesNotExist):
+            Link.objects.get(pk=self.link.pk)
+
+
 class TestViews(TestCase):
     def setUp(self):
         """Create user and a project with a topic."""
