@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import search %}
+
+{% block page_title %}: {{ _('Search') }}{% endblock %}
+
+{% block page_id %}search{% endblock %}
+{% block section_class %}search{% endblock %}
+
+{% block breadcrumbs %}
+  {{ breadcrumbs(last=_('Search')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('search') }}
+{% endblock %}
+
+{% block js %}
+  <script src="https://www.google.com/jsapi"></script>
+  {{ js('search') }}
+{% endblock %}
+
+{% block content -%}
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <div class="pull-right">{{ search() }}</div>
+        <h1>{{ _('Search Mozilla Labs') }}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span10">
+        <div id="cse">{{ _('Loading') }}</div>
+      </div>
+    </div>
+  </div>
+{% endblock -%}

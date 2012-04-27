@@ -141,6 +141,9 @@ MINIFY_BUNDLES = {
         'common': (
             'css/main.less',
         ),
+        'search': (
+            'css/google-search.css',
+        ),
         'selectable': (
             'css/jquery-ui-1.8.19.custom.css',
             'selectable/css/dj.selectable.css',
@@ -152,11 +155,14 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.isotope.min.js',
             'js/functions.js',
         ),
+        'search': (
+            'js/google-search.js',
+        ),
         'selectable': (
             'js/libs/jquery-ui-1.8.19.custom.min.js',
             'selectable/js/jquery.dj.selectable.js',
         ),
-    }
+    },
 }
 
 # Dynamically process LESS server-side? (usually true to local
@@ -355,6 +361,8 @@ CSP_IMG_SRC = (
     'https://www.mozilla.org',
     'http://statse.webtrendslive.com',
     'https://statse.webtrendslive.com',
+    'http://www.google.com',
+    'https://www.google.com',
     'data:',
 )
 CSP_STYLE_SRC = (
@@ -375,6 +383,8 @@ CSP_SCRIPT_SRC = (
     'https://www.mozilla.org',
     'http://statse.webtrendslive.com',
     'https://statse.webtrendslive.com',
+    'http://www.google.com',
+    'https://www.google.com',
 )
 CSP_OPTIONS = (
     'eval-script',
