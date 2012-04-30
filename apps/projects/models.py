@@ -3,7 +3,6 @@ from django.db import models
 from django.dispatch import receiver
 
 import bleach
-from django_push.subscriber.models import Subscription
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
@@ -112,10 +111,8 @@ class Link(models.Model):
     """
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     url = models.URLField(verbose_name=_(u'URL'))
-    subscribe = models.BooleanField(default=False)
     blog = models.BooleanField(default=False)
-    subscription = models.ForeignKey(Subscription, null=True, blank=True)
-    project = models.ForeignKey(Project, null=True, blank=True)
+    project = models.ForeignKey(Project)
     featured = models.BooleanField(default=False)
 
     def __unicode__(self):
