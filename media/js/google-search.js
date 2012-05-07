@@ -4,6 +4,14 @@ google.setOnLoadCallback(function() {
     var customSearchControl = new google.search.CustomSearchControl(
         '003721718359151553648:qipcq6hq6uy', customSearchOptions);
     customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.setSearchStartingCallback(
+        this,
+        function(control, searcher) {
+            searcher.setRestriction(
+                google.search.Search.RESTRICT_EXTENDED_ARGS,
+                { "filter" : "0"});
+        }
+    );
     var options = new google.search.DrawOptions();
     options.enableSearchResultsOnly();
     customSearchControl.draw('cse', options);
