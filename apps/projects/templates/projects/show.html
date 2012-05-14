@@ -57,7 +57,7 @@
       <div class="description span6 offset1">
         <h2>{{ _('About') }} {{ project.name }}</h2>
         {% if project.inactive %}
-          <p class="inactive">{{ _('This project is considered inactive.') }}</p>
+          <p class="inactive">{{ project.inactive_message_or_default }}</p>
         {% endif %}
         {{ project.long_description|safe }}
         <section class="people">
