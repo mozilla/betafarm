@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
@@ -9,6 +11,8 @@ from taggit.managers import TaggableManager
 from users.models import Profile
 
 BLEACH_FIELDS = ['long_description']
+
+logger = logging.getLogger(__name__)
 
 
 class ProjectQuerySet(models.query.QuerySet):
@@ -127,3 +131,19 @@ def strip_html(sender, instance, **kwargs):
                                        tags=bleach.ALLOWED_TAGS + ['br', 'p'],
                                        strip=True)
         setattr(instance, field, cleaned_content)
+
+
+@receiver(models.signals.post_delete, sender=Project)
+def delete_images(sender, instance, **kwargs):
+    """Delete the images when the project is deleted"""
+    try:
+        if instance.image:
+            instance.image.delete(save=False)
+    except OSError:
+        logger.debug("Failed to delete image for %s", Project)
+
+    try:
+        if instance.featured_image:
+            instance.featured_image.delete(save=False)
+    except OSError:
+        logger.debug("Failed to delete featured image for %s", Project)

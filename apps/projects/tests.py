@@ -1,5 +1,6 @@
 import os
 
+from django.conf import settings
 from django.contrib.auth.models import User
 
 import requests
@@ -65,6 +66,32 @@ class TestModels(TestCase):
             Project.objects.get(pk=self.project.pk)
         with self.assertRaises(Link.DoesNotExist):
             Link.objects.get(pk=self.link.pk)
+
+    def test_deleting_project_deletes_images(self):
+        self.assertTrue(self.client.login(
+            username=self.owner.username,
+            password=self.owner_password
+        ))
+        fname = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                             'test_data',
+                             'abide.jpg')
+        with open(fname) as f:
+            # TODO: make localized URL handling suck less
+            self.client.post('/en-US' + self.project.get_edit_url(), {
+                'name': self.project.name,
+                'slug': self.project.slug,
+                'description': self.project.description,
+                'long_description': 'This is totally long.',
+                'topics': [self.topic.id],
+                'owners_1': [self.owner_profile.pk],
+                'team_members_1': [self.owner_profile.pk],
+                'image': f,
+            })
+        proj = Project.objects.get(pk=self.project.pk)
+        imgpath = os.path.join(settings.MEDIA_ROOT, proj.image.name)
+        self.assertTrue(os.path.exists(imgpath))
+        proj.delete()
+        self.assertFalse(os.path.exists(imgpath))
 
 
 class TestViews(TestCase):
