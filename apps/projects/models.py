@@ -135,15 +135,15 @@ def strip_html(sender, instance, **kwargs):
 
 @receiver(models.signals.post_delete, sender=Project)
 def delete_images(sender, instance, **kwargs):
-    """Delete the images when the project is deleted"""
+    """Delete the images when the project is deleted."""
     try:
         if instance.image:
             instance.image.delete(save=False)
     except OSError:
-        logger.debug("Failed to delete image for %s", Project)
+        logger.debug('Failed to delete image for %s', Project)
 
     try:
         if instance.featured_image:
             instance.featured_image.delete(save=False)
     except OSError:
-        logger.debug("Failed to delete featured image for %s", Project)
+        logger.debug('Failed to delete featured image for %s', Project)
