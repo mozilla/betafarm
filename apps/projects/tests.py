@@ -268,7 +268,13 @@ class TestViews(TestCase):
             username=self.owner.username,
             password=self.owner_password
         ))
-        self.assertFalse(self.owner_profile in self.project.team_members.all())
+        newuser = User.objects.create_user(
+            username='tkerabatsos',
+            password='DonnyBoy',
+            email='donny@aol.com',
+        )
+        newprof = Profile.objects.create(user=newuser)
+        self.assertFalse(newprof in self.project.team_members.all())
         # warm cache
         self.client.get('/en-US' + self.project.get_absolute_url())
         self.client.get('/en-US' + self.project.get_edit_url())
@@ -278,11 +284,12 @@ class TestViews(TestCase):
             'description': self.project.description,
             'long_description': self.project.long_description,
             'topics': [self.topic.id],
-            'team_members_1': [self.profile.pk, self.owner_profile.pk],
+            'team_members_1': [newprof.pk],
             'owners_1': [self.owner_profile.pk],
             })
-        self.assertTrue(self.owner_profile in self.project.team_members.all())
-        self.assertTrue(self.profile in self.project.team_members.all())
+        self.assertTrue(newprof in self.project.team_members.all())
+        resp = self.client.get('/en-US' + self.project.get_absolute_url())
+        self.assertContains(resp, newprof.get_absolute_url())
 
     def test_owner_cannot_inject_xss(self):
         """Test that a user cannot inject xss into fields marked safe."""

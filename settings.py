@@ -116,7 +116,8 @@ def JINJA_CONFIG():
     from django.conf import settings
 #    from caching.base import cache
     config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
+                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols',
+                             'caching.ext.cache',],
               'finalize': lambda x: x if x is not None else ''}
 #    if 'memcached' in cache.scheme and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
@@ -173,6 +174,7 @@ LESS_BIN = 'lessc'
 ## Middlewares, apps, URL configs.
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'commons.middleware.LocaleURLMiddleware',
     'commonware.response.middleware.StrictTransportMiddleware',
     'csp.middleware.CSPMiddleware',
@@ -188,6 +190,7 @@ MIDDLEWARE_CLASSES = (
     'innovate.middleware.ProfileMiddleware',
 
     'waffle.middleware.WaffleMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
@@ -346,6 +349,11 @@ PUSH_CREDENTIALS = 'projects.utils.push_hub_credentials'
 
 SOUTH_TESTS_MIGRATE = False
 CACHE_COUNT_TIMEOUT = 60
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 600 # 10min
+CACHE_MIDDLEWARE_KEY_PREFIX = 'mozillalabs'
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 BLOG_FEED_URL = 'http://blog.mozilla.org/labs/feed/'
 

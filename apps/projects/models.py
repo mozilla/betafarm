@@ -5,6 +5,7 @@ from django.db import models
 from django.dispatch import receiver
 
 import bleach
+from caching.base import CachingManager, CachingQuerySet, CachingMixin
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
@@ -16,12 +17,12 @@ DEFAULT_INACTIVE_MESSAGE = _(u'This project is considered inactive.')
 logger = logging.getLogger(__name__)
 
 
-class ProjectQuerySet(models.query.QuerySet):
+class ProjectQuerySet(CachingQuerySet):
     def haz_topic(self):
         return self._clone().filter(topics__isnull=False).distinct()
 
 
-class ProjectManager(models.Manager):
+class ProjectManager(CachingManager):
     def get_query_set(self):
         return ProjectQuerySet(self.model)
 
@@ -29,7 +30,7 @@ class ProjectManager(models.Manager):
         return self.get_query_set().haz_topic()
 
 
-class Project(models.Model):
+class Project(CachingMixin, models.Model):
     name = models.CharField(verbose_name=_(u'Name'), max_length=100)
     slug = models.SlugField(verbose_name=_(u'Slug'), unique=True,
                             max_length=100)
