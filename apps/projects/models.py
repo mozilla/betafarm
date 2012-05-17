@@ -11,6 +11,7 @@ from taggit.managers import TaggableManager
 from users.models import Profile
 
 BLEACH_FIELDS = ['long_description']
+DEFAULT_INACTIVE_MESSAGE = _(u'This project is considered inactive.')
 
 logger = logging.getLogger(__name__)
 
@@ -54,6 +55,7 @@ class Project(models.Model):
                                        blank=True,
                                        verbose_name=_(u'Followers'),
                                        related_name=u'projects_following')
+    inactive_message = models.CharField(max_length=255, blank=True)
 
     objects = ProjectManager()
     tags = TaggableManager(blank=True)
@@ -82,6 +84,10 @@ class Project(models.Model):
     @property
     def featured_image_or_default(self):
         return self.featured_image or 'img/featured-default.gif'
+
+    @property
+    def inactive_message_or_default(self):
+        return self.inactive_message or DEFAULT_INACTIVE_MESSAGE
 
     @property
     def active_topics(self):

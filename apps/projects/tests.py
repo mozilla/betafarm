@@ -8,7 +8,7 @@ from test_utils import TestCase, SkipTest
 
 from commons.urlresolvers import reverse
 from projects import cron
-from projects.models import Project, Link
+from projects.models import DEFAULT_INACTIVE_MESSAGE, Link, Project
 from topics.models import Topic
 from users.models import Profile
 
@@ -54,6 +54,18 @@ class TestModels(TestCase):
         )
         self.project.topics.add(self.topic)
         self.project.owners.add(self.owner_profile)
+
+    def test_inactive_message(self):
+        """Test that the custom message is returned when set."""
+        self.project.inactive = True
+        self.project.save()
+        self.assertEqual(self.project.inactive_message_or_default,
+                         DEFAULT_INACTIVE_MESSAGE)
+        new_msg = 'This is a way moar awesomer message'
+        self.project.inactive_message = new_msg
+        self.project.save()
+        self.assertEqual(self.project.inactive_message_or_default,
+                         new_msg)
 
     def test_can_delete_projects(self):
         """Regression test. Deletes were failing"""
