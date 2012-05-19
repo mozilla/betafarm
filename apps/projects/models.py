@@ -5,7 +5,7 @@ from django.db import models
 from django.dispatch import receiver
 
 import bleach
-from caching.base import CachingManager, CachingQuerySet, CachingMixin
+from caching.base import CachingManager, CachingMixin, CachingQuerySet
 from tower import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
