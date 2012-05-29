@@ -74,8 +74,9 @@ class Project(models.Model):
 
     @property
     def whole_team(self):
-        """Return a list of unique project members and owners."""
-        return list(set(self.owners.all()) | set(self.team_members.all()))
+        """Return a sorted list of unique project members and owners."""
+        team = list(set(self.owners.all()) | set(self.team_members.all()))
+        return sorted(team, key=lambda prof: prof.display_name.lower())
 
     @property
     def image_or_default(self):
