@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import base64
-import hashlib
-
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
 from innovate.utils import get_partition_id, safe_filename, ImageStorage
 
+from django_browserid.auth import default_username_algo
 from tower import ugettext_lazy as _
 
 
@@ -88,8 +86,7 @@ class Profile(models.Model):
         Return a hash of the users email. Used as a URL component when no
         username is set (as is the case with users signed up via BrowserID).
         """
-        return base64.urlsafe_b64encode(
-            hashlib.sha1(self.user.email).digest()).rstrip('=')
+        return default_username_algo(self.user.email)
 
     @property
     def has_chosen_identifier(self):

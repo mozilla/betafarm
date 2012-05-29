@@ -190,6 +190,8 @@ MIDDLEWARE_CLASSES = (
     'waffle.middleware.WaffleMiddleware',
 )
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 
 INSTALLED_APPS = (

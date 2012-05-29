@@ -1,11 +1,69 @@
+from datetime import datetime, timedelta
+
 from django.test import TestCase
 from django.contrib.auth.models import User
 
+from django_browserid.auth import default_username_algo
 from commons.urlresolvers import reverse
 
 from projects.models import Project
 from topics.models import Topic
+from users.cron import delete_abandoned_profiles
 from users.models import Link, Profile
+
+
+class CronTests(TestCase):
+    def test_deleting_abandoned_profiles(self):
+        """Test the cmd to delete profiles that never agreed to the TOS."""
+        two_days_ago = datetime.now() - timedelta(days=2)
+        u1 = User.objects.create(
+            username=u'testaccount',
+            password=u'password1',
+            email=u'test@test.com',
+            is_active=True,
+            date_joined=two_days_ago,
+            )
+        Profile.objects.create(user=u1)
+        u2 = User.objects.create(
+            username=default_username_algo(u'test2@test.com'),
+            password=u'pass',
+            email=u'test2@test.com',
+            is_active=True,
+            date_joined=two_days_ago,
+            )
+        Profile.objects.create(user=u2)
+        self.assertEqual(Profile.objects.count(), 2)
+        self.assertEqual(User.objects.count(), 2)
+        delete_abandoned_profiles()
+        self.assertEqual(Profile.objects.count(), 1)
+        self.assertEqual(User.objects.count(), 1)
+        with self.assertRaises(User.DoesNotExist):
+            User.objects.get(pk=u2.pk)
+
+    def test_new_profiles_not_deleted(self):
+        """Test that the profile deletion cmd doesn't delete new profiles."""
+        u1 = User.objects.create(
+            username=default_username_algo(u'test@test.com'),
+            password=u'password1',
+            email=u'test@test.com',
+            is_active=True,
+        )
+        Profile.objects.create(user=u1)
+        u2 = User.objects.create(
+            username=default_username_algo(u'test2@test.com'),
+            password=u'pass',
+            email=u'test2@test.com',
+            is_active=True,
+            date_joined=datetime.now() - timedelta(days=2),
+        )
+        Profile.objects.create(user=u2)
+        self.assertEqual(Profile.objects.count(), 2)
+        self.assertEqual(User.objects.count(), 2)
+        delete_abandoned_profiles()
+        self.assertEqual(Profile.objects.count(), 1)
+        self.assertEqual(User.objects.count(), 1)
+        with self.assertRaises(User.DoesNotExist):
+            User.objects.get(pk=u2.pk)
 
 
 class ProfileData(TestCase):
