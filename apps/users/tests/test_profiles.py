@@ -113,3 +113,26 @@ class ProfileViewTests(TestCase):
             Profile.objects.get(pk=self.owner_profile.pk)
         self.assertEqual(self.project, Project.objects.get(pk=self.project.pk))
         self.assertEqual(self.project.owners.count(), 0)
+
+    def test_only_owner_not_allowed_to_delete(self):
+        """Test a sole project owner is not shown delete form."""
+        self.assertTrue(self.client.login(
+            username=self.owner.username,
+            password=self.owner_password
+        ))
+        self.assertEqual(self.project.owners.count(), 1)
+        resp = self.client.get(reverse('users_delete'), follow=True)
+        self.assertTrue(resp.context['problem_projects'])
+        self.assertContains(resp, 'Oops!')
+
+    def test_non_solo_owner_allowed_to_delete(self):
+        """Test a non-sole project owner is shown delete form."""
+        self.project.owners.add(self.profile)
+        self.assertTrue(self.client.login(
+            username=self.owner.username,
+            password=self.owner_password
+        ))
+        self.assertEqual(self.project.owners.count(), 2)
+        resp = self.client.get(reverse('users_delete'), follow=True)
+        self.assertFalse(resp.context['problem_projects'])
+        self.assertNotContains(resp, 'Oops!')

@@ -142,6 +142,10 @@ class DeleteProfileView(DeleteView):
 
     def get_context_data(self, **kwargs):
         kwargs['profile'] = self.request.user.get_profile()
+        kwargs['problem_projects'] = []
+        for project in kwargs['profile'].projects_owned.all():
+            if project.owners.count() == 1:
+                kwargs['problem_projects'].append(project)
         return super(DeleteProfileView, self).get_context_data(**kwargs)
 
     def get_success_url(self):
