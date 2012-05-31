@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
 
-from django.test import TestCase
 from django.contrib.auth.models import User
+from django.core.cache import cache
+from django.test import TestCase
 
 from django_browserid.auth import default_username_algo
 from commons.urlresolvers import reverse
@@ -69,6 +70,7 @@ class CronTests(TestCase):
 class ProfileData(TestCase):
 
     def setUp(self):
+        cache.clear()
         self.User = User.objects.create(
             username=u'testaccount',
             password=u'password1',
