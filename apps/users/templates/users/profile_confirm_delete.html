@@ -35,7 +35,10 @@
               <li><a href="{{ project.get_edit_url() }}">{{ project.name }}</a></li>
             {% endfor %}
           </ul>
-          <p>{{ _('You will then be able to delete your profile.') }}</p>
+          {% trans contact_email="hhoffman@mozilla.com" %}
+            <p>You will then be able to delete your profile.</p>
+            <p>If you do not know whom to re-assign please contact <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+          {% endtrans %}
         {% else %}
           {% trans persona_url="https://browserid.org/" -%}
             <p>Are you sure you want to delete your account?</p>
