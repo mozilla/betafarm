@@ -167,6 +167,11 @@ class TestViews(TestCase):
         resp = self.client.get(self.project.get_absolute_url(), follow=True)
         self.assertContains(resp, self.profile.get_absolute_url(), 1)
 
+    def test_team_members_list_is_ordered(self):
+        resp = self.client.get(self.project.get_absolute_url(), follow=True)
+        self.assertEqual(resp.context['proj_people'],
+                         [self.owner_profile, self.profile])
+
     def test_following(self):
         """Test that users can follow projects."""
         self.assertTrue(self.client.login(
