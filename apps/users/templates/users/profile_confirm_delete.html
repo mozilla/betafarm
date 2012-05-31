@@ -22,20 +22,39 @@
     <div class="row" id="body-content">
       <div class="description span6 offset3">
         <h2>{{ _('Delete Profile') }}</h2>
-        {% trans persona_url="https://browserid.org/" -%}
-          <p>Are you sure you want to delete your account?</p>
-          <p>
-            Deleting your account with Mozilla Labs will not delete your Persona account.
-            Click here to <a href="{{ persona_url }}"
-                             target="_blank">edit your Persona account</a>.
-          </p>
-        {%- endtrans %}
-        <form action="{{ request.get_full_path() }}" method="POST">
-          {{ csrf() }}
-          <button class="button-red" type="submit">{{ _('Delete') }}</button>
-          <a class="form-cancel"
-             href="{{ profile.get_absolute_url() }}">{{ _('cancel') }}</a>
-        </form>
+        {% if problem_projects %}
+          <h3>{{ _('Oops!') }}</h3>
+          {% trans %}
+            <p>
+              We can not delete your account because you are assigned as a project owner.
+              To delete your profile please assign a new project owner to the following projects:
+            </p>
+          {% endtrans %}
+          <ul>
+            {% for project in problem_projects %}
+              <li><a href="{{ project.get_edit_url() }}">{{ project.name }}</a></li>
+            {% endfor %}
+          </ul>
+          {% trans contact_email="hhoffman@mozilla.com" %}
+            <p>You will then be able to delete your profile.</p>
+            <p>If you do not know whom to re-assign please contact <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+          {% endtrans %}
+        {% else %}
+          {% trans persona_url="https://browserid.org/" -%}
+            <p>Are you sure you want to delete your account?</p>
+            <p>
+              Deleting your account with Mozilla Labs will not delete your Persona account.
+              Click here to <a href="{{ persona_url }}"
+                               target="_blank">edit your Persona account</a>.
+            </p>
+          {%- endtrans %}
+          <form action="{{ request.get_full_path() }}" method="POST">
+            {{ csrf() }}
+            <button class="button-red" type="submit">{{ _('Delete') }}</button>
+            <a class="form-cancel"
+               href="{{ profile.get_absolute_url() }}">{{ _('cancel') }}</a>
+          </form>
+        {% endif %}
       </div>
     </div>
   </div>
