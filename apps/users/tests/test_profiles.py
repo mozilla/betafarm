@@ -22,7 +22,7 @@ class CronTests(TestCase):
             email=u'test@test.com',
             is_active=True,
             date_joined=two_days_ago,
-            )
+        )
         Profile.objects.create(user=u1)
         u2 = User.objects.create(
             username=default_username_algo(u'test2@test.com'),
@@ -30,7 +30,7 @@ class CronTests(TestCase):
             email=u'test2@test.com',
             is_active=True,
             date_joined=two_days_ago,
-            )
+        )
         Profile.objects.create(user=u2)
         self.assertEqual(Profile.objects.count(), 2)
         self.assertEqual(User.objects.count(), 2)
