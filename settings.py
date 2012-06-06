@@ -372,6 +372,8 @@ CSP_IMG_SRC = (
     'https://statse.webtrendslive.com',
     'http://*.google.com',
     'https://*.google.com',
+    'http://*.googleapis.com',
+    'https://*.googleapis.com',
     'data:',
 )
 CSP_STYLE_SRC = (
@@ -398,6 +400,8 @@ CSP_SCRIPT_SRC = (
     'https://statse.webtrendslive.com',
     'http://*.google.com',
     'https://*.google.com',
+    'http://*.googleapis.com',
+    'https://*.googleapis.com',
 )
 CSP_FRAME_SRC = (
     "'self'",
@@ -406,4 +410,5 @@ CSP_FRAME_SRC = (
 )
 CSP_OPTIONS = (
     'eval-script',
+    'inline-script',
 )
