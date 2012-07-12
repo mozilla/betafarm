@@ -386,6 +386,8 @@ CSP_SCRIPT_SRC = (
     "'self'",
     'http://browserid.org',
     'https://browserid.org',
+    'http://login.persona.org/',
+    'https://login.persona.org/',
     'http://www.mozilla.org',
     'https://www.mozilla.org',
     'http://statse.webtrendslive.com',
