@@ -370,17 +370,23 @@ CSP_IMG_SRC = (
     'https://www.mozilla.org',
     'http://statse.webtrendslive.com',
     'https://statse.webtrendslive.com',
+    'http://*.cdn.mozilla.net',
+    'https://*.cdn.mozilla.net',
     'data:',
 )
 CSP_STYLE_SRC = (
     "'self'",
     'http://www.mozilla.org',
     'https://www.mozilla.org',
+    'http://*.cdn.mozilla.net',
+    'https://*.cdn.mozilla.net',
 )
 CSP_FONT_SRC = (
     "'self'",
     'http://www.mozilla.org',
     'https://www.mozilla.org',
+    'http://*.cdn.mozilla.net',
+    'https://*.cdn.mozilla.net',
 )
 CSP_SCRIPT_SRC = (
     "'self'",
@@ -392,6 +398,8 @@ CSP_SCRIPT_SRC = (
     'https://www.mozilla.org',
     'http://statse.webtrendslive.com',
     'https://statse.webtrendslive.com',
+    'http://*.cdn.mozilla.net',
+    'https://*.cdn.mozilla.net',
 )
 CSP_OPTIONS = (
     'eval-script',
