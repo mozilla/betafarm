@@ -1,3 +1,4 @@
+src/django
 src/django-taggit
 src/django-browserid
 src/django-push/src
