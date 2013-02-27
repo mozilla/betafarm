@@ -50,12 +50,14 @@ RTL_LANGUAGES = ()  # ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in KNOWN_LANGUAGES])
 
+
 # Override Django's built-in with our native names
 class LazyLangs(dict):
     def __new__(self):
         from product_details import product_details
         return dict([(lang.lower(), product_details.languages[lang]['native'])
                      for lang in KNOWN_LANGUAGES])
+
 
 # Where to store product details etc.
 PROD_DETAILS_DIR = path('lib/product_details_json')
@@ -111,9 +113,8 @@ TEMPLATE_DIRS = (
     path('templates'),
 )
 
+
 def JINJA_CONFIG():
-    import jinja2
-    from django.conf import settings
 #    from caching.base import cache
     config = {'extensions': ['tower.template.i18n', 'jinja2.ext.do',
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
@@ -128,6 +129,7 @@ def JINJA_CONFIG():
 #        config['cache_size'] = -1 # Never clear the cache
 #        config['bytecode_cache'] = bc
     return config
+
 
 JINGO_EXCLUDE_APPS = (
     'debug_toolbar',
@@ -282,6 +284,9 @@ DOMAIN_METHODS = {
     #],
 }
 
+# Google Analytics
+GA_ACCOUNT_CODE = 'UA-35433268-28'
+
 # Path to Java. Used for compress_assets.
 JAVA_BIN = '/usr/bin/java'
 
@@ -350,7 +355,7 @@ SOUTH_TESTS_MIGRATE = False
 CACHE_COUNT_TIMEOUT = 60
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 600 # 10min
+CACHE_MIDDLEWARE_SECONDS = 600  # 10min
 CACHE_MIDDLEWARE_KEY_PREFIX = 'mozillalabs'
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
@@ -366,27 +371,27 @@ ANON_ALWAYS = True
 # Django-CSP
 CSP_IMG_SRC = (
     "'self'",
-    'http://www.mozilla.org',
-    'https://www.mozilla.org',
-    'http://statse.webtrendslive.com',
-    'https://statse.webtrendslive.com',
-    'http://*.cdn.mozilla.net',
-    'https://*.cdn.mozilla.net',
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
+    'http://www.google-analytics.com',
+    'https://ssl.google-analytics.com',
     'data:',
 )
 CSP_STYLE_SRC = (
     "'self'",
-    'http://www.mozilla.org',
-    'https://www.mozilla.org',
-    'http://*.cdn.mozilla.net',
-    'https://*.cdn.mozilla.net',
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
 )
 CSP_FONT_SRC = (
     "'self'",
-    'http://www.mozilla.org',
-    'https://www.mozilla.org',
-    'http://*.cdn.mozilla.net',
-    'https://*.cdn.mozilla.net',
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
 )
 CSP_SCRIPT_SRC = (
     "'self'",
@@ -394,13 +399,19 @@ CSP_SCRIPT_SRC = (
     'https://browserid.org',
     'http://login.persona.org',
     'https://login.persona.org',
-    'http://www.mozilla.org',
-    'https://www.mozilla.org',
-    'http://statse.webtrendslive.com',
-    'https://statse.webtrendslive.com',
-    'http://*.cdn.mozilla.net',
-    'https://*.cdn.mozilla.net',
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
+    'http://www.google-analytics.com',
+    'https://ssl.google-analytics.com',
+)
+CSP_FRAME_SRC = (
+    "'self'",
+    'http://login.persona.org',
+    'https://login.persona.org',
 )
 CSP_OPTIONS = (
     'eval-script',
+    'inline-script',
 )
