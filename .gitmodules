@@ -19,3 +19,6 @@
 [submodule "vendor-local/src/django-cache-machine"]
 	path = vendor-local/src/django-cache-machine
 	url = https://github.com/jbalogh/django-cache-machine
+[submodule "vendor-local/src/django"]
+	path = vendor-local/src/django
+	url = git://github.com/django/django.git

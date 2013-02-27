@@ -16,6 +16,11 @@ DEBUG = TEMPLATE_DEBUG = False
 ADMINS = ()
 MANAGERS = ADMINS
 
+ALLOWED_HOSTS = [
+    '.mozillalabs.com',
+    '.allizom.org',
+]
+
 ## Internationalization.
 
 # Local time zone for this installation. Choices can be found here:
