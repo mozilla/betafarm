@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% from "layout/breadcrumbs.html" import breadcrumbs %}
+{% from "layout/helpers.html" import search %}
+
+{% block page_title %}: {{ _('Hatchery') }}{% endblock %}
+
+{% block page_id %}hatchery{% endblock %}
+{% block section_class %}hatchery{% endblock %}
+
+{% block breadcrumbs %}
+  {{ breadcrumbs(last=_('Hatchery')) }}
+{% endblock %}
+
+{% block content -%}
+  <div id="main-content">
+    <div class="row">
+      <div class="span10">
+        <h1>{{ _('Hatchery') }}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <article class="span5">
+        <h2>What is Hatchery?</h2>
+        <p>If you're a Mozillian and want to help invent new Mozilla products, Mozilla Hatchery provides lots of support to take your prototype or product idea to the next level. We offer <strong>coaching</strong>, <strong>resources</strong> and <strong>curriculum</strong> across various disciplines - user research, testing, design, product development, marketing and more - with a goal to help build Mozilla's future products and services.</p>
+        <ul>
+          <li><strong>We aren't the right people to talk to if</strong> you are seeking investment, straight up cash money, or staffing for your project.</li>
+          <li><strong>We can help if</strong> you are seeking guidance and resources to build a future Mozilla product.</li>
+        </ul>
+
+        <h2>Why Are We Doing Hatchery?</h2>
+        <p>Innovation is central to Mozilla's mission to keep the web open. Without competition and diversity of offerings, the web risks being controlled by one entity and stagnating in development. Hatchery is one way we hope to foster and support continuing innovation at Mozilla.</p>
+
+        <h2>Who is Hatchery for?</h2>
+        <p>Mozilla Hatchery is for Mozillians -- staff and volunteers who understand and are committed to Mozilla's purpose, values and strategies. Whether you are an engineer, a designer, a communicator or a product expert, you share one thing: a deep desire to engage in building and launching a product that is integral to the future of Mozilla and the web.</p>
+
+        <h2>How Hatchery works.</h2>
+
+        <p>Do you (or you and a colleague or two) have a great idea that you think should become a Mozilla product, but you don't know how to go about it?  Here is what you can do:</p>
+          <ol>
+            <li>Apply <a href="https://webfwd.wufoo.com/forms/mozilla-hatchery-application/">here</a>.</li>
+            <li>If there's a good fit (see <a href="#FAQ">FAQ</a> for criteria), you will get accepted and contacted by <a href="#coaches">Hatchery Coaches</a> within a week.</li>
+            <li>You will then have an onboarding meeting and get assigned a designated Hatchery Coach to guide you through the program, then followed by regular meetings with Hatchery Coaches to set goals and deadlines for your project.  These meetings will also include gathering helpful guidance and resources for your project (see the <a href="#">Educational Kit</a> for more details).</li>
+            <li>After periodic reviews by senior management, your project may be selected to move to the next phase:
+              <br/><strong>Phase 1:</strong> Your project in the Hatchery, getting coaching
+              <br/><strong>Phase 2:</strong> We help your project get more exposure, early users, etc.
+              <br/><strong>Phase 3:</strong> We assist in securing more resources (on the path to becoming a Mozilla product).
+            </li>
+          </ol>
+        </p>
+
+        <p>Details of each phase will vary depending on the specifics.</p>
+
+        <p><a class="button" href="https://webfwd.wufoo.com/forms/mozilla-hatchery-application/" target="_blank">Apply here!</a></p>
+
+        <p class="small"><i>This process is subject to change!</i></p>
+
+        <h2 id="FAQ">FAQ</h2>
+
+        <p><strong>What makes a good application?</strong><br/>
+        Mozilla Hatchery is looking for potentially important product ideas which help advance the Mozilla mission and which can be progressively refined. It's not a good outlet for purely technological concepts (e.g. a new compiler technology) or purely abstract concepts. We believe in getting designers, technologists and business thinkers to co-create through early testing, and prototyping.</p>
+
+        <p>The application form gives you the opportunity to explain what your idea is, why you think Mozilla should do it, and what you want to achieve. Make sure to address each question clearly and concisely.</p>
+
+        <p><strong>What would determine success?</strong><br/>
+        The answer will vary depending on the specific product idea and its stage in development.  Early on, the coaches will encourage you to validate your insight -- get early feedback of the concept, even before you start coding; as the idea matures and adapts to the feedback, we'll do our best to help you find the right next step.</p>
+
+        <p><strong>Do I need to have a team to apply?</strong><br/>
+        No, you don't need to have a team to apply. That said, having a team member is a validation for your project as it means that you could convince one other person to take part in your idea. If you are applying as an individual, you should be ready to be the champion of your product idea and the leader of the development process and forming a small team. Mozilla Hatchery will support you by introductions within Mozilla community if applicable. However, we can't promise staffing for your project.  Think of us as coaches, not managers.</p>
+
+        <p><strong>When should I apply?</strong><br/>
+        It is really up to you. Review our website and application form, and if you think there is a good fit, submit your application. The sooner you apply, the sooner we can start helping you!</p>
+
+        <p><strong>Great, how can I help?</strong><br/>
+        Currently the Hatchery coaches are designers, user researchers, strategists and technologists who give their time and knowledge to participating teams. This happens through meetings in person or remotely (Skype, vidyo, telephone - whatever works). Lots of time it's reacting to something the team is doing; sometimes it's providing specific tools and advice.</p>
+
+        If you think you can help our teams in any of these fields - or others - to turn their ideas into products, please email us at labscoaches _at_ mozilla.com.</p>
+
+        <p id="coaches"><strong>Who are the current Hatchery Coaches?</strong><br/>
+        The coaches will vary over time, depending on their availability (this isn't their main job function). Currently we have:
+          <ul>
+            <li><a href="https://mozillians.org/en-US/u/davida/">David Ascher</a>, Director of Mozilla Labs</li>
+            <li><a href="https://mozillians.org/en-US/u/diane/">Diane Bisgeier</a>, Program Manager, WebFWD</li>
+            <li><a href="https://mozillians.org/en-US/u/didem/">Didem Ersoz</a>, Program Manager, WebFWD</li>
+            <li><a href="https://mozillians.org/en-US/u/adruck/">Aaron Druck</a>, Designer, Labs</li>
+            <li><a href="https://mozillians.org/en-US/u/paulaUK/">Paula Le Dieu</a>, Mozilla Foundation</li>
+            <li><a href="https://mozillians.org/en-US/u/Jinghua/">Jinghua Zhang</a>, Director of User Experience</li>
+            <li><a href="https://mozillians.org/en-US/u/wex/">Simon Wex</a>, Software Architect, Labs</li>
+          </ul>
+        </p>
+
+        <p><strong>What's not in scope?</strong><br/>
+        If you want to start your own business, we encourage you to check out <a href="https://webfwd.org" target="_blank">WebFWD</a>, Mozilla's program designed to help entrepreneurs get their businesses to the next level.</p>
+        <p>If you have a product or a business that you want Mozilla to partner with, contact our business development group at <a href="http://www.mozilla.org/en-US/about/partnerships/" target="_blank">http://www.mozilla.org/en-US/about/partnerships/</a></p>
+        <p>If you are seeking investment or grants, we encourage you to check out the various focus areas of our <a href="http://www.mozilla.org/en-US/grants/" target="_blank">Foundation</a>.</p>
+
+        <p><strong>Who can apply?</strong><br/>
+        If you are a vouched-for <a href="https://mozillians.org" target="_blank">Mozillian</a>, please fill out our <a href="https://webfwd.wufoo.com/forms/mozilla-hatchery-application/">application form</a>.</p>
+
+        <p><strong>Great, I applied, what happens next?</strong><br/>
+        Wait to hear back from a Labs Coach about next steps!</p>
+
+        <h2>How to apply/guidelines</h2>
+        <p>Fill out this <a href="https://webfwd.wufoo.com/forms/mozilla-hatchery-application/">web form</a>.</p>
+
+        <h2>Recommended reading &amp; background material</h2>
+        <ul>
+          <li>Coming soon!</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>Email us at <a href="mailto:labscoaches@mozilla.com">labscoaches@mozilla.com</a></p>
+      </article>
+      <div class="span5">
+        <img src="{{ MEDIA_URL }}img/hatchery-logo.png" alt="Hatchery Logo" width="380" height="450" />
+      </div>
+    </div>
+  </div>
+{% endblock -%}

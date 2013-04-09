@@ -61,6 +61,7 @@
                 <li><a class="{{ 'current' if active == 'about' }}" href="{{ url('innovate_about') }}">{{ _('About') }}</a></li>
                 <li><a class="{{ 'current' if active == 'projects' }}" href="{{ url('projects_all') }}">{{ _('Projects') }}</a></li>
                 <li><a href="http://blog.mozilla.com/labs/">{{ _('Blog') }}</a></li>
+                <li><a class="{{ 'current' if active == 'hatchery' }}" href="{{ url('innovate_hatchery') }}">{{ _('Hatchery') }}</a></li>
                 {% if user.is_authenticated() -%}
                   <li class="username">
                     <a class="{{ 'current' if active == 'users' }}" href="{{ url('users_dashboard') }}">{{ user.get_profile().display_name }}</a>
